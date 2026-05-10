@@ -1,0 +1,285 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Noir Terminal | Portfolio</title>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@200;800&family=Space+Mono&family=Noto+Sans+JP:wght@300;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg: #000000;
+            --accent: #7d5fff;
+            --text: #ffffff;
+            --font-main: 'Plus Jakarta Sans', 'Noto Sans JP', sans-serif;
+            --font-mono: 'Space Mono', monospace;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; cursor: crosshair; }
+
+        body {
+            background-color: var(--bg);
+            color: var(--text);
+            font-family: var(--font-main);
+            overflow-x: hidden;
+            line-height: 1.6;
+        }
+
+        /* --- 1. 背景システム (xManager風タイポグラフィ + インタラクティブ光) --- */
+        #bg-container {
+            position: fixed;
+            top: 0; left: 0; width: 100vw; height: 100vh;
+            z-index: -5;
+            background: #000;
+            overflow: hidden;
+        }
+
+        /* 流れる巨大文字 (Marquee) */
+        .bg-marquee {
+            position: absolute;
+            white-space: nowrap;
+            font-size: 22vh; /* 画面の高さに対して巨大に */
+            font-weight: 800;
+            color: rgba(255, 255, 255, 0.03); /* 極限まで薄く */
+            text-transform: uppercase;
+            user-select: none;
+            pointer-events: none;
+            animation: marquee 50s linear infinite;
+        }
+
+        .line-1 { top: 15%; }
+        .line-2 { top: 55%; animation-direction: reverse; animation-duration: 70s; color: rgba(125, 95, 255, 0.02); }
+
+        @keyframes marquee {
+            from { transform: translateX(20%); }
+            to { transform: translateX(-100%); }
+        }
+
+        /* マウスに追従する光のレイヤー */
+        #bg-interactive {
+            position: fixed;
+            top: 0; left: 0; width: 100vw; height: 100vh;
+            z-index: -4;
+        }
+
+        /* 質感（ノイズ） */
+        .grain {
+            position: fixed;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background: url('https://grainy-gradients.vercel.app/noise.svg');
+            opacity: 0.12;
+            pointer-events: none;
+            z-index: -1;
+        }
+
+        /* スキャンライン */
+        body::after {
+            content: "";
+            position: fixed;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background: linear-gradient(0deg, rgba(255,255,255,0.02) 1px, transparent 1px);
+            background-size: 100% 4px;
+            pointer-events: none;
+            z-index: 10;
+        }
+
+        /* --- 2. Hero Section (導入) --- */
+        .hero {
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            position: relative;
+        }
+
+        .main-title {
+            font-size: clamp(3rem, 12vw, 8rem);
+            font-weight: 800;
+            letter-spacing: -0.04em;
+            text-transform: uppercase;
+        }
+
+        .char {
+            display: inline-block; opacity: 0; transform: translateY(30px); filter: blur(10px);
+            animation: revealChar 0.8s cubic-bezier(0.2, 1, 0.3, 1) forwards;
+        }
+
+        @keyframes revealChar { to { opacity: 1; transform: translateY(0); filter: blur(0); } }
+
+        .sub-typewriter {
+            font-family: var(--font-mono);
+            font-size: 0.8rem;
+            color: var(--accent);
+            letter-spacing: 0.4em;
+            margin-top: 15px;
+        }
+
+        /* --- 3. Content Section --- */
+        .section-container {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 100px 40px;
+        }
+
+        .anim-box {
+            opacity: 0; transform: translateY(50px);
+            transition: all 1.2s cubic-bezier(0.2, 1, 0.3, 1);
+        }
+
+        .anim-box.is-animated { opacity: 1; transform: translateY(0); }
+
+        .content-item {
+            display: block; margin-bottom: 40px; padding: 60px;
+            background: rgba(255, 255, 255, 0.01);
+            backdrop-filter: blur(8px); /* 背景の文字を程よくぼかして読みやすく */
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            text-decoration: none; color: inherit; transition: 0.5s;
+        }
+
+        .content-item:hover {
+            border-color: var(--accent);
+            background: rgba(125, 95, 255, 0.03);
+            transform: scale(1.02) translateY(-5px);
+        }
+
+        .content-item h3 { font-size: 2rem; color: var(--accent); margin-bottom: 10px; }
+        .content-item p { color: #888; font-size: 0.95rem; }
+
+        /* --- 4. Footer (目次リンク) --- */
+        footer {
+            background: rgba(5, 5, 5, 0.9);
+            border-top: 1px solid rgba(255, 255, 255, 0.05);
+            padding: 100px 0 50px;
+        }
+
+        .footer-grid {
+            display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+            gap: 50px; margin-bottom: 80px;
+        }
+
+        .footer-column h4 {
+            font-family: var(--font-mono); font-size: 0.7rem;
+            color: var(--accent); letter-spacing: 0.2em; margin-bottom: 25px;
+            text-transform: uppercase;
+        }
+
+        .footer-link {
+            color: #555; text-decoration: none; font-size: 0.85rem;
+            display: block; margin-bottom: 12px; transition: 0.3s;
+        }
+
+        .footer-link:hover { color: #fff; transform: translateX(5px); }
+
+        .footer-bottom {
+            display: flex; justify-content: space-between; align-items: center;
+            padding-top: 40px; border-top: 1px solid rgba(255, 255, 255, 0.03);
+            font-size: 0.7rem; color: #333;
+        }
+
+    </style>
+</head>
+<body>
+
+    <div id="bg-container">
+        <div class="bg-marquee line-1">VRChat Minecraft Anime Project Archiving</div>
+        <div class="bg-marquee line-2">Digital Terminal Portfolio Creative Works 2026</div>
+        <div id="bg-interactive"></div>
+    </div>
+    <div class="grain"></div>
+
+    <section class="hero">
+        <h1 class="main-title" id="target-title">NOIR TERMINAL</h1>
+        <div class="sub-typewriter" id="typewriter-text"></div>
+    </section>
+
+    <div class="section-container">
+        <a href="./vrchat/" class="content-item anim-box">
+            <h3>VR_CHAT</h3>
+            <p>アバター「まめひなた」との仮想空間ログ。Unity改変、OSC連携プロジェクト。</p>
+        </a>
+        <a href="./games/" class="content-item anim-box">
+            <h3>GAMES</h3>
+            <p>Minecraft(Fabric)サーバー構築。世界のルールを書き換える楽しみ。</p>
+        </a>
+        <a href="./anime/" class="content-item anim-box">
+            <h3>ANIME</h3>
+            <p>記憶に残る美しい物語。感情を揺さぶる作品たちのアーカイブ。</p>
+        </a>
+    </div>
+
+    <footer>
+        <div class="section-container" style="padding-top:0; margin-top:0;">
+            <div class="footer-grid">
+                <div class="footer-column">
+                    <h4>About</h4>
+                    <a href="#" class="footer-link">Profile</a>
+                    <a href="#" class="footer-link">Contact</a>
+                </div>
+                <div class="footer-column">
+                    <h4>Archive</h4>
+                    <a href="./vrchat/" class="footer-link">VRChat Log</a>
+                    <a href="./games/" class="footer-link">Game Log</a>
+                    <a href="./anime/" class="footer-link">Anime List</a>
+                </div>
+                <div class="footer-column">
+                    <h4>Social</h4>
+                    <a href="#" class="footer-link">X (Twitter)</a>
+                    <a href="#" class="footer-link">GitHub</a>
+                </div>
+                <div class="footer-column">
+                    <h4>Legal</h4>
+                    <a href="#" class="footer-link">Privacy Policy</a>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2026 YOUR IDENTITY.</p>
+                <p>STATUS: OPERATIONAL</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // 1. タイトルの一文字ずつ出現
+        const title = document.getElementById('target-title');
+        const text = title.innerText; title.innerHTML = '';
+        text.split('').forEach((char, i) => {
+            const span = document.createElement('span');
+            span.innerText = char === ' ' ? '\u00A0' : char;
+            span.classList.add('char');
+            span.style.animationDelay = `${i * 0.08}s`;
+            title.appendChild(span);
+        });
+
+        // 2. サブテキストのタイピング演出
+        const subText = "INITIALIZING SECURE TERMINAL...";
+        let j = 0;
+        function typeWriter() {
+            if (j < subText.length) {
+                document.getElementById("typewriter-text").innerHTML += subText.charAt(j);
+                j++; setTimeout(typeWriter, 50);
+            }
+        }
+        setTimeout(typeWriter, 1200);
+
+        // 3. マウス追従背景 (慣性付き・液体のような動き)
+        const bg = document.getElementById('bg-interactive');
+        let mX = 0, mY = 0, bX = 0, bY = 0;
+        window.addEventListener('mousemove', (e) => { mX = e.clientX; mY = e.clientY; });
+
+        function animateBg() {
+            bX += (mX - bX) * 0.05; bY += (mY - bY) * 0.05;
+            const x = (bX / window.innerWidth) * 100, y = (bY / window.innerHeight) * 100;
+            bg.style.background = `radial-gradient(circle at ${x}% ${y}%, rgba(125, 95, 255, 0.15) 0%, transparent 50%)`;
+            requestAnimationFrame(animateBg);
+        }
+        animateBg();
+
+        // 4. スクロールアニメーション
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => { if (entry.isIntersecting) entry.target.classList.add('is-animated'); });
+        }, { threshold: 0.15 });
+        document.querySelectorAll('.anim-box').forEach(box => observer.observe(box));
+    </script>
+</body>
+</html>

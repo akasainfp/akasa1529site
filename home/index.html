@@ -177,7 +177,7 @@
         <div class="sub-typewriter" id="typewriter-text"></div>
         <div class="site-stat" aria-label="site total views">
             <span>Total views</span>
-            <strong id="visitor-count">0000</strong>
+            <strong id="visitor-count">GA&#12391;&#38598;&#35336;&#20013;</strong>
         </div>
     </section>
 
@@ -339,11 +339,27 @@
         }, { threshold: 0.15 });
 
         document.querySelectorAll('.anim-box').forEach(box => observer.observe(box));
+        async function loadSiteStats() {
+            const counter = document.getElementById('visitor-count');
+            if (!counter) return;
+            const currentPath = decodeURIComponent(window.location.pathname).replace(/\\/g, '/');
+            const nestedHome = /\/home\/?(?:index\.html)?$/i.test(currentPath);
+            const source = nestedHome ? '../site-stats.json' : 'site-stats.json';
+            try {
+                const response = await fetch(source, { cache: 'no-store' });
+                if (!response.ok) throw new Error('Site stats not found');
+                const stats = await response.json();
+                counter.textContent = stats.totalViews || 'GA\u3067\u96c6\u8a08\u4e2d';
+            } catch (error) {
+                counter.textContent = 'GA\u3067\u96c6\u8a08\u4e2d';
+            }
+        }
         async function loadChangeLog() {
             const list = document.getElementById('change-log-list');
             if (!list) return;
-            const localNested = window.location.protocol === 'file:' && /\/(home)\/index\.html$/i.test(decodeURIComponent(window.location.pathname).replace(/\\/g, '/'));
-            const source = window.location.protocol === 'file:' ? (localNested ? '../changelog.json' : 'changelog.json') : '/changelog.json';
+            const currentPath = decodeURIComponent(window.location.pathname).replace(/\\/g, '/');
+            const nestedHome = /\/home\/?(?:index\.html)?$/i.test(currentPath);
+            const source = nestedHome ? '../changelog.json' : 'changelog.json';
             try {
                 const response = await fetch(source, { cache: 'no-store' });
                 if (!response.ok) throw new Error('Change log not found');
@@ -360,6 +376,7 @@
                 list.innerHTML = '<div class="log-entry"><time class="log-date" datetime="2026-05-13">2026.05.13</time><p>changelog.json を読み込めませんでした。ローカルで直接開いている場合は、公開環境またはローカルサーバーで確認してください。</p></div>';
             }
         }
+        loadSiteStats();
         loadChangeLog();
     </script>
     <script>

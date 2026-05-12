@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Akasa1529 archive</title>
+    <title>Profile | Akasa1529 archive</title>
     <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@200;800&family=Space+Mono&family=Noto+Sans+JP:wght@300;700&display=swap" rel="stylesheet">
     <style>
         :root {
@@ -41,23 +41,19 @@
             opacity: 0.12; pointer-events: none; z-index: -1;
         }
 
-        /* --- 2. ヒーローセクション --- */
+        /* --- ヒーローセクション --- */
         .hero {
-            height: 100vh;
+            height: 60vh;
             display: flex;
             flex-direction: column;
             justify-content: center;
             align-items: center;
             text-align: center;
             border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-            position: relative;
             background: radial-gradient(circle at center, rgba(125, 95, 255, 0.05) 0%, transparent 70%);
         }
 
-        .main-title {
-            font-size: clamp(3rem, 12vw, 8rem);
-            font-weight: 800; letter-spacing: -0.04em;
-        }
+        .main-title { font-size: clamp(3rem, 12vw, 8rem); font-weight: 800; letter-spacing: -0.04em; }
 
         .char {
             display: inline-block; opacity: 0; transform: translateY(30px); filter: blur(10px);
@@ -65,42 +61,66 @@
         }
         @keyframes revealChar { to { opacity: 1; transform: translateY(0); filter: blur(0); } }
 
-        .sub-typewriter {
-            font-family: var(--font-mono); font-size: 0.8rem; color: var(--accent);
-            letter-spacing: 0.4em; margin-top: 15px; height: 1.2em;
-        }
-
-        /* --- 3. メインコンテンツ --- */
+        /* --- プロフィールコンテンツ --- */
         .section-container {
             max-width: 1000px;
             margin: 0 auto;
-            padding: 120px 40px;
+            padding: 80px 40px;
         }
 
         .anim-box {
-            opacity: 0; transform: translateY(50px);
+            opacity: 0; transform: translateY(30px);
             transition: all 1.2s cubic-bezier(0.2, 1, 0.3, 1);
+            margin-bottom: 80px;
         }
         .anim-box.is-animated { opacity: 1; transform: translateY(0); }
 
-        .content-item {
-            display: block; margin-bottom: 40px; padding: 60px;
-            background: rgba(255, 255, 255, 0.01);
-            backdrop-filter: blur(8px);
-            border: 1px solid rgba(255, 255, 255, 0.05);
-            text-decoration: none; color: inherit; transition: 0.5s;
+        .profile-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 40px;
         }
 
-        .content-item:hover {
+        .info-card {
+            padding: 40px;
+            background: rgba(255, 255, 255, 0.01);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(8px);
+            transition: 0.5s cubic-bezier(0.2, 1, 0.3, 1);
+        }
+
+        /* SNSカード用のホバー演出 */
+        a.info-card { text-decoration: none; color: inherit; display: block; }
+        a.info-card:hover {
             border-color: var(--accent);
             background: rgba(125, 95, 255, 0.03);
-            transform: scale(1.02) translateY(-5px);
+            transform: translateY(-5px) scale(1.02);
         }
 
-        .content-item h3 { font-size: 2rem; color: var(--accent); margin-bottom: 10px; }
-        .content-item p { color: #888; font-size: 0.95rem; }
+        .info-card h3 {
+            font-family: var(--font-mono); font-size: 0.75rem;
+            color: var(--accent); letter-spacing: 0.2em; margin-bottom: 20px;
+            text-transform: uppercase;
+        }
 
-        /* --- 4. フッター (統一デザイン) --- */
+        .info-card p { font-size: 1.1rem; font-weight: 300; }
+
+        .spec-list { list-style: none; font-family: var(--font-mono); font-size: 0.9rem; color: #888; }
+        .spec-list li { margin-bottom: 10px; display: flex; justify-content: space-between; }
+        .spec-list span { color: var(--text); }
+
+        /* --- フッター --- */
+        footer {
+            background: rgba(5, 5, 5, 0.95);
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            padding: 80px 0 50px;
+        }
+        .footer-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 50px; margin-bottom: 60px; }
+        .footer-column h4 { font-family: var(--font-mono); font-size: 0.7rem; color: var(--accent); letter-spacing: 0.2em; margin-bottom: 20px; text-transform: uppercase; }
+        .footer-link { color: #555; text-decoration: none; font-size: 0.85rem; display: block; margin-bottom: 12px; transition: 0.3s; }
+        .footer-link:hover { color: #fff; transform: translateX(5px); }
+        .footer-bottom { display: flex; justify-content: space-between; font-size: 0.7rem; color: #333; border-top: 1px solid rgba(255, 255, 255, 0.03); padding-top: 30px; }
+        /* --- index.html aligned footer --- */
         footer {
             padding: 100px 0 50px;
             background: #000;
@@ -111,8 +131,8 @@
         .footer-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 40px; margin-bottom: 80px; }
         .footer-col h4 { font-family: var(--font-mono); font-size: 0.7rem; color: #555; text-transform: uppercase; letter-spacing: 0.2em; margin-bottom: 25px; }
         .footer-links { display: flex; flex-direction: column; gap: 12px; }
-        .footer-link { color: var(--accent); text-decoration: none; font-size: 0.85rem; transition: 0.3s; }
-        .footer-link:hover { color: #fff; padding-left: 5px; }
+        .footer-link { color: var(--accent); text-decoration: none; font-size: 0.85rem; transition: 0.3s; display: inline; margin-bottom: 0; }
+        .footer-link:hover { color: #fff; padding-left: 5px; transform: none; }
         .footer-bottom { display: flex; justify-content: space-between; align-items: center; border-top: 1px solid rgba(255,255,255,0.05); padding-top: 40px; font-family: var(--font-mono); font-size: 0.65rem; color: #333; }
 
     </style>
@@ -123,28 +143,70 @@
     <div class="grain"></div>
 
     <section class="hero" id="top">
-        <h1 class="main-title" id="target-title">Akasa1529 | archive</h1>
-        <div class="sub-typewriter" id="typewriter-text"></div>
+        <h1 class="main-title" id="target-title">PROFILE</h1>
+        <div style="font-family: var(--font-mono); font-size: 0.7rem; color: var(--accent); margin-top: 15px; letter-spacing: 0.3em;">Akasa1529 / ny9z</div>
     </section>
 
-    <div class="section-container">
-        <a href="/profile" class="content-item anim-box">
-            <h3>自己紹介</h3>
-            <p>Akasa1529の素性</p>
-        </a>
-        <a href="/anime" class="content-item anim-box">
-            <h3>アニメ</h3>
-            <p>今まで見たアニメ一覧表 | アニメ評価</p>
-        </a>
-        <a href="/games" class="content-item anim-box">
-            <h3>ゲーム</h3>
-            <p>今までプレイしたゲーム一覧表 | ゲーム評価</p>
-        </a>
-        <a href="/archive" class="content-item anim-box">
-            <h3>ツール</h3>
-            <p>今まで作ったツール一覧</p>
-        </a>
-    </div>
+    <main class="section-container">
+        <div class="anim-box profile-grid">
+            <div class="info-card">
+                <h3>Identity</h3>
+                <p>Akasa1529 / ny9z</p>
+                <p style="font-size: 0.9rem; color: #666; margin-top: 10px;">INFP-T / 狭く深く</p>
+            </div>
+            <div class="info-card">
+                <h3>Birthday</h3>
+                <p>2008.01.28</p>
+            </div>
+        </div>
+
+        <div class="anim-box profile-grid">
+            <div class="info-card">
+                <h3>Development</h3>
+                <p style="font-size: 0.95rem;">Python (discord.py) や Node.js を活用した Discord Bot 開発。サーバー管理や自動化システムの構築をメインに行っています。Geminiをよく使用しています。</p>
+            </div>
+            <div class="info-card">
+                <h3>Created</h3>
+                <p style="font-size: 0.95rem;">Chat boxへ指定したメッセージをOBS経由で送信するAFK用toolの作成や、Discord botの開発。Webサイトの作成</p>
+            </div>
+        </div>
+
+        <div class="anim-box">
+            <div style="font-family: var(--font-mono); font-size: 0.75rem; color: var(--accent); letter-spacing: 0.2em; margin-bottom: 30px; display: flex; align-items: center; gap: 15px;">
+                CONNECT
+                <span style="height: 1px; flex: 1; background: rgba(255,255,255,0.1);"></span>
+            </div>
+            <div class="profile-grid">
+                <a href="https://x.com/infp_player" target="_blank" class="info-card">
+                    <h3>Twitter</h3>
+                    <p>@infp_player</p>
+                </a>
+                <a href="https://github.com/akasainfp" target="_blank" class="info-card">
+                    <h3>GitHub</h3>
+                    <p>akasainfp</p>
+                </a>
+                <a href="https://discord.com/users/931953913555464192" target="_blank" class="info-card">
+                    <h3>Discord</h3>
+                    <p>ny9z</p>
+                </a>
+                <a href="/archive" class="info-card">
+                    <h3>制作物</h3>
+                    <p>制作物一覧</p>
+                </a>
+            </div>
+        </div>
+
+        <div class="anim-box">
+            <div class="info-card" style="width: 100%;">
+                <h3>My Spec</h3>
+                <ul class="spec-list" style="margin-top: 20px;">
+                    <li>Birthday <span>2008 / 01 / 28</span></li>
+                    <li>personality <span>狭く深く / 飽き性</span></li>
+                    <li>created <span>Discordbot[Moshi box] / AFK tool / website</span></li>
+                </ul>
+            </div>
+        </div>
+    </main>
 
     <footer>
         <div class="footer-content">
@@ -231,8 +293,10 @@
             },
             "retina_detect": true
         });
+    </script>
 
-        // 2. タイトルの出現演出
+    <script>
+        // タイトル演出
         const title = document.getElementById('target-title');
         const text = title.innerText; title.innerHTML = '';
         text.split('').forEach((char, i) => {
@@ -243,33 +307,7 @@
             title.appendChild(span);
         });
 
-        // 3. タイピング演出とステータス更新
-        const typewriterEl = document.getElementById("typewriter-text");
-        const statusFooterEl = document.getElementById("status-footer");
-        const initText = "Akasa1529 の記録を整理しています...";
-        const finalText = "PROFILE / ANIME / GAME / TOOL";
-        let j = 0;
-
-        function typeWriter() {
-            if (j < initText.length) {
-                typewriterEl.innerHTML += initText.charAt(j);
-                j++;
-                setTimeout(typeWriter, 60);
-            } else {
-                setTimeout(() => {
-                    typewriterEl.style.transition = "opacity 0.5s";
-                    typewriterEl.style.opacity = "0";
-                    setTimeout(() => {
-                        typewriterEl.innerHTML = finalText;
-                        typewriterEl.style.opacity = "1";
-                        statusFooterEl.innerHTML = "公開中";
-                    }, 500);
-                }, 1000);
-            }
-        }
-        setTimeout(typeWriter, 1200);
-
-        // 4. スクロール監視 (Intersection Observer)
+        // スクロール監視
         const observer = new IntersectionObserver((entries) => {
             entries.forEach(entry => {
                 entry.target.classList.toggle('is-animated', entry.isIntersecting);

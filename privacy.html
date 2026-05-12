@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Privacy Policy | Akasa1529 archive</title>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@200;800&family=Space+Mono&family=Noto+Sans+JP:wght@300;700&display=swap" rel="stylesheet">
+    <style>
+        :root { --bg: #000000; --accent: #7d5fff; --text: #ffffff; --font-main: 'Plus Jakarta Sans', 'Noto Sans JP', sans-serif; --font-mono: 'Space Mono', monospace; }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { background-color: var(--bg); color: var(--text); font-family: var(--font-main); line-height: 1.8; overflow-x: hidden; }
+        #particles-js { position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: -5; background-color: #000; }
+        .grain { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: url('https://grainy-gradients.vercel.app/noise.svg'); opacity: 0.12; pointer-events: none; z-index: -1; }
+        .hero { height: 46vh; min-height: 360px; display: flex; flex-direction: column; justify-content: center; align-items: center; text-align: center; border-bottom: 1px solid rgba(255,255,255,0.1); background: radial-gradient(circle at center, rgba(125,95,255,0.05) 0%, transparent 70%); }
+        .main-title { font-size: clamp(2.6rem, 9vw, 6.8rem); font-weight: 800; letter-spacing: -0.04em; }
+        .hero-sub { font-family: var(--font-mono); font-size: 0.72rem; color: var(--accent); letter-spacing: 0.25em; margin-top: 14px; }
+        .char { display: inline-block; opacity: 0; transform: translateY(30px); filter: blur(10px); animation: revealChar 0.8s cubic-bezier(0.2, 1, 0.3, 1) forwards; }
+        @keyframes revealChar { to { opacity: 1; transform: translateY(0); filter: blur(0); } }
+        .section-container { max-width: 900px; margin: 0 auto; padding: 90px 40px; }
+        .anim-box { opacity: 0; transform: translateY(50px); transition: all 1.2s cubic-bezier(0.2, 1, 0.3, 1); }
+        .anim-box.is-animated { opacity: 1; transform: translateY(0); }
+        .panel { border: 1px solid rgba(255,255,255,0.05); background: rgba(255,255,255,0.01); padding: 42px; margin-bottom: 28px; }
+        .panel h2 { font-family: var(--font-mono); color: var(--accent); font-size: 0.9rem; letter-spacing: 0.14em; text-transform: uppercase; margin-bottom: 18px; }
+        .panel p, .panel li { color: #aaa; font-size: 0.9rem; }
+        .panel ul { display: flex; flex-direction: column; gap: 10px; list-style: none; }
+        .action-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 18px; margin-top: 22px; }
+        .action-link { display: block; min-height: 132px; padding: 24px; border: 1px solid rgba(255,255,255,0.06); background: rgba(255,255,255,0.01); color: #aaa; text-decoration: none; transition: 0.3s; }
+        .action-link:hover { border-color: var(--accent); background: rgba(125,95,255,0.04); transform: translateY(-3px); }
+        .action-link strong { display: block; color: var(--accent); font-family: var(--font-mono); font-size: 0.78rem; letter-spacing: 0.12em; margin-bottom: 10px; text-transform: uppercase; }
+        .back-link { display: inline-block; margin-top: 20px; color: var(--accent); text-decoration: none; font-family: var(--font-mono); font-size: 0.72rem; letter-spacing: 0.18em; }
+        footer { padding: 100px 0 50px; background: #000; border-top: 1px solid rgba(255,255,255,0.05); font-family: var(--font-main); }
+        .footer-content { max-width: 1200px; margin: 0 auto; padding: 0 40px; }
+        .footer-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 40px; margin-bottom: 80px; }
+        .footer-col h4 { font-family: var(--font-mono); font-size: 0.7rem; color: #555; text-transform: uppercase; letter-spacing: 0.2em; margin-bottom: 25px; }
+        .footer-links { display: flex; flex-direction: column; gap: 12px; }
+        .footer-link { color: var(--accent); text-decoration: none; font-size: 0.85rem; transition: 0.3s; }
+        .footer-link:hover { color: #fff; padding-left: 5px; }
+        .footer-bottom { display: flex; justify-content: space-between; align-items: center; border-top: 1px solid rgba(255,255,255,0.05); padding-top: 40px; font-family: var(--font-mono); font-size: 0.65rem; color: #333; }
+        @media (max-width: 768px) { .section-container { padding: 70px 24px; } .panel { padding: 30px 24px; } .footer-bottom { align-items: flex-start; flex-direction: column; gap: 10px; } }
+    </style>
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-GFCQ2VE3H0"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'G-GFCQ2VE3H0');
+    </script></head>
+<body>
+    <div id="particles-js"></div>
+    <div class="grain"></div>
+    <section class="hero" id="top">
+        <h1 class="main-title" id="target-title">PRIVACY POLICY</h1>
+        <div class="hero-sub">サイト利用とデータの扱い</div>
+    </section>
+    <main class="section-container">
+        <section class="panel anim-box"><h2>基本方針</h2><p>当サイト「Akasa1529 archive」は、訪問者のプライバシーを尊重し、安心して利用できるよう個人情報の取り扱いを最小限にします。</p></section>
+        <section class="panel anim-box"><h2>アクセス解析</h2><p>今後 Google Analytics を導入する場合、ページ閲覧数や利用環境などの統計情報を収集します。これらはサイト改善のために利用し、氏名や住所などを直接取得する目的では使用しません。</p></section>
+        <section class="panel anim-box"><h2>お問い合わせ</h2><p>問い合わせ内容に含まれる情報は、返信や対応に必要な範囲でのみ利用します。公開したくない個人情報は、問い合わせ本文に記載しないでください。</p></section>
+        <section class="panel anim-box"><h2>変更</h2><p>このポリシーは必要に応じて更新します。主な変更はホームの Change Log に記録します。</p><a href="/" class="back-link">< RETURN TO HOME</a></section>
+    </main>
+    <footer>
+        <div class="footer-content">
+            <div style="margin-bottom: 60px;"><a href="#top" class="footer-link" style="font-family: var(--font-mono); font-size: 0.7rem; letter-spacing: 0.3em;">BACK TO TOP</a></div>
+            <div class="footer-grid">
+                <div class="footer-col"><h4>自己紹介</h4><div class="footer-links"><a href="/profile/" class="footer-link">プロフィール</a><a href="/ticket/" class="footer-link">お問い合わせ</a></div></div>
+                <div class="footer-col"><h4>アーカイブ</h4><div class="footer-links"><a href="/" class="footer-link">ホーム</a><a href="/profile/" class="footer-link">プロフィール</a><a href="/anime/" class="footer-link">アニメ</a><a href="/game/" class="footer-link">ゲーム</a><a href="/archive/" class="footer-link">ツール</a></div></div>
+                <div class="footer-col"><h4>SNS</h4><div class="footer-links"><a href="https://discord.gg/y73Y6mvhU4" target="_blank" class="footer-link">Discord Invite</a><a href="https://discord.com/channels/1398722209127727366/1503882478220345475" target="_blank" class="footer-link">Discord Channel</a><a href="https://github.com/akasainfp" target="_blank" class="footer-link">GitHub</a></div></div>
+                <div class="footer-col"><h4>規約</h4><div class="footer-links"><a href="/privacy/" class="footer-link">プライバシーポリシー</a></div></div>
+            </div>
+            <div class="footer-bottom"><p>&copy; 2026 Akasa1529.</p><p>公開中</p></div>
+        </div>
+    </footer>
+    <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
+    <script>
+        if (window.particlesJS) {
+            particlesJS("particles-js", {
+                "particles": {
+                    "number": { "value": 80, "density": { "enable": true, "value_area": 800 } },
+                    "color": { "value": "#ffffff" },
+                    "shape": { "type": "circle" },
+                    "opacity": { "value": 0.5, "random": false },
+                    "size": { "value": 3, "random": true },
+                    "line_linked": { "enable": true, "distance": 150, "color": "#ffffff", "opacity": 0.4, "width": 1 },
+                    "move": { "enable": true, "speed": 2, "direction": "none", "random": false, "straight": false, "out_mode": "out", "bounce": false }
+                },
+                "interactivity": {
+                    "detect_on": "canvas",
+                    "events": { "onhover": { "enable": true, "mode": "grab" }, "onclick": { "enable": true, "mode": "push" }, "resize": true },
+                    "modes": { "grab": { "distance": 140, "line_linked": { "opacity": 1 } }, "push": { "particles_nb": 4 } }
+                },
+                "retina_detect": true
+            });
+        }const title = document.getElementById('target-title');
+        if (title) {
+            const text = title.innerText;
+            title.innerHTML = '';
+            text.split('').forEach((char, i) => {
+                const span = document.createElement('span');
+                span.innerText = char === ' ' ? '\u00A0' : char;
+                span.classList.add('char');
+                span.style.animationDelay = `${i * 0.05}s`;
+                title.appendChild(span);
+            });
+        }
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => entry.target.classList.toggle('is-animated', entry.isIntersecting));
+        }, { threshold: 0.15 });
+        document.querySelectorAll('.anim-box').forEach(box => observer.observe(box));
+    </script>
+    <script>
+        (() => {
+            if (window.location.protocol !== 'file:') return;
+            const cleanPages = {
+                '/': 'index.html',
+                '/home/': 'home/index.html',
+                '/profile/': 'profile/index.html',
+                '/anime/': 'anime/index.html',
+                '/game/': 'game/index.html',
+                '/archive/': 'archive/index.html',
+                '/privacy/': 'privacy/index.html',
+                '/ticket/': 'ticket/index.html'
+            };
+            const path = decodeURIComponent(window.location.pathname).replace(/\\/g, '/');
+            const nestedPage = /\/(home|profile|anime|game|archive|privacy|ticket)\/index\.html$/i.test(path);
+            const siteRoot = path.replace(nestedPage ? /\/[^/]+\/index\.html$/i : /\/[^/]+$/i, '/');
+            document.querySelectorAll('a[href]').forEach(link => {
+                const href = link.getAttribute('href');
+                if (!cleanPages[href]) return;
+                link.href = siteRoot + cleanPages[href];
+            });
+        })();
+    </script>
+</body>
+</html>

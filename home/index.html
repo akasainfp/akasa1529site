@@ -14,7 +14,7 @@
             --font-mono: 'Space Mono', monospace;
         }
 
-        * { margin: 0; padding: 0; box-sizing: border-box; cursor: crosshair; }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
 
         body {
             background-color: var(--bg);
@@ -114,9 +114,59 @@
         .footer-link { color: var(--accent); text-decoration: none; font-size: 0.85rem; transition: 0.3s; }
         .footer-link:hover { color: #fff; padding-left: 5px; }
         .footer-bottom { display: flex; justify-content: space-between; align-items: center; border-top: 1px solid rgba(255,255,255,0.05); padding-top: 40px; font-family: var(--font-mono); font-size: 0.65rem; color: #333; }
+        .site-stat {
+            position: absolute;
+            right: clamp(24px, 5vw, 72px);
+            bottom: clamp(28px, 7vh, 70px);
+            display: flex;
+            flex-direction: column;
+            align-items: flex-end;
+            gap: 6px;
+            font-family: var(--font-mono);
+            color: rgba(255,255,255,0.42);
+            text-align: right;
+        }
+        .site-stat span { font-size: 0.58rem; letter-spacing: 0.22em; text-transform: uppercase; }
+        .site-stat strong { color: var(--accent); font-size: 0.95rem; font-weight: 400; letter-spacing: 0.12em; }
+        .change-log {
+            margin-top: 30px;
+            padding: 38px 42px;
+            border: 1px solid rgba(255,255,255,0.05);
+            background: rgba(255,255,255,0.01);
+        }
+        .change-log h3 {
+            font-family: var(--font-mono);
+            font-size: 0.72rem;
+            color: #555;
+            text-transform: uppercase;
+            letter-spacing: 0.2em;
+            margin-bottom: 24px;
+        }
+        .log-list { display: flex; flex-direction: column; gap: 16px; }
+        .log-entry {
+            display: grid;
+            grid-template-columns: 100px 1fr;
+            gap: 22px;
+            color: #888;
+            font-size: 0.85rem;
+            line-height: 1.8;
+        }
+        .log-date { font-family: var(--font-mono); color: var(--accent); font-size: 0.7rem; letter-spacing: 0.08em; }
+        @media (max-width: 768px) {
+            .site-stat { right: 24px; bottom: 28px; }
+            .change-log { padding: 30px 24px; }
+            .log-entry { grid-template-columns: 1fr; gap: 4px; }
+        }
 
     </style>
-</head>
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-GFCQ2VE3H0"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'G-GFCQ2VE3H0');
+    </script></head>
 <body>
 
     <div id="particles-js"></div>
@@ -125,26 +175,38 @@
     <section class="hero" id="top">
         <h1 class="main-title" id="target-title">Akasa1529 | archive</h1>
         <div class="sub-typewriter" id="typewriter-text"></div>
+        <div class="site-stat" aria-label="site total views">
+            <span>Total views</span>
+            <strong id="visitor-count">0000</strong>
+        </div>
     </section>
 
     <div class="section-container">
-        <a href="/profile" class="content-item anim-box">
+        <a href="/profile/" class="content-item anim-box">
             <h3>自己紹介</h3>
             <p>Akasa1529の素性</p>
         </a>
-        <a href="/anime" class="content-item anim-box">
+        <a href="/anime/" class="content-item anim-box">
             <h3>アニメ</h3>
             <p>今まで見たアニメ一覧表 | アニメ評価</p>
         </a>
-        <a href="/game" class="content-item anim-box">
+        <a href="/game/" class="content-item anim-box">
             <h3>ゲーム</h3>
             <p>今までプレイしたゲーム一覧表 | ゲーム評価</p>
         </a>
-        <a href="/archive" class="content-item anim-box">
+        <a href="/archive/" class="content-item anim-box">
             <h3>ツール</h3>
             <p>今まで作ったツール一覧</p>
         </a>
-    </div>
+        <section class="change-log anim-box" aria-labelledby="change-log-title">
+            <h3 id="change-log-title">Change Log</h3>
+            <div class="log-list" id="change-log-list">
+                <div class="log-entry">
+                    <time class="log-date" datetime="2026-05-13">2026.05.13</time>
+                    <p>changelog.json を読み込んでいます。</p>
+                </div>
+            </div>
+        </section>    </div>
 
     <footer>
         <div class="footer-content">
@@ -153,18 +215,18 @@
                 <div class="footer-col">
                     <h4>自己紹介</h4>
                     <div class="footer-links">
-                        <a href="/profile" class="footer-link">プロフィール</a>
-                        <a href="#" class="footer-link">お問い合わせ</a>
+                        <a href="/profile/" class="footer-link">プロフィール</a>
+                        <a href="/ticket/" class="footer-link">お問い合わせ</a>
                     </div>
                 </div>
                 <div class="footer-col">
                     <h4>アーカイブ</h4>
                     <div class="footer-links">
-                        <a href="/home" class="footer-link">ホーム</a>
-                        <a href="/profile" class="footer-link">プロフィール</a>
-                        <a href="/anime" class="footer-link">アニメ</a>
-                        <a href="/game" class="footer-link">ゲーム</a>
-                        <a href="/archive" class="footer-link">ツール</a>
+                        <a href="/" class="footer-link">ホーム</a>
+                        <a href="/profile/" class="footer-link">プロフィール</a>
+                        <a href="/anime/" class="footer-link">アニメ</a>
+                        <a href="/game/" class="footer-link">ゲーム</a>
+                        <a href="/archive/" class="footer-link">ツール</a>
                     </div>
                 </div>
                 <div class="footer-col">
@@ -172,13 +234,13 @@
                     <div class="footer-links">
                         <a href="https://x.com/infp_player" target="_blank" class="footer-link">Twitter (X)</a>
                         <a href="https://github.com/akasainfp" target="_blank" class="footer-link">GitHub</a>
-                        <a href="https://discord.com/users/931953913555464192" target="_blank" class="footer-link">Discord</a>
+                        <a href="https://discord.gg/y73Y6mvhU4" target="_blank" class="footer-link">Discord Invite</a>
                         </div>
                 </div>
                 <div class="footer-col">
                     <h4>規約</h4>
                     <div class="footer-links">
-                        <a href="#" class="footer-link">プライバシーポリシー</a>
+                        <a href="/privacy/" class="footer-link">プライバシーポリシー</a>
                     </div>
                 </div>
             </div>
@@ -277,6 +339,51 @@
         }, { threshold: 0.15 });
 
         document.querySelectorAll('.anim-box').forEach(box => observer.observe(box));
+        async function loadChangeLog() {
+            const list = document.getElementById('change-log-list');
+            if (!list) return;
+            const localNested = window.location.protocol === 'file:' && /\/(home)\/index\.html$/i.test(decodeURIComponent(window.location.pathname).replace(/\\/g, '/'));
+            const source = window.location.protocol === 'file:' ? (localNested ? '../changelog.json' : 'changelog.json') : '/changelog.json';
+            try {
+                const response = await fetch(source, { cache: 'no-store' });
+                if (!response.ok) throw new Error('Change log not found');
+                const entries = await response.json();
+                const escapeHtml = value => String(value || '').replace(/[&<>"']/g, char => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[char]));
+                list.innerHTML = entries.map(entry => {
+                    const date = escapeHtml(entry.date || '');
+                    const label = date.replaceAll('-', '.');
+                    const title = entry.title ? `<strong>${escapeHtml(entry.title)}</strong> ` : '';
+                    const body = escapeHtml(entry.body || '');
+                    return `<div class="log-entry"><time class="log-date" datetime="${date}">${label}</time><p>${title}${body}</p></div>`;
+                }).join('');
+            } catch (error) {
+                list.innerHTML = '<div class="log-entry"><time class="log-date" datetime="2026-05-13">2026.05.13</time><p>changelog.json を読み込めませんでした。ローカルで直接開いている場合は、公開環境またはローカルサーバーで確認してください。</p></div>';
+            }
+        }
+        loadChangeLog();
+    </script>
+    <script>
+        (() => {
+            if (window.location.protocol !== 'file:') return;
+            const cleanPages = {
+                '/': 'index.html',
+                '/home/': 'home/index.html',
+                '/profile/': 'profile/index.html',
+                '/anime/': 'anime/index.html',
+                '/game/': 'game/index.html',
+                '/archive/': 'archive/index.html',
+                '/privacy/': 'privacy/index.html',
+                '/ticket/': 'ticket/index.html'
+            };
+            const path = decodeURIComponent(window.location.pathname).replace(/\\/g, '/');
+            const nestedPage = /\/(home|profile|anime|game|archive|privacy|ticket)\/index\.html$/i.test(path);
+            const siteRoot = path.replace(nestedPage ? /\/[^/]+\/index\.html$/i : /\/[^/]+$/i, '/');
+            document.querySelectorAll('a[href]').forEach(link => {
+                const href = link.getAttribute('href');
+                if (!cleanPages[href]) return;
+                link.href = siteRoot + cleanPages[href];
+            });
+        })();
     </script>
 </body>
 </html>

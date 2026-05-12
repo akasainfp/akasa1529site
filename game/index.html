@@ -14,7 +14,7 @@
             --font-mono: 'Space Mono', monospace;
         }
 
-        * { margin: 0; padding: 0; box-sizing: border-box; cursor: crosshair; }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
 
         body {
             background-color: var(--bg);
@@ -54,7 +54,8 @@
         .game-item.hidden { display: none !important; }
         @media (max-width: 768px) { .game-item { grid-template-columns: 1fr; } }
 
-        .game-thumb { width: 100%; aspect-ratio: 16/9; background: #111; border: 1px solid rgba(255, 255, 255, 0.05); display: flex; align-items: center; justify-content: center; padding: 20px; overflow: hidden; }
+        .game-thumb { width: 100%; aspect-ratio: 16/9; background: #111; border: 1px solid rgba(255, 255, 255, 0.05); overflow: hidden; }
+        .game-thumb img { width: 100%; height: 100%; object-fit: cover; display: block; }
         .game-thumb span { color: #333; font-family: var(--font-mono); font-size: 0.8rem; text-align: center; overflow-wrap: anywhere; }
         .rating { font-family: var(--font-mono); color: var(--accent); font-size: 0.8rem; margin-bottom: 10px; display: block; }
         .game-title { font-size: 1.4rem; font-weight: 700; margin-bottom: 10px; }
@@ -72,7 +73,14 @@
         .footer-link:hover { color: #fff; padding-left: 5px; }
         .footer-bottom { display: flex; justify-content: space-between; align-items: center; border-top: 1px solid rgba(255,255,255,0.05); padding-top: 40px; font-family: var(--font-mono); font-size: 0.65rem; color: #333; }
     </style>
-</head>
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-GFCQ2VE3H0"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'G-GFCQ2VE3H0');
+    </script></head>
 <body>
 
     <div id="particles-js"></div>
@@ -114,7 +122,7 @@
 
     <main class="section-container" id="game-list">
         <article class="game-item anim-box" id="seven-days" data-score="3" data-category="mystery adventure">
-            <div class="game-thumb"><span>7 Days to End with You</span></div>
+            <div class="game-thumb"><img src="../assets/game/seven-days.jpg" alt="7 Days to End with You"></div>
             <div class="game-info">
                 <span class="rating">SCORE: ★★★☆☆</span>
                 <h2 class="game-title">7 Days to End with You</h2>
@@ -125,7 +133,7 @@
             </div>
         </article>
         <article class="game-item anim-box" id="among-us" data-score="3" data-category="party mystery">
-            <div class="game-thumb"><span>Among Us</span></div>
+            <div class="game-thumb"><img src="../assets/game/among-us.jpg" alt="Among Us"></div>
             <div class="game-info">
                 <span class="rating">SCORE: ★★★☆☆</span>
                 <h2 class="game-title">Among Us</h2>
@@ -136,7 +144,7 @@
             </div>
         </article>
         <article class="game-item anim-box" id="buckshot-roulette" data-score="4" data-category="horror strategy">
-            <div class="game-thumb"><span>Buckshot Roulette</span></div>
+            <div class="game-thumb"><img src="../assets/game/buckshot-roulette.jpg" alt="Buckshot Roulette"></div>
             <div class="game-info">
                 <span class="rating">SCORE: ★★★★☆</span>
                 <h2 class="game-title">Buckshot Roulette</h2>
@@ -147,7 +155,7 @@
             </div>
         </article>
         <article class="game-item anim-box" id="cheaters-cheetah" data-score="2" data-category="action party">
-            <div class="game-thumb"><span>Cheaters Cheetah</span></div>
+            <div class="game-thumb"><img src="../assets/game/cheaters-cheetah.jpg" alt="Cheaters Cheetah"></div>
             <div class="game-info">
                 <span class="rating">SCORE: ★★☆☆☆</span>
                 <h2 class="game-title">Cheaters Cheetah</h2>
@@ -158,7 +166,7 @@
             </div>
         </article>
         <article class="game-item anim-box" id="counter-strike-2" data-score="4" data-category="fps-tps">
-            <div class="game-thumb"><span>Counter-Strike 2</span></div>
+            <div class="game-thumb"><img src="../assets/game/counter-strike-2.jpg" alt="Counter-Strike 2"></div>
             <div class="game-info">
                 <span class="rating">SCORE: ★★★★☆</span>
                 <h2 class="game-title">Counter-Strike 2</h2>
@@ -169,7 +177,7 @@
             </div>
         </article>
         <article class="game-item anim-box" id="grapples-galore" data-score="2" data-category="action party">
-            <div class="game-thumb"><span>Grapples Galore</span></div>
+            <div class="game-thumb"><img src="../assets/game/grapples-galore.jpg" alt="Grapples Galore"></div>
             <div class="game-info">
                 <span class="rating">SCORE: ★★☆☆☆</span>
                 <h2 class="game-title">Grapples Galore</h2>
@@ -180,7 +188,7 @@
             </div>
         </article>
         <article class="game-item anim-box" id="mecha-break" data-score="5" data-category="action fps-tps">
-            <div class="game-thumb"><span>Mecha BREAK</span></div>
+            <div class="game-thumb"><img src="../assets/game/mecha-break.jpg" alt="Mecha BREAK"></div>
             <div class="game-info">
                 <span class="rating">SCORE: ★★★★★</span>
                 <h2 class="game-title">Mecha BREAK</h2>
@@ -191,7 +199,7 @@
             </div>
         </article>
         <article class="game-item anim-box" id="microworks" data-score="1" data-category="party">
-            <div class="game-thumb"><span>MicroWorks</span></div>
+            <div class="game-thumb"><img src="../assets/game/microworks.jpg" alt="MicroWorks"></div>
             <div class="game-info">
                 <span class="rating">SCORE: ★☆☆☆☆</span>
                 <h2 class="game-title">MicroWorks</h2>
@@ -202,7 +210,7 @@
             </div>
         </article>
         <article class="game-item anim-box" id="peak" data-score="3" data-category="action open-world">
-            <div class="game-thumb"><span>PEAK</span></div>
+            <div class="game-thumb"><img src="../assets/game/peak.jpg" alt="PEAK"></div>
             <div class="game-info">
                 <span class="rating">SCORE: ★★★☆☆</span>
                 <h2 class="game-title">PEAK</h2>
@@ -213,7 +221,7 @@
             </div>
         </article>
         <article class="game-item anim-box" id="repo" data-score="4" data-category="horror action">
-            <div class="game-thumb"><span>R.E.P.O.</span></div>
+            <div class="game-thumb"><img src="../assets/game/repo.jpg" alt="R.E.P.O."></div>
             <div class="game-info">
                 <span class="rating">SCORE: ★★★★☆</span>
                 <h2 class="game-title">R.E.P.O.</h2>
@@ -224,7 +232,7 @@
             </div>
         </article>
         <article class="game-item anim-box" id="revolution-idle" data-score="5" data-category="idle strategy">
-            <div class="game-thumb"><span>Revolution Idle</span></div>
+            <div class="game-thumb"><img src="../assets/game/revolution-idle.jpg" alt="Revolution Idle"></div>
             <div class="game-info">
                 <span class="rating">SCORE: ★★★★★</span>
                 <h2 class="game-title">Revolution Idle</h2>
@@ -235,7 +243,7 @@
             </div>
         </article>
         <article class="game-item anim-box" id="rust" data-score="2" data-category="open-world survival">
-            <div class="game-thumb"><span>Rust</span></div>
+            <div class="game-thumb"><img src="../assets/game/rust.jpg" alt="Rust"></div>
             <div class="game-info">
                 <span class="rating">SCORE: ★★☆☆☆</span>
                 <h2 class="game-title">Rust</h2>
@@ -246,7 +254,7 @@
             </div>
         </article>
         <article class="game-item anim-box" id="shapez" data-score="2" data-category="strategy puzzle">
-            <div class="game-thumb"><span>shapez</span></div>
+            <div class="game-thumb"><img src="../assets/game/shapez.jpg" alt="shapez"></div>
             <div class="game-info">
                 <span class="rating">SCORE: ★★☆☆☆</span>
                 <h2 class="game-title">shapez</h2>
@@ -257,7 +265,7 @@
             </div>
         </article>
         <article class="game-item anim-box" id="undertale" data-score="5" data-category="rpg adventure">
-            <div class="game-thumb"><span>Undertale</span></div>
+            <div class="game-thumb"><img src="../assets/game/undertale.jpg" alt="Undertale"></div>
             <div class="game-info">
                 <span class="rating">SCORE: ★★★★★</span>
                 <h2 class="game-title">Undertale</h2>
@@ -268,7 +276,7 @@
             </div>
         </article>
         <article class="game-item anim-box" id="supermarket-together" data-score="4" data-category="simulation party">
-            <div class="game-thumb"><span>Supermarket Together</span></div>
+            <div class="game-thumb"><img src="../assets/game/supermarket-together.jpg" alt="Supermarket Together"></div>
             <div class="game-info">
                 <span class="rating">SCORE: ★★★★☆</span>
                 <h2 class="game-title">Supermarket Together</h2>
@@ -279,7 +287,7 @@
             </div>
         </article>
         <article class="game-item anim-box" id="vrchat" data-score="5" data-category="social open-world">
-            <div class="game-thumb"><span>VRChat</span></div>
+            <div class="game-thumb"><img src="../assets/game/vrchat.jpg" alt="VRChat"></div>
             <div class="game-info">
                 <span class="rating">SCORE: ★★★★★</span>
                 <h2 class="game-title">VRChat</h2>
@@ -290,7 +298,7 @@
             </div>
         </article>
         <article class="game-item anim-box" id="upload-labs" data-score="4" data-category="puzzle simulation">
-            <div class="game-thumb"><span>Upload Labs</span></div>
+            <div class="game-thumb"><img src="../assets/game/upload-labs.jpg" alt="Upload Labs"></div>
             <div class="game-info">
                 <span class="rating">SCORE: ★★★★☆</span>
                 <h2 class="game-title">Upload Labs</h2>
@@ -301,7 +309,7 @@
             </div>
         </article>
         <article class="game-item anim-box" id="wallpaper-engine" data-score="5" data-category="tool">
-            <div class="game-thumb"><span>Wallpaper Engine</span></div>
+            <div class="game-thumb"><img src="../assets/game/wallpaper-engine.jpg" alt="Wallpaper Engine"></div>
             <div class="game-info">
                 <span class="rating">SCORE: ★★★★★</span>
                 <h2 class="game-title">Wallpaper Engine</h2>
@@ -312,7 +320,7 @@
             </div>
         </article>
         <article class="game-item anim-box" id="astral-party" data-score="4" data-category="party strategy">
-            <div class="game-thumb"><span>アストラル☆パーティー</span></div>
+            <div class="game-thumb"><img src="../assets/game/astral-party.jpg" alt="アストラル☆パーティー"></div>
             <div class="game-info">
                 <span class="rating">SCORE: ★★★★☆</span>
                 <h2 class="game-title">アストラル☆パーティー</h2>
@@ -323,7 +331,7 @@
             </div>
         </article>
         <article class="game-item anim-box" id="onigiriya" data-score="3" data-category="simulation">
-            <div class="game-thumb"><span>おにぎり屋さんシミュレーター</span></div>
+            <div class="game-thumb"><img src="../assets/game/onigiriya.jpg" alt="おにぎり屋さんシミュレーター"></div>
             <div class="game-info">
                 <span class="rating">SCORE: ★★★☆☆</span>
                 <h2 class="game-title">おにぎり屋さんシミュレーター</h2>
@@ -334,7 +342,7 @@
             </div>
         </article>
         <article class="game-item anim-box" id="satsuriku-game" data-score="5" data-category="horror adventure">
-            <div class="game-thumb"><span>殺戮の天使</span></div>
+            <div class="game-thumb"><img src="../assets/game/satsuriku-game.jpg" alt="殺戮の天使"></div>
             <div class="game-info">
                 <span class="rating">SCORE: ★★★★★</span>
                 <h2 class="game-title">殺戮の天使</h2>
@@ -345,7 +353,7 @@
             </div>
         </article>
         <article class="game-item anim-box" id="danmaku-kagura" data-score="5" data-category="rhythm">
-            <div class="game-thumb"><span>東方ダンマクカグラ</span></div>
+            <div class="game-thumb"><img src="../assets/game/danmaku-kagura.jpg" alt="東方ダンマクカグラ"></div>
             <div class="game-info">
                 <span class="rating">SCORE: ★★★★★</span>
                 <h2 class="game-title">東方ダンマクカグラ</h2>
@@ -356,7 +364,7 @@
             </div>
         </article>
         <article class="game-item anim-box" id="mountain-of-faith" data-score="4" data-category="shooter">
-            <div class="game-thumb"><span>東方風神録 〜 Mountain of Faith.</span></div>
+            <div class="game-thumb"><img src="../assets/game/mountain-of-faith.jpg" alt="東方風神録 〜 Mountain of Faith."></div>
             <div class="game-info">
                 <span class="rating">SCORE: ★★★★☆</span>
                 <h2 class="game-title">東方風神録 〜 Mountain of Faith.</h2>
@@ -367,7 +375,7 @@
             </div>
         </article>
         <article class="game-item anim-box" id="kirisame" data-score="3" data-category="horror mystery adventure">
-            <div class="game-thumb"><span>霧雨が降る森</span></div>
+            <div class="game-thumb"><img src="../assets/game/kirisame.jpg" alt="霧雨が降る森"></div>
             <div class="game-info">
                 <span class="rating">SCORE: ★★★☆☆</span>
                 <h2 class="game-title">霧雨が降る森</h2>
@@ -378,7 +386,7 @@
             </div>
         </article>
         <article class="game-item anim-box" id="valorant" data-score="5" data-category="fps-tps">
-            <div class="game-thumb"><span>VALORANT</span></div>
+            <div class="game-thumb"><img src="../assets/game/valorant.jpg" alt="VALORANT"></div>
             <div class="game-info">
                 <span class="rating">SCORE: ★★★★★</span>
                 <h2 class="game-title">VALORANT</h2>
@@ -389,7 +397,7 @@
             </div>
         </article>
         <article class="game-item anim-box" id="fortnite" data-score="2" data-category="fps-tps open-world">
-            <div class="game-thumb"><span>FORTNITE</span></div>
+            <div class="game-thumb"><img src="../assets/game/fortnite.jpg" alt="FORTNITE"></div>
             <div class="game-info">
                 <span class="rating">SCORE: ★★☆☆☆</span>
                 <h2 class="game-title">FORTNITE</h2>
@@ -400,7 +408,7 @@
             </div>
         </article>
         <article class="game-item anim-box" id="overwatch-2" data-score="2" data-category="fps-tps action">
-            <div class="game-thumb"><span>OW2</span></div>
+            <div class="game-thumb"><img src="../assets/game/overwatch-2.jpg" alt="OW2"></div>
             <div class="game-info">
                 <span class="rating">SCORE: ★★☆☆☆</span>
                 <h2 class="game-title">OW2</h2>
@@ -411,7 +419,7 @@
             </div>
         </article>
         <article class="game-item anim-box" id="nte" data-score="5" data-category="action open-world">
-            <div class="game-thumb"><span>NTE</span></div>
+            <div class="game-thumb"><img src="../assets/game/nte.jpg" alt="NTE"></div>
             <div class="game-info">
                 <span class="rating">SCORE: ★★★★★</span>
                 <h2 class="game-title">NTE</h2>
@@ -430,18 +438,18 @@
                 <div class="footer-col">
                     <h4>自己紹介</h4>
                     <div class="footer-links">
-                        <a href="/profile" class="footer-link">プロフィール</a>
-                        <a href="#" class="footer-link">お問い合わせ</a>
+                        <a href="/profile/" class="footer-link">プロフィール</a>
+                        <a href="/ticket/" class="footer-link">お問い合わせ</a>
                     </div>
                 </div>
                 <div class="footer-col">
                     <h4>アーカイブ</h4>
                     <div class="footer-links">
-                        <a href="/home" class="footer-link">ホーム</a>
-                        <a href="/profile" class="footer-link">プロフィール</a>
-                        <a href="/anime" class="footer-link">アニメ</a>
-                        <a href="/game" class="footer-link">ゲーム</a>
-                        <a href="/archive" class="footer-link">ツール</a>
+                        <a href="/" class="footer-link">ホーム</a>
+                        <a href="/profile/" class="footer-link">プロフィール</a>
+                        <a href="/anime/" class="footer-link">アニメ</a>
+                        <a href="/game/" class="footer-link">ゲーム</a>
+                        <a href="/archive/" class="footer-link">ツール</a>
                     </div>
                 </div>
                 <div class="footer-col">
@@ -449,13 +457,13 @@
                     <div class="footer-links">
                         <a href="https://x.com/infp_player" target="_blank" class="footer-link">Twitter</a>
                         <a href="https://github.com/akasainfp" target="_blank" class="footer-link">GitHub</a>
-                        <a href="https://discord.com/users/931953913555464192" target="_blank" class="footer-link">Discord</a>
+                        <a href="https://discord.gg/y73Y6mvhU4" target="_blank" class="footer-link">Discord Invite</a>
                     </div>
                 </div>
                 <div class="footer-col">
                     <h4>概要</h4>
                     <div class="footer-links">
-                        <a href="#" class="footer-link">プライバシーポリシー</a>
+                        <a href="/privacy/" class="footer-link">プライバシーポリシー</a>
                     </div>
                 </div>
             </div>
@@ -567,6 +575,29 @@
         }, { threshold: 0.15 });
 
         document.querySelectorAll('.anim-box').forEach(box => observer.observe(box));
+    </script>
+    <script>
+        (() => {
+            if (window.location.protocol !== 'file:') return;
+            const cleanPages = {
+                '/': 'index.html',
+                '/home/': 'home/index.html',
+                '/profile/': 'profile/index.html',
+                '/anime/': 'anime/index.html',
+                '/game/': 'game/index.html',
+                '/archive/': 'archive/index.html',
+                '/privacy/': 'privacy/index.html',
+                '/ticket/': 'ticket/index.html'
+            };
+            const path = decodeURIComponent(window.location.pathname).replace(/\\/g, '/');
+            const nestedPage = /\/(home|profile|anime|game|archive|privacy|ticket)\/index\.html$/i.test(path);
+            const siteRoot = path.replace(nestedPage ? /\/[^/]+\/index\.html$/i : /\/[^/]+$/i, '/');
+            document.querySelectorAll('a[href]').forEach(link => {
+                const href = link.getAttribute('href');
+                if (!cleanPages[href]) return;
+                link.href = siteRoot + cleanPages[href];
+            });
+        })();
     </script>
 </body>
 </html>

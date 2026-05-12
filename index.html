@@ -357,7 +357,7 @@
                     return `<div class="log-entry"><time class="log-date" datetime="${date}">${label}</time><p>${title}${body}</p></div>`;
                 }).join('');
             } catch (error) {
-                list.innerHTML = '<div class="log-entry"><time class="log-date" datetime="2026-05-13">2026.05.13</time><p>changelog.json を読み込めませんでした。ローカルで直接開いている場合は、公開環境またはローカルサーバーで確認してください。</p></div>';
+                list.innerHTML = '<div class="log-entry"><time class="log-date" datetime="2026-05-13">2026.05.13</time><p>changelog.json を読み込めませんでした。</p></div>';
             }
         }
         loadChangeLog();

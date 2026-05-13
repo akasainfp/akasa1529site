@@ -138,6 +138,7 @@
         }
         .site-stat span { font-size: 0.58rem; letter-spacing: 0.22em; text-transform: uppercase; }
         .site-stat strong { color: var(--accent); font-size: 0.95rem; font-weight: 400; letter-spacing: 0.12em; }
+        .visitor-count-image { display: block; width: 96px; height: 36px; object-fit: contain; object-position: right center; }
         .change-log {
             margin-top: 30px;
             padding: 38px 42px;
@@ -344,24 +345,13 @@
         function loadSiteStats() {
             const counter = document.getElementById('visitor-count');
             if (!counter) return;
-            const render = () => {
-                if (!window.goatcounter || !window.goatcounter.visit_count) return false;
-                counter.textContent = '';
-                window.goatcounter.visit_count({
-                    append: '#visitor-count',
-                    path: 'TOTAL',
-                    type: 'html',
-                    no_branding: true,
-                    style: 'div{border:0!important;background:transparent!important;padding:0!important;margin:0!important;color:#fff!important;font:inherit!important;}#gcvc-for,#gcvc-by{display:none!important;}#gcvc-views{color:#fff!important;font:inherit!important;letter-spacing:0.12em!important;}'
-                });
-                return true;
-            };
-            if (render()) return;
-            let attempts = 0;
-            const timer = setInterval(() => {
-                attempts += 1;
-                if (render() || attempts >= 20) clearInterval(timer);
-            }, 250);
+            const image = new Image();
+            image.className = 'visitor-count-image';
+            image.alt = 'total visitor count';
+            image.src = 'https://akasa1529.goatcounter.com/counter/TOTAL.svg?no_branding=1&style=%23gcvc-border%7Bdisplay%3Anone%3B%7D%23gcvc-for%7Bdisplay%3Anone%3B%7D%23gcvc-by%7Bdisplay%3Anone%3B%7D%23gcvc-views%7Bfill%3A%23fff%3Bfont-family%3Amonospace%3Bfont-size%3A40px%3Bfont-weight%3A700%3B%7D';
+            image.onerror = () => { counter.textContent = '準備中'; };
+            counter.textContent = '';
+            counter.appendChild(image);
         }
         async function loadChangeLog() {
             const list = document.getElementById('change-log-list');

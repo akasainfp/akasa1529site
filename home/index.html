@@ -138,7 +138,7 @@
         }
         .site-stat span { font-size: 0.58rem; letter-spacing: 0.22em; text-transform: uppercase; }
         .site-stat strong { color: var(--accent); font-size: 0.95rem; font-weight: 400; letter-spacing: 0.12em; }
-        .visitor-count-image { display: block; width: auto; height: 1.05em; max-width: 5.5em; }
+        .visitor-count-image { display: block; width: 112px; height: 42px; object-fit: contain; object-position: right center; }
         .change-log {
             margin-top: 30px;
             padding: 38px 42px;
@@ -348,7 +348,7 @@
             const image = new Image();
             image.className = 'visitor-count-image';
             image.alt = 'total visitor count';
-            image.src = 'https://akasa1529.goatcounter.com/counter/TOTAL.svg?no_branding=1&style=%23gcvc%7Bfill%3A%237d5fff%3Bfont-family%3Amonospace%3Bfont-weight%3A700%3B%7D%23gcvc-border%7Bdisplay%3Anone%3B%7D';
+            image.src = 'https://akasa1529.goatcounter.com/counter/TOTAL.svg?no_branding=true&style=%23gcvc%7Bfill%3A%237d5fff%3Bfont-family%3Amonospace%3Bfont-size%3A34px%3Bfont-weight%3A700%3B%7D%23gcvc-border%7Bdisplay%3Anone%3B%7D';
             image.onerror = () => { counter.textContent = '準備中'; };
             counter.textContent = '';
             counter.appendChild(image);

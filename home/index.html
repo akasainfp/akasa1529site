@@ -138,6 +138,7 @@
         }
         .site-stat span { font-size: 0.58rem; letter-spacing: 0.22em; text-transform: uppercase; }
         .site-stat strong { color: var(--accent); font-size: 0.95rem; font-weight: 400; letter-spacing: 0.12em; }
+        .visitor-count-image { display: block; width: auto; height: 1.05em; max-width: 5.5em; }
         .change-log {
             margin-top: 30px;
             padding: 38px 42px;
@@ -341,17 +342,16 @@
         }, { threshold: 0.15 });
 
         document.querySelectorAll('.anim-box').forEach(box => observer.observe(box));
-        async function loadSiteStats() {
+        function loadSiteStats() {
             const counter = document.getElementById('visitor-count');
             if (!counter) return;
-            try {
-                const response = await fetch('https://akasa1529.goatcounter.com/counter/TOTAL.json', { cache: 'no-store' });
-                if (!response.ok) throw new Error('Visitor count not found');
-                const stats = await response.json();
-                counter.textContent = stats.count || stats.count_unique || '0';
-            } catch (error) {
-                counter.textContent = '準備中';
-            }
+            const image = new Image();
+            image.className = 'visitor-count-image';
+            image.alt = 'total visitor count';
+            image.src = 'https://akasa1529.goatcounter.com/counter/TOTAL.svg?no_branding=1&style=%23gcvc%7Bfill%3A%237d5fff%3Bfont-family%3Amonospace%3Bfont-weight%3A700%3B%7D%23gcvc-border%7Bdisplay%3Anone%3B%7D';
+            image.onerror = () => { counter.textContent = '準備中'; };
+            counter.textContent = '';
+            counter.appendChild(image);
         }
         async function loadChangeLog() {
             const list = document.getElementById('change-log-list');

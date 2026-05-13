@@ -9,6 +9,8 @@
         gtag('js', new Date());
         gtag('config', 'G-GFCQ2VE3H0');
     </script>
+    <script data-goatcounter="https://akasa1529.goatcounter.com/count"
+            async src="https://gc.zgo.at/count.js"></script>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Akasa1529 archive</title>
@@ -177,7 +179,7 @@
         <div class="sub-typewriter" id="typewriter-text"></div>
         <div class="site-stat" aria-label="site total views">
             <span>Total views</span>
-            <strong id="visitor-count">GA&#12391;&#38598;&#35336;&#20013;</strong>
+            <strong id="visitor-count">準備中</strong>
         </div>
     </section>
 
@@ -342,16 +344,13 @@
         async function loadSiteStats() {
             const counter = document.getElementById('visitor-count');
             if (!counter) return;
-            const currentPath = decodeURIComponent(window.location.pathname).replace(/\\/g, '/');
-            const nestedHome = /\/home\/?(?:index\.html)?$/i.test(currentPath);
-            const source = nestedHome ? '../site-stats.json' : 'site-stats.json';
             try {
-                const response = await fetch(source, { cache: 'no-store' });
-                if (!response.ok) throw new Error('Site stats not found');
+                const response = await fetch('https://akasa1529.goatcounter.com/counter/TOTAL.json', { cache: 'no-store' });
+                if (!response.ok) throw new Error('Visitor count not found');
                 const stats = await response.json();
-                counter.textContent = stats.totalViews || 'GA\u3067\u96c6\u8a08\u4e2d';
+                counter.textContent = stats.count || stats.count_unique || '0';
             } catch (error) {
-                counter.textContent = 'GA\u3067\u96c6\u8a08\u4e2d';
+                counter.textContent = '準備中';
             }
         }
         async function loadChangeLog() {

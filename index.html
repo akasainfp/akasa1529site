@@ -105,6 +105,40 @@
             transform: scale(1.02) translateY(-5px);
         }
 
+
+        a, button { cursor: pointer; }
+        .content-item { position: relative; overflow: hidden; }
+        .content-item::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 0;
+            width: 2px;
+            height: 100%;
+            background: var(--accent);
+            transform: scaleY(0);
+            transform-origin: bottom;
+            transition: transform 0.35s ease;
+        }
+        .content-item::after {
+            content: 'OPEN >';
+            position: absolute;
+            right: 34px;
+            top: 34px;
+            font-family: var(--font-mono);
+            font-size: 0.62rem;
+            color: #fff;
+            letter-spacing: 0.18em;
+            opacity: 0;
+            transform: translateX(-8px);
+            transition: 0.35s ease;
+        }
+        .content-item:hover::before, .content-item:focus-visible::before { transform: scaleY(1); }
+        .content-item:hover::after, .content-item:focus-visible::after { opacity: 1; transform: translateX(0); }
+        .content-item:focus-visible, .footer-link:focus-visible, .btn-search:focus-visible, .btn-link:focus-visible, .f-btn:focus-visible, .toc-filter-toggle:focus-visible {
+            outline: 1px solid var(--accent);
+            outline-offset: 4px;
+        }
         .content-item h3 { font-size: 2rem; color: var(--accent); margin-bottom: 10px; }
         .content-item p { color: #888; font-size: 0.95rem; }
 

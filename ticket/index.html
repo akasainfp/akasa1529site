@@ -45,6 +45,24 @@
         .footer-link:hover { color: #fff; padding-left: 5px; }
         .footer-bottom { display: flex; justify-content: space-between; align-items: center; border-top: 1px solid rgba(255,255,255,0.05); padding-top: 40px; font-family: var(--font-mono); font-size: 0.65rem; color: #333; }
         @media (max-width: 768px) { .section-container { padding: 70px 24px; } .panel { padding: 30px 24px; } .footer-bottom { align-items: flex-start; flex-direction: column; gap: 10px; } }
+    
+        a, button { cursor: pointer; }
+        .content-item, .info-card { position: relative; overflow: hidden; }
+        a.info-card::after, .content-item::after {
+            content: 'OPEN >';
+            position: absolute;
+            right: 24px;
+            top: 22px;
+            font-family: var(--font-mono);
+            font-size: 0.6rem;
+            color: #fff;
+            letter-spacing: 0.16em;
+            opacity: 0;
+            transform: translateX(-8px);
+            transition: 0.35s ease;
+        }
+        a.info-card:hover::after, a.info-card:focus-visible::after, .content-item:hover::after, .content-item:focus-visible::after { opacity: 1; transform: translateX(0); }
+        a.info-card:focus-visible, .content-item:focus-visible, .footer-link:focus-visible { outline: 1px solid var(--accent); outline-offset: 4px; }
     </style></head>
 <body>
     <div id="particles-js"></div>

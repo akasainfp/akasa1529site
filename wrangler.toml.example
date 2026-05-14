@@ -1,0 +1,12 @@
+name = "akasa1529-visitor-counter"
+main = "cloudflare-worker.js"
+compatibility_date = "2026-05-14"
+
+# After creating a D1 database, replace database_id below.
+[[d1_databases]]
+binding = "DB"
+database_name = "akasa1529_visitors"
+database_id = "REPLACE_WITH_YOUR_D1_DATABASE_ID"
+
+# Add this route in Cloudflare after moving DNS to Cloudflare:
+# www.akasa1529.site/api/*

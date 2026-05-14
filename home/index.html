@@ -9,8 +9,6 @@
         gtag('js', new Date());
         gtag('config', 'G-GFCQ2VE3H0');
     </script>
-    <script data-goatcounter="https://akasa1529.goatcounter.com/count"
-            async src="https://gc.zgo.at/count.js"></script>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Akasa1529 archive</title>
@@ -138,7 +136,6 @@
         }
         .site-stat span { font-size: 0.58rem; letter-spacing: 0.22em; text-transform: uppercase; }
         .site-stat strong { color: var(--accent); font-size: 0.95rem; font-weight: 400; letter-spacing: 0.12em; }
-        .visitor-count-image { display: block; width: 96px; height: 36px; object-fit: contain; object-position: right center; }
         .change-log {
             margin-top: 30px;
             padding: 38px 42px;
@@ -342,17 +339,6 @@
         }, { threshold: 0.15 });
 
         document.querySelectorAll('.anim-box').forEach(box => observer.observe(box));
-        function loadSiteStats() {
-            const counter = document.getElementById('visitor-count');
-            if (!counter) return;
-            const image = new Image();
-            image.className = 'visitor-count-image';
-            image.alt = 'total visitor count';
-            image.src = 'https://akasa1529.goatcounter.com/counter/TOTAL.svg?no_branding=1&style=%23gcvc-border%7Bdisplay%3Anone%3B%7D%23gcvc-for%7Bdisplay%3Anone%3B%7D%23gcvc-by%7Bdisplay%3Anone%3B%7D%23gcvc-views%7Bfill%3A%23fff%3Bfont-family%3Amonospace%3Bfont-size%3A40px%3Bfont-weight%3A700%3B%7D';
-            image.onerror = () => { counter.textContent = '準備中'; };
-            counter.textContent = '';
-            counter.appendChild(image);
-        }
         async function loadChangeLog() {
             const list = document.getElementById('change-log-list');
             if (!list) return;
@@ -375,7 +361,6 @@
                 list.innerHTML = '<div class="log-entry"><time class="log-date" datetime="2026-05-13">2026.05.13</time><p>changelog.json を読み込めませんでした。ローカルで直接開いている場合は、公開環境またはローカルサーバーで確認してください。</p></div>';
             }
         }
-        loadSiteStats();
         loadChangeLog();
     </script>
     <script>
@@ -401,5 +386,7 @@
             });
         })();
     </script>
+
+    <script src="../assets/js/site-counter.js"></script>
 </body>
 </html>

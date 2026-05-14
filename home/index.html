@@ -194,6 +194,10 @@
             line-height: 1.8;
         }
         .log-date { font-family: var(--font-mono); color: var(--accent); font-size: 0.7rem; letter-spacing: 0.08em; }
+        .log-content { min-width: 0; line-height: 1.9; }
+        .log-title { display: block; color: #aaa; font-weight: 700; margin-bottom: 2px; }
+        .log-body { display: block; overflow-wrap: anywhere; word-break: normal; }
+
         @media (max-width: 768px) {
             .site-stat { right: 24px; bottom: 28px; }
             .change-log { padding: 30px 24px; }
@@ -387,9 +391,9 @@
                 list.innerHTML = entries.map(entry => {
                     const date = escapeHtml(entry.date || '');
                     const label = date.replaceAll('-', '.');
-                    const title = entry.title ? `<strong>${escapeHtml(entry.title)}</strong> ` : '';
+                    const title = entry.title ? `<strong class="log-title">${escapeHtml(entry.title)}</strong>` : '';
                     const body = escapeHtml(entry.body || '');
-                    return `<div class="log-entry"><time class="log-date" datetime="${date}">${label}</time><p>${title}${body}</p></div>`;
+                    return `<div class="log-entry"><time class="log-date" datetime="${date}">${label}</time><p class="log-content">${title}<span class="log-body">${body}</span></p></div>`;
                 }).join('');
             } catch (error) {
                 list.innerHTML = '<div class="log-entry"><time class="log-date" datetime="2026-05-13">2026.05.13</time><p>changelog.json を読み込めませんでした。ローカルで直接開いている場合は、公開環境またはローカルサーバーで確認してください。</p></div>';

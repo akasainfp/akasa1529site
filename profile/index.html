@@ -135,6 +135,9 @@
         }
 
         .info-card p { font-size: 1.1rem; font-weight: 300; }
+        .identity-meta { list-style: none; margin-top: 16px; font-family: var(--font-mono); font-size: 0.76rem; color: #777; }
+        .identity-meta li { display: flex; justify-content: space-between; gap: 18px; margin-top: 8px; }
+        .identity-meta span { color: var(--text); text-align: right; }
 
         .spec-list { list-style: none; font-family: var(--font-mono); font-size: 0.9rem; color: #888; }
         .spec-list li { margin-bottom: 10px; display: flex; justify-content: space-between; }
@@ -204,12 +207,12 @@
                     <div>
                         <p>Akasa1529 / ny9z</p>
                         <p style="font-size: 0.9rem; color: #666; margin-top: 10px;">INFP-T / 狭く深く</p>
+                        <ul class="identity-meta">
+                            <li>Birthday <span>2008 / 01 / 28</span></li>
+                            <li>personality <span>狭く深く / 飽き性</span></li>
+                        </ul>
                     </div>
                 </div>
-            </div>
-            <div class="info-card">
-                <h3>Birthday</h3>
-                <p>2008.01.28</p>
             </div>
         </div>
 
@@ -217,10 +220,6 @@
             <div class="info-card">
                 <h3>Development</h3>
                 <p style="font-size: 0.95rem;">Python (discord.py) や Node.js を活用した Discord Bot 開発。サーバー管理や自動化システムの構築をメインに行っています。Geminiをよく使用しています。</p>
-            </div>
-            <div class="info-card">
-                <h3>Created</h3>
-                <p style="font-size: 0.95rem;">Chat boxへ指定したメッセージをOBS経由で送信するAFK用toolの作成や、Discord botの開発。Webサイトの作成</p>
             </div>
         </div>
 
@@ -246,17 +245,6 @@
                     <h3>制作物</h3>
                     <p>制作物一覧</p>
                 </a>
-            </div>
-        </div>
-
-        <div class="anim-box">
-            <div class="info-card" style="width: 100%;">
-                <h3>My Spec</h3>
-                <ul class="spec-list" style="margin-top: 20px;">
-                    <li>Birthday <span>2008 / 01 / 28</span></li>
-                    <li>personality <span>狭く深く / 飽き性</span></li>
-                    <li>created <span>Discordbot[Moshi box] / AFK tool / website</span></li>
-                </ul>
             </div>
         </div>
     </main>

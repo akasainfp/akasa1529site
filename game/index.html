@@ -51,7 +51,7 @@
         .table-of-contents { max-width: 1100px; margin: 20px auto 40px; padding: 25px; background: rgba(125, 95, 255, 0.01); border: 1px solid rgba(125, 95, 255, 0.05); }
         .toc-title { font-family: var(--font-mono); font-size: 0.7rem; color: var(--accent); margin-bottom: 15px; text-align: center; }
         .toc-links { display: grid; grid-template-columns: repeat(auto-fill, minmax(240px, 1fr)); gap: 8px; font-size: 0.75rem; }
-        .toc-links a { color: #666; text-decoration: none; transition: 0.3s; padding: 2px 8px; border-left: 1px solid transparent; }
+        .toc-links a { color: #666; text-decoration: none; transition: 0.3s; padding: 2px 8px; border-left: 1px solid transparent; display: block; min-width: 0; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
         .toc-links a:hover { color: var(--accent); border-left: 1px solid var(--accent); }
 
 
@@ -981,6 +981,7 @@
                     const score = item.getAttribute('data-score');
                     const link = document.createElement('a');
                     link.href = `#${item.id}`;
+                    link.title = title;
                     link.innerHTML = `[★${score}] ${title}`;
                     tocList.appendChild(link);
                 }

@@ -98,7 +98,7 @@
         }
         .toc-title { font-family: var(--font-mono); font-size: 0.7rem; color: var(--accent); margin-bottom: 15px; text-align: center; }
         .toc-links { display: grid; grid-template-columns: repeat(auto-fill, minmax(240px, 1fr)); gap: 8px; font-size: 0.75rem; }
-        .toc-links a { color: #666; text-decoration: none; transition: 0.3s; padding: 2px 8px; border-left: 1px solid transparent; }
+        .toc-links a { color: #666; text-decoration: none; transition: 0.3s; padding: 2px 8px; border-left: 1px solid transparent; display: block; min-width: 0; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
         .toc-links a:hover { color: var(--accent); border-left: 1px solid var(--accent); }
 
         /* 作品リスト */
@@ -734,10 +734,10 @@
         </article>
 
         <article class="anime-item anim-box" id="watamote" data-score="3" data-genre="drama">
-            <div class="anime-thumb"><img src="" alt="わたもて"></div>
+            <div class="anime-thumb"><img src="" alt="私がモテないのはどう考えてもお前らが悪い！"></div>
             <div class="anime-info">
                 <span class="rating">SCORE: ★★★☆☆</span>
-                <h2 class="anime-title">わたもて</h2>
+                <h2 class="anime-title">私がモテないのはどう考えてもお前らが悪い！</h2>
                 <p class="synopsis">モテることを夢見る少女の空回りする日常と、その後の変化。</p>
                 <div class="search-links">
                     <a href="https://www.nicovideo.jp/search/私がモテないのはどう考えてもお前らが悪い！" target="_blank" class="btn-search">NICONICO</a>
@@ -962,6 +962,7 @@
                     const score = item.getAttribute('data-score');
                     const link = document.createElement('a');
                     link.href = `#${item.id}`;
+                    link.title = title;
                     link.innerHTML = `[★${score}] ${title}`;
                     tocList.appendChild(link);
                 }

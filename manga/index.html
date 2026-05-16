@@ -241,7 +241,7 @@
             </div>
             <div class="filter-controls">
         <div class="filter-group">
-            <span class="filter-label">Score:</span>
+            <span class="filter-label">評価:</span>
             <button class="f-btn active" onclick="filterRating('all')">ALL</button>
             <button class="f-btn" onclick="filterRating('5')">★★★★★</button>
             <button class="f-btn" onclick="filterRating('4')">★★★★☆</button>
@@ -434,15 +434,18 @@
             applyFilters();
         }
 
+        function getFilterButtonValue(btn) {
+            const action = btn.getAttribute('onclick') || '';
+            const match = action.match(/\('([^']+)'\)/);
+            return match ? match[1] : '';
+        }
+
         function updateFilterButtons(type, val) {
             const groupIdx = type === 'rating' ? 0 : 1;
-            const btns = document.querySelectorAll('.filter-group')[groupIdx].querySelectorAll('.f-btn');
-            btns.forEach(btn => {
-                btn.classList.remove('active');
-                const action = btn.getAttribute('onclick') || '';
-                if (action.includes(`('${val}')`)) {
-                    btn.classList.add('active');
-                }
+            const group = document.querySelectorAll('.filter-group')[groupIdx];
+            if (!group) return;
+            group.querySelectorAll('.f-btn').forEach(btn => {
+                btn.classList.toggle('active', getFilterButtonValue(btn) === val);
             });
         }
 

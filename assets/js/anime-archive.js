@@ -40,7 +40,7 @@
         <article class="anime-item anim-box" id="${escapeHtml(item.id)}" data-score="${escapeHtml(item.score)}" data-genre="${escapeHtml(genres)}" data-jikan-query="${escapeHtml(item.jikanQuery || item.title)}">
             <div class="anime-thumb"><img src="${escapeHtml(image)}" alt="${escapeHtml(item.title)}" loading="lazy"></div>
             <div class="anime-info">
-                <span class="rating">SCORE: ${stars(item.score)}</span>
+                <span class="rating">評価: ${stars(item.score)}</span>
                 <h2 class="anime-title">${escapeHtml(item.title)}</h2>
                 <p class="synopsis">${escapeHtml(item.synopsis)}</p>
                 <div class="anime-meta" data-jikan-meta>情報を取得中</div>
@@ -72,11 +72,17 @@
         });
     }
 
+    function getFilterButtonValue(btn) {
+        const action = btn.getAttribute('onclick') || '';
+        const match = action.match(/\('([^']+)'\)/);
+        return match ? match[1] : '';
+    }
+
     function updateFilterButtons(groupIdx, val) {
         const group = document.querySelectorAll('.filter-group')[groupIdx];
         if (!group) return;
         group.querySelectorAll('.f-btn').forEach(btn => {
-            btn.classList.toggle('active', btn.getAttribute('onclick')?.includes(`'${val}'`));
+            btn.classList.toggle('active', getFilterButtonValue(btn) === val);
         });
     }
 

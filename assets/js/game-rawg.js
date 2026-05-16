@@ -7,13 +7,8 @@
         wii: 'Wii',
         psp: 'PSP'
     };
-    const rawgCacheKey = 'akasa1529:rawg:v3:';
-    const rawgApiBase = (
-        window.location.protocol === 'file:'
-        || window.location.hostname === 'localhost'
-        || window.location.hostname === '127.0.0.1'
-        || window.location.hostname === 'akasa1529.site'
-    ) ? 'https://www.akasa1529.site' : '';
+    const rawgCacheKey = 'akasa1529:rawg:v4:';
+    const rawgApiBase = 'https://www.akasa1529.site';
     const pending = [];
     let busy = 0;
 
@@ -53,6 +48,18 @@
             }));
         } catch {
             /* localStorage can be unavailable in some privacy modes. */
+        }
+    }
+
+    function clearOldRawgCache() {
+        try {
+            Object.keys(localStorage)
+                .filter(key => key.startsWith('akasa1529:rawg:v1:')
+                    || key.startsWith('akasa1529:rawg:v2:')
+                    || key.startsWith('akasa1529:rawg:v3:'))
+                .forEach(key => localStorage.removeItem(key));
+        } catch {
+            /* Ignore storage cleanup failures. */
         }
     }
 
@@ -142,6 +149,7 @@
     }
 
     function init() {
+        clearOldRawgCache();
         const items = Array.from(document.querySelectorAll('.game-item'));
         items.forEach(item => {
             setupPlatformTags(item);

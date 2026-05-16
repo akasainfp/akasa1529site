@@ -196,6 +196,71 @@
         .log-date { font-family: var(--font-mono); color: var(--accent); font-size: 0.7rem; letter-spacing: 0.08em; }
         .log-content { min-width: 0; line-height: 1.9; overflow-wrap: anywhere; word-break: normal; }
         .log-title { color: #aaa; font-weight: 700; }
+        .cursor-cat {
+            position: fixed;
+            left: 0;
+            top: 0;
+            z-index: 10030;
+            width: 34px;
+            height: 28px;
+            pointer-events: none;
+            opacity: 0;
+            transform: translate3d(-80px, -80px, 0);
+            transition: opacity 0.25s ease;
+        }
+        .cursor-cat.is-visible { opacity: 0.85; }
+        .cursor-cat-face {
+            position: absolute;
+            left: 2px;
+            top: 6px;
+            width: 30px;
+            height: 22px;
+            border: 1px solid rgba(255,255,255,0.52);
+            background: rgba(4,5,10,0.78);
+            backdrop-filter: blur(8px);
+        }
+        .cursor-cat-face::before,
+        .cursor-cat-face::after {
+            content: "";
+            position: absolute;
+            top: -8px;
+            width: 11px;
+            height: 11px;
+            border-top: 1px solid rgba(255,255,255,0.52);
+            background: rgba(4,5,10,0.78);
+        }
+        .cursor-cat-face::before {
+            left: 2px;
+            border-left: 1px solid rgba(255,255,255,0.52);
+            transform: skew(-18deg) rotate(45deg);
+        }
+        .cursor-cat-face::after {
+            right: 2px;
+            border-right: 1px solid rgba(255,255,255,0.52);
+            transform: skew(18deg) rotate(-45deg);
+        }
+        .cursor-cat-eye {
+            position: absolute;
+            top: 9px;
+            width: 3px;
+            height: 3px;
+            background: var(--accent);
+            box-shadow: 0 0 8px rgba(125,95,255,0.55);
+        }
+        .cursor-cat-eye.left { left: 9px; }
+        .cursor-cat-eye.right { right: 9px; }
+        .cursor-cat-mouth {
+            position: absolute;
+            left: 50%;
+            bottom: 5px;
+            width: 8px;
+            height: 4px;
+            border-bottom: 1px solid rgba(255,255,255,0.5);
+            transform: translateX(-50%);
+        }
+        @media (pointer: coarse), (prefers-reduced-motion: reduce) {
+            .cursor-cat { display: none; }
+        }
 
         @media (max-width: 768px) {
             .site-stat { right: 24px; bottom: 28px; }
@@ -208,6 +273,13 @@
 
     <div id="particles-js"></div>
     <div class="grain"></div>
+    <div class="cursor-cat" aria-hidden="true">
+        <div class="cursor-cat-face">
+            <span class="cursor-cat-eye left"></span>
+            <span class="cursor-cat-eye right"></span>
+            <span class="cursor-cat-mouth"></span>
+        </div>
+    </div>
 
     <section class="hero" id="top">
         <h1 class="main-title" id="target-title">Akasa1529 | archive</h1>
@@ -404,6 +476,35 @@
             }
         }
         loadChangeLog();
+
+        (() => {
+            if (!window.matchMedia('(pointer: fine)').matches) return;
+            if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+            const cat = document.querySelector('.cursor-cat');
+            if (!cat) return;
+            let mouseX = -80;
+            let mouseY = -80;
+            let catX = -80;
+            let catY = -80;
+            let visible = false;
+
+            window.addEventListener('mousemove', event => {
+                mouseX = event.clientX + 18;
+                mouseY = event.clientY + 16;
+                if (!visible) {
+                    visible = true;
+                    cat.classList.add('is-visible');
+                }
+            }, { passive: true });
+
+            function follow() {
+                catX += (mouseX - catX) * 0.16;
+                catY += (mouseY - catY) * 0.16;
+                cat.style.transform = `translate3d(${catX}px, ${catY}px, 0)`;
+                requestAnimationFrame(follow);
+            }
+            follow();
+        })();
     </script>
     <script>
         (() => {

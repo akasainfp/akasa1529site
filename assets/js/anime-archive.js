@@ -26,9 +26,16 @@
         return `${base}${encodeURIComponent(title)}`;
     }
 
+    function assetUrl(src) {
+        if (!src || /^(?:https?:)?\/\//.test(src) || src.startsWith('/')) return src;
+        const path = decodeURIComponent(window.location.pathname).replace(/\\/g, '/');
+        const nestedAnimePage = /\/anime\/(?:index\.html)?$/i.test(path);
+        return nestedAnimePage && src.startsWith('assets/') ? `../${src}` : src;
+    }
+
     function renderItem(item) {
         const genres = Array.isArray(item.genres) ? item.genres.join(' ') : '';
-        const image = item.image || '';
+        const image = assetUrl(item.image || '');
         return `
         <article class="anime-item anim-box" id="${escapeHtml(item.id)}" data-score="${escapeHtml(item.score)}" data-genre="${escapeHtml(genres)}" data-jikan-query="${escapeHtml(item.jikanQuery || item.title)}">
             <div class="anime-thumb"><img src="${escapeHtml(image)}" alt="${escapeHtml(item.title)}"></div>

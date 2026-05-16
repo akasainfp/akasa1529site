@@ -7,7 +7,7 @@
         wii: 'Wii',
         psp: 'PSP'
     };
-    const rawgCacheKey = 'akasa1529:rawg:v1:';
+    const rawgCacheKey = 'akasa1529:rawg:v2:';
     const pending = [];
     let busy = 0;
 
@@ -117,7 +117,7 @@
             if (!response.ok) throw new Error('RAWG request failed');
             const data = await response.json();
             const game = Array.isArray(data.results) ? data.results[0] : null;
-            setCached(query, game);
+            if (game) setCached(query, game);
             applyRawg(item, game);
         } catch {
             applyRawg(item, null);

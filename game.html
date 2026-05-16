@@ -114,9 +114,16 @@
         .game-item.hidden { display: none !important; }
         @media (max-width: 768px) { .game-item { grid-template-columns: 1fr; } }
 
-        .game-thumb { width: 100%; aspect-ratio: 16/9; background: #08080c; border: 1px solid rgba(255, 255, 255, 0.05); overflow: hidden; }
-        .game-thumb img { width: 100%; height: 100%; object-fit: contain; display: block; }
-        .game-thumb span { color: #333; font-family: var(--font-mono); font-size: 0.8rem; text-align: center; overflow-wrap: anywhere; }        .rating { font-family: var(--font-mono); color: var(--accent); font-size: 0.8rem; margin-bottom: 10px; display: block; }
+        .game-thumb { width: 100%; aspect-ratio: 16/9; background: #08080c; border: 1px solid rgba(255, 255, 255, 0.05); overflow: hidden; position: relative; display: flex; align-items: center; justify-content: center; isolation: isolate; }
+        .game-thumb::before { content: ""; position: absolute; inset: 0; background-image: var(--thumb-bg); background-size: cover; background-position: center; filter: blur(18px); opacity: 0; transform: scale(1.08); transition: opacity 0.3s; z-index: 0; }
+        .game-thumb img { width: 100%; height: 100%; object-fit: contain; display: block; position: relative; z-index: 1; }
+        .game-thumb.is-package::before { opacity: 0.18; }
+        .game-thumb.is-package img { width: auto; max-width: 68%; height: 100%; object-fit: contain; margin: 0 auto; }
+        .game-thumb span { color: #333; font-family: var(--font-mono); font-size: 0.8rem; text-align: center; overflow-wrap: anywhere; }
+        .game-meta-top { display: flex; align-items: center; gap: 10px; flex-wrap: wrap; margin-bottom: 10px; }
+        .platform-tags { display: flex; flex-wrap: wrap; gap: 6px; }
+        .platform-tag { font-family: var(--font-mono); font-size: 0.58rem; letter-spacing: 0.08em; color: #8f80ff; border: 1px solid rgba(125, 95, 255, 0.28); background: rgba(125, 95, 255, 0.06); padding: 2px 7px; line-height: 1.6; }
+        .rating { font-family: var(--font-mono); color: var(--accent); font-size: 0.8rem; margin-bottom: 0; display: block; }
         .game-title { font-size: 1.4rem; font-weight: 700; margin-bottom: 10px; }
         .synopsis { font-size: 0.85rem; color: #aaa; margin-bottom: 20px; }
         .game-links { display: flex; gap: 10px; flex-wrap: wrap; }
@@ -128,6 +135,11 @@
         .series-list ul { list-style: none; display: grid; gap: 5px; }
         .series-list li { color: #aaa; font-size: 0.82rem; }
         .series-list li::before { content: "-"; color: var(--accent); margin-right: 8px; }
+        .series-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(118px, 1fr)); gap: 10px; }
+        .series-card { min-width: 0; }
+        .series-card-thumb { aspect-ratio: 1 / 1; background: rgba(255,255,255,0.02); border: 1px solid rgba(255,255,255,0.06); overflow: hidden; display: flex; align-items: center; justify-content: center; }
+        .series-card-thumb img { width: 100%; height: 100%; object-fit: contain; display: block; }
+        .series-card-title { margin-top: 7px; color: #aaa; font-size: 0.72rem; line-height: 1.45; overflow-wrap: anywhere; }
         .btn-link { text-decoration: none; font-family: var(--font-mono); font-size: 0.65rem; padding: 6px 12px; border: 1px solid rgba(255,255,255,0.1); color: #666; transition: 0.3s; }
         .btn-link:hover { border-color: var(--accent); color: var(--accent); background: rgba(125, 95, 255, 0.05); }
 
@@ -472,7 +484,7 @@
                 <h2 class="game-title">VALORANT</h2>
                 <p class="synopsis">アビリティと精密射撃で戦うタクティカルFPS。</p>
                 <div class="game-links">
-                    <a href="#" target="_blank" rel="noopener" class="btn-link">LINK</a>
+                    <a href="https://playvalorant.com/ja-jp/" target="_blank" rel="noopener" class="btn-link">LINK</a>
                 </div>
             </div>
         </article>
@@ -483,7 +495,7 @@
                 <h2 class="game-title">FORTNITE</h2>
                 <p class="synopsis">建築やゼロビルドで戦う、バトルロイヤル系アクション。</p>
                 <div class="game-links">
-                    <a href="#" target="_blank" rel="noopener" class="btn-link">LINK</a>
+                    <a href="https://www.fortnite.com/" target="_blank" rel="noopener" class="btn-link">LINK</a>
                 </div>
             </div>
         </article>
@@ -494,7 +506,7 @@
                 <h2 class="game-title">OW2</h2>
                 <p class="synopsis">ヒーローごとの役割とスキルで戦うチームFPS。</p>
                 <div class="game-links">
-                    <a href="#" target="_blank" rel="noopener" class="btn-link">LINK</a>
+                    <a href="https://overwatch.blizzard.com/ja-jp/" target="_blank" rel="noopener" class="btn-link">LINK</a>
                 </div>
             </div>
         </article>
@@ -505,7 +517,7 @@
                 <h2 class="game-title">NTE</h2>
                 <p class="synopsis">今後リンクやメモを追加するゲーム。</p>
                 <div class="game-links">
-                    <a href="#" target="_blank" rel="noopener" class="btn-link">LINK</a>
+                    <a href="https://nte.perfectworld.com/" target="_blank" rel="noopener" class="btn-link">LINK</a>
                 </div>
             </div>
         </article>
@@ -515,7 +527,7 @@
                 <span class="rating">評価: ★★★★★</span>
                 <h2 class="game-title">Minecraft</h2>
                 <p class="synopsis">ブロックで探索、建築、冒険を自由に楽しめるサンドボックスゲーム。</p>
-                <div class="game-links"><a href="#" target="_blank" rel="noopener" class="btn-link">LINK</a></div>
+                <div class="game-links"><a href="https://www.minecraft.net/" target="_blank" rel="noopener" class="btn-link">LINK</a></div>
             </div>
         </article>
         <article class="game-item anim-box" id="splatoon2" data-score="3" data-category="fps-tps action" data-hard="switch">
@@ -524,7 +536,7 @@
                 <span class="rating">評価: ★★★☆☆</span>
                 <h2 class="game-title">スプラ2</h2>
                 <p class="synopsis">インクで塗り合いながら戦う、チーム対戦型のアクションシューティング。</p>
-                <div class="game-links"><a href="#" target="_blank" rel="noopener" class="btn-link">LINK</a></div>
+                <div class="game-links"><a href="https://www.nintendo.com/jp/games/feature/splatoon/index.html" target="_blank" rel="noopener" class="btn-link">LINK</a></div>
             </div>
         </article>
         <article class="game-item anim-box" id="splatoon3" data-score="4" data-category="fps-tps action" data-hard="switch">
@@ -533,7 +545,7 @@
                 <span class="rating">評価: ★★★★☆</span>
                 <h2 class="game-title">スプラ3</h2>
                 <p class="synopsis">ナワバリバトルや協力プレイをテンポよく楽しめるアクションシューティング。</p>
-                <div class="game-links"><a href="#" target="_blank" rel="noopener" class="btn-link">LINK</a></div>
+                <div class="game-links"><a href="https://www.nintendo.com/jp/switch/av5ja/" target="_blank" rel="noopener" class="btn-link">LINK</a></div>
             </div>
         </article>
         <article class="game-item anim-box" id="human-fall-flat" data-score="1" data-category="action party" data-hard="steam pc switch">
@@ -542,7 +554,7 @@
                 <span class="rating">評価: ★☆☆☆☆</span>
                 <h2 class="game-title">ヒューマンフォールフラット</h2>
                 <p class="synopsis">ふにゃふにゃした操作でギミックを解く、協力型アクションパズル。</p>
-                <div class="game-links"><a href="#" target="_blank" rel="noopener" class="btn-link">LINK</a></div>
+                <div class="game-links"><a href="https://www.humanfallflat.com/" target="_blank" rel="noopener" class="btn-link">LINK</a></div>
             </div>
         </article>
         <article class="game-item anim-box" id="super-smash-bros" data-score="4" data-category="action party" data-hard="switch">
@@ -551,7 +563,7 @@
                 <span class="rating">評価: ★★★★☆</span>
                 <h2 class="game-title">大乱闘スマッシュブラザーズ</h2>
                 <p class="synopsis">さまざまなキャラクターで吹っ飛ばし合う対戦アクション。</p>
-                <div class="game-links"><a href="#" target="_blank" rel="noopener" class="btn-link">LINK</a></div>
+                <div class="game-links"><a href="https://www.smashbros.com/ja_JP/" target="_blank" rel="noopener" class="btn-link">LINK</a></div>
             </div>
         </article>
         <article class="game-item anim-box" id="zelda-breath-of-the-wild" data-score="5" data-category="open-world adventure" data-hard="switch">
@@ -560,7 +572,7 @@
                 <span class="rating">評価: ★★★★★</span>
                 <h2 class="game-title">ゼルダの伝説 ブレワイ</h2>
                 <p class="synopsis">広大なハイラルを自由に探索する、オープンワールドアドベンチャー。</p>
-                <div class="game-links"><a href="#" target="_blank" rel="noopener" class="btn-link">LINK</a></div>
+                <div class="game-links"><a href="https://www.nintendo.co.jp/zelda/botw/" target="_blank" rel="noopener" class="btn-link">LINK</a></div>
             </div>
         </article>
         <article class="game-item anim-box" id="zelda-tears-of-the-kingdom" data-score="4" data-category="open-world adventure" data-hard="switch">
@@ -569,7 +581,7 @@
                 <span class="rating">評価: ★★★★☆</span>
                 <h2 class="game-title">ゼルダの伝説 ティアキン</h2>
                 <p class="synopsis">空と地上を行き来しながら創造的に冒険するアクションアドベンチャー。</p>
-                <div class="game-links"><a href="#" target="_blank" rel="noopener" class="btn-link">LINK</a></div>
+                <div class="game-links"><a href="https://www.nintendo.co.jp/zelda/totk/" target="_blank" rel="noopener" class="btn-link">LINK</a></div>
             </div>
         </article>
         <article class="game-item anim-box" id="suika-game" data-score="4" data-category="puzzle" data-hard="switch">
@@ -578,7 +590,7 @@
                 <span class="rating">評価: ★★★★☆</span>
                 <h2 class="game-title">スイカゲーム</h2>
                 <p class="synopsis">フルーツを組み合わせて大きくしていく、シンプルなパズルゲーム。</p>
-                <div class="game-links"><a href="#" target="_blank" rel="noopener" class="btn-link">LINK</a></div>
+                <div class="game-links"><a href="https://www.aladdinx.jp/pages/suika-game" target="_blank" rel="noopener" class="btn-link">LINK</a></div>
             </div>
         </article>
         <article class="game-item anim-box" id="doraemon-nobita-farm" data-score="5" data-category="simulation" data-hard="switch">
@@ -587,7 +599,7 @@
                 <span class="rating">評価: ★★★★★</span>
                 <h2 class="game-title">ドラえもん のび太の牧場物語</h2>
                 <p class="synopsis">牧場生活とドラえもんの世界観をゆったり楽しめるシミュレーション。</p>
-                <div class="game-links"><a href="#" target="_blank" rel="noopener" class="btn-link">LINK</a></div>
+                <div class="game-links"><a href="https://bd.bn-ent.net/" target="_blank" rel="noopener" class="btn-link">LINK</a></div>
             </div>
         </article>
         <article class="game-item anim-box" id="asobi-taisen-51" data-score="4" data-category="party strategy" data-hard="switch">
@@ -596,7 +608,7 @@
                 <span class="rating">評価: ★★★★☆</span>
                 <h2 class="game-title">アソビ大全51</h2>
                 <p class="synopsis">定番のボードゲームやカードゲームをまとめて遊べるテーブルゲーム集。</p>
-                <div class="game-links"><a href="#" target="_blank" rel="noopener" class="btn-link">LINK</a></div>
+                <div class="game-links"><a href="https://www.nintendo.com/jp/switch/as7ta/" target="_blank" rel="noopener" class="btn-link">LINK</a></div>
             </div>
         </article>
         <article class="game-item anim-box" id="animal-crossing-new-horizons" data-score="3" data-category="simulation" data-hard="switch">
@@ -605,7 +617,7 @@
                 <span class="rating">評価: ★★★☆☆</span>
                 <h2 class="game-title">あつまれどうぶつの森</h2>
                 <p class="synopsis">島で暮らしながら家具や景観づくりを楽しむ生活シミュレーション。</p>
-                <div class="game-links"><a href="#" target="_blank" rel="noopener" class="btn-link">LINK</a></div>
+                <div class="game-links"><a href="https://www.nintendo.com/jp/switch/acbaa/" target="_blank" rel="noopener" class="btn-link">LINK</a></div>
             </div>
         </article>
         <article class="game-item anim-box" id="super-mario-maker2" data-score="3" data-category="action" data-hard="switch">
@@ -614,7 +626,7 @@
                 <span class="rating">評価: ★★★☆☆</span>
                 <h2 class="game-title">スーパーマリオメーカー2</h2>
                 <p class="synopsis">マリオのコースを作って遊べるクリエイティブなアクションゲーム。</p>
-                <div class="game-links"><a href="#" target="_blank" rel="noopener" class="btn-link">LINK</a></div>
+                <div class="game-links"><a href="https://www.nintendo.com/jp/switch/baaqa/" target="_blank" rel="noopener" class="btn-link">LINK</a></div>
             </div>
         </article>
         <article class="game-item anim-box" id="momotetsu" data-score="2" data-category="party strategy" data-hard="switch">
@@ -623,7 +635,7 @@
                 <span class="rating">評価: ★★☆☆☆</span>
                 <h2 class="game-title">桃太郎電鉄</h2>
                 <p class="synopsis">日本各地を巡りながら資産を増やしていく定番すごろくゲーム。</p>
-                <div class="game-links"><a href="#" target="_blank" rel="noopener" class="btn-link">LINK</a></div>
+                <div class="game-links"><a href="https://www.konami.com/games/momotetsu/teiban/" target="_blank" rel="noopener" class="btn-link">LINK</a></div>
             </div>
         </article>
         <article class="game-item anim-box" id="mario-party-super-stars" data-score="4" data-category="party" data-hard="switch">
@@ -632,7 +644,7 @@
                 <span class="rating">評価: ★★★★☆</span>
                 <h2 class="game-title">マリオパーティ スーパースターズ</h2>
                 <p class="synopsis">ミニゲームとボードで盛り上がるパーティーゲーム。</p>
-                <div class="game-links"><a href="#" target="_blank" rel="noopener" class="btn-link">LINK</a></div>
+                <div class="game-links"><a href="https://www.nintendo.com/jp/switch/az82a/" target="_blank" rel="noopener" class="btn-link">LINK</a></div>
             </div>
         </article>
         <article class="game-item anim-box" id="fall-guys" data-score="4" data-category="action party" data-hard="steam pc switch">
@@ -641,7 +653,7 @@
                 <span class="rating">評価: ★★★★☆</span>
                 <h2 class="game-title">FALL GUYS</h2>
                 <p class="synopsis">障害物コースを勝ち抜く、にぎやかなパーティーアクション。</p>
-                <div class="game-links"><a href="#" target="_blank" rel="noopener" class="btn-link">LINK</a></div>
+                <div class="game-links"><a href="https://www.fallguys.com/" target="_blank" rel="noopener" class="btn-link">LINK</a></div>
             </div>
         </article>
         <article class="game-item anim-box" id="yomawari-series" data-score="5" data-category="horror adventure" data-hard="steam pc switch">
@@ -663,7 +675,7 @@
                 <span class="rating">評価: ★★★★☆</span>
                 <h2 class="game-title">マリオカート8</h2>
                 <p class="synopsis">アイテムとテクニックで競う、定番のレースゲーム。</p>
-                <div class="game-links"><a href="#" target="_blank" rel="noopener" class="btn-link">LINK</a></div>
+                <div class="game-links"><a href="https://www.nintendo.com/jp/switch/aabpa/index.html" target="_blank" rel="noopener" class="btn-link">LINK</a></div>
             </div>
         </article>
         <article class="game-item anim-box" id="yawaraka-atama-jyuku" data-score="3" data-category="puzzle" data-hard="ds">
@@ -712,7 +724,7 @@
                 <span class="rating">評価: ★★★★☆</span>
                 <h2 class="game-title">ぷよぷよ!!</h2>
                 <p class="synopsis">連鎖を組んで対戦する、定番の落ち物パズルゲーム。</p>
-                <div class="game-links"><a href="#" target="_blank" rel="noopener" class="btn-link">LINK</a></div>
+                <div class="game-links"><a href="https://puyo.sega.jp/portal/" target="_blank" rel="noopener" class="btn-link">LINK</a></div>
             </div>
         </article>
         <article class="game-item anim-box" id="oideyo-animal-crossing" data-score="5" data-category="simulation" data-hard="ds">
@@ -784,7 +796,7 @@
                 <span class="rating">評価: ★★★★☆</span>
                 <h2 class="game-title">モンスターハンターポータブルシリーズ</h2>
                 <p class="synopsis">素材を集めて装備を作り、巨大なモンスターに挑むハンティングアクション。</p>
-                <div class="game-links"><a href="#" target="_blank" rel="noopener" class="btn-link">LINK</a><button class="series-toggle" type="button" aria-expanded="false" aria-controls="monster-hunter-portable-titles" onclick="toggleSeries(this)">TITLES</button></div>
+                <div class="game-links"><a href="https://www.capcom-games.com/monsterhunter/" target="_blank" rel="noopener" class="btn-link">LINK</a><button class="series-toggle" type="button" aria-expanded="false" aria-controls="monster-hunter-portable-titles" onclick="toggleSeries(this)">TITLES</button></div>
                 <div class="series-list" id="monster-hunter-portable-titles">
                     <div class="series-list-title">Included titles</div>
                     <ul><li>モンスターハンターポータブル</li><li>モンスターハンターポータブル 2nd</li><li>モンスターハンターポータブル 3rd</li></ul>
@@ -806,7 +818,7 @@
                 <span class="rating">評価: ★★★★★</span>
                 <h2 class="game-title">マリオカートWii</h2>
                 <p class="synopsis">ハンドル操作でも遊べる、Wiiの定番レースゲーム。</p>
-                <div class="game-links"><a href="#" target="_blank" rel="noopener" class="btn-link">LINK</a></div>
+                <div class="game-links"><a href="https://www.nintendo.co.jp/wii/rmcj/" target="_blank" rel="noopener" class="btn-link">LINK</a></div>
             </div>
         </article>
         <article class="game-item anim-box" id="wii-sports-resort" data-score="5" data-category="sports party" data-hard="wii">
@@ -815,7 +827,7 @@
                 <span class="rating">評価: ★★★★★</span>
                 <h2 class="game-title">Wii Sports Resort</h2>
                 <p class="synopsis">リゾートを舞台にさまざまなスポーツを体感できるパーティーゲーム。</p>
-                <div class="game-links"><a href="#" target="_blank" rel="noopener" class="btn-link">LINK</a></div>
+                <div class="game-links"><a href="https://www.nintendo.co.jp/wii/rztj/" target="_blank" rel="noopener" class="btn-link">LINK</a></div>
             </div>
         </article>
         <article class="game-item anim-box" id="mario-sonic-london-olympics" data-score="4" data-category="sports party" data-hard="wii">
@@ -833,7 +845,7 @@
                 <span class="rating">評価: ★★★★★</span>
                 <h2 class="game-title">Wii Party</h2>
                 <p class="synopsis">みんなで遊べるミニゲームが詰まったWiiのパーティーゲーム。</p>
-                <div class="game-links"><a href="#" target="_blank" rel="noopener" class="btn-link">LINK</a></div>
+                <div class="game-links"><a href="https://www.nintendo.co.jp/wii/supj/" target="_blank" rel="noopener" class="btn-link">LINK</a></div>
             </div>
         </article>
         <article class="game-item anim-box" id="new-super-mario-bros-wii" data-score="4" data-category="action party" data-hard="wii">
@@ -842,7 +854,7 @@
                 <span class="rating">評価: ★★★★☆</span>
                 <h2 class="game-title">New スーパーマリオブラザーズ Wii</h2>
                 <p class="synopsis">複数人でも遊べる横スクロールのマリオアクション。</p>
-                <div class="game-links"><a href="#" target="_blank" rel="noopener" class="btn-link">LINK</a></div>
+                <div class="game-links"><a href="https://www.nintendo.co.jp/wii/smnj/" target="_blank" rel="noopener" class="btn-link">LINK</a></div>
             </div>
         </article>
         <article class="game-item anim-box" id="inazuma-eleven-strikers" data-score="5" data-category="sports action" data-hard="wii">
@@ -869,7 +881,7 @@
                 <span class="rating">評価: ★★★★☆</span>
                 <h2 class="game-title">Wiiであそぶ マリオテニスGC</h2>
                 <p class="synopsis">Wii操作で楽しめるマリオテニスのスポーツゲーム。</p>
-                <div class="game-links"><a href="#" target="_blank" rel="noopener" class="btn-link">LINK</a></div>
+                <div class="game-links"><a href="https://www.nintendo.co.jp/wii/rmaj/" target="_blank" rel="noopener" class="btn-link">LINK</a></div>
             </div>
         </article>
         <article class="game-item anim-box" id="my-sims" data-score="5" data-category="simulation" data-hard="wii">
@@ -1147,6 +1159,7 @@
     </script>
 
     <script src="assets/js/site-counter.js"></script>
+    <script src="assets/js/game-ui.js?v=20260516-tags"></script>
     <script src="assets/js/site-menu.js?v=20260516-this-page"></script>
 </body>
 </html>

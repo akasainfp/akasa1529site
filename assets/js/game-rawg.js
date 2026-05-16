@@ -7,7 +7,13 @@
         wii: 'Wii',
         psp: 'PSP'
     };
-    const rawgCacheKey = 'akasa1529:rawg:v2:';
+    const rawgCacheKey = 'akasa1529:rawg:v3:';
+    const rawgApiBase = (
+        window.location.protocol === 'file:'
+        || window.location.hostname === 'localhost'
+        || window.location.hostname === '127.0.0.1'
+        || window.location.hostname === 'akasa1529.site'
+    ) ? 'https://www.akasa1529.site' : '';
     const pending = [];
     let busy = 0;
 
@@ -113,7 +119,7 @@
             return;
         }
         try {
-            const response = await fetch(`/api/rawg/search?q=${encodeURIComponent(query)}`, { cache: 'force-cache' });
+            const response = await fetch(`${rawgApiBase}/api/rawg/search?q=${encodeURIComponent(query)}`, { cache: 'force-cache' });
             if (!response.ok) throw new Error('RAWG request failed');
             const data = await response.json();
             const game = Array.isArray(data.results) ? data.results[0] : null;

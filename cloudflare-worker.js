@@ -67,7 +67,10 @@ async function handleRawgSearch(request, env, url) {
     const origin = request.headers.get('Origin') || '';
     const allowedOrigin = [
         'https://www.akasa1529.site',
-        'https://akasa1529.site'
+        'https://akasa1529.site',
+        'http://localhost:8792',
+        'http://127.0.0.1:8792',
+        'null'
     ].includes(origin) ? origin : 'https://www.akasa1529.site';
     const headers = {
         'Content-Type': 'application/json; charset=utf-8',

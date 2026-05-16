@@ -70,7 +70,7 @@
         }
         .filter-group { display: flex; gap: 8px; align-items: center; }
         .filter-label { font-family: var(--font-mono); font-size: 0.6rem; color: #555; text-transform: uppercase; letter-spacing: 0.1em; }
-        
+
         .f-btn {
             background: transparent;
             border: 1px solid rgba(255,255,255,0.1);
@@ -81,11 +81,11 @@
             cursor: pointer;
             transition: 0.3s;
         }
-        .f-btn.active { 
-            border-color: var(--accent) !important; 
-            color: var(--accent) !important; 
+        .f-btn.active {
+            border-color: var(--accent) !important;
+            color: var(--accent) !important;
             background: rgba(125, 95, 255, 0.15) !important;
-            box-shadow: 0 0 10px rgba(125, 95, 255, 0.2); 
+            box-shadow: 0 0 10px rgba(125, 95, 255, 0.2);
         }
 
         /* 目次 */
@@ -154,7 +154,7 @@
             .toc-filter-toggle { width: 100%; max-width: 220px; }
         }
         .section-container { max-width: 900px; margin: 0 auto; padding: 20px; }
-        
+
         .anime-item {
             display: grid;
             grid-template-columns: 280px 1fr;
@@ -169,22 +169,22 @@
         @media (max-width: 768px) { .anime-item { grid-template-columns: 1fr; } }
 
         /* サムネイル */
-        .anime-thumb { 
-            width: 100%; 
-            aspect-ratio: 16/9; 
-            background: #111; 
-            border: 1px solid rgba(255, 255, 255, 0.05); 
-            position: relative; 
-            overflow: hidden; 
+        .anime-thumb {
+            width: 100%;
+            aspect-ratio: 16/9;
+            background: #111;
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            position: relative;
+            overflow: hidden;
         }
         .anime-thumb img { width: 100%; height: 100%; object-fit: cover; }
-        .anime-thumb::after { 
-            content: 'NO IMAGE'; 
-            position: absolute; 
-            top: 50%; left: 50%; 
-            transform: translate(-50%, -50%); 
-            font-size: 0.5rem; 
-            color: #222; 
+        .anime-thumb::after {
+            content: 'NO IMAGE';
+            position: absolute;
+            top: 50%; left: 50%;
+            transform: translate(-50%, -50%);
+            font-size: 0.5rem;
+            color: #222;
             z-index: -1;
         }
 
@@ -474,7 +474,7 @@
         </article>
 
         <article class="anime-item anim-box" id="shibogame" data-score="5" data-genre="battle">
-            <div class="anime-thumb"><img src="" alt="死亡遊戯で飯を食う。"></div>
+            <div class="anime-thumb"><img src="../assets/anime/shibouyuugi.jpg" alt="死亡遊戯で飯を食う。"></div>
             <div class="anime-info">
                 <span class="rating">SCORE: ★★★★★</span>
                 <h2 class="anime-title">死亡遊戯で飯を食う。</h2>
@@ -695,7 +695,7 @@
         </article>
 
         <article class="anime-item anim-box" id="shikimori" data-score="3" data-genre="romance">
-            <div class="anime-thumb"><img src="" alt="かわいいだけじゃない式守さん"></div>
+            <div class="anime-thumb"><img src="../assets/anime/shikimorisan.jpg" alt="かわいいだけじゃない式守さん"></div>
             <div class="anime-info">
                 <span class="rating">SCORE: ★★★☆☆</span>
                 <h2 class="anime-title">かわいいだけじゃない式守さん</h2>
@@ -734,7 +734,7 @@
         </article>
 
         <article class="anime-item anim-box" id="watamote" data-score="3" data-genre="drama">
-            <div class="anime-thumb"><img src="" alt="私がモテないのはどう考えてもお前らが悪い！"></div>
+            <div class="anime-thumb"><img src="../assets/anime/watamote.jpg" alt="私がモテないのはどう考えてもお前らが悪い！"></div>
             <div class="anime-info">
                 <span class="rating">SCORE: ★★★☆☆</span>
                 <h2 class="anime-title">私がモテないのはどう考えてもお前らが悪い！</h2>
@@ -855,6 +855,7 @@
                         <a href="/" class="footer-link">ホーム</a>
                         <a href="/profile/" class="footer-link">プロフィール</a>
                         <a href="/anime/" class="footer-link">アニメ</a>
+                        <a href="/manga/" class="footer-link">漫画</a>
                         <a href="/game/" class="footer-link">ゲーム</a>
                         <a href="/archive/" class="footer-link">ツール</a>
                     </div>
@@ -882,7 +883,7 @@
     </footer>
 
     <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
-    
+
     <script>
         // 1. Particles.js 設定
         particlesJS("particles-js", {
@@ -1036,13 +1037,14 @@
                 '/home/': 'home/index.html',
                 '/profile/': 'profile/index.html',
                 '/anime/': 'anime/index.html',
+                '/manga/': 'manga/index.html',
                 '/game/': 'game/index.html',
                 '/archive/': 'archive/index.html',
                 '/privacy/': 'privacy/index.html',
                 '/ticket/': 'ticket/index.html'
             };
             const path = decodeURIComponent(window.location.pathname).replace(/\\/g, '/');
-            const nestedPage = /\/(home|profile|anime|game|archive|privacy|ticket)\/index\.html$/i.test(path);
+            const nestedPage = /\/(home|profile|anime|manga|game|archive|privacy|ticket)\/index\.html$/i.test(path);
             const siteRoot = path.replace(nestedPage ? /\/[^/]+\/index\.html$/i : /\/[^/]+$/i, '/');
             document.querySelectorAll('a[href]').forEach(link => {
                 const href = link.getAttribute('href');

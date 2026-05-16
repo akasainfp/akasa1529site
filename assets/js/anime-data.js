@@ -482,7 +482,7 @@ window.AKASA_ANIME_DATA = [
     "genres": [
       "drama"
     ],
-    "image": "",
+    "image": "assets/anime/oddtaxy.jpg",
     "synopsis": "タクシー運転手が運ぶ客たちの会話が、一つの事件に収束するミステリー。",
     "jikanQuery": "ODDTAXY(オッドタクシー)"
   },
@@ -493,7 +493,7 @@ window.AKASA_ANIME_DATA = [
     "genres": [
       "drama"
     ],
-    "image": "",
+    "image": "assets/anime/japan2020.jpg",
     "synopsis": "突如始まった日本の沈没。極限状態での家族のサバイバル。",
     "jikanQuery": "日本沈没2020"
   }

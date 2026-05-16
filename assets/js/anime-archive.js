@@ -38,7 +38,7 @@
         const image = assetUrl(item.image || '');
         return `
         <article class="anime-item anim-box" id="${escapeHtml(item.id)}" data-score="${escapeHtml(item.score)}" data-genre="${escapeHtml(genres)}" data-jikan-query="${escapeHtml(item.jikanQuery || item.title)}">
-            <div class="anime-thumb"><img src="${escapeHtml(image)}" alt="${escapeHtml(item.title)}"></div>
+            <div class="anime-thumb"><img src="${escapeHtml(image)}" alt="${escapeHtml(item.title)}" loading="lazy"></div>
             <div class="anime-info">
                 <span class="rating">SCORE: ${stars(item.score)}</span>
                 <h2 class="anime-title">${escapeHtml(item.title)}</h2>
@@ -128,6 +128,13 @@
         }
     }
 
+    function queueJikanForImage(article) {
+        if (!article || article.dataset.jikanQueued === 'true') return;
+        article.dataset.jikanQueued = 'true';
+        jikanQueue.push(article);
+        runJikanQueue();
+    }
+
     async function fetchJikan(query) {
         const response = await fetch(`https://api.jikan.moe/v4/anime?q=${encodeURIComponent(query)}&limit=1`, { cache: 'force-cache' });
         if (!response.ok) throw new Error('Jikan request failed');
@@ -170,26 +177,31 @@
     function observeJikan() {
         document.querySelectorAll('.anime-item').forEach(item => {
             if (!item.querySelector('.anime-thumb img')?.getAttribute('src')) {
-                jikanQueue.push(item);
+                queueJikanForImage(item);
             }
         });
-        runJikanQueue();
         if (!jikanEnabled || !('IntersectionObserver' in window)) {
             document.querySelectorAll('.anime-item').forEach(item => {
-                if (!jikanQueue.includes(item)) jikanQueue.push(item);
+                queueJikanForImage(item);
             });
-            runJikanQueue();
             return;
         }
         const observer = new IntersectionObserver(entries => {
             entries.forEach(entry => {
                 if (!entry.isIntersecting) return;
                 observer.unobserve(entry.target);
-                jikanQueue.push(entry.target);
+                const meta = entry.target.querySelector('[data-jikan-meta]');
+                if (meta?.textContent === '情報を取得中') queueJikanForImage(entry.target);
             });
-            runJikanQueue();
         }, { rootMargin: '320px 0px' });
-        document.querySelectorAll('.anime-item').forEach(item => observer.observe(item));
+        document.querySelectorAll('.anime-item').forEach(item => {
+            const image = item.querySelector('.anime-thumb img');
+            if (image) image.addEventListener('error', () => {
+                image.removeAttribute('src');
+                queueJikanForImage(item);
+            }, { once: true });
+            observer.observe(item);
+        });
     }
 
     async function init() {

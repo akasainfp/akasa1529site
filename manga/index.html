@@ -119,6 +119,7 @@
             transition: 0.3s;
         }
         .toc-filter-toggle:hover { color: #fff; border-color: var(--accent); background: rgba(125,95,255,0.08); transform: translateY(-2px); }
+        .toc-filter-toggle, .filter-close, .f-btn { position: relative; z-index: 2; pointer-events: auto; cursor: pointer; }
         .filter-controls { display: none; }
         .filter-dialog {
             position: fixed;
@@ -448,6 +449,37 @@
                 btn.classList.toggle('active', getFilterButtonValue(btn) === val);
             });
         }
+
+
+        function handleFilterControlClick(event) {
+            const button = event.target.closest('button');
+            if (!button) return;
+            if (button.classList.contains('toc-filter-toggle')) {
+                event.preventDefault();
+                toggleFilterDialog(true);
+                return;
+            }
+            if (button.classList.contains('filter-close')) {
+                event.preventDefault();
+                toggleFilterDialog(false);
+                return;
+            }
+            const action = button.getAttribute('onclick') || '';
+            const value = getFilterButtonValue(button);
+            if (!value) return;
+            if (action.startsWith('filterRating')) {
+                event.preventDefault();
+                filterRating(value);
+                return;
+            }
+            if (action.startsWith('filterGenre')) {
+                event.preventDefault();
+                filterGenre(value);
+                return;
+            }
+        }
+
+        document.addEventListener('click', handleFilterControlClick);
 
         function applyFilters() {
             document.querySelectorAll('.manga-item').forEach(item => {

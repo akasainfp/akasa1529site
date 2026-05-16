@@ -119,6 +119,7 @@
             transition: 0.3s;
         }
         .toc-filter-toggle:hover { color: #fff; border-color: var(--accent); background: rgba(125,95,255,0.08); transform: translateY(-2px); }
+        .toc-filter-toggle, .filter-close, .f-btn { position: relative; z-index: 2; pointer-events: auto; cursor: pointer; }
         .filter-controls { display: none; }
         .filter-dialog {
             position: fixed;
@@ -407,7 +408,7 @@
             });
         })();
     </script>
-    <script src="assets/js/anime-archive.js?v=20260516-filter-labels" data-anime-src="anime-data.json"></script>
+    <script src="assets/js/anime-archive.js?v=20260516-filter-dialog" data-anime-src="anime-data.json"></script>
 
 
     <script src="assets/js/site-counter.js"></script>

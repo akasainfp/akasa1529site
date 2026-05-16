@@ -244,5 +244,48 @@
         applyFilters();
     };
 
+    window.toggleFilterDialog = open => {
+        const dialog = document.getElementById('filter-dialog');
+        if (!dialog) return;
+        dialog.classList.toggle('is-open', open);
+        dialog.setAttribute('aria-hidden', open ? 'false' : 'true');
+    };
+
+    function handleFilterControlClick(event) {
+        const button = event.target.closest('button');
+        if (!button) return;
+        if (button.classList.contains('toc-filter-toggle')) {
+            event.preventDefault();
+            window.toggleFilterDialog?.(true);
+            return;
+        }
+        if (button.classList.contains('filter-close')) {
+            event.preventDefault();
+            window.toggleFilterDialog?.(false);
+            return;
+        }
+        const action = button.getAttribute('onclick') || '';
+        const value = getFilterButtonValue(button);
+        if (!value) return;
+        if (action.startsWith('filterRating')) {
+            event.preventDefault();
+            window.filterRating(value);
+            return;
+        }
+        if (action.startsWith('filterGenre')) {
+            event.preventDefault();
+            window.filterGenre(value);
+        }
+    }
+
+    document.addEventListener('click', handleFilterControlClick);
+    document.addEventListener('click', event => {
+        const dialog = document.getElementById('filter-dialog');
+        if (dialog && event.target === dialog) window.toggleFilterDialog(false);
+    });
+    document.addEventListener('keydown', event => {
+        if (event.key === 'Escape') window.toggleFilterDialog(false);
+    });
+
     document.addEventListener('DOMContentLoaded', init);
 })();

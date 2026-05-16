@@ -168,8 +168,16 @@
     }
 
     function observeJikan() {
+        document.querySelectorAll('.anime-item').forEach(item => {
+            if (!item.querySelector('.anime-thumb img')?.getAttribute('src')) {
+                jikanQueue.push(item);
+            }
+        });
+        runJikanQueue();
         if (!jikanEnabled || !('IntersectionObserver' in window)) {
-            document.querySelectorAll('.anime-item').forEach(item => jikanQueue.push(item));
+            document.querySelectorAll('.anime-item').forEach(item => {
+                if (!jikanQueue.includes(item)) jikanQueue.push(item);
+            });
             runJikanQueue();
             return;
         }

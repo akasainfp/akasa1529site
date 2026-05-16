@@ -1,0 +1,215 @@
+(() => {
+    const list = document.getElementById('anime-list');
+    const tocList = document.getElementById('toc-list');
+    const script = document.currentScript;
+    const dataSrc = script?.dataset.animeSrc || 'anime-data.json';
+    const jikanEnabled = script?.dataset.jikan !== 'off';
+    const state = { rating: 'all', genre: 'all', items: [] };
+    const jikanCacheKey = 'akasa1529:jikan:v1:';
+    const jikanQueue = [];
+    let jikanBusy = false;
+
+    const escapeHtml = value => String(value || '').replace(/[&<>"']/g, char => ({
+        '&': '&amp;',
+        '<': '&lt;',
+        '>': '&gt;',
+        '"': '&quot;',
+        "'": '&#39;'
+    }[char]));
+
+    function stars(score) {
+        const value = Number(score) || 0;
+        return `${'★'.repeat(value)}${'☆'.repeat(Math.max(0, 5 - value))}`;
+    }
+
+    function searchUrl(base, title) {
+        return `${base}${encodeURIComponent(title)}`;
+    }
+
+    function renderItem(item) {
+        const genres = Array.isArray(item.genres) ? item.genres.join(' ') : '';
+        const image = item.image || '';
+        return `
+        <article class="anime-item anim-box" id="${escapeHtml(item.id)}" data-score="${escapeHtml(item.score)}" data-genre="${escapeHtml(genres)}" data-jikan-query="${escapeHtml(item.jikanQuery || item.title)}">
+            <div class="anime-thumb"><img src="${escapeHtml(image)}" alt="${escapeHtml(item.title)}"></div>
+            <div class="anime-info">
+                <span class="rating">SCORE: ${stars(item.score)}</span>
+                <h2 class="anime-title">${escapeHtml(item.title)}</h2>
+                <p class="synopsis">${escapeHtml(item.synopsis)}</p>
+                <div class="anime-meta" data-jikan-meta>情報を取得中</div>
+                <div class="search-links">
+                    <a href="${searchUrl('https://www.nicovideo.jp/search/', item.title)}" target="_blank" class="btn-search">NICONICO</a>
+                    <a href="${searchUrl('https://animestore.docomo.ne.jp/animestore/sch_pc?key=', item.title)}" target="_blank" class="btn-search">D-ANIME</a>
+                </div>
+            </div>
+        </article>`;
+    }
+
+    function sortAnimeByScore() {
+        const items = Array.from(list.getElementsByClassName('anime-item'));
+        items.sort((a, b) => Number(b.getAttribute('data-score')) - Number(a.getAttribute('data-score')));
+        items.forEach(item => list.appendChild(item));
+    }
+
+    function generateTOC() {
+        tocList.innerHTML = '';
+        document.querySelectorAll('.anime-item').forEach(item => {
+            if (item.classList.contains('hidden')) return;
+            const title = item.querySelector('.anime-title').innerText;
+            const score = item.getAttribute('data-score');
+            const link = document.createElement('a');
+            link.href = `#${item.id}`;
+            link.title = title;
+            link.innerHTML = `[★${score}] ${escapeHtml(title)}`;
+            tocList.appendChild(link);
+        });
+    }
+
+    function updateFilterButtons(groupIdx, val) {
+        const group = document.querySelectorAll('.filter-group')[groupIdx];
+        if (!group) return;
+        group.querySelectorAll('.f-btn').forEach(btn => {
+            btn.classList.toggle('active', btn.getAttribute('onclick')?.includes(`'${val}'`));
+        });
+    }
+
+    function applyFilters() {
+        document.querySelectorAll('.anime-item').forEach(item => {
+            const score = item.getAttribute('data-score');
+            const genres = item.getAttribute('data-genre') || '';
+            const ratingMatch = state.rating === 'all' || score === state.rating;
+            const genreMatch = state.genre === 'all' || genres.includes(state.genre);
+            item.classList.toggle('hidden', !(ratingMatch && genreMatch));
+        });
+        generateTOC();
+    }
+
+    function getCachedJikan(query) {
+        try {
+            const cached = localStorage.getItem(jikanCacheKey + query);
+            if (!cached) return null;
+            const parsed = JSON.parse(cached);
+            if (Date.now() - parsed.savedAt > 1000 * 60 * 60 * 24 * 14) return null;
+            return parsed.data;
+        } catch {
+            return null;
+        }
+    }
+
+    function setCachedJikan(query, data) {
+        try {
+            localStorage.setItem(jikanCacheKey + query, JSON.stringify({ savedAt: Date.now(), data }));
+        } catch {
+            /* localStorage may be unavailable in some privacy modes. */
+        }
+    }
+
+    function applyJikanMeta(article, data) {
+        const meta = article.querySelector('[data-jikan-meta]');
+        if (!meta) return;
+        if (!data) {
+            meta.textContent = '情報なし';
+            return;
+        }
+        const parts = [];
+        if (data.year) parts.push(data.year);
+        if (data.type) parts.push(data.type);
+        if (data.episodes) parts.push(`${data.episodes}話`);
+        meta.textContent = parts.length ? parts.join(' / ') : '情報なし';
+        if (!article.querySelector('.anime-thumb img')?.getAttribute('src') && data.image) {
+            article.querySelector('.anime-thumb img').src = data.image;
+        }
+    }
+
+    async function fetchJikan(query) {
+        const response = await fetch(`https://api.jikan.moe/v4/anime?q=${encodeURIComponent(query)}&limit=1`, { cache: 'force-cache' });
+        if (!response.ok) throw new Error('Jikan request failed');
+        const json = await response.json();
+        const hit = json.data?.[0];
+        if (!hit) return null;
+        return {
+            malId: hit.mal_id,
+            type: hit.type,
+            year: hit.year,
+            episodes: hit.episodes,
+            score: hit.score,
+            image: hit.images?.jpg?.large_image_url || hit.images?.jpg?.image_url || ''
+        };
+    }
+
+    async function runJikanQueue() {
+        if (jikanBusy) return;
+        jikanBusy = true;
+        while (jikanQueue.length) {
+            const article = jikanQueue.shift();
+            const query = article.getAttribute('data-jikan-query');
+            const cached = getCachedJikan(query);
+            if (cached) {
+                applyJikanMeta(article, cached);
+                continue;
+            }
+            try {
+                const data = await fetchJikan(query);
+                setCachedJikan(query, data);
+                applyJikanMeta(article, data);
+            } catch {
+                applyJikanMeta(article, null);
+            }
+            await new Promise(resolve => setTimeout(resolve, 900));
+        }
+        jikanBusy = false;
+    }
+
+    function observeJikan() {
+        if (!jikanEnabled || !('IntersectionObserver' in window)) {
+            document.querySelectorAll('.anime-item').forEach(item => jikanQueue.push(item));
+            runJikanQueue();
+            return;
+        }
+        const observer = new IntersectionObserver(entries => {
+            entries.forEach(entry => {
+                if (!entry.isIntersecting) return;
+                observer.unobserve(entry.target);
+                jikanQueue.push(entry.target);
+            });
+            runJikanQueue();
+        }, { rootMargin: '320px 0px' });
+        document.querySelectorAll('.anime-item').forEach(item => observer.observe(item));
+    }
+
+    async function init() {
+        try {
+            let entries = null;
+            try {
+                const response = await fetch(dataSrc, { cache: 'no-store' });
+                if (!response.ok) throw new Error('Anime data not found');
+                entries = await response.json();
+            } catch {
+                entries = Array.isArray(window.AKASA_ANIME_DATA) ? window.AKASA_ANIME_DATA : null;
+            }
+            if (!entries) throw new Error('Anime data not found');
+            state.items = entries;
+            list.innerHTML = state.items.map(renderItem).join('');
+            sortAnimeByScore();
+            generateTOC();
+            document.querySelectorAll('.anim-box').forEach(box => window.archiveObserver?.observe(box));
+            observeJikan();
+        } catch {
+            list.innerHTML = '<section class="empty-state anim-box"><h2>anime-data.json ???????????</h2><p>?????????????????????????</p></section>';
+        }
+    }
+
+    window.filterRating = val => {
+        state.rating = val;
+        updateFilterButtons(0, val);
+        applyFilters();
+    };
+
+    window.filterGenre = val => {
+        state.genre = val;
+        updateFilterButtons(1, val);
+        applyFilters();
+    };
+
+    document.addEventListener('DOMContentLoaded', init);
+})();

@@ -112,6 +112,8 @@ async function handleRawgSearch(request, env, url) {
     const results = Array.isArray(data.results) ? data.results.map(game => ({
         id: game.id,
         name: game.name,
+        slug: game.slug,
+        url: game.slug ? `https://rawg.io/games/${game.slug}` : null,
         released: game.released,
         image: game.background_image,
         rating: game.rating,

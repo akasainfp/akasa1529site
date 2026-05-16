@@ -117,6 +117,11 @@
         .game-thumb { width: 100%; aspect-ratio: 16/9; background: #08080c; border: 1px solid rgba(255, 255, 255, 0.05); overflow: hidden; }
         .game-thumb img { width: 100%; height: 100%; object-fit: contain; display: block; }
         .game-thumb span { color: #333; font-family: var(--font-mono); font-size: 0.8rem; text-align: center; overflow-wrap: anywhere; }
+        .game-meta-top { display: flex; align-items: center; gap: 12px; flex-wrap: wrap; margin-bottom: 10px; }
+        .game-meta-top .rating { margin-bottom: 0; }
+        .platform-tags { display: flex; gap: 6px; flex-wrap: wrap; }
+        .platform-tags span { display: inline-flex; align-items: center; min-height: 20px; padding: 2px 7px; border: 1px solid rgba(255,255,255,0.1); color: #bbb; background: rgba(255,255,255,0.025); font-family: var(--font-mono); font-size: 0.58rem; letter-spacing: 0.08em; }
+        .game-rawg-meta { margin: 0 0 16px; color: #777; font-family: var(--font-mono); font-size: 0.68rem; letter-spacing: 0.04em; }
         .rating { font-family: var(--font-mono); color: var(--accent); font-size: 0.8rem; margin-bottom: 10px; display: block; }
         .game-title { font-size: 1.4rem; font-weight: 700; margin-bottom: 10px; }
         .synopsis { font-size: 0.85rem; color: #aaa; margin-bottom: 20px; }
@@ -422,7 +427,7 @@
                 </div>
             </div>
         </article>
-        <article class="game-item anim-box" id="satsuriku-game" data-score="5" data-category="horror adventure" data-hard="steam pc">
+        <article class="game-item anim-box" id="satsuriku-game" data-rawg-query="Angels of Death" data-score="5" data-category="horror adventure" data-hard="steam pc">
             <div class="game-thumb"><img src="assets/game/satsuriku-game.jpg" alt="殺戮の天使"></div>
             <div class="game-info">
                 <span class="rating">評価: ★★★★★</span>
@@ -433,7 +438,7 @@
                 </div>
             </div>
         </article>
-        <article class="game-item anim-box" id="danmaku-kagura" data-score="5" data-category="rhythm" data-hard="steam pc">
+        <article class="game-item anim-box" id="danmaku-kagura" data-rawg-query="Touhou Danmaku Kagura" data-score="5" data-category="rhythm" data-hard="steam pc">
             <div class="game-thumb"><img src="assets/game/danmaku-kagura.jpg" alt="東方ダンマクカグラ"></div>
             <div class="game-info">
                 <span class="rating">評価: ★★★★★</span>
@@ -444,7 +449,7 @@
                 </div>
             </div>
         </article>
-        <article class="game-item anim-box" id="mountain-of-faith" data-score="4" data-category="shooter" data-hard="steam pc">
+        <article class="game-item anim-box" id="mountain-of-faith" data-rawg-query="Touhou Mountain of Faith" data-score="4" data-category="shooter" data-hard="steam pc">
             <div class="game-thumb"><img src="assets/game/mountain-of-faith.jpg" alt="東方風神録 〜 Mountain of Faith."></div>
             <div class="game-info">
                 <span class="rating">評価: ★★★★☆</span>
@@ -455,7 +460,7 @@
                 </div>
             </div>
         </article>
-        <article class="game-item anim-box" id="kirisame" data-score="3" data-category="horror mystery adventure" data-hard="steam pc">
+        <article class="game-item anim-box" id="kirisame" data-rawg-query="Forest of Drizzling Rain" data-score="3" data-category="horror mystery adventure" data-hard="steam pc">
             <div class="game-thumb"><img src="assets/game/kirisame.jpg" alt="霧雨が降る森"></div>
             <div class="game-info">
                 <span class="rating">評価: ★★★☆☆</span>
@@ -555,7 +560,7 @@
                 <div class="game-links"><a href="#" target="_blank" rel="noopener" class="btn-link">LINK</a></div>
             </div>
         </article>
-        <article class="game-item anim-box" id="zelda-breath-of-the-wild" data-score="5" data-category="open-world adventure" data-hard="switch">
+        <article class="game-item anim-box" id="zelda-breath-of-the-wild" data-rawg-query="The Legend of Zelda Breath of the Wild" data-score="5" data-category="open-world adventure" data-hard="switch">
             <div class="game-thumb"><img src="assets/game/zeruda-burewai.jpg" alt="ゼルダの伝説 ブレワイ"></div>
             <div class="game-info">
                 <span class="rating">評価: ★★★★★</span>
@@ -564,7 +569,7 @@
                 <div class="game-links"><a href="#" target="_blank" rel="noopener" class="btn-link">LINK</a></div>
             </div>
         </article>
-        <article class="game-item anim-box" id="zelda-tears-of-the-kingdom" data-score="4" data-category="open-world adventure" data-hard="switch">
+        <article class="game-item anim-box" id="zelda-tears-of-the-kingdom" data-rawg-query="The Legend of Zelda Tears of the Kingdom" data-score="4" data-category="open-world adventure" data-hard="switch">
             <div class="game-thumb"><img src="assets/game/zeruda-teliakin.jpg" alt="ゼルダの伝説 ティアキン"></div>
             <div class="game-info">
                 <span class="rating">評価: ★★★★☆</span>
@@ -582,7 +587,7 @@
                 <div class="game-links"><a href="#" target="_blank" rel="noopener" class="btn-link">LINK</a></div>
             </div>
         </article>
-        <article class="game-item anim-box" id="doraemon-nobita-farm" data-score="5" data-category="simulation" data-hard="switch">
+        <article class="game-item anim-box" id="doraemon-nobita-farm" data-rawg-query="Doraemon Story of Seasons" data-score="5" data-category="simulation" data-hard="switch">
             <div class="game-thumb"><img src="assets/game/doraemon.jpg" alt="ドラえもん のび太の牧場物語"></div>
             <div class="game-info">
                 <span class="rating">評価: ★★★★★</span>
@@ -591,7 +596,7 @@
                 <div class="game-links"><a href="#" target="_blank" rel="noopener" class="btn-link">LINK</a></div>
             </div>
         </article>
-        <article class="game-item anim-box" id="asobi-taisen-51" data-score="4" data-category="party strategy" data-hard="switch">
+        <article class="game-item anim-box" id="asobi-taisen-51" data-rawg-query="Clubhouse Games 51 Worldwide Classics" data-score="4" data-category="party strategy" data-hard="switch">
             <div class="game-thumb"><img src="assets/game/asobitaisen.jpg" alt="アソビ大全51"></div>
             <div class="game-info">
                 <span class="rating">評価: ★★★★☆</span>
@@ -600,7 +605,7 @@
                 <div class="game-links"><a href="#" target="_blank" rel="noopener" class="btn-link">LINK</a></div>
             </div>
         </article>
-        <article class="game-item anim-box" id="animal-crossing-new-horizons" data-score="3" data-category="simulation" data-hard="switch">
+        <article class="game-item anim-box" id="animal-crossing-new-horizons" data-rawg-query="Animal Crossing New Horizons" data-score="3" data-category="simulation" data-hard="switch">
             <div class="game-thumb"><img src="assets/game/atumori.jpg" alt="あつまれどうぶつの森"></div>
             <div class="game-info">
                 <span class="rating">評価: ★★★☆☆</span>
@@ -645,7 +650,7 @@
                 <div class="game-links"><a href="#" target="_blank" rel="noopener" class="btn-link">LINK</a></div>
             </div>
         </article>
-        <article class="game-item anim-box" id="yomawari-series" data-score="5" data-category="horror adventure" data-hard="steam pc switch">
+        <article class="game-item anim-box" id="yomawari-series" data-rawg-query="Yomawari Night Alone" data-score="5" data-category="horror adventure" data-hard="steam pc switch">
             <div class="game-thumb"><img src="assets/game/yomawari1.jpg" alt="夜廻シリーズ"></div>
             <div class="game-info">
                 <span class="rating">評価: ★★★★★</span>
@@ -676,7 +681,7 @@
                 <div class="game-links"><a href="#" target="_blank" rel="noopener" class="btn-link">LINK</a></div>
             </div>
         </article>
-        <article class="game-item anim-box" id="mario-kart-ds" data-score="5" data-category="racing party" data-hard="ds">
+        <article class="game-item anim-box" id="mario-kart-ds" data-rawg-query="Mario Kart DS" data-score="5" data-category="racing party" data-hard="ds">
             <div class="game-thumb"><img src="assets/game/mario-cartDS.jpg" alt="マリオカートDS"></div>
             <div class="game-info">
                 <span class="rating">評価: ★★★★★</span>
@@ -685,7 +690,7 @@
                 <div class="game-links"><a href="#" target="_blank" rel="noopener" class="btn-link">LINK</a></div>
             </div>
         </article>
-        <article class="game-item anim-box" id="new-super-mario-bros" data-score="5" data-category="action" data-hard="ds">
+        <article class="game-item anim-box" id="new-super-mario-bros" data-rawg-query="New Super Mario Bros" data-score="5" data-category="action" data-hard="ds">
             <div class="game-thumb"><img src="assets/game/newmario.jpg" alt="Newスーパーマリオブラザーズ"></div>
             <div class="game-info">
                 <span class="rating">評価: ★★★★★</span>
@@ -694,7 +699,7 @@
                 <div class="game-links"><a href="#" target="_blank" rel="noopener" class="btn-link">LINK</a></div>
             </div>
         </article>
-        <article class="game-item anim-box" id="inazuma-eleven-series" data-score="5" data-category="rpg sports" data-hard="ds">
+        <article class="game-item anim-box" id="inazuma-eleven-series" data-rawg-query="Inazuma Eleven" data-score="5" data-category="rpg sports" data-hard="ds">
             <div class="game-thumb"><img src="assets/game/inazuma-irebun.jpg" alt="イナズマイレブン DSシリーズ"></div>
             <div class="game-info">
                 <span class="rating">評価: ★★★★★</span>
@@ -707,7 +712,7 @@
                 </div>
             </div>
         </article>
-        <article class="game-item anim-box" id="puyo-puyo" data-score="4" data-category="puzzle party" data-hard="ds">
+        <article class="game-item anim-box" id="puyo-puyo" data-rawg-query="Puyo Puyo" data-score="4" data-category="puzzle party" data-hard="ds">
             <div class="game-thumb"><img src="assets/game/puyopuyo.jpg" alt="ぷよぷよ!!"></div>
             <div class="game-info">
                 <span class="rating">評価: ★★★★☆</span>
@@ -716,7 +721,7 @@
                 <div class="game-links"><a href="#" target="_blank" rel="noopener" class="btn-link">LINK</a></div>
             </div>
         </article>
-        <article class="game-item anim-box" id="oideyo-animal-crossing" data-score="5" data-category="simulation" data-hard="ds">
+        <article class="game-item anim-box" id="oideyo-animal-crossing" data-rawg-query="Animal Crossing Wild World" data-score="5" data-category="simulation" data-hard="ds">
             <div class="game-thumb"><img src="assets/game/oimori.jpg" alt="おいでよどうぶつの森"></div>
             <div class="game-info">
                 <span class="rating">評価: ★★★★★</span>
@@ -725,7 +730,7 @@
                 <div class="game-links"><a href="#" target="_blank" rel="noopener" class="btn-link">LINK</a></div>
             </div>
         </article>
-        <article class="game-item anim-box" id="tomodachi-collection" data-score="4" data-category="simulation" data-hard="ds">
+        <article class="game-item anim-box" id="tomodachi-collection" data-rawg-query="Tomodachi Collection" data-score="4" data-category="simulation" data-hard="ds">
             <div class="game-thumb"><img src="assets/game/tomokore.jpg" alt="友達コレクション"></div>
             <div class="game-info">
                 <span class="rating">評価: ★★★★☆</span>
@@ -734,7 +739,7 @@
                 <div class="game-links"><a href="#" target="_blank" rel="noopener" class="btn-link">LINK</a></div>
             </div>
         </article>
-        <article class="game-item anim-box" id="brain-training-ds" data-score="3" data-category="puzzle" data-hard="ds">
+        <article class="game-item anim-box" id="brain-training-ds" data-rawg-query="Brain Age Train Your Brain in Minutes a Day" data-score="3" data-category="puzzle" data-hard="ds">
             <div class="game-thumb"><img src="assets/game/nouwokitaeruDS.jpg" alt="脳を鍛える大人のDSトレーニング"></div>
             <div class="game-info">
                 <span class="rating">評価: ★★★☆☆</span>
@@ -743,7 +748,7 @@
                 <div class="game-links"><a href="#" target="_blank" rel="noopener" class="btn-link">LINK</a></div>
             </div>
         </article>
-        <article class="game-item anim-box" id="pokemon-dash" data-score="3" data-category="racing action" data-hard="ds">
+        <article class="game-item anim-box" id="pokemon-dash" data-rawg-query="Pokemon Dash" data-score="3" data-category="racing action" data-hard="ds">
             <div class="game-thumb"><img src="assets/game/pokemon-dash.jpg" alt="ポケモンダッシュ"></div>
             <div class="game-info">
                 <span class="rating">評価: ★★★☆☆</span>
@@ -752,7 +757,7 @@
                 <div class="game-links"><a href="#" target="_blank" rel="noopener" class="btn-link">LINK</a></div>
             </div>
         </article>
-        <article class="game-item anim-box" id="kirby-super-star-ultra" data-score="3" data-category="action" data-hard="ds">
+        <article class="game-item anim-box" id="kirby-super-star-ultra" data-rawg-query="Kirby Super Star Ultra" data-score="3" data-category="action" data-hard="ds">
             <div class="game-thumb"><img src="assets/game/ka-bi-DS.jpg" alt="星のカービィウルトラスーパーデラックス"></div>
             <div class="game-info">
                 <span class="rating">評価: ★★★☆☆</span>
@@ -761,7 +766,7 @@
                 <div class="game-links"><a href="#" target="_blank" rel="noopener" class="btn-link">LINK</a></div>
             </div>
         </article>
-        <article class="game-item anim-box" id="rhythm-tengoku-gold" data-score="3" data-category="rhythm" data-hard="ds">
+        <article class="game-item anim-box" id="rhythm-tengoku-gold" data-rawg-query="Rhythm Heaven" data-score="3" data-category="rhythm" data-hard="ds">
             <div class="game-thumb"><img src="assets/game/rizumutengoku.jpg" alt="リズム天国ゴールド"></div>
             <div class="game-info">
                 <span class="rating">評価: ★★★☆☆</span>
@@ -770,7 +775,7 @@
                 <div class="game-links"><a href="#" target="_blank" rel="noopener" class="btn-link">LINK</a></div>
             </div>
         </article>
-        <article class="game-item anim-box" id="made-in-ore" data-score="4" data-category="party" data-hard="ds">
+        <article class="game-item anim-box" id="made-in-ore" data-rawg-query="WarioWare DIY" data-score="4" data-category="party" data-hard="ds">
             <div class="game-thumb"><img src="assets/game/made-in-ore.jpg" alt="メイドイン俺"></div>
             <div class="game-info">
                 <span class="rating">評価: ★★★★☆</span>
@@ -779,7 +784,7 @@
                 <div class="game-links"><a href="#" target="_blank" rel="noopener" class="btn-link">LINK</a></div>
             </div>
         </article>
-        <article class="game-item anim-box" id="monster-hunter-portable" data-score="4" data-category="action rpg" data-hard="psp">
+        <article class="game-item anim-box" id="monster-hunter-portable" data-rawg-query="Monster Hunter Freedom Unite" data-score="4" data-category="action rpg" data-hard="psp">
             <div class="game-thumb"><img src="assets/game/monhan.jpg" alt="モンスターハンターポータブルシリーズ"></div>
             <div class="game-info">
                 <span class="rating">評価: ★★★★☆</span>
@@ -792,7 +797,7 @@
                 </div>
             </div>
         </article>
-        <article class="game-item anim-box" id="ai-igo" data-score="5" data-category="strategy" data-hard="psp">
+        <article class="game-item anim-box" id="ai-igo" data-rawg-query="AI Igo" data-score="5" data-category="strategy" data-hard="psp">
             <div class="game-thumb"><img src="assets/game/AI-igo.jpg" alt="AI囲碁"></div>
             <div class="game-info">
                 <span class="rating">評価: ★★★★★</span>
@@ -801,7 +806,7 @@
                 <div class="game-links"><a href="#" target="_blank" rel="noopener" class="btn-link">LINK</a></div>
             </div>
         </article>
-        <article class="game-item anim-box" id="mario-kart-wii" data-score="5" data-category="racing party" data-hard="wii">
+        <article class="game-item anim-box" id="mario-kart-wii" data-rawg-query="Mario Kart Wii" data-score="5" data-category="racing party" data-hard="wii">
             <div class="game-thumb"><img src="assets/game/mario-cart-wii.jpg" alt="マリオカートWii"></div>
             <div class="game-info">
                 <span class="rating">評価: ★★★★★</span>
@@ -810,7 +815,7 @@
                 <div class="game-links"><a href="#" target="_blank" rel="noopener" class="btn-link">LINK</a></div>
             </div>
         </article>
-        <article class="game-item anim-box" id="wii-sports-resort" data-score="5" data-category="sports party" data-hard="wii">
+        <article class="game-item anim-box" id="wii-sports-resort" data-rawg-query="Wii Sports Resort" data-score="5" data-category="sports party" data-hard="wii">
             <div class="game-thumb"><img src="assets/game/wii-sports.jpg" alt="Wii Sports Resort"></div>
             <div class="game-info">
                 <span class="rating">評価: ★★★★★</span>
@@ -819,7 +824,7 @@
                 <div class="game-links"><a href="#" target="_blank" rel="noopener" class="btn-link">LINK</a></div>
             </div>
         </article>
-        <article class="game-item anim-box" id="mario-sonic-london-olympics" data-score="4" data-category="sports party" data-hard="wii">
+        <article class="game-item anim-box" id="mario-sonic-london-olympics" data-rawg-query="Mario & Sonic at the London 2012 Olympic Games" data-score="4" data-category="sports party" data-hard="wii">
             <div class="game-thumb"><img src="assets/game/mario-sonikku.jpg" alt="マリオ&ソニック AT ロンドンオリンピック™"></div>
             <div class="game-info">
                 <span class="rating">評価: ★★★★☆</span>
@@ -828,7 +833,7 @@
                 <div class="game-links"><a href="#" target="_blank" rel="noopener" class="btn-link">LINK</a></div>
             </div>
         </article>
-        <article class="game-item anim-box" id="wii-party" data-score="5" data-category="party" data-hard="wii">
+        <article class="game-item anim-box" id="wii-party" data-rawg-query="Wii Party" data-score="5" data-category="party" data-hard="wii">
             <div class="game-thumb"><img src="assets/game/wii-party.jpg" alt="Wii Party"></div>
             <div class="game-info">
                 <span class="rating">評価: ★★★★★</span>
@@ -837,7 +842,7 @@
                 <div class="game-links"><a href="#" target="_blank" rel="noopener" class="btn-link">LINK</a></div>
             </div>
         </article>
-        <article class="game-item anim-box" id="new-super-mario-bros-wii" data-score="4" data-category="action party" data-hard="wii">
+        <article class="game-item anim-box" id="new-super-mario-bros-wii" data-rawg-query="New Super Mario Bros Wii" data-score="4" data-category="action party" data-hard="wii">
             <div class="game-thumb"><img src="assets/game/new-mario-wii.jpg" alt="New スーパーマリオブラザーズ Wii"></div>
             <div class="game-info">
                 <span class="rating">評価: ★★★★☆</span>
@@ -846,7 +851,7 @@
                 <div class="game-links"><a href="#" target="_blank" rel="noopener" class="btn-link">LINK</a></div>
             </div>
         </article>
-        <article class="game-item anim-box" id="inazuma-eleven-strikers" data-score="5" data-category="sports action" data-hard="wii">
+        <article class="game-item anim-box" id="inazuma-eleven-strikers" data-rawg-query="Inazuma Eleven Strikers" data-score="5" data-category="sports action" data-hard="wii">
             <div class="game-thumb"><img src="assets/game/inaire-sutoraika-.jpg" alt="イナズマイレブン ストライカーズ"></div>
             <div class="game-info">
                 <span class="rating">評価: ★★★★★</span>
@@ -855,7 +860,7 @@
                 <div class="game-links"><a href="#" target="_blank" rel="noopener" class="btn-link">LINK</a></div>
             </div>
         </article>
-        <article class="game-item anim-box" id="super-monkey-ball-athletic" data-score="3" data-category="action party" data-hard="wii">
+        <article class="game-item anim-box" id="super-monkey-ball-athletic" data-rawg-query="Super Monkey Ball Step & Roll" data-score="3" data-category="action party" data-hard="wii">
             <div class="game-thumb"><img src="assets/game/monki-bo-ru.jpg" alt="スーパーモンキーボール アスレチック"></div>
             <div class="game-info">
                 <span class="rating">評価: ★★★☆☆</span>
@@ -864,7 +869,7 @@
                 <div class="game-links"><a href="#" target="_blank" rel="noopener" class="btn-link">LINK</a></div>
             </div>
         </article>
-        <article class="game-item anim-box" id="wii-mario-tennis-gc" data-score="4" data-category="sports party" data-hard="wii">
+        <article class="game-item anim-box" id="wii-mario-tennis-gc" data-rawg-query="Mario Power Tennis" data-score="4" data-category="sports party" data-hard="wii">
             <div class="game-thumb"><img src="assets/game/mari-tenisu.jpg" alt="Wiiであそぶ マリオテニスGC"></div>
             <div class="game-info">
                 <span class="rating">評価: ★★★★☆</span>
@@ -873,7 +878,7 @@
                 <div class="game-links"><a href="#" target="_blank" rel="noopener" class="btn-link">LINK</a></div>
             </div>
         </article>
-        <article class="game-item anim-box" id="my-sims" data-score="5" data-category="simulation" data-hard="wii">
+        <article class="game-item anim-box" id="my-sims" data-rawg-query="MySims" data-score="5" data-category="simulation" data-hard="wii">
             <div class="game-thumb"><img src="assets/game/bokutosimunomati-wii.jpg" alt="ぼくとシムのまち"></div>
             <div class="game-info">
                 <span class="rating">評価: ★★★★★</span>
@@ -882,7 +887,7 @@
                 <div class="game-links"><a href="#" target="_blank" rel="noopener" class="btn-link">LINK</a></div>
             </div>
         </article>
-        <article class="game-item anim-box" id="my-sims-racing" data-score="5" data-category="racing party" data-hard="wii">
+        <article class="game-item anim-box" id="my-sims-racing" data-rawg-query="MySims Racing" data-score="5" data-category="racing party" data-hard="wii">
             <div class="game-thumb"><img src="assets/game/bokutosimunomati-cart-wii.jpg" alt="ぼくとシムのまちレーシング"></div>
             <div class="game-info">
                 <span class="rating">評価: ★★★★★</span>
@@ -891,7 +896,7 @@
                 <div class="game-links"><a href="#" target="_blank" rel="noopener" class="btn-link">LINK</a></div>
             </div>
         </article>
-        <article class="game-item anim-box" id="nodame-cantabile-ds" data-score="5" data-category="rhythm" data-hard="ds">
+        <article class="game-item anim-box" id="nodame-cantabile-ds" data-rawg-query="Nodame Cantabile DS" data-score="5" data-category="rhythm" data-hard="ds">
             <div class="game-thumb"><img src="assets/game/nodame-ds.jpg" alt="のだめカンタービレ"></div>
             <div class="game-info">
                 <span class="rating">評価: ★★★★★</span>
@@ -1148,6 +1153,7 @@
     </script>
 
     <script src="assets/js/site-counter.js"></script>
+    <script src="assets/js/game-rawg.js?v=20260516-rawg-meta"></script>
     <script src="assets/js/site-menu.js?v=20260516-this-page"></script>
 </body>
 </html>

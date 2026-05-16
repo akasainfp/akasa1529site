@@ -1,7 +1,10 @@
 name = "akasa1529-visitor-counter"
 main = "cloudflare-worker.js"
 compatibility_date = "2026-05-16"
-secrets = ["RAWG_API_KEY"]
+
+[secrets]
+required = ["RAWG_API_KEY"]
+
 
 # After creating a D1 database, replace database_id below.
 [[d1_databases]]

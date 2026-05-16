@@ -188,6 +188,12 @@
         <div class="site-menu-overlay" data-site-menu-close></div>
         <aside class="site-menu-panel" id="site-menu-panel" aria-hidden="true">
             <div class="site-menu-kicker">Akasa1529 archive</div>
+            <div class="site-menu-group" data-site-current hidden>
+                <div class="site-menu-label">This Page</div>
+                <a class="site-menu-link" href="#top">TOP<span>page top</span></a>
+                <a class="site-menu-link" href="#toc-list">LIST<span>archive list</span></a>
+                <button class="site-menu-action" type="button" data-site-filter>FILTER</button>
+            </div>
             <div class="site-menu-group">
                 <div class="site-menu-label">Pages</div>
                 ${links.map(link => `
@@ -195,12 +201,6 @@
                         ${link.label}<span>${link.sub}</span>
                     </a>
                 `).join('')}
-            </div>
-            <div class="site-menu-group" data-site-current hidden>
-                <div class="site-menu-label">Current</div>
-                <a class="site-menu-link" href="#top">TOP<span>page top</span></a>
-                <a class="site-menu-link" href="#toc-list">LIST<span>archive list</span></a>
-                <button class="site-menu-action" type="button" data-site-filter>FILTER</button>
             </div>
         </aside>
     `;

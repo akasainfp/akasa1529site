@@ -173,12 +173,12 @@
         .manga-thumb {
             width: 100%;
             aspect-ratio: 16/9;
-            background: #111;
+            background: #08080c;
             border: 1px solid rgba(255, 255, 255, 0.05);
             position: relative;
             overflow: hidden;
         }
-        .manga-thumb img { width: 100%; height: 100%; object-fit: cover; }
+        .manga-thumb img { width: 100%; height: 100%; object-fit: contain; }
         .manga-thumb::after {
             content: 'NO IMAGE';
             position: absolute;
@@ -527,6 +527,6 @@
     </script>
 
     <script src="../assets/js/site-counter.js"></script>
-    <script src="../assets/js/site-menu.js?v=20260516-manga-menu"></script>
+    <script src="../assets/js/site-menu.js?v=20260516-this-page"></script>
 </body>
 </html>

@@ -114,13 +114,21 @@
         .game-item.hidden { display: none !important; }
         @media (max-width: 768px) { .game-item { grid-template-columns: 1fr; } }
 
-        .game-thumb { width: 100%; aspect-ratio: 16/9; background: #111; border: 1px solid rgba(255, 255, 255, 0.05); overflow: hidden; }
-        .game-thumb img { width: 100%; height: 100%; object-fit: cover; display: block; }
+        .game-thumb { width: 100%; aspect-ratio: 16/9; background: #08080c; border: 1px solid rgba(255, 255, 255, 0.05); overflow: hidden; }
+        .game-thumb img { width: 100%; height: 100%; object-fit: contain; display: block; }
         .game-thumb span { color: #333; font-family: var(--font-mono); font-size: 0.8rem; text-align: center; overflow-wrap: anywhere; }
         .rating { font-family: var(--font-mono); color: var(--accent); font-size: 0.8rem; margin-bottom: 10px; display: block; }
         .game-title { font-size: 1.4rem; font-weight: 700; margin-bottom: 10px; }
         .synopsis { font-size: 0.85rem; color: #aaa; margin-bottom: 20px; }
         .game-links { display: flex; gap: 10px; flex-wrap: wrap; }
+        .series-toggle { text-decoration: none; font-family: var(--font-mono); font-size: 0.65rem; padding: 6px 12px; border: 1px solid rgba(125,95,255,0.22); color: var(--accent); background: rgba(125,95,255,0.04); transition: 0.3s; cursor: pointer; }
+        .series-toggle:hover { border-color: var(--accent); color: #fff; background: rgba(125,95,255,0.1); }
+        .series-list { display: none; margin-top: 16px; padding: 14px 16px; border: 1px solid rgba(255,255,255,0.07); background: rgba(255,255,255,0.015); }
+        .series-list.is-open { display: block; }
+        .series-list-title { font-family: var(--font-mono); font-size: 0.6rem; color: #555; letter-spacing: 0.16em; margin-bottom: 8px; text-transform: uppercase; }
+        .series-list ul { list-style: none; display: grid; gap: 5px; }
+        .series-list li { color: #aaa; font-size: 0.82rem; }
+        .series-list li::before { content: "-"; color: var(--accent); margin-right: 8px; }
         .btn-link { text-decoration: none; font-family: var(--font-mono); font-size: 0.65rem; padding: 6px 12px; border: 1px solid rgba(255,255,255,0.1); color: #666; transition: 0.3s; }
         .btn-link:hover { border-color: var(--accent); color: var(--accent); background: rgba(125, 95, 255, 0.05); }
 
@@ -638,12 +646,16 @@
             </div>
         </article>
         <article class="game-item anim-box" id="yomawari-series" data-score="5" data-category="horror adventure" data-hard="steam pc switch">
-            <div class="game-thumb"><img src="assets/game/yomawari1.jpg" alt="夜廻1,2,3"></div>
+            <div class="game-thumb"><img src="assets/game/yomawari1.jpg" alt="夜廻シリーズ"></div>
             <div class="game-info">
                 <span class="rating">評価: ★★★★★</span>
-                <h2 class="game-title">夜廻1,2,3</h2>
+                <h2 class="game-title">夜廻シリーズ</h2>
                 <p class="synopsis">夜の街を探索する、静かで不気味なホラーアドベンチャーシリーズ。</p>
-                <div class="game-links"><a href="#" target="_blank" rel="noopener" class="btn-link">LINK</a></div>
+                <div class="game-links"><a href="#" target="_blank" rel="noopener" class="btn-link">LINK</a><button class="series-toggle" type="button" aria-expanded="false" aria-controls="yomawari-series-titles" onclick="toggleSeries(this)">TITLES</button></div>
+                <div class="series-list" id="yomawari-series-titles">
+                    <div class="series-list-title">Included titles</div>
+                    <ul><li>夜廻</li><li>深夜廻</li><li>夜廻三</li></ul>
+                </div>
             </div>
         </article>
         <article class="game-item anim-box" id="mario-kart8" data-score="4" data-category="racing party" data-hard="switch">
@@ -683,12 +695,16 @@
             </div>
         </article>
         <article class="game-item anim-box" id="inazuma-eleven-series" data-score="5" data-category="rpg sports" data-hard="ds">
-            <div class="game-thumb"><img src="assets/game/inazuma-irebun.jpg" alt="イナズマイレブン1,2,3"></div>
+            <div class="game-thumb"><img src="assets/game/inazuma-irebun.jpg" alt="イナズマイレブン DSシリーズ"></div>
             <div class="game-info">
                 <span class="rating">評価: ★★★★★</span>
-                <h2 class="game-title">イナズマイレブン1,2,3</h2>
+                <h2 class="game-title">イナズマイレブン DSシリーズ</h2>
                 <p class="synopsis">サッカーとRPGを組み合わせた、熱い物語のシリーズ。</p>
-                <div class="game-links"><a href="#" target="_blank" rel="noopener" class="btn-link">LINK</a></div>
+                <div class="game-links"><a href="#" target="_blank" rel="noopener" class="btn-link">LINK</a><button class="series-toggle" type="button" aria-expanded="false" aria-controls="inazuma-eleven-series-titles" onclick="toggleSeries(this)">TITLES</button></div>
+                <div class="series-list" id="inazuma-eleven-series-titles">
+                    <div class="series-list-title">Included titles</div>
+                    <ul><li>イナズマイレブン</li><li>イナズマイレブン2 脅威の侵略者</li><li>イナズマイレブン3 世界への挑戦!!</li></ul>
+                </div>
             </div>
         </article>
         <article class="game-item anim-box" id="puyo-puyo" data-score="4" data-category="puzzle party" data-hard="ds">
@@ -764,12 +780,16 @@
             </div>
         </article>
         <article class="game-item anim-box" id="monster-hunter-portable" data-score="4" data-category="action rpg" data-hard="psp">
-            <div class="game-thumb"><img src="assets/game/monhan.jpg" alt="モンスターハンターポータブル1st 2nd 3rd"></div>
+            <div class="game-thumb"><img src="assets/game/monhan.jpg" alt="モンスターハンターポータブルシリーズ"></div>
             <div class="game-info">
                 <span class="rating">評価: ★★★★☆</span>
-                <h2 class="game-title">モンスターハンターポータブル1st 2nd 3rd</h2>
+                <h2 class="game-title">モンスターハンターポータブルシリーズ</h2>
                 <p class="synopsis">素材を集めて装備を作り、巨大なモンスターに挑むハンティングアクション。</p>
-                <div class="game-links"><a href="#" target="_blank" rel="noopener" class="btn-link">LINK</a></div>
+                <div class="game-links"><a href="#" target="_blank" rel="noopener" class="btn-link">LINK</a><button class="series-toggle" type="button" aria-expanded="false" aria-controls="monster-hunter-portable-titles" onclick="toggleSeries(this)">TITLES</button></div>
+                <div class="series-list" id="monster-hunter-portable-titles">
+                    <div class="series-list-title">Included titles</div>
+                    <ul><li>モンスターハンターポータブル</li><li>モンスターハンターポータブル 2nd</li><li>モンスターハンターポータブル 3rd</li></ul>
+                </div>
             </div>
         </article>
         <article class="game-item anim-box" id="ai-igo" data-score="5" data-category="strategy" data-hard="psp">
@@ -1005,6 +1025,15 @@
             if (event.key === 'Escape') toggleFilterDialog(false);
         });
 
+        function toggleSeries(button) {
+            const panel = document.getElementById(button.getAttribute('aria-controls'));
+            if (!panel) return;
+            const open = !panel.classList.contains('is-open');
+            panel.classList.toggle('is-open', open);
+            button.setAttribute('aria-expanded', String(open));
+            button.textContent = open ? 'CLOSE TITLES' : 'TITLES';
+        }
+
         function filterRating(val) {
             currentRating = val;
             updateFilterButtons(0, val);
@@ -1119,6 +1148,6 @@
     </script>
 
     <script src="assets/js/site-counter.js"></script>
-    <script src="assets/js/site-menu.js?v=20260516-manga-menu"></script>
+    <script src="assets/js/site-menu.js?v=20260516-this-page"></script>
 </body>
 </html>

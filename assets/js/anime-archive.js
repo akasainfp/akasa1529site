@@ -284,33 +284,43 @@
 
     function handleFilterControlClick(event) {
         const button = event.target.closest('button');
-        if (!button) return;
+        if (!button || !button.closest('.filter-dialog, .archive-toolbar')) return;
+
+        const action = button.getAttribute('onclick') || '';
+        const value = getFilterButtonValue(button);
+
         if (button.classList.contains('toc-filter-toggle')) {
             event.preventDefault();
+            event.stopImmediatePropagation();
             window.toggleFilterDialog?.(true);
             return;
         }
         if (button.classList.contains('filter-close')) {
             event.preventDefault();
+            event.stopImmediatePropagation();
             window.toggleFilterDialog?.(false);
             return;
         }
-        if (button.classList.contains('f-btn')) return;
-        const action = button.getAttribute('onclick') || '';
-        const value = getFilterButtonValue(button);
+        if (!button.classList.contains('f-btn')) return;
+
+        event.preventDefault();
+        event.stopImmediatePropagation();
+
+        if (action.startsWith('clearFilters')) {
+            window.clearFilters();
+            return;
+        }
         if (!value) return;
         if (action.startsWith('filterRating')) {
-            event.preventDefault();
             window.filterRating(value);
             return;
         }
         if (action.startsWith('filterGenre')) {
-            event.preventDefault();
             window.filterGenre(value);
         }
     }
 
-    document.addEventListener('click', handleFilterControlClick);
+    document.addEventListener('click', handleFilterControlClick, true);
     document.addEventListener('click', event => {
         const dialog = document.getElementById('filter-dialog');
         if (dialog && event.target === dialog) window.toggleFilterDialog(false);

@@ -142,6 +142,23 @@
         .spec-list { list-style: none; font-family: var(--font-mono); font-size: 0.9rem; color: #888; }
         .spec-list li { margin-bottom: 10px; display: flex; justify-content: space-between; }
         .spec-list span { color: var(--text); }
+        .device-list { list-style: none; display: grid; gap: 14px; }
+        .device-list li {
+            display: grid;
+            grid-template-columns: minmax(96px, 0.42fr) minmax(0, 1fr);
+            gap: 18px;
+            padding: 13px 0;
+            border-bottom: 1px solid rgba(255,255,255,0.06);
+            font-family: var(--font-mono);
+            color: #666;
+            font-size: 0.78rem;
+        }
+        .device-list li:last-child { border-bottom: 0; }
+        .device-list span { color: var(--text); line-height: 1.7; overflow-wrap: anywhere; }
+        .device-note { margin-top: 18px; color: #555; font-family: var(--font-mono); font-size: 0.68rem; letter-spacing: 0.12em; }
+        @media (max-width: 520px) {
+            .device-list li { grid-template-columns: 1fr; gap: 4px; }
+        }
 
         /* --- フッター --- */
         footer {
@@ -220,6 +237,21 @@
             <div class="info-card">
                 <h3>Who am I?</h3>
                 <p style="font-size: 0.95rem;">Discordを中心に活動しているAkasa1529です。1529の由来はドラえもんの「人間貯金箱」という回をご覧ください！python,html,css,node.jsは読めます何となくですけど。</p>
+            </div>
+        </div>
+
+        <div class="anim-box profile-grid">
+            <div class="info-card">
+                <h3>Device Setup</h3>
+                <ul class="device-list">
+                    <li>PC <span>GALLERIA GCR1650GF / Intel Core i7 第9世代 / GTX 1650</span></li>
+                    <li>Mouse <span>Logicool G703</span></li>
+                    <li>Keyboard <span>Logicool G413</span></li>
+                    <li>Earphones <span>final VR3000 for Gaming</span></li>
+                    <li>Wireless <span>Soundcore P40i</span></li>
+                    <li>Smartphone <span>Xperia Ace III</span></li>
+                </ul>
+                <p class="device-note">MAIN DEVICES / GAMING SETUP</p>
             </div>
         </div>
 

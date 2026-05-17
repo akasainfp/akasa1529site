@@ -147,6 +147,8 @@
         .filter-panel .filter-controls { display: flex; margin: 0; padding: 0; justify-content: flex-start; }
         .filter-panel .filter-group { flex-wrap: wrap; align-items: flex-start; margin-bottom: 14px; }
         .filter-panel .filter-group:last-child { margin-bottom: 0; }
+        .filter-actions { width: 100%; display: flex; justify-content: flex-end; margin-top: 4px; }
+        .filter-clear { color: #aaa; border-color: rgba(255,255,255,0.16); }
         .f-btn:hover { color: #fff; border-color: rgba(125,95,255,0.65); background: rgba(125,95,255,0.08); transform: translateY(-1px); }
         .toc-links a:hover { color: #fff; border-left: 1px solid var(--accent); transform: translateX(4px); }
         @media (max-width: 768px) {
@@ -255,10 +257,16 @@
             <span class="filter-label">Genre:</span>
             <button class="f-btn active" onclick="filterGenre('all')">ALL</button>
             <button class="f-btn" onclick="filterGenre('romance')">恋愛</button>
-            <button class="f-btn" onclick="filterGenre('battle')">戦闘</button>
-            <button class="f-btn" onclick="filterGenre('drama')">感動/日常</button>
+            <button class="f-btn" onclick="filterGenre('comedy')">日常/コメディ</button>
+            <button class="f-btn" onclick="filterGenre('battle')">バトル</button>
+            <button class="f-btn" onclick="filterGenre('fantasy')">ファンタジー</button>
+            <button class="f-btn" onclick="filterGenre('mystery')">ミステリー</button>
+            <button class="f-btn" onclick="filterGenre('drama')">感動/青春</button>
         </div>
-    </div>
+        <div class="filter-actions">
+            <button class="f-btn filter-clear" onclick="clearFilters()">クリア</button>
+        </div>
+            </div>
         </div>
     </div>
 <nav class="table-of-contents">
@@ -408,7 +416,7 @@
             });
         })();
     </script>
-    <script src="../assets/js/anime-archive.js?v=20260516-filter-dialog" data-anime-src="../anime-data.json"></script>
+    <script src="../assets/js/anime-archive.js?v=20260517-multi-filter" data-anime-src="../anime-data.json"></script>
 
 
     <script src="../assets/js/site-counter.js"></script>

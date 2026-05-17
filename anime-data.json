@@ -4,7 +4,8 @@
     "title": "古見さんは、コミュ症です。",
     "score": 5,
     "genres": [
-      "romance"
+      "romance",
+      "comedy"
     ],
     "image": "assets/anime/komi.jpg",
     "synopsis": "容姿端麗だが極度のコミュ症。友達100人を作る目標に向かって進む物語。",
@@ -15,7 +16,9 @@
     "title": "負けヒロインが多すぎる！",
     "score": 5,
     "genres": [
-      "romance"
+      "romance",
+      "comedy",
+      "drama"
     ],
     "image": "assets/anime/makeine.jpg",
     "synopsis": "恋に敗れたヒロインたちの、敗北から始まる新しい青春劇。",
@@ -48,7 +51,8 @@
     "title": "僕の心のやばい奴",
     "score": 5,
     "genres": [
-      "romance"
+      "romance",
+      "comedy"
     ],
     "image": "assets/anime/bokuyaba.jpg",
     "synopsis": "中二病の市川と美少女・山田。距離の縮まる過程が丁寧に描かれるラブコメ。",
@@ -60,7 +64,8 @@
     "score": 5,
     "genres": [
       "romance",
-      "drama"
+      "drama",
+      "fantasy"
     ],
     "image": "assets/anime/iroduku.jpg",
     "synopsis": "魔法使いの家系の少女が過去へ飛び、心の色を取り戻す物語。",
@@ -71,7 +76,7 @@
     "title": "お兄ちゃんはおしまい！",
     "score": 5,
     "genres": [
-      "drama"
+      "comedy"
     ],
     "image": "assets/anime/onimai.jpg",
     "synopsis": "妹の薬で女の子になった引きこもりの兄が、少しずつ社会と繋がる物語。",
@@ -83,7 +88,7 @@
     "score": 5,
     "genres": [
       "romance",
-      "drama"
+      "fantasy"
     ],
     "image": "assets/anime/yofukashi.jpg",
     "synopsis": "不眠の少年と吸血鬼。夜の街で「恋」を探すスタイリッシュな物語。",
@@ -94,7 +99,8 @@
     "title": "合コンに行ったら女が居なかった話",
     "score": 5,
     "genres": [
-      "romance"
+      "romance",
+      "comedy"
     ],
     "image": "assets/anime/gokon.jpg",
     "synopsis": "合コン相手が全員男装女子だった、新しい視点のラブコメディ。",
@@ -105,7 +111,6 @@
     "title": "チ。地球の運動について",
     "score": 5,
     "genres": [
-      "battle",
       "drama"
     ],
     "image": "assets/anime/chi.jpg",
@@ -118,6 +123,7 @@
     "score": 5,
     "genres": [
       "battle",
+      "fantasy",
       "romance"
     ],
     "image": "assets/anime/sao.jpg",
@@ -129,7 +135,8 @@
     "title": "好きな子がメガネを忘れた",
     "score": 5,
     "genres": [
-      "romance"
+      "romance",
+      "comedy"
     ],
     "image": "assets/anime/megane.jpg",
     "synopsis": "メガネを忘れた三重さんと彼女を助ける小村君の至近距離ラブコメ。",
@@ -141,6 +148,7 @@
     "score": 5,
     "genres": [
       "battle",
+      "fantasy",
       "drama"
     ],
     "image": "assets/anime/frieren.jpg",
@@ -153,6 +161,7 @@
     "score": 5,
     "genres": [
       "battle",
+      "fantasy",
       "drama"
     ],
     "image": "assets/anime/mushoku.jpg",
@@ -164,7 +173,8 @@
     "title": "謎の彼女x",
     "score": 5,
     "genres": [
-      "romance"
+      "romance",
+      "comedy"
     ],
     "image": "assets/anime/kanojox.jpg",
     "synopsis": "唾液を介して感情を共有する、ミステリアスな純愛物語。",
@@ -175,7 +185,8 @@
     "title": "銀河鉄道ミルキーサブウェイ",
     "score": 5,
     "genres": [
-      "drama"
+      "romance",
+      "comedy"
     ],
     "image": "assets/anime/milkyway.jpg",
     "synopsis": "幻想的な世界での出会いと、地下鉄の先に広がる銀河の物語。",
@@ -186,7 +197,8 @@
     "title": "死亡遊戯で飯を食う。",
     "score": 5,
     "genres": [
-      "battle"
+      "battle",
+      "mystery"
     ],
     "image": "assets/anime/shibouyuugi.jpg",
     "synopsis": "命懸けのゲームで賞金を稼ぐ、少女たちの残酷な生存戦略。",
@@ -198,6 +210,7 @@
     "score": 4,
     "genres": [
       "battle",
+      "fantasy",
       "drama"
     ],
     "image": "assets/anime/made-in-abyss.jpg",
@@ -210,7 +223,7 @@
     "score": 4,
     "genres": [
       "battle",
-      "drama"
+      "comedy"
     ],
     "image": "assets/anime/lycoris.jpg",
     "synopsis": "治安を守る少女たち。正反対な二人のコンビ劇とアクション。",
@@ -221,7 +234,8 @@
     "title": "着せ替え人形は恋をする",
     "score": 4,
     "genres": [
-      "romance"
+      "romance",
+      "comedy"
     ],
     "image": "assets/anime/bisque.jpg",
     "synopsis": "コスプレ好きなギャルと雛人形職人志望の男子の交流を描く青春ラブコメ。",
@@ -232,6 +246,7 @@
     "title": "スキップとローファー",
     "score": 4,
     "genres": [
+      "romance",
       "drama"
     ],
     "image": "assets/anime/skip.jpg",
@@ -244,7 +259,7 @@
     "score": 4,
     "genres": [
       "battle",
-      "drama"
+      "comedy"
     ],
     "image": "assets/anime/spyfamily.jpg",
     "synopsis": "スパイ・殺し屋・超能力者の仮初め家族が送るホームコメディ。",
@@ -255,7 +270,8 @@
     "title": "殺戮の天使",
     "score": 4,
     "genres": [
-      "battle"
+      "battle",
+      "mystery"
     ],
     "image": "assets/anime/satsuriku.jpg",
     "synopsis": "記憶喪失の少女と殺人鬼。奇妙な約束で繋がれた二人の脱出劇。",
@@ -266,7 +282,7 @@
     "title": "日常",
     "score": 4,
     "genres": [
-      "drama"
+      "comedy"
     ],
     "image": "assets/anime/nichijou.jpg",
     "synopsis": "女子高生やロボが織り成すシュールで壮大な日常コメディ。",
@@ -277,7 +293,8 @@
     "title": "月曜日のたわわ",
     "score": 4,
     "genres": [
-      "drama"
+      "romance",
+      "comedy"
     ],
     "image": "assets/anime/tawawa.jpg",
     "synopsis": "憂鬱な月曜日の朝に届く、ささやかな交流と癒しのひととき。",
@@ -288,7 +305,8 @@
     "title": "正反対な君と僕",
     "score": 4,
     "genres": [
-      "romance"
+      "romance",
+      "comedy"
     ],
     "image": "assets/anime/seihantai.jpg",
     "synopsis": "陽キャ女子と陰キャ男子。正反対な二人の心地よい距離感の恋愛劇。",
@@ -311,7 +329,8 @@
     "title": "もめんたりー・リリィ",
     "score": 4,
     "genres": [
-      "drama"
+      "romance",
+      "comedy"
     ],
     "image": "assets/anime/lily.jpg",
     "synopsis": "一瞬のきらめきを切り取った、少女たちの日常の断片。",
@@ -322,7 +341,8 @@
     "title": "透明男と人間女",
     "score": 4,
     "genres": [
-      "romance"
+      "romance",
+      "drama"
     ],
     "image": "assets/anime/toumei.jpg",
     "synopsis": "目に見えない男と目の見えない女。心の交流を描く純愛。",
@@ -333,7 +353,9 @@
     "title": "魔法少女サイト",
     "score": 3,
     "genres": [
-      "battle"
+      "battle",
+      "fantasy",
+      "mystery"
     ],
     "image": "assets/anime/magicalsite.jpg",
     "synopsis": "不幸な少女たちが手にした魔法のステッキ。ダークな魔法少女劇。",
@@ -344,7 +366,8 @@
     "title": "はたらく細胞！",
     "score": 3,
     "genres": [
-      "drama"
+      "battle",
+      "comedy"
     ],
     "image": "assets/anime/hataraku-saibou.jpg",
     "synopsis": "体内の細胞たちを擬人化。面白く学べる体内エンターテインメント。",
@@ -355,7 +378,8 @@
     "title": "五等分の花嫁",
     "score": 3,
     "genres": [
-      "romance"
+      "romance",
+      "comedy"
     ],
     "image": "assets/anime/5hanayome.jpg",
     "synopsis": "落第寸前の五つ子と家庭教師。誰と結ばれるかのラブコメディ。",
@@ -366,6 +390,7 @@
     "title": "薬屋のひとりごと",
     "score": 3,
     "genres": [
+      "mystery",
       "drama"
     ],
     "image": "assets/anime/kusuriya.jpg",
@@ -377,7 +402,8 @@
     "title": "かわいいだけじゃない式守さん",
     "score": 3,
     "genres": [
-      "romance"
+      "romance",
+      "comedy"
     ],
     "image": "assets/anime/shikimorisan.jpg",
     "synopsis": "不幸体質な彼氏と、時々イケメン化する彼女のラブコメ。",
@@ -389,7 +415,7 @@
     "score": 3,
     "genres": [
       "romance",
-      "drama"
+      "comedy"
     ],
     "image": "assets/anime/futari.png",
     "synopsis": "新婚夫婦が性を学びながら愛を育む教育的な側面もある物語。",
@@ -400,7 +426,8 @@
     "title": "男女の友情は成立する？いや、しない!",
     "score": 3,
     "genres": [
-      "romance"
+      "romance",
+      "comedy"
     ],
     "image": "assets/anime/danjyo.jpg",
     "synopsis": "親友同士だった二人の関係が、徐々に変化していく青春劇。",
@@ -411,7 +438,7 @@
     "title": "私がモテないのはどう考えてもお前らが悪い！",
     "score": 3,
     "genres": [
-      "drama"
+      "comedy"
     ],
     "image": "assets/anime/watamote.jpg",
     "synopsis": "モテることを夢見る少女の空回りする日常と、その後の変化。",
@@ -423,7 +450,7 @@
     "score": 2,
     "genres": [
       "drama",
-      "battle"
+      "mystery"
     ],
     "image": "assets/anime/oshinoko.jpg",
     "synopsis": "芸能界の光と闇。転生から始まる復讐と成長のサスペンス。",
@@ -434,7 +461,8 @@
     "title": "山田くんとLv999の恋をする",
     "score": 2,
     "genres": [
-      "romance"
+      "romance",
+      "comedy"
     ],
     "image": "assets/anime/yamada999.jpg",
     "synopsis": "ネトゲを通じて出会った二人が、リアルな恋へと変化していく物語。",
@@ -457,7 +485,8 @@
     "title": "アークナイツ",
     "score": 2,
     "genres": [
-      "battle"
+      "battle",
+      "fantasy"
     ],
     "image": "assets/anime/arknights.jpg",
     "synopsis": "感染症が蔓延する世界での戦いと、救済を求める物語。",
@@ -469,7 +498,8 @@
     "score": 2,
     "genres": [
       "romance",
-      "drama"
+      "drama",
+      "fantasy"
     ],
     "image": "assets/anime/watakon.jpg",
     "synopsis": "虐げられてきた少女が、冷酷な軍人と出会い愛を知る和風ファンタジー。",
@@ -480,6 +510,7 @@
     "title": "ODDTAXY(オッドタクシー)",
     "score": 1,
     "genres": [
+      "mystery",
       "drama"
     ],
     "image": "assets/anime/oddtaxy.jpg",

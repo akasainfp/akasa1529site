@@ -4,7 +4,7 @@
     const script = document.currentScript;
     const dataSrc = script?.dataset.animeSrc || 'anime-data.json';
     const jikanEnabled = script?.dataset.jikan !== 'off';
-    const state = { rating: 'all', genre: 'all', items: [] };
+    const state = { ratings: new Set(), genres: new Set(), items: [] };
     const jikanCacheKey = 'akasa1529:jikan:v1:';
     const jikanQueue = [];
     let jikanBusy = false;
@@ -78,20 +78,43 @@
         return match ? match[1] : '';
     }
 
-    function updateFilterButtons(groupIdx, val) {
+    function updateFilterButtons(groupIdx, selected) {
         const group = document.querySelectorAll('.filter-group')[groupIdx];
         if (!group) return;
         group.querySelectorAll('.f-btn').forEach(btn => {
-            btn.classList.toggle('active', getFilterButtonValue(btn) === val);
+            const value = getFilterButtonValue(btn);
+            btn.classList.toggle('active', value === 'all' ? selected.size === 0 : selected.has(value));
         });
+    }
+
+    function toggleFilter(set, value) {
+        if (value === 'all') {
+            set.clear();
+            return;
+        }
+        if (set.has(value)) {
+            set.delete(value);
+            return;
+        }
+        set.add(value);
+    }
+
+    function matchesValue(selected, value) {
+        return selected.size === 0 || selected.has(String(value));
+    }
+
+    function matchesTokens(selected, value) {
+        if (selected.size === 0) return true;
+        const tokens = String(value || '').split(/\s+/).filter(Boolean);
+        return tokens.some(token => selected.has(token));
     }
 
     function applyFilters() {
         document.querySelectorAll('.anime-item').forEach(item => {
             const score = item.getAttribute('data-score');
             const genres = item.getAttribute('data-genre') || '';
-            const ratingMatch = state.rating === 'all' || score === state.rating;
-            const genreMatch = state.genre === 'all' || genres.includes(state.genre);
+            const ratingMatch = matchesValue(state.ratings, score);
+            const genreMatch = matchesTokens(state.genres, genres);
             item.classList.toggle('hidden', !(ratingMatch && genreMatch));
         });
         generateTOC();
@@ -233,14 +256,22 @@
     }
 
     window.filterRating = val => {
-        state.rating = val;
-        updateFilterButtons(0, val);
+        toggleFilter(state.ratings, val);
+        updateFilterButtons(0, state.ratings);
         applyFilters();
     };
 
     window.filterGenre = val => {
-        state.genre = val;
-        updateFilterButtons(1, val);
+        toggleFilter(state.genres, val);
+        updateFilterButtons(1, state.genres);
+        applyFilters();
+    };
+
+    window.clearFilters = () => {
+        state.ratings.clear();
+        state.genres.clear();
+        updateFilterButtons(0, state.ratings);
+        updateFilterButtons(1, state.genres);
         applyFilters();
     };
 
@@ -262,6 +293,11 @@
         if (button.classList.contains('filter-close')) {
             event.preventDefault();
             window.toggleFilterDialog?.(false);
+            return;
+        }
+        if (button.classList.contains('filter-clear')) {
+            event.preventDefault();
+            window.clearFilters?.();
             return;
         }
         const action = button.getAttribute('onclick') || '';

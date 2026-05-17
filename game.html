@@ -99,6 +99,8 @@
         .filter-panel .filter-controls { display: flex; margin: 0; padding: 0; justify-content: flex-start; }
         .filter-panel .filter-group { flex-wrap: wrap; align-items: flex-start; margin-bottom: 14px; }
         .filter-panel .filter-group:last-child { margin-bottom: 0; }
+        .filter-actions { width: 100%; display: flex; justify-content: flex-end; margin-top: 4px; }
+        .filter-clear { color: #aaa; border-color: rgba(255,255,255,0.16); }
         .f-btn:hover { color: #fff; border-color: rgba(125,95,255,0.65); background: rgba(125,95,255,0.08); transform: translateY(-1px); }
         .toc-links a:hover { color: #fff; border-left: 1px solid var(--accent); transform: translateX(4px); }
         @media (max-width: 768px) {
@@ -200,7 +202,10 @@
             <button class="f-btn" onclick="filterHard('wii')">Wii</button>
             <button class="f-btn" onclick="filterHard('psp')">PSP</button>
         </div>
-    </div>
+        <div class="filter-actions">
+            <button class="f-btn filter-clear" onclick="clearFilters()">クリア</button>
+        </div>
+            </div>
         </div>
     </div>
 <nav class="table-of-contents">
@@ -988,9 +993,9 @@
             title.appendChild(span);
         });
 
-        let currentRating = 'all';
-        let currentGenre = 'all';
-        let currentHard = 'all';
+        const selectedRatings = new Set();
+        const selectedGenres = new Set();
+        const selectedHards = new Set();
 
         window.addEventListener('DOMContentLoaded', () => {
             sortGamesByScore();
@@ -1046,20 +1051,30 @@
         }
 
         function filterRating(val) {
-            currentRating = val;
-            updateFilterButtons(0, val);
+            toggleFilter(selectedRatings, val);
+            updateFilterButtons(0, selectedRatings);
             applyFilters();
         }
 
         function filterGenre(val) {
-            currentGenre = val;
-            updateFilterButtons(1, val);
+            toggleFilter(selectedGenres, val);
+            updateFilterButtons(1, selectedGenres);
             applyFilters();
         }
 
         function filterHard(val) {
-            currentHard = val;
-            updateFilterButtons(2, val);
+            toggleFilter(selectedHards, val);
+            updateFilterButtons(2, selectedHards);
+            applyFilters();
+        }
+
+        function clearFilters() {
+            selectedRatings.clear();
+            selectedGenres.clear();
+            selectedHards.clear();
+            updateFilterButtons(0, selectedRatings);
+            updateFilterButtons(1, selectedGenres);
+            updateFilterButtons(2, selectedHards);
             applyFilters();
         }
 
@@ -1069,12 +1084,35 @@
             return match ? match[1] : '';
         }
 
-        function updateFilterButtons(groupIdx, val) {
+        function updateFilterButtons(groupIdx, selected) {
             const group = document.querySelectorAll('.filter-group')[groupIdx];
             if (!group) return;
             group.querySelectorAll('.f-btn').forEach(btn => {
-                btn.classList.toggle('active', getFilterButtonValue(btn) === val);
+                const value = getFilterButtonValue(btn);
+                btn.classList.toggle('active', value === 'all' ? selected.size === 0 : selected.has(value));
             });
+        }
+
+        function toggleFilter(set, value) {
+            if (value === 'all') {
+                set.clear();
+                return;
+            }
+            if (set.has(value)) {
+                set.delete(value);
+                return;
+            }
+            set.add(value);
+        }
+
+        function matchesValue(selected, value) {
+            return selected.size === 0 || selected.has(String(value));
+        }
+
+        function matchesTokens(selected, value) {
+            if (selected.size === 0) return true;
+            const tokens = String(value || '').split(/\s+/).filter(Boolean);
+            return tokens.some(token => selected.has(token));
         }
 
 
@@ -1089,6 +1127,11 @@
             if (button.classList.contains('filter-close')) {
                 event.preventDefault();
                 toggleFilterDialog(false);
+                return;
+            }
+            if (button.classList.contains('filter-clear')) {
+                event.preventDefault();
+                clearFilters();
                 return;
             }
             const action = button.getAttribute('onclick') || '';
@@ -1117,9 +1160,9 @@
                 const genre = item.getAttribute('data-category') || '';
                 const score = item.getAttribute('data-score');
                 const hard = item.getAttribute('data-hard') || '';
-                const ratingMatch = currentRating === 'all' || score === currentRating;
-                const genreMatch = currentGenre === 'all' || genre.includes(currentGenre);
-                const hardMatch = currentHard === 'all' || hard.includes(currentHard);
+                const ratingMatch = matchesValue(selectedRatings, score);
+                const genreMatch = matchesTokens(selectedGenres, genre);
+                const hardMatch = matchesTokens(selectedHards, hard);
                 item.classList.toggle('hidden', !(ratingMatch && genreMatch && hardMatch));
             });
             generateTOC();

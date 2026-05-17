@@ -295,11 +295,7 @@
             window.toggleFilterDialog?.(false);
             return;
         }
-        if (button.classList.contains('filter-clear')) {
-            event.preventDefault();
-            window.clearFilters?.();
-            return;
-        }
+        if (button.classList.contains('f-btn')) return;
         const action = button.getAttribute('onclick') || '';
         const value = getFilterButtonValue(button);
         if (!value) return;

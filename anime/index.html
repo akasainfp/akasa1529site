@@ -246,25 +246,25 @@
             <div class="filter-controls">
         <div class="filter-group">
             <span class="filter-label">評価:</span>
-            <button class="f-btn active" onclick="filterRating('all')">ALL</button>
-            <button class="f-btn" onclick="filterRating('5')">★★★★★</button>
-            <button class="f-btn" onclick="filterRating('4')">★★★★☆</button>
-            <button class="f-btn" onclick="filterRating('3')">★★★☆☆</button>
-            <button class="f-btn" onclick="filterRating('2')">★★☆☆☆</button>
-            <button class="f-btn" onclick="filterRating('1')">★☆☆☆☆</button>
+            <button class="f-btn active" data-filter-group="rating" data-filter-value="all" onclick="filterRating('all')">ALL</button>
+            <button class="f-btn" data-filter-group="rating" data-filter-value="5" onclick="filterRating('5')">★★★★★</button>
+            <button class="f-btn" data-filter-group="rating" data-filter-value="4" onclick="filterRating('4')">★★★★☆</button>
+            <button class="f-btn" data-filter-group="rating" data-filter-value="3" onclick="filterRating('3')">★★★☆☆</button>
+            <button class="f-btn" data-filter-group="rating" data-filter-value="2" onclick="filterRating('2')">★★☆☆☆</button>
+            <button class="f-btn" data-filter-group="rating" data-filter-value="1" onclick="filterRating('1')">★☆☆☆☆</button>
         </div>
         <div class="filter-group">
             <span class="filter-label">Genre:</span>
-            <button class="f-btn active" onclick="filterGenre('all')">ALL</button>
-            <button class="f-btn" onclick="filterGenre('romance')">恋愛</button>
-            <button class="f-btn" onclick="filterGenre('comedy')">日常/コメディ</button>
-            <button class="f-btn" onclick="filterGenre('battle')">バトル</button>
-            <button class="f-btn" onclick="filterGenre('fantasy')">ファンタジー</button>
-            <button class="f-btn" onclick="filterGenre('mystery')">ミステリー</button>
-            <button class="f-btn" onclick="filterGenre('drama')">感動/青春</button>
+            <button class="f-btn active" data-filter-group="genre" data-filter-value="all" onclick="filterGenre('all')">ALL</button>
+            <button class="f-btn" data-filter-group="genre" data-filter-value="romance" onclick="filterGenre('romance')">恋愛</button>
+            <button class="f-btn" data-filter-group="genre" data-filter-value="comedy" onclick="filterGenre('comedy')">日常/コメディ</button>
+            <button class="f-btn" data-filter-group="genre" data-filter-value="battle" onclick="filterGenre('battle')">バトル</button>
+            <button class="f-btn" data-filter-group="genre" data-filter-value="fantasy" onclick="filterGenre('fantasy')">ファンタジー</button>
+            <button class="f-btn" data-filter-group="genre" data-filter-value="mystery" onclick="filterGenre('mystery')">ミステリー</button>
+            <button class="f-btn" data-filter-group="genre" data-filter-value="drama" onclick="filterGenre('drama')">感動/青春</button>
         </div>
         <div class="filter-actions">
-            <button class="f-btn filter-clear" onclick="clearFilters()">クリア</button>
+            <button class="f-btn filter-clear" data-filter-action="clear" onclick="clearFilters()">クリア</button>
         </div>
             </div>
         </div>
@@ -416,7 +416,7 @@
             });
         })();
     </script>
-    <script src="../assets/js/anime-archive.js?v=20260517-multi-filter" data-anime-src="../anime-data.json"></script>
+    <script src="../assets/js/anime-archive.js?v=20260517-filter-fix2" data-anime-src="../anime-data.json"></script>
 
 
     <script src="../assets/js/site-counter.js"></script>

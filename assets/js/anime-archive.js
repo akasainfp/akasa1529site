@@ -73,6 +73,7 @@
     }
 
     function getFilterButtonValue(btn) {
+        if (btn.dataset.filterValue) return btn.dataset.filterValue;
         const action = btn.getAttribute('onclick') || '';
         const match = action.match(/\('([^']+)'\)/);
         return match ? match[1] : '';
@@ -306,16 +307,16 @@
         event.preventDefault();
         event.stopImmediatePropagation();
 
-        if (action.startsWith('clearFilters')) {
+        if (button.dataset.filterAction === 'clear' || action.startsWith('clearFilters')) {
             window.clearFilters();
             return;
         }
         if (!value) return;
-        if (action.startsWith('filterRating')) {
+        if (button.dataset.filterGroup === 'rating' || action.startsWith('filterRating')) {
             window.filterRating(value);
             return;
         }
-        if (action.startsWith('filterGenre')) {
+        if (button.dataset.filterGroup === 'genre' || action.startsWith('filterGenre')) {
             window.filterGenre(value);
         }
     }

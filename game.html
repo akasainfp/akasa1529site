@@ -172,38 +172,38 @@
             <div class="filter-controls">
         <div class="filter-group">
             <span class="filter-label">評価:</span>
-            <button class="f-btn active" onclick="filterRating('all')">ALL</button>
-            <button class="f-btn" onclick="filterRating('5')">★★★★★</button>
-            <button class="f-btn" onclick="filterRating('4')">★★★★☆</button>
-            <button class="f-btn" onclick="filterRating('3')">★★★☆☆</button>
-            <button class="f-btn" onclick="filterRating('2')">★★☆☆☆</button>
-            <button class="f-btn" onclick="filterRating('1')">★☆☆☆☆</button>
+            <button class="f-btn active" data-filter-group="rating" data-filter-value="all" onclick="filterRating('all')">ALL</button>
+            <button class="f-btn" data-filter-group="rating" data-filter-value="5" onclick="filterRating('5')">★★★★★</button>
+            <button class="f-btn" data-filter-group="rating" data-filter-value="4" onclick="filterRating('4')">★★★★☆</button>
+            <button class="f-btn" data-filter-group="rating" data-filter-value="3" onclick="filterRating('3')">★★★☆☆</button>
+            <button class="f-btn" data-filter-group="rating" data-filter-value="2" onclick="filterRating('2')">★★☆☆☆</button>
+            <button class="f-btn" data-filter-group="rating" data-filter-value="1" onclick="filterRating('1')">★☆☆☆☆</button>
         </div>
         <div class="filter-group">
             <span class="filter-label">Genre:</span>
-            <button class="f-btn active" onclick="filterGenre('all')">ALL</button>
-            <button class="f-btn" onclick="filterGenre('fps-tps')">FPS/TPS</button>
-            <button class="f-btn" onclick="filterGenre('open-world')">オープンワールド</button>
-            <button class="f-btn" onclick="filterGenre('mystery')">ミステリー</button>
-            <button class="f-btn" onclick="filterGenre('horror')">ホラー</button>
-            <button class="f-btn" onclick="filterGenre('party')">パーティー</button>
-            <button class="f-btn" onclick="filterGenre('simulation')">シミュレーション</button>
-            <button class="f-btn" onclick="filterGenre('strategy')">ストラテジー</button>
-            <button class="f-btn" onclick="filterGenre('rhythm')">リズム</button>
-            <button class="f-btn" onclick="filterGenre('rpg')">RPG</button>
+            <button class="f-btn active" data-filter-group="genre" data-filter-value="all" onclick="filterGenre('all')">ALL</button>
+            <button class="f-btn" data-filter-group="genre" data-filter-value="fps-tps" onclick="filterGenre('fps-tps')">FPS/TPS</button>
+            <button class="f-btn" data-filter-group="genre" data-filter-value="open-world" onclick="filterGenre('open-world')">オープンワールド</button>
+            <button class="f-btn" data-filter-group="genre" data-filter-value="mystery" onclick="filterGenre('mystery')">ミステリー</button>
+            <button class="f-btn" data-filter-group="genre" data-filter-value="horror" onclick="filterGenre('horror')">ホラー</button>
+            <button class="f-btn" data-filter-group="genre" data-filter-value="party" onclick="filterGenre('party')">パーティー</button>
+            <button class="f-btn" data-filter-group="genre" data-filter-value="simulation" onclick="filterGenre('simulation')">シミュレーション</button>
+            <button class="f-btn" data-filter-group="genre" data-filter-value="strategy" onclick="filterGenre('strategy')">ストラテジー</button>
+            <button class="f-btn" data-filter-group="genre" data-filter-value="rhythm" onclick="filterGenre('rhythm')">リズム</button>
+            <button class="f-btn" data-filter-group="genre" data-filter-value="rpg" onclick="filterGenre('rpg')">RPG</button>
         </div>
         <div class="filter-group">
             <span class="filter-label">Hard:</span>
-            <button class="f-btn active" onclick="filterHard('all')">ALL</button>
-            <button class="f-btn" onclick="filterHard('steam')">Steam</button>
-            <button class="f-btn" onclick="filterHard('pc')">PC</button>
-            <button class="f-btn" onclick="filterHard('switch')">Switch</button>
-            <button class="f-btn" onclick="filterHard('ds')">DS</button>
-            <button class="f-btn" onclick="filterHard('wii')">Wii</button>
-            <button class="f-btn" onclick="filterHard('psp')">PSP</button>
+            <button class="f-btn active" data-filter-group="hard" data-filter-value="all" onclick="filterHard('all')">ALL</button>
+            <button class="f-btn" data-filter-group="hard" data-filter-value="steam" onclick="filterHard('steam')">Steam</button>
+            <button class="f-btn" data-filter-group="hard" data-filter-value="pc" onclick="filterHard('pc')">PC</button>
+            <button class="f-btn" data-filter-group="hard" data-filter-value="switch" onclick="filterHard('switch')">Switch</button>
+            <button class="f-btn" data-filter-group="hard" data-filter-value="ds" onclick="filterHard('ds')">DS</button>
+            <button class="f-btn" data-filter-group="hard" data-filter-value="wii" onclick="filterHard('wii')">Wii</button>
+            <button class="f-btn" data-filter-group="hard" data-filter-value="psp" onclick="filterHard('psp')">PSP</button>
         </div>
         <div class="filter-actions">
-            <button class="f-btn filter-clear" onclick="clearFilters()">クリア</button>
+            <button class="f-btn filter-clear" data-filter-action="clear" onclick="clearFilters()">クリア</button>
         </div>
             </div>
         </div>
@@ -1079,6 +1079,7 @@
         }
 
         function getFilterButtonValue(btn) {
+            if (btn.dataset.filterValue) return btn.dataset.filterValue;
             const action = btn.getAttribute('onclick') || '';
             const match = action.match(/\('([^']+)'\)/);
             return match ? match[1] : '';
@@ -1140,20 +1141,20 @@
             event.preventDefault();
             event.stopImmediatePropagation();
 
-            if (action.startsWith('clearFilters')) {
+            if (button.dataset.filterAction === 'clear' || action.startsWith('clearFilters')) {
                 clearFilters();
                 return;
             }
             if (!value) return;
-            if (action.startsWith('filterRating')) {
+            if (button.dataset.filterGroup === 'rating' || action.startsWith('filterRating')) {
                 filterRating(value);
                 return;
             }
-            if (action.startsWith('filterGenre')) {
+            if (button.dataset.filterGroup === 'genre' || action.startsWith('filterGenre')) {
                 filterGenre(value);
                 return;
             }
-            if (action.startsWith('filterHard')) {
+            if (button.dataset.filterGroup === 'hard' || action.startsWith('filterHard')) {
                 filterHard(value);
             }
         }

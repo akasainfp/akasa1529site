@@ -121,6 +121,12 @@
         .game-thumb img { width: 100%; height: 100%; object-fit: contain; display: block; position: relative; z-index: 1; }
         .game-thumb.is-package::before { opacity: 0.18; }
         .game-thumb.is-package img { width: auto; max-width: 68%; height: 100%; object-fit: contain; margin: 0 auto; }
+        .game-item[data-hard~="ds"] .game-thumb,
+        .game-item[data-hard~="wii"] .game-thumb,
+        .game-item[data-hard~="psp"] .game-thumb { aspect-ratio: 11 / 10; background: #050508; }
+        .game-item[data-hard~="ds"] .game-thumb img,
+        .game-item[data-hard~="wii"] .game-thumb img,
+        .game-item[data-hard~="psp"] .game-thumb img { object-fit: cover; }
         .game-thumb span { color: #333; font-family: var(--font-mono); font-size: 0.8rem; text-align: center; overflow-wrap: anywhere; }
         .game-meta-top { display: flex; align-items: center; gap: 10px; flex-wrap: wrap; margin-bottom: 10px; }
         .platform-tags { display: flex; flex-wrap: wrap; gap: 6px; }
@@ -760,7 +766,7 @@
             </div>
         </article>
         <article class="game-item anim-box" id="pokemon-dash" data-score="3" data-category="racing action" data-hard="ds">
-            <div class="game-thumb"><img src="../assets/game/pokemon-dash.jpg" alt="ポケモンダッシュ"></div>
+            <div class="game-thumb"><img src="../assets/game/pokemon-dash.webp" alt="ポケモンダッシュ"></div>
             <div class="game-info">
                 <span class="rating">評価: ★★★☆☆</span>
                 <h2 class="game-title">ポケモンダッシュ</h2>
@@ -787,7 +793,7 @@
             </div>
         </article>
         <article class="game-item anim-box" id="made-in-ore" data-score="4" data-category="party" data-hard="ds">
-            <div class="game-thumb"><img src="../assets/game/made-in-ore.jpg" alt="メイドイン俺"></div>
+            <div class="game-thumb"><img src="../assets/game/made-in-ore.webp" alt="メイドイン俺"></div>
             <div class="game-info">
                 <span class="rating">評価: ★★★★☆</span>
                 <h2 class="game-title">メイドイン俺</h2>

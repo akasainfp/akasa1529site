@@ -45,14 +45,14 @@ window.AKASA_ANIME_DATA = [
   },
   {
     "id": "bokuyaba",
-    "title": "僕の心のやばい奴",
+    "title": "僕の心のヤバイやつ",
     "score": 5,
     "genres": [
       "romance"
     ],
     "image": "assets/anime/bokuyaba.jpg",
     "synopsis": "中二病の市川と美少女・山田。距離の縮まる過程が丁寧に描かれるラブコメ。",
-    "jikanQuery": "僕の心のやばい奴"
+    "jikanQuery": "僕の心のヤバイやつ"
   },
   {
     "id": "iroduku",
@@ -102,7 +102,7 @@ window.AKASA_ANIME_DATA = [
   },
   {
     "id": "chi",
-    "title": "チ。地球の運動について",
+    "title": "チ。―地球の運動について―",
     "score": 5,
     "genres": [
       "battle",
@@ -110,7 +110,7 @@ window.AKASA_ANIME_DATA = [
     ],
     "image": "assets/anime/chi.jpg",
     "synopsis": "地動説に命を懸けた人々の、信念のバトンを受け継ぐ物語。",
-    "jikanQuery": "チ。地球の運動について"
+    "jikanQuery": "チ。―地球の運動について―"
   },
   {
     "id": "sao",
@@ -161,14 +161,14 @@ window.AKASA_ANIME_DATA = [
   },
   {
     "id": "kanojox",
-    "title": "謎の彼女x",
+    "title": "謎の彼女X",
     "score": 5,
     "genres": [
       "romance"
     ],
     "image": "assets/anime/kanojox.jpg",
     "synopsis": "唾液を介して感情を共有する、ミステリアスな純愛物語。",
-    "jikanQuery": "謎の彼女x"
+    "jikanQuery": "謎の彼女X"
   },
   {
     "id": "milkyway",
@@ -218,14 +218,14 @@ window.AKASA_ANIME_DATA = [
   },
   {
     "id": "bisque",
-    "title": "着せ替え人形は恋をする",
+    "title": "その着せ替え人形は恋をする",
     "score": 4,
     "genres": [
       "romance"
     ],
     "image": "assets/anime/bisque.jpg",
     "synopsis": "コスプレ好きなギャルと雛人形職人志望の男子の交流を描く青春ラブコメ。",
-    "jikanQuery": "着せ替え人形は恋をする"
+    "jikanQuery": "その着せ替え人形は恋をする"
   },
   {
     "id": "skip",
@@ -319,14 +319,14 @@ window.AKASA_ANIME_DATA = [
   },
   {
     "id": "toumei",
-    "title": "透明男と人間女",
+    "title": "透明男と人間女～そのうち夫婦になるふたり～",
     "score": 4,
     "genres": [
       "romance"
     ],
     "image": "assets/anime/toumei.jpg",
     "synopsis": "目に見えない男と目の見えない女。心の交流を描く純愛。",
-    "jikanQuery": "透明男と人間女"
+    "jikanQuery": "透明男と人間女～そのうち夫婦になるふたり～"
   },
   {
     "id": "magicalsite",
@@ -397,14 +397,14 @@ window.AKASA_ANIME_DATA = [
   },
   {
     "id": "danjyo",
-    "title": "男女の友情は成立する？いや、しない!",
+    "title": "男女の友情は成立する？（いや、しないっ!!）",
     "score": 3,
     "genres": [
       "romance"
     ],
     "image": "assets/anime/danjyo.jpg",
     "synopsis": "親友同士だった二人の関係が、徐々に変化していく青春劇。",
-    "jikanQuery": "男女の友情は成立する？いや、しない!"
+    "jikanQuery": "男女の友情は成立する？（いや、しないっ!!）"
   },
   {
     "id": "watamote",
@@ -477,14 +477,14 @@ window.AKASA_ANIME_DATA = [
   },
   {
     "id": "oddtaxy",
-    "title": "ODDTAXY(オッドタクシー)",
+    "title": "ODDTAXI（オッドタクシー）",
     "score": 1,
     "genres": [
       "drama"
     ],
     "image": "assets/anime/oddtaxy.jpg",
     "synopsis": "タクシー運転手が運ぶ客たちの会話が、一つの事件に収束するミステリー。",
-    "jikanQuery": "ODDTAXY(オッドタクシー)"
+    "jikanQuery": "ODDTAXI（オッドタクシー）"
   },
   {
     "id": "japan2020",

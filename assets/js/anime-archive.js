@@ -68,6 +68,11 @@
             link.href = `#${item.id}`;
             link.title = title;
             link.innerHTML = `[★${score}] ${escapeHtml(title)}`;
+            link.addEventListener('click', event => {
+                event.preventDefault();
+                item.scrollIntoView({ behavior: 'smooth', block: 'center' });
+                history.replaceState(null, '', `#${item.id}`);
+            });
             tocList.appendChild(link);
         });
     }

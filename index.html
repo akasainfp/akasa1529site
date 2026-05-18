@@ -201,75 +201,127 @@
             left: 0;
             top: 0;
             z-index: 10030;
-            width: 54px;
-            height: 54px;
+            width: 62px;
+            height: 42px;
             pointer-events: none;
             opacity: 0;
             --chaser-angle: 0deg;
-            --chaser-stretch: 1;
-            transform: translate3d(-90px, -90px, 0) rotate(var(--chaser-angle)) scaleX(var(--chaser-stretch));
-            transform-origin: center;
+            --chaser-step: 0px;
+            transform: translate3d(-90px, -90px, 0) rotate(var(--chaser-angle));
+            transform-origin: 32px 22px;
             transition: opacity 0.22s ease;
             will-change: transform, opacity;
         }
         .cursor-chaser.is-visible { opacity: 0.95; }
-        .cursor-chaser.is-hunting .cursor-chaser-core {
-            border-color: rgba(0, 224, 255, 0.88);
-            box-shadow: 0 0 18px rgba(0, 224, 255, 0.38), inset 0 0 18px rgba(125,95,255,0.18);
-        }
-        .cursor-chaser-core {
+        .cursor-chaser-body {
             position: absolute;
-            inset: 12px;
+            left: 16px;
+            top: 12px;
+            width: 32px;
+            height: 20px;
             border: 1px solid rgba(255,255,255,0.58);
-            background:
-                linear-gradient(90deg, transparent 47%, rgba(255,255,255,0.7) 48%, rgba(255,255,255,0.7) 52%, transparent 53%),
-                linear-gradient(0deg, transparent 47%, rgba(255,255,255,0.7) 48%, rgba(255,255,255,0.7) 52%, transparent 53%),
-                rgba(5, 7, 14, 0.66);
-            box-shadow: 0 0 12px rgba(125,95,255,0.3), inset 0 0 14px rgba(255,255,255,0.08);
+            background: rgba(5, 7, 14, 0.78);
+            box-shadow: 0 0 16px rgba(125,95,255,0.32), inset 0 0 14px rgba(255,255,255,0.08);
             backdrop-filter: blur(8px);
-            transform: rotate(45deg);
-            animation: chaser-pulse 1.9s ease-in-out infinite;
+            border-radius: 14px 16px 13px 12px;
+            animation: pet-breathe 1.8s ease-in-out infinite;
         }
-        .cursor-chaser-core::before,
-        .cursor-chaser-core::after {
+        .cursor-chaser-head {
+            position: absolute;
+            right: 2px;
+            top: 6px;
+            width: 24px;
+            height: 22px;
+            border: 1px solid rgba(255,255,255,0.62);
+            background: rgba(5, 7, 14, 0.84);
+            box-shadow: 0 0 14px rgba(0,224,255,0.24), inset 0 0 12px rgba(125,95,255,0.12);
+            border-radius: 12px 13px 11px 10px;
+        }
+        .cursor-chaser-head::before,
+        .cursor-chaser-head::after {
             content: "";
             position: absolute;
-            border: 1px solid rgba(125,95,255,0.62);
+            top: -7px;
+            width: 9px;
+            height: 10px;
+            border-top: 1px solid rgba(255,255,255,0.62);
+            background: rgba(5, 7, 14, 0.82);
         }
-        .cursor-chaser-core::before {
-            inset: -9px;
-            opacity: 0.45;
+        .cursor-chaser-head::before {
+            left: 3px;
+            border-left: 1px solid rgba(255,255,255,0.62);
+            transform: skew(-12deg) rotate(36deg);
         }
-        .cursor-chaser-core::after {
-            inset: 7px;
-            border-color: rgba(0, 224, 255, 0.64);
-            opacity: 0.72;
+        .cursor-chaser-head::after {
+            right: 3px;
+            border-right: 1px solid rgba(255,255,255,0.62);
+            transform: skew(12deg) rotate(-36deg);
         }
-        .cursor-chaser-dot {
+        .cursor-chaser-eye {
             position: absolute;
-            top: 50%;
-            left: 50%;
-            width: 4px;
-            height: 4px;
+            top: 9px;
+            width: 3px;
+            height: 3px;
             background: #fff;
-            box-shadow: 0 0 12px rgba(0, 224, 255, 0.75);
-            transform: translate(-50%, -50%);
+            border-radius: 50%;
+            box-shadow: 0 0 8px rgba(0,224,255,0.8);
+        }
+        .cursor-chaser-eye.left { left: 7px; }
+        .cursor-chaser-eye.right { right: 7px; }
+        .cursor-chaser-nose {
+            position: absolute;
+            right: 10px;
+            bottom: 5px;
+            width: 4px;
+            height: 3px;
+            border-radius: 50%;
+            background: var(--accent);
+            box-shadow: 0 0 8px rgba(125,95,255,0.75);
         }
         .cursor-chaser-tail {
             position: absolute;
-            top: 50%;
-            width: 5px;
-            height: 1px;
-            background: linear-gradient(90deg, rgba(0,224,255,0), rgba(0,224,255,0.86));
-            transform-origin: right center;
-            opacity: 0.75;
+            left: 2px;
+            top: 15px;
+            width: 20px;
+            height: 11px;
+            border: 1px solid rgba(0,224,255,0.58);
+            border-right: 0;
+            border-bottom: 0;
+            border-radius: 16px 0 0 0;
+            transform-origin: right bottom;
+            animation: pet-tail 0.8s ease-in-out infinite;
         }
-        .cursor-chaser-tail:nth-child(1) { left: -8px; transform: translateY(-12px) rotate(-18deg) scaleX(2.4); }
-        .cursor-chaser-tail:nth-child(2) { left: -14px; transform: translateY(0) scaleX(3.4); }
-        .cursor-chaser-tail:nth-child(3) { left: -8px; transform: translateY(12px) rotate(18deg) scaleX(2.4); }
-        @keyframes chaser-pulse {
-            0%, 100% { filter: brightness(1); }
-            50% { filter: brightness(1.35); }
+        .cursor-chaser-leg {
+            position: absolute;
+            top: 30px;
+            width: 8px;
+            height: 9px;
+            border-left: 1px solid rgba(255,255,255,0.52);
+            border-bottom: 1px solid rgba(255,255,255,0.52);
+            transform: translateY(var(--chaser-step));
+        }
+        .cursor-chaser-leg.front { right: 14px; animation: pet-step-front 0.32s linear infinite; }
+        .cursor-chaser-leg.back { left: 23px; animation: pet-step-back 0.32s linear infinite; }
+        .cursor-chaser.is-hunting .cursor-chaser-body,
+        .cursor-chaser.is-hunting .cursor-chaser-head {
+            border-color: rgba(0,224,255,0.86);
+            box-shadow: 0 0 18px rgba(0,224,255,0.34), inset 0 0 14px rgba(125,95,255,0.18);
+        }
+        @keyframes pet-breathe {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-1px); }
+        }
+        @keyframes pet-tail {
+            0%, 100% { transform: rotate(-18deg); }
+            50% { transform: rotate(16deg); }
+        }
+        @keyframes pet-step-front {
+            0%, 100% { transform: translateY(0) rotate(10deg); }
+            50% { transform: translateY(-3px) rotate(-8deg); }
+        }
+        @keyframes pet-step-back {
+            0%, 100% { transform: translateY(-3px) rotate(-8deg); }
+            50% { transform: translateY(0) rotate(10deg); }
         }
         @media (pointer: coarse), (prefers-reduced-motion: reduce) {
             .cursor-chaser { display: none; }
@@ -288,10 +340,13 @@
     <div class="grain"></div>
     <div class="cursor-chaser" aria-hidden="true">
         <span class="cursor-chaser-tail"></span>
-        <span class="cursor-chaser-tail"></span>
-        <span class="cursor-chaser-tail"></span>
-        <div class="cursor-chaser-core">
-            <span class="cursor-chaser-dot"></span>
+        <span class="cursor-chaser-body"></span>
+        <span class="cursor-chaser-leg back"></span>
+        <span class="cursor-chaser-leg front"></span>
+        <div class="cursor-chaser-head">
+            <span class="cursor-chaser-eye left"></span>
+            <span class="cursor-chaser-eye right"></span>
+            <span class="cursor-chaser-nose"></span>
         </div>
     </div>
 
@@ -506,8 +561,8 @@
             let lastMoveTime = performance.now();
 
             window.addEventListener('mousemove', event => {
-                mouseX = event.clientX + 22;
-                mouseY = event.clientY + 18;
+                mouseX = event.clientX + 18;
+                mouseY = event.clientY + 16;
                 lastMoveTime = performance.now();
                 if (!visible) {
                     visible = true;
@@ -535,10 +590,10 @@
                 const vx = chaserX - lastX;
                 const vy = chaserY - lastY;
                 const angle = Math.atan2(vy, vx) * 180 / Math.PI;
-                const stretch = Math.min(1.28, 1 + Math.hypot(vx, vy) / 90);
+                const running = Math.min(1, Math.hypot(vx, vy) / 18);
                 chaser.style.setProperty('--chaser-angle', `${angle}deg`);
-                chaser.style.setProperty('--chaser-stretch', stretch.toFixed(3));
-                chaser.style.transform = `translate3d(${chaserX}px, ${chaserY}px, 0) rotate(var(--chaser-angle)) scaleX(var(--chaser-stretch))`;
+                chaser.style.setProperty('--chaser-step', `${(running * -2).toFixed(2)}px`);
+                chaser.style.transform = `translate3d(${chaserX}px, ${chaserY}px, 0) rotate(var(--chaser-angle))`;
                 chaser.classList.toggle('is-hunting', visible && distance > 72);
                 lastX = chaserX;
                 lastY = chaserY;

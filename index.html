@@ -196,32 +196,6 @@
         .log-date { font-family: var(--font-mono); color: var(--accent); font-size: 0.7rem; letter-spacing: 0.08em; }
         .log-content { min-width: 0; line-height: 1.9; overflow-wrap: anywhere; word-break: normal; }
         .log-title { color: #aaa; font-weight: 700; }
-        .cursor-chaser {
-            position: fixed;
-            left: 0;
-            top: 0;
-            z-index: 10030;
-            width: 96px;
-            height: 96px;
-            pointer-events: none;
-            opacity: 0;
-            transform: translate3d(-120px, -120px, 0);
-            transition: opacity 0.22s ease;
-            will-change: transform, opacity;
-        }
-        .cursor-chaser.is-visible { opacity: 0.95; }
-        .cursor-chaser-canvas {
-            width: 96px;
-            height: 96px;
-            image-rendering: pixelated;
-            image-rendering: crisp-edges;
-            filter: drop-shadow(0 8px 0 rgba(0,0,0,0.35)) drop-shadow(0 0 10px rgba(125,95,255,0.18));
-            transform-origin: center;
-        }
-        @media (pointer: coarse), (prefers-reduced-motion: reduce) {
-            .cursor-chaser { display: none; }
-        }
-
         @media (max-width: 768px) {
             .site-stat { right: 24px; bottom: 28px; }
             .change-log { padding: 30px 24px; }
@@ -233,9 +207,6 @@
 
     <div id="particles-js"></div>
     <div class="grain"></div>
-    <div class="cursor-chaser" aria-hidden="true">
-        <canvas class="cursor-chaser-canvas" width="32" height="32"></canvas>
-    </div>
 
     <section class="hero" id="top">
         <h1 class="main-title" id="target-title">Akasa1529 | archive</h1>
@@ -433,164 +404,6 @@
         }
         loadChangeLog();
 
-        (() => {
-            if (!window.matchMedia('(pointer: fine)').matches) return;
-            if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
-            const chaser = document.querySelector('.cursor-chaser');
-            const canvas = chaser?.querySelector('canvas');
-            const ctx = canvas?.getContext('2d');
-            if (!chaser || !ctx) return;
-            ctx.imageSmoothingEnabled = false;
-
-            const animal = Math.random() < 0.5 ? 'cat' : 'dog';
-            const px = 1;
-            const colors = {
-                outline: '#151515',
-                cat: '#d97820',
-                catDark: '#9f4e16',
-                catLight: '#f5a03b',
-                dog: '#d39a47',
-                dogDark: '#8d5b25',
-                dogLight: '#edc176',
-                white: '#fff0d7',
-                eye: '#111111',
-                blush: '#f08a7b'
-            };
-            let targetX = -120;
-            let targetY = -120;
-            let currentX = -120;
-            let currentY = -120;
-            let lastX = currentX;
-            let lastY = currentY;
-            let visible = false;
-            let facing = 1;
-            let frame = 0;
-            let lastFrameTime = performance.now();
-
-            function rect(x, y, w, h, color) {
-                ctx.fillStyle = color;
-                ctx.fillRect(x * px, y * px, w * px, h * px);
-            }
-            function drawEye(x, y) {
-                rect(x, y, 2, 2, colors.eye);
-                rect(x, y, 1, 1, '#ffffff');
-            }
-            function pawOffset(walkFrame, side) {
-                if (walkFrame === 0 && side === 'left') return -2;
-                if (walkFrame === 2 && side === 'right') return -2;
-                return 0;
-            }
-            function drawCat(walkFrame, moving) {
-                const idle = !moving;
-                ctx.clearRect(0, 0, 32, 32);
-                const legL = idle ? 0 : pawOffset(walkFrame, 'left');
-                const legR = idle ? 0 : pawOffset(walkFrame, 'right');
-                if (idle) {
-                    rect(4, 21, 2, 5, colors.outline);
-                    rect(3, 24, 6, 2, colors.outline);
-                    rect(5, 22, 2, 2, colors.catDark);
-                    rect(7, 24, 8, 2, colors.catDark);
-                } else {
-                    rect(3, 21, 9, 4, colors.outline);
-                    rect(4, 22, 7, 2, colors.catDark);
-                }
-                rect(9, 13, 14, 13, colors.outline);
-                rect(11, 14, 10, 10, colors.cat);
-                rect(14, 17, 5, 7, colors.white);
-                rect(11, 16, 2, 1, colors.catDark);
-                rect(19, 16, 2, 1, colors.catDark);
-                rect(10, 24 + legL, 4, 4, colors.outline);
-                rect(11, 24 + legL, 2, 3, colors.catLight);
-                rect(18, 24 + legR, 4, 4, colors.outline);
-                rect(19, 24 + legR, 2, 3, colors.catLight);
-                rect(10, 8, 13, 9, colors.outline);
-                rect(11, 6, 5, 5, colors.outline);
-                rect(17, 6, 5, 5, colors.outline);
-                rect(12, 9, 10, 7, colors.cat);
-                rect(13, 7, 2, 3, colors.catLight);
-                rect(18, 7, 2, 3, colors.catLight);
-                rect(15, 12, 4, 4, colors.white);
-                drawEye(13, 11);
-                drawEye(19, 11);
-                rect(16, 14, 1, 1, colors.blush);
-                rect(13, 9, 1, 1, colors.catDark);
-                rect(17, 9, 1, 1, colors.catDark);
-                rect(21, 20, 2, 2, colors.outline);
-            }
-            function drawDog(walkFrame, moving) {
-                ctx.clearRect(0, 0, 32, 32);
-                const legL = moving ? pawOffset(walkFrame, 'left') : 0;
-                const legR = moving ? pawOffset(walkFrame, 'right') : 0;
-                rect(5, 12, 3, 8, colors.outline);
-                rect(4, 10, 7, 3, colors.outline);
-                rect(6, 11, 3, 3, colors.dogLight);
-                rect(8, 13, 2, 5, colors.dog);
-                rect(8, 15, 15, 10, colors.outline);
-                rect(10, 16, 11, 7, colors.dog);
-                rect(14, 18, 5, 5, colors.white);
-                rect(10, 24 + legL, 4, 4, colors.outline);
-                rect(11, 24 + legL, 2, 3, colors.dogDark);
-                rect(18, 24 + legR, 4, 4, colors.outline);
-                rect(19, 24 + legR, 2, 3, colors.dogDark);
-                rect(15, 7, 13, 10, colors.outline);
-                rect(16, 5, 5, 5, colors.outline);
-                rect(23, 5, 5, 5, colors.outline);
-                rect(17, 8, 9, 8, colors.dog);
-                rect(17, 6, 2, 3, colors.dogLight);
-                rect(24, 6, 2, 3, colors.dogLight);
-                rect(20, 12, 7, 5, colors.white);
-                drawEye(18, 10);
-                drawEye(24, 10);
-                rect(23, 14, 2, 1, colors.eye);
-                rect(17, 16, 2, 1, colors.dogDark);
-                rect(20, 16, 2, 1, colors.dogDark);
-            }
-            function draw(moving) {
-                if (animal === 'cat') drawCat(frame, moving);
-                else drawDog(frame, moving);
-            }
-
-            window.addEventListener('mousemove', event => {
-                targetX = event.clientX + 18;
-                targetY = event.clientY + 14;
-                if (!visible) {
-                    visible = true;
-                    chaser.classList.add('is-visible');
-                }
-            }, { passive: true });
-            window.addEventListener('mouseleave', () => {
-                visible = false;
-                chaser.classList.remove('is-visible');
-            }, { passive: true });
-
-            function follow() {
-                const now = performance.now();
-                const dx = targetX - currentX;
-                const dy = targetY - currentY;
-                const distance = Math.hypot(dx, dy);
-                const speed = distance > 200 ? 0.14 : distance >= 80 ? 0.08 : 0.04;
-                const moving = distance > 10;
-                if (moving) {
-                    currentX += dx * speed;
-                    currentY += dy * speed;
-                }
-                const vx = currentX - lastX;
-                if (Math.abs(vx) > 0.45) facing = vx < 0 ? -1 : 1;
-                if (moving && now - lastFrameTime > 100) {
-                    frame = (frame + 1) % 4;
-                    lastFrameTime = now;
-                }
-                if (!moving) frame = 1;
-                draw(moving);
-                canvas.style.transform = `scaleX(${facing})`;
-                chaser.style.transform = `translate3d(${currentX}px, ${currentY}px, 0)`;
-                lastX = currentX;
-                lastY = currentY;
-                requestAnimationFrame(follow);
-            }
-            draw(false);
-            follow();
-        })();
     </script>
     <script>
         (() => {

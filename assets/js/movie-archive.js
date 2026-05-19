@@ -59,6 +59,19 @@
         return tags.join('');
     }
 
+    function renderActions(item) {
+        const hasSeries = item.series && Array.isArray(item.series.items) && item.series.items.length;
+        if (!hasSeries) return '';
+        return `<div class="movie-actions"><button class="series-toggle" type="button" aria-expanded="false" aria-controls="${escapeHtml(item.id)}-titles" onclick="toggleSeries(this)">TITLES</button></div>`;
+    }
+
+    function renderSeries(item) {
+        const series = item.series;
+        if (!series || !Array.isArray(series.items) || !series.items.length) return '';
+        const items = series.items.map(title => `<li>${escapeHtml(title)}</li>`).join('');
+        return `<div class="series-list" id="${escapeHtml(item.id)}-titles"><div class="series-list-title">${escapeHtml(series.title || 'Included titles')}</div><ul>${items}</ul></div>`;
+    }
+
     function renderItem(item) {
         const thumbnail = assetPath(item.thumbnail);
         const title = escapeHtml(item.title);
@@ -73,6 +86,8 @@
                 </div>
                 <h2 class="movie-title">${title}</h2>
                 ${item.note ? `<p class="synopsis">${escapeHtml(item.note)}</p>` : '<p class="synopsis">あらすじやメモは movie-data.json から追加できます。</p>'}
+                ${renderActions(item)}
+                ${renderSeries(item)}
             </div>
         </article>`;
     }
@@ -163,6 +178,15 @@
         updateFilterButtons('type', selectedTypes);
         updateFilterButtons('genre', selectedGenres);
         applyFilters();
+    };
+
+    window.toggleSeries = button => {
+        const target = document.getElementById(button.getAttribute('aria-controls'));
+        if (!target) return;
+        const open = !target.classList.contains('is-open');
+        target.classList.toggle('is-open', open);
+        button.setAttribute('aria-expanded', String(open));
+        button.textContent = open ? 'CLOSE TITLES' : 'TITLES';
     };
 
     window.toggleFilterDialog = open => {

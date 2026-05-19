@@ -4,447 +4,694 @@
     "title": "夏へのトンネル、さよならの出口",
     "score": 5,
     "type": "movie",
+    "genres": [
+      "animation",
+      "romance",
+      "sci-fi"
+    ],
     "thumbnail": "",
-    "note": ""
+    "note": "不思議なトンネルをめぐって、失ったものと向き合う青春SF。限られた時間の中で進む恋と選択が中心。"
   },
   {
     "id": "movie-02",
     "title": "メイクアガール",
     "score": 5,
     "type": "movie",
+    "genres": [
+      "animation",
+      "sci-fi",
+      "romance"
+    ],
     "thumbnail": "",
-    "note": ""
+    "note": "人工的に作られた少女との出会いを通して、人の心や愛情の形を描くSFアニメ映画。"
   },
   {
     "id": "movie-03",
     "title": "働く細胞実写",
     "score": 3,
     "type": "movie",
+    "genres": [
+      "comedy",
+      "action"
+    ],
     "thumbnail": "",
-    "note": ""
+    "note": "体内で働く細胞たちを人間の姿で描く実写エンタメ。病気や免疫の仕組みをアクションとコメディで見せる。"
   },
   {
     "id": "movie-04",
     "title": "天気の子",
     "score": 5,
     "type": "movie",
+    "genres": [
+      "animation",
+      "romance",
+      "fantasy"
+    ],
     "thumbnail": "",
-    "note": ""
+    "note": "雨が降り続く東京で、天気を晴れにできる少女と少年が出会う物語。世界よりも大切なものを選ぶ青春ファンタジー。"
   },
   {
     "id": "movie-05",
     "title": "サマーウォーズ",
     "score": 4,
     "type": "movie",
+    "genres": [
+      "animation",
+      "sci-fi",
+      "family"
+    ],
     "thumbnail": "",
-    "note": ""
+    "note": "田舎の大家族と仮想世界OZを舞台に、世界規模の危機へ立ち向かう夏のSF群像劇。"
   },
   {
     "id": "movie-06",
     "title": "バケモノの子",
     "score": 5,
     "type": "movie",
+    "genres": [
+      "animation",
+      "fantasy",
+      "action"
+    ],
     "thumbnail": "",
-    "note": ""
+    "note": "人間界で孤独だった少年が、バケモノの世界で師匠と出会い成長していく冒険ファンタジー。"
   },
   {
     "id": "movie-07",
     "title": "君の名は",
     "score": 4,
     "type": "movie",
+    "genres": [
+      "animation",
+      "romance",
+      "fantasy"
+    ],
     "thumbnail": "",
-    "note": ""
+    "note": "夢の中で入れ替わる少年少女が、時間と距離を越えて互いを探す青春ラブストーリー。"
   },
   {
     "id": "movie-08",
     "title": "おおかみこどもの雨と雪",
     "score": 5,
     "type": "movie",
+    "genres": [
+      "animation",
+      "family",
+      "drama"
+    ],
     "thumbnail": "",
-    "note": ""
+    "note": "おおかみおとこの子どもを育てる母と、雨と雪それぞれの成長を描く家族の物語。"
   },
   {
     "id": "movie-09",
     "title": "すずめの戸締り",
     "score": 4,
     "type": "movie",
+    "genres": [
+      "animation",
+      "fantasy",
+      "adventure"
+    ],
     "thumbnail": "",
-    "note": ""
+    "note": "災いを呼ぶ扉を閉じるため、少女が日本各地を旅するロードムービー型ファンタジー。"
   },
   {
     "id": "movie-10",
     "title": "僕が愛したすべての君へ",
     "score": 4,
     "type": "movie",
+    "genres": [
+      "animation",
+      "romance",
+      "sci-fi"
+    ],
     "thumbnail": "",
-    "note": ""
+    "note": "並行世界を題材に、別の選択肢に分かれていく恋と人生を描くSFラブストーリー。"
   },
   {
     "id": "movie-11",
     "title": "君を愛したひとりの僕へ",
     "score": 4,
     "type": "movie",
+    "genres": [
+      "animation",
+      "romance",
+      "sci-fi"
+    ],
     "thumbnail": "",
-    "note": ""
+    "note": "もう一つの並行世界から、運命の相手を選ぼうとする少年の恋を描くSFラブストーリー。"
   },
   {
     "id": "movie-12",
     "title": "RE:BORN リボーン",
     "score": 4,
     "type": "movie",
+    "genres": [
+      "action"
+    ],
     "thumbnail": "",
-    "note": ""
+    "note": "元特殊傭兵の男が、圧倒的な近接戦闘術で敵に立ち向かうハードアクション。"
   },
   {
     "id": "movie-13",
     "title": "グリーンブック",
     "score": 5,
     "type": "movie",
+    "genres": [
+      "drama",
+      "comedy"
+    ],
     "thumbnail": "",
-    "note": ""
+    "note": "黒人ピアニストと白人運転手が旅を通じて互いを知っていく、実話をもとにしたヒューマンドラマ。"
   },
   {
     "id": "movie-14",
     "title": "新幹線大爆破",
     "score": 4,
     "type": "movie",
+    "genres": [
+      "action",
+      "suspense"
+    ],
     "thumbnail": "",
-    "note": ""
+    "note": "爆弾を仕掛けられた新幹線をめぐり、乗客と関係者が極限状態で対応するサスペンス。"
   },
   {
     "id": "movie-15",
     "title": "極主夫道",
     "score": 3,
     "type": "movie",
+    "genres": [
+      "comedy"
+    ],
     "thumbnail": "",
-    "note": ""
+    "note": "元極道の男が専業主夫として全力で家事に挑む、ギャップが楽しいコメディ。"
   },
   {
     "id": "movie-16",
     "title": "最強のふたり",
     "score": 5,
     "type": "movie",
+    "genres": [
+      "drama",
+      "comedy"
+    ],
     "thumbnail": "",
-    "note": ""
+    "note": "全身麻痺の富豪と介護人になった青年が、衝突しながら友情を築くヒューマンドラマ。"
   },
   {
     "id": "movie-17",
     "title": "アイの歌声を聞かせて",
     "score": 4,
     "type": "movie",
+    "genres": [
+      "animation",
+      "sci-fi",
+      "music"
+    ],
     "thumbnail": "",
-    "note": ""
+    "note": "転校生として現れたAI少女が、歌で周囲の心を動かしていく青春SFミュージカル。"
   },
   {
     "id": "movie-18",
     "title": "プラットフォーム",
     "score": 3,
     "type": "movie",
+    "genres": [
+      "suspense",
+      "sci-fi"
+    ],
     "thumbnail": "",
-    "note": ""
+    "note": "階層構造の施設で食料が上から下へ運ばれる設定を通じ、格差と人間性を描くスリラー。"
   },
   {
     "id": "movie-19",
     "title": "レベル・リッジ",
     "score": 5,
     "type": "movie",
+    "genres": [
+      "action",
+      "suspense"
+    ],
     "thumbnail": "",
-    "note": ""
+    "note": "小さな町の権力構造に巻き込まれた男が、不正と暴力に立ち向かうサスペンスアクション。"
   },
   {
     "id": "movie-20",
     "title": "秒速5センチメートル実写",
     "score": 5,
     "type": "movie",
+    "genres": [
+      "romance",
+      "drama"
+    ],
     "thumbnail": "",
-    "note": ""
+    "note": "すれ違う時間と距離の中で、初恋の記憶を抱え続ける男女を描く恋愛ドラマ。"
   },
   {
     "id": "movie-21",
     "title": "君の膵臓を食べたい",
     "score": 5,
     "type": "movie",
+    "genres": [
+      "animation",
+      "romance",
+      "drama"
+    ],
     "thumbnail": "",
-    "note": ""
+    "note": "余命を隠す少女と孤独な少年の交流を通じ、生きることの意味を描く青春ドラマ。"
   },
   {
     "id": "movie-22",
     "title": "君の膵臓を食べたい(実写)",
     "score": 5,
     "type": "movie",
+    "genres": [
+      "romance",
+      "drama"
+    ],
     "thumbnail": "",
-    "note": ""
+    "note": "余命わずかな少女とクラスメイトの少年が過ごした日々を、回想とともに描く実写青春ドラマ。"
   },
   {
     "id": "movie-23",
     "title": "果てしなきスカーレット",
     "score": 1,
     "type": "movie",
+    "genres": [
+      "animation",
+      "fantasy",
+      "adventure"
+    ],
     "thumbnail": "",
-    "note": ""
+    "note": "王女スカーレットの旅と戦いを通じて、生きる意味や復讐を描くファンタジー作品。"
   },
   {
     "id": "movie-24",
     "title": "映画ドラえもん(2008年以降はすべて見た)",
     "score": 5,
     "type": "movie",
+    "genres": [
+      "animation",
+      "family",
+      "adventure"
+    ],
     "thumbnail": "",
-    "note": ""
+    "note": "ドラえもんとのび太たちが、毎作さまざまな世界で大冒険を繰り広げる長編シリーズ。"
   },
   {
     "id": "movie-25",
     "title": "映画クレヨンしんちゃん(サボテンとか天かす学園など)",
     "score": 4,
     "type": "movie",
+    "genres": [
+      "animation",
+      "comedy",
+      "family"
+    ],
     "thumbnail": "",
-    "note": ""
+    "note": "野原一家としんのすけが、笑いと意外な感動を交えて事件に巻き込まれる劇場版シリーズ。"
   },
   {
     "id": "movie-26",
     "title": "映画名探偵コナン(まぁまぁ見た)",
     "score": 4,
     "type": "movie",
+    "genres": [
+      "animation",
+      "mystery",
+      "action"
+    ],
     "thumbnail": "",
-    "note": ""
+    "note": "江戸川コナンが大規模事件や爆破事件に挑む、推理とアクションの劇場版シリーズ。"
   },
   {
     "id": "movie-27",
     "title": "鬼滅の刃 無限列車編、無限城編あかざ再来",
     "score": 4,
     "type": "movie",
+    "genres": [
+      "animation",
+      "action",
+      "fantasy"
+    ],
     "thumbnail": "",
-    "note": ""
+    "note": "鬼殺隊の戦いを劇場版スケールで描くシリーズ。仲間との絆と鬼との激闘が中心。"
   },
   {
     "id": "movie-28",
     "title": "爆弾",
     "score": 5,
     "type": "movie",
+    "genres": [
+      "suspense",
+      "mystery"
+    ],
     "thumbnail": "",
-    "note": ""
+    "note": "爆弾事件をめぐる緊迫した駆け引きと、犯人の言葉に翻弄される人々を描くサスペンス。"
   },
   {
     "id": "movie-29",
     "title": "ツレがうつになりまして。",
     "score": 3,
     "type": "movie",
+    "genres": [
+      "drama"
+    ],
     "thumbnail": "",
-    "note": ""
+    "note": "うつ病になった夫と支える妻の日々を、やさしい視点で描く夫婦のヒューマンドラマ。"
   },
   {
     "id": "movie-30",
     "title": "新解釈幕末伝",
     "score": 3,
     "type": "movie",
+    "genres": [
+      "comedy",
+      "history"
+    ],
     "thumbnail": "",
-    "note": ""
+    "note": "幕末の人物や出来事を新しい解釈と笑いで描く歴史コメディ。"
   },
   {
     "id": "movie-31",
     "title": "るろうに剣心 実写 全て",
     "score": 5,
     "type": "movie",
+    "genres": [
+      "action",
+      "history",
+      "drama"
+    ],
     "thumbnail": "",
-    "note": ""
+    "note": "人斬りだった剣心が、過去と向き合いながら大切な人々を守る実写アクションシリーズ。"
   },
   {
     "id": "movie-32",
     "title": "恋愛裁判",
     "score": 5,
     "type": "movie",
+    "genres": [
+      "romance",
+      "drama"
+    ],
     "thumbnail": "",
-    "note": ""
+    "note": "恋愛を裁判になぞらえ、気持ちのすれ違いや罪悪感を描く恋愛ドラマ。"
   },
   {
     "id": "movie-33",
     "title": "サマーゴースト",
     "score": 5,
     "type": "movie",
+    "genres": [
+      "animation",
+      "drama",
+      "fantasy"
+    ],
     "thumbnail": "",
-    "note": ""
+    "note": "それぞれ悩みを抱える高校生たちが、夏に現れる幽霊を探す短編青春ファンタジー。"
   },
   {
     "id": "movie-34",
     "title": "超かぐや姫！",
     "score": 5,
     "type": "movie",
+    "genres": [
+      "fantasy",
+      "comedy"
+    ],
     "thumbnail": "",
-    "note": ""
+    "note": "かぐや姫の物語を現代的なテンションで描く、華やかなファンタジー作品。"
   },
   {
     "id": "movie-35",
     "title": "でっちあげ ～殺人教師と呼ばれた男",
     "score": 5,
     "type": "movie",
+    "genres": [
+      "drama",
+      "suspense"
+    ],
     "thumbnail": "",
-    "note": ""
+    "note": "教師への告発をめぐり、報道や周囲の視線によって人生が揺さぶられる社会派ドラマ。"
   },
   {
     "id": "movie-36",
     "title": "教場 全シーズン",
     "score": 5,
     "type": "drama",
+    "genres": [
+      "mystery",
+      "drama"
+    ],
     "thumbnail": "",
-    "note": ""
+    "note": "警察学校を舞台に、冷徹な教官が生徒たちの覚悟と弱さを見抜いていく緊張感あるドラマ。"
   },
   {
     "id": "movie-37",
     "title": "THE END OF THE F***ING WORLD",
     "score": 2,
     "type": "drama",
+    "genres": [
+      "drama",
+      "comedy",
+      "suspense"
+    ],
     "thumbnail": "",
-    "note": ""
+    "note": "問題を抱えた少年少女が逃避行を続ける、ブラックユーモアの強い青春ドラマ。"
   },
   {
     "id": "movie-38",
     "title": "言の葉の庭",
     "score": 5,
     "type": "movie",
+    "genres": [
+      "animation",
+      "romance",
+      "drama"
+    ],
     "thumbnail": "",
-    "note": ""
+    "note": "雨の日の庭園で出会う少年と女性の、静かで繊細な距離感を描く恋愛アニメ。"
   },
   {
     "id": "movie-39",
     "title": "ルックバック",
     "score": 5,
     "type": "movie",
+    "genres": [
+      "animation",
+      "drama"
+    ],
     "thumbnail": "",
-    "note": ""
+    "note": "漫画を描く二人の少女の出会いと創作への思いを、短く鋭く描く青春ドラマ。"
   },
   {
     "id": "movie-40",
     "title": "愛がなんだ",
     "score": 3,
     "type": "movie",
+    "genres": [
+      "romance",
+      "drama"
+    ],
     "thumbnail": "",
-    "note": ""
+    "note": "一方通行の恋にのめり込む女性を通じて、好きでいることの苦さを描く恋愛ドラマ。"
   },
   {
     "id": "movie-41",
     "title": "MIU404",
     "score": 5,
     "type": "drama",
+    "genres": [
+      "mystery",
+      "action",
+      "drama"
+    ],
     "thumbnail": "",
-    "note": ""
+    "note": "機動捜査隊のバディが、限られた時間の中で事件に向き合う刑事ドラマ。"
   },
   {
     "id": "movie-42",
     "title": "ドクターホワイト",
     "score": 5,
     "type": "drama",
+    "genres": [
+      "mystery",
+      "medical"
+    ],
     "thumbnail": "",
-    "note": ""
+    "note": "正体不明の女性が医学知識で診断を導き、病院の謎にも関わっていく医療ミステリー。"
   },
   {
     "id": "movie-43",
     "title": "不適切にも程がある！",
     "score": 4,
     "type": "drama",
+    "genres": [
+      "comedy",
+      "sci-fi",
+      "drama"
+    ],
     "thumbnail": "",
-    "note": ""
+    "note": "昭和の教師が令和へタイムスリップし、価値観の違いを笑いと共に描くコメディドラマ。"
   },
   {
     "id": "movie-44",
     "title": "さよならのつづき",
     "score": 5,
     "type": "drama",
+    "genres": [
+      "romance",
+      "drama"
+    ],
     "thumbnail": "",
-    "note": ""
+    "note": "喪失を抱えた人々が偶然のつながりを通して再び誰かを想う恋愛ドラマ。"
   },
   {
     "id": "movie-45",
     "title": "フォルトゥナの涙",
     "score": 4,
     "type": "movie",
+    "genres": [
+      "romance",
+      "fantasy",
+      "drama"
+    ],
     "thumbnail": "",
-    "note": ""
+    "note": "死が近い人が見える青年が、大切な人の運命を変えようとする恋愛ファンタジー。"
   },
   {
     "id": "movie-46",
     "title": "TOKYO MER",
     "score": 5,
     "type": "drama",
+    "genres": [
+      "medical",
+      "action",
+      "drama"
+    ],
     "thumbnail": "",
-    "note": ""
+    "note": "重大事故や災害現場に駆けつける救命チームの奮闘を描く医療アクション。"
   },
   {
     "id": "movie-47",
     "title": "イカゲーム",
     "score": 3,
     "type": "drama",
+    "genres": [
+      "suspense",
+      "action",
+      "drama"
+    ],
     "thumbnail": "",
-    "note": ""
+    "note": "借金を抱えた人々が、命がけのゲームに参加する韓国サバイバルスリラー。"
   },
   {
     "id": "movie-48",
     "title": "コンフィデンスマンJP",
     "score": 4,
     "type": "drama",
+    "genres": [
+      "comedy",
+      "mystery"
+    ],
     "thumbnail": "",
-    "note": ""
+    "note": "信用詐欺師たちが大がかりな作戦で悪人から金を奪う、痛快なコンゲーム作品。"
   },
   {
     "id": "movie-49",
     "title": "日本沈没",
     "score": 4,
     "type": "drama",
+    "genres": [
+      "sci-fi",
+      "drama"
+    ],
     "thumbnail": "",
-    "note": ""
+    "note": "日本列島の危機を前に、政治家や研究者たちが国家規模の決断に迫られるドラマ。"
   },
   {
     "id": "movie-50",
     "title": "弱いヒーローClass1",
     "score": 5,
     "type": "drama",
+    "genres": [
+      "action",
+      "drama"
+    ],
     "thumbnail": "",
-    "note": ""
+    "note": "頭脳派の少年が暴力の連鎖に巻き込まれながら、仲間と自分を守る学園アクション。"
   },
   {
     "id": "movie-51",
     "title": "私の家政婦ナギサさん",
     "score": 2,
     "type": "drama",
+    "genres": [
+      "comedy",
+      "romance"
+    ],
     "thumbnail": "",
-    "note": ""
+    "note": "仕事一筋の女性と家政婦として現れた男性の交流を描く、温かいラブコメディ。"
   },
   {
     "id": "movie-52",
     "title": "リッチマン、プアウーマン",
     "score": 5,
     "type": "drama",
+    "genres": [
+      "romance",
+      "business"
+    ],
     "thumbnail": "",
-    "note": ""
+    "note": "IT企業社長と就活生の出会いから、仕事と恋が動き出すビジネスラブストーリー。"
   },
   {
     "id": "movie-53",
     "title": "放課後カルテ",
     "score": 5,
     "type": "drama",
+    "genres": [
+      "medical",
+      "drama"
+    ],
     "thumbnail": "",
-    "note": ""
+    "note": "学校医が子どもたちの不調や心のサインに向き合う、学園医療ドラマ。"
   },
   {
     "id": "movie-54",
     "title": "ドラゴン桜",
     "score": 4,
     "type": "drama",
+    "genres": [
+      "school",
+      "drama"
+    ],
     "thumbnail": "",
-    "note": ""
+    "note": "落ちこぼれ生徒たちが東大合格を目指し、勉強と人生を変えていく学園ドラマ。"
   },
   {
     "id": "movie-55",
     "title": "真犯人フラグ",
     "score": 5,
     "type": "drama",
+    "genres": [
+      "mystery",
+      "suspense"
+    ],
     "thumbnail": "",
-    "note": ""
+    "note": "家族失踪事件をきっかけに、主人公が世間の疑惑と真相に追い詰められていくミステリー。"
   },
   {
     "id": "movie-56",
     "title": "ハコヅメ！",
     "score": 4,
     "type": "drama",
+    "genres": [
+      "comedy",
+      "drama"
+    ],
     "thumbnail": "",
-    "note": ""
+    "note": "交番勤務の女性警察官たちの日常と事件対応を、笑いとリアルさで描く警察ドラマ。"
   }
 ]

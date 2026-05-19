@@ -4,8 +4,28 @@
         drama: 'ドラマ'
     };
 
+    const genreLabels = {
+        animation: 'アニメーション',
+        romance: '恋愛',
+        'sci-fi': 'SF',
+        comedy: 'コメディ',
+        action: 'アクション',
+        fantasy: 'ファンタジー',
+        family: '家族',
+        drama: 'ドラマ',
+        adventure: '冒険',
+        suspense: 'サスペンス',
+        music: '音楽',
+        mystery: 'ミステリー',
+        history: '歴史',
+        medical: '医療',
+        business: 'ビジネス',
+        school: '学園'
+    };
+
     const selectedRatings = new Set();
     const selectedTypes = new Set();
+    const selectedGenres = new Set();
 
     function nestedPath() {
         return /\/movie\/(?:index\.html)?$/i.test(window.location.pathname);
@@ -31,19 +51,28 @@
         return `${'★'.repeat(value)}${'☆'.repeat(Math.max(0, 5 - value))}`;
     }
 
+    function renderTags(item) {
+        const tags = [`<span class="movie-tag">${escapeHtml(typeLabels[item.type] || item.type || '映画')}</span>`];
+        (item.genres || []).forEach(genre => {
+            tags.push(`<span class="movie-tag movie-tag-genre">${escapeHtml(genreLabels[genre] || genre)}</span>`);
+        });
+        return tags.join('');
+    }
+
     function renderItem(item) {
         const thumbnail = assetPath(item.thumbnail);
         const title = escapeHtml(item.title);
         const type = escapeHtml(item.type || 'movie');
-        return `<article class="movie-item anim-box" id="${escapeHtml(item.id)}" data-score="${escapeHtml(item.score)}" data-type="${type}">
+        const genres = Array.isArray(item.genres) ? item.genres.map(String) : [];
+        return `<article class="movie-item anim-box" id="${escapeHtml(item.id)}" data-score="${escapeHtml(item.score)}" data-type="${type}" data-genre="${escapeHtml(genres.join(' '))}">
             <div class="movie-thumb">${thumbnail ? `<img src="${escapeHtml(thumbnail)}" alt="${title}">` : '<span>NO IMAGE</span>'}</div>
             <div class="movie-info">
                 <div class="movie-meta-top">
-                    <div class="movie-tags"><span class="movie-tag">${escapeHtml(typeLabels[item.type] || item.type || '映画')}</span></div>
+                    <div class="movie-tags">${renderTags(item)}</div>
                     <span class="rating">評価: ${ratingStars(item.score)}</span>
                 </div>
                 <h2 class="movie-title">${title}</h2>
-                ${item.note ? `<p class="synopsis">${escapeHtml(item.note)}</p>` : '<p class="synopsis">サムネイルやメモは movie-data.json から追加できます。</p>'}
+                ${item.note ? `<p class="synopsis">${escapeHtml(item.note)}</p>` : '<p class="synopsis">あらすじやメモは movie-data.json から追加できます。</p>'}
             </div>
         </article>`;
     }
@@ -94,9 +123,11 @@
 
     function applyFilters() {
         document.querySelectorAll('.movie-item').forEach(item => {
+            const genres = (item.dataset.genre || '').split(/\s+/).filter(Boolean);
             const ratingMatch = selectedRatings.size === 0 || selectedRatings.has(item.dataset.score);
             const typeMatch = selectedTypes.size === 0 || selectedTypes.has(item.dataset.type);
-            item.classList.toggle('hidden', !(ratingMatch && typeMatch));
+            const genreMatch = selectedGenres.size === 0 || genres.some(genre => selectedGenres.has(genre));
+            item.classList.toggle('hidden', !(ratingMatch && typeMatch && genreMatch));
         });
         generateTOC();
     }
@@ -118,11 +149,19 @@
         applyFilters();
     };
 
+    window.filterGenre = value => {
+        toggleFilter(selectedGenres, value);
+        updateFilterButtons('genre', selectedGenres);
+        applyFilters();
+    };
+
     window.clearFilters = () => {
         selectedRatings.clear();
         selectedTypes.clear();
+        selectedGenres.clear();
         updateFilterButtons('rating', selectedRatings);
         updateFilterButtons('type', selectedTypes);
+        updateFilterButtons('genre', selectedGenres);
         applyFilters();
     };
 

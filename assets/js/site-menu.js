@@ -174,7 +174,7 @@
         { href: '/', label: 'HOME', sub: 'top page' },
         { href: '/profile/', label: 'PROFILE', sub: 'about' },
         { href: '/anime/', label: 'ANIME', sub: 'archive' },
-        { href: '/movie/', label: 'MOVIE', sub: 'archive' },
+        { href: '/movie/', label: 'MOVIE', sub: 'movie & drama' },
         { href: '/game/', label: 'GAME', sub: 'archive' },
         { href: '/archive/', label: 'TOOL', sub: 'works' },
         { href: '/ticket/', label: 'CONTACT', sub: 'discord' },

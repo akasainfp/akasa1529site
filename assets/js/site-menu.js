@@ -6,14 +6,14 @@
         '/home/': 'home/index.html',
         '/profile/': 'profile/index.html',
         '/anime/': 'anime/index.html',
-        '/manga/': 'manga/index.html',
+        '/movie/': 'movie/index.html',
         '/game/': 'game/index.html',
         '/archive/': 'archive/index.html',
         '/privacy/': 'privacy/index.html',
         '/ticket/': 'ticket/index.html'
     };
     const path = decodeURIComponent(window.location.pathname).replace(/\\/g, '/');
-    const nestedPage = /\/(home|profile|anime|manga|game|archive|privacy|ticket)\/index\.html$/i.test(path);
+    const nestedPage = /\/(home|profile|anime|movie|game|archive|privacy|ticket)\/index\.html$/i.test(path);
     const homePage = window.location.protocol !== 'file:'
         ? (path === '/' || /\/home\/?$/i.test(path))
         : (!nestedPage && /\/index\.html$/i.test(path)) || /\/home\/index\.html$/i.test(path);
@@ -174,7 +174,7 @@
         { href: '/', label: 'HOME', sub: 'top page' },
         { href: '/profile/', label: 'PROFILE', sub: 'about' },
         { href: '/anime/', label: 'ANIME', sub: 'archive' },
-        { href: '/manga/', label: 'MANGA', sub: 'archive' },
+        { href: '/movie/', label: 'MOVIE', sub: 'archive' },
         { href: '/game/', label: 'GAME', sub: 'archive' },
         { href: '/archive/', label: 'TOOL', sub: 'works' },
         { href: '/ticket/', label: 'CONTACT', sub: 'discord' },

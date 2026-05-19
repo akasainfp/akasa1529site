@@ -1,0 +1,1146 @@
+[
+  {
+    "id": "seven-days",
+    "title": "7 Days to End with You",
+    "score": 3,
+    "category": "mystery adventure",
+    "hard": "steam pc",
+    "thumbnail": "assets/game/seven-days.jpg",
+    "alt": "7 Days to End with You",
+    "synopsis": "知らない言葉を読み解きながら、7日間を過ごすアドベンチャー。",
+    "links": [
+      {
+        "label": "STEAM",
+        "href": "https://store.steampowered.com/app/1859280"
+      }
+    ]
+  },
+  {
+    "id": "among-us",
+    "title": "Among Us",
+    "score": 3,
+    "category": "party mystery",
+    "hard": "steam pc",
+    "thumbnail": "assets/game/among-us.jpg",
+    "alt": "Among Us",
+    "synopsis": "クルーとインポスターに分かれて遊ぶ、会話と疑心暗鬼のパーティーゲーム。",
+    "links": [
+      {
+        "label": "STEAM",
+        "href": "https://store.steampowered.com/app/945360"
+      }
+    ]
+  },
+  {
+    "id": "buckshot-roulette",
+    "title": "Buckshot Roulette",
+    "score": 4,
+    "category": "horror strategy",
+    "hard": "steam pc",
+    "thumbnail": "assets/game/buckshot-roulette.jpg",
+    "alt": "Buckshot Roulette",
+    "synopsis": "ショットガンと読み合いで進む、短く濃い心理戦ゲーム。",
+    "links": [
+      {
+        "label": "STEAM",
+        "href": "https://store.steampowered.com/app/2835570"
+      }
+    ]
+  },
+  {
+    "id": "cheaters-cheetah",
+    "title": "Cheaters Cheetah",
+    "score": 2,
+    "category": "action party",
+    "hard": "steam pc",
+    "thumbnail": "assets/game/cheaters-cheetah.jpg",
+    "alt": "Cheaters Cheetah",
+    "synopsis": "チート級の動きと勢いを楽しむアクションゲーム。",
+    "links": [
+      {
+        "label": "STEAM",
+        "href": "https://store.steampowered.com/app/3438990"
+      }
+    ]
+  },
+  {
+    "id": "counter-strike-2",
+    "title": "Counter-Strike 2",
+    "score": 4,
+    "category": "fps-tps",
+    "hard": "steam pc",
+    "thumbnail": "assets/game/counter-strike-2.jpg",
+    "alt": "Counter-Strike 2",
+    "synopsis": "攻守に分かれて戦う、競技性の高いタクティカルFPS。",
+    "links": [
+      {
+        "label": "STEAM",
+        "href": "https://store.steampowered.com/app/730"
+      }
+    ]
+  },
+  {
+    "id": "grapples-galore",
+    "title": "Grapples Galore",
+    "score": 2,
+    "category": "action party",
+    "hard": "steam pc",
+    "thumbnail": "assets/game/grapples-galore.jpg",
+    "alt": "Grapples Galore",
+    "synopsis": "グラップル移動を軸にした、スピード感のある対戦アクション。",
+    "links": [
+      {
+        "label": "STEAM",
+        "href": "https://store.steampowered.com/app/2239140"
+      }
+    ]
+  },
+  {
+    "id": "mecha-break",
+    "title": "MECHA BREAK",
+    "score": 5,
+    "category": "action fps-tps",
+    "hard": "steam pc",
+    "thumbnail": "assets/game/mecha-break.jpg",
+    "alt": "MECHA BREAK",
+    "synopsis": "メカを操って戦う、ハイスピードなロボットアクション。",
+    "links": [
+      {
+        "label": "STEAM",
+        "href": "https://store.steampowered.com/app/2452280"
+      }
+    ]
+  },
+  {
+    "id": "microworks",
+    "title": "MicroWorks",
+    "score": 1,
+    "category": "party",
+    "hard": "steam pc",
+    "thumbnail": "assets/game/microworks.jpg",
+    "alt": "MicroWorks",
+    "synopsis": "短いミニゲームを次々こなす、にぎやかなパーティーゲーム。",
+    "links": [
+      {
+        "label": "STEAM",
+        "href": "https://store.steampowered.com/app/1233410"
+      }
+    ]
+  },
+  {
+    "id": "peak",
+    "title": "PEAK",
+    "score": 3,
+    "category": "action open-world",
+    "hard": "steam pc",
+    "thumbnail": "assets/game/peak.jpg",
+    "alt": "PEAK",
+    "synopsis": "登る、進む、落ちないように踏ん張る。協力と挑戦のゲーム。",
+    "links": [
+      {
+        "label": "STEAM",
+        "href": "https://store.steampowered.com/app/3527290"
+      }
+    ]
+  },
+  {
+    "id": "repo",
+    "title": "R.E.P.O.",
+    "score": 4,
+    "category": "horror action",
+    "hard": "steam pc",
+    "thumbnail": "assets/game/repo.jpg",
+    "alt": "R.E.P.O.",
+    "synopsis": "危険な場所で物品を回収する、協力型ホラーゲーム。",
+    "links": [
+      {
+        "label": "STEAM",
+        "href": "https://store.steampowered.com/app/3241660"
+      }
+    ]
+  },
+  {
+    "id": "revolution-idle",
+    "title": "Revolution Idle",
+    "score": 5,
+    "category": "idle strategy",
+    "hard": "steam pc",
+    "thumbnail": "assets/game/revolution-idle.jpg",
+    "alt": "Revolution Idle",
+    "synopsis": "数字を伸ばし続ける、放置系の成長ゲーム。",
+    "links": [
+      {
+        "label": "STEAM",
+        "href": "https://store.steampowered.com/app/2763740"
+      }
+    ]
+  },
+  {
+    "id": "rust",
+    "title": "Rust",
+    "score": 2,
+    "category": "open-world survival",
+    "hard": "steam pc",
+    "thumbnail": "assets/game/rust.jpg",
+    "alt": "Rust",
+    "synopsis": "資源を集め、拠点を作り、生き残るサバイバルゲーム。",
+    "links": [
+      {
+        "label": "STEAM",
+        "href": "https://store.steampowered.com/app/252490"
+      }
+    ]
+  },
+  {
+    "id": "shapez",
+    "title": "shapez",
+    "score": 2,
+    "category": "strategy puzzle",
+    "hard": "steam pc",
+    "thumbnail": "assets/game/shapez.jpg",
+    "alt": "shapez",
+    "synopsis": "図形を加工してラインを組む、工場自動化パズル。",
+    "links": [
+      {
+        "label": "STEAM",
+        "href": "https://store.steampowered.com/app/1318690"
+      }
+    ]
+  },
+  {
+    "id": "undertale",
+    "title": "Undertale",
+    "score": 5,
+    "category": "rpg adventure",
+    "hard": "steam pc",
+    "thumbnail": "assets/game/undertale.jpg",
+    "alt": "Undertale",
+    "synopsis": "戦うか、逃がすか。選択が強く残るインディーRPG。",
+    "links": [
+      {
+        "label": "STEAM",
+        "href": "https://store.steampowered.com/app/391540"
+      }
+    ]
+  },
+  {
+    "id": "supermarket-together",
+    "title": "Supermarket Together",
+    "score": 4,
+    "category": "simulation party",
+    "hard": "steam pc",
+    "thumbnail": "assets/game/supermarket-together.jpg",
+    "alt": "Supermarket Together",
+    "synopsis": "スーパーを運営しながら仲間と忙しく働く協力シミュレーター。",
+    "links": [
+      {
+        "label": "STEAM",
+        "href": "https://store.steampowered.com/app/2709570"
+      }
+    ]
+  },
+  {
+    "id": "vrchat",
+    "title": "VRChat",
+    "score": 5,
+    "category": "social open-world",
+    "hard": "steam pc",
+    "thumbnail": "assets/game/vrchat.jpg",
+    "alt": "VRChat",
+    "synopsis": "アバターで世界を巡り、人と交流するソーシャルVRプラットフォーム。",
+    "links": [
+      {
+        "label": "STEAM",
+        "href": "https://store.steampowered.com/app/438100"
+      }
+    ]
+  },
+  {
+    "id": "upload-labs",
+    "title": "Upload Labs",
+    "score": 4,
+    "category": "puzzle simulation",
+    "hard": "steam pc",
+    "thumbnail": "assets/game/upload-labs.jpg",
+    "alt": "Upload Labs",
+    "synopsis": "実験室のような空間で仕組みを解くパズルゲーム。",
+    "links": [
+      {
+        "label": "STEAM",
+        "href": "https://store.steampowered.com/app/3606890"
+      }
+    ]
+  },
+  {
+    "id": "wallpaper-engine",
+    "title": "Wallpaper Engine",
+    "score": 5,
+    "category": "tool",
+    "hard": "steam pc",
+    "thumbnail": "assets/game/wallpaper-engine.jpg",
+    "alt": "Wallpaper Engine",
+    "synopsis": "動く壁紙を探したり作ったりできるデスクトップカスタムツール。",
+    "links": [
+      {
+        "label": "STEAM",
+        "href": "https://store.steampowered.com/search/?term=Wallpaper%20Engine"
+      }
+    ]
+  },
+  {
+    "id": "astral-party",
+    "title": "アストラル☆パーティー",
+    "score": 4,
+    "category": "party strategy",
+    "hard": "steam pc",
+    "thumbnail": "assets/game/astral-party.jpg",
+    "alt": "アストラル☆パーティー",
+    "synopsis": "ボードゲーム風に遊ぶ、運と駆け引きのパーティーゲーム。",
+    "links": [
+      {
+        "label": "STEAM",
+        "href": "https://store.steampowered.com/app/2622000"
+      }
+    ]
+  },
+  {
+    "id": "onigiriya",
+    "title": "おにぎり屋さんシミュレーター",
+    "score": 3,
+    "category": "simulation",
+    "hard": "steam pc",
+    "thumbnail": "assets/game/onigiriya.jpg",
+    "alt": "おにぎり屋さんシミュレーター",
+    "synopsis": "おにぎり屋さんを営む、ゆるく遊べるシミュレーター。",
+    "links": [
+      {
+        "label": "STEAM",
+        "href": "https://store.steampowered.com/app/3915140"
+      }
+    ]
+  },
+  {
+    "id": "satsuriku-game",
+    "title": "殺戮の天使",
+    "score": 5,
+    "category": "horror adventure",
+    "hard": "steam pc",
+    "thumbnail": "assets/game/satsuriku-game.jpg",
+    "alt": "殺戮の天使",
+    "synopsis": "閉ざされたビルからの脱出を描く、物語重視のホラーアドベンチャー。",
+    "links": [
+      {
+        "label": "STEAM",
+        "href": "https://store.steampowered.com/app/537110"
+      }
+    ]
+  },
+  {
+    "id": "danmaku-kagura",
+    "title": "東方ダンマクカグラ",
+    "score": 5,
+    "category": "rhythm",
+    "hard": "steam pc",
+    "thumbnail": "assets/game/danmaku-kagura.jpg",
+    "alt": "東方ダンマクカグラ",
+    "synopsis": "東方Projectの楽曲で遊ぶリズムゲーム。",
+    "links": [
+      {
+        "label": "STEAM",
+        "href": "https://store.steampowered.com/app/2190220"
+      }
+    ]
+  },
+  {
+    "id": "mountain-of-faith",
+    "title": "東方風神録 〜 Mountain of Faith.",
+    "score": 4,
+    "category": "shooter",
+    "hard": "steam pc",
+    "thumbnail": "assets/game/mountain-of-faith.jpg",
+    "alt": "東方風神録 〜 Mountain of Faith.",
+    "synopsis": "弾幕を避けながら進む、東方Projectの縦スクロールシューティング。",
+    "links": [
+      {
+        "label": "STEAM",
+        "href": "https://store.steampowered.com/app/1100140"
+      }
+    ]
+  },
+  {
+    "id": "kirisame",
+    "title": "霧雨が降る森",
+    "score": 3,
+    "category": "horror mystery adventure",
+    "hard": "steam pc",
+    "thumbnail": "assets/game/kirisame.jpg",
+    "alt": "霧雨が降る森",
+    "synopsis": "森と記憶を巡る、探索型のホラーアドベンチャー。",
+    "links": [
+      {
+        "label": "STEAM",
+        "href": "https://store.steampowered.com/app/2106810"
+      }
+    ]
+  },
+  {
+    "id": "valorant",
+    "title": "VALORANT",
+    "score": 5,
+    "category": "fps-tps",
+    "hard": "pc",
+    "thumbnail": "assets/game/valorant.jpg",
+    "alt": "VALORANT",
+    "synopsis": "アビリティと精密射撃で戦うタクティカルFPS。",
+    "links": [
+      {
+        "label": "LINK",
+        "href": "https://playvalorant.com/ja-jp/"
+      }
+    ]
+  },
+  {
+    "id": "fortnite",
+    "title": "FORTNITE",
+    "score": 2,
+    "category": "fps-tps open-world",
+    "hard": "pc",
+    "thumbnail": "assets/game/fortnite.jpg",
+    "alt": "FORTNITE",
+    "synopsis": "建築やゼロビルドで戦う、バトルロイヤル系アクション。",
+    "links": [
+      {
+        "label": "LINK",
+        "href": "https://www.fortnite.com/"
+      }
+    ]
+  },
+  {
+    "id": "overwatch-2",
+    "title": "Overwatch 2",
+    "score": 2,
+    "category": "fps-tps action",
+    "hard": "pc",
+    "thumbnail": "assets/game/overwatch-2.jpg",
+    "alt": "Overwatch 2",
+    "synopsis": "ヒーローごとの役割とスキルで戦うチームFPS。",
+    "links": [
+      {
+        "label": "LINK",
+        "href": "https://overwatch.blizzard.com/ja-jp/"
+      }
+    ]
+  },
+  {
+    "id": "nte",
+    "title": "NTE",
+    "score": 5,
+    "category": "action open-world",
+    "hard": "pc",
+    "thumbnail": "assets/game/nte.jpg",
+    "alt": "NTE",
+    "synopsis": "今後リンクやメモを追加するゲーム。",
+    "links": [
+      {
+        "label": "LINK",
+        "href": "https://nte.perfectworld.com/"
+      }
+    ]
+  },
+  {
+    "id": "minecraft",
+    "title": "Minecraft",
+    "score": 5,
+    "category": "open-world simulation",
+    "hard": "pc switch",
+    "thumbnail": "assets/game/minecraft.jpg",
+    "alt": "Minecraft",
+    "synopsis": "ブロックで探索、建築、冒険を自由に楽しめるサンドボックスゲーム。",
+    "links": [
+      {
+        "label": "LINK",
+        "href": "https://www.minecraft.net/"
+      }
+    ]
+  },
+  {
+    "id": "splatoon2",
+    "title": "スプラトゥーン2",
+    "score": 3,
+    "category": "fps-tps action",
+    "hard": "switch",
+    "thumbnail": "assets/game/Splatoon2.jpg",
+    "alt": "スプラトゥーン2",
+    "synopsis": "インクで塗り合いながら戦う、チーム対戦型のアクションシューティング。",
+    "links": [
+      {
+        "label": "LINK",
+        "href": "https://www.nintendo.com/jp/games/feature/splatoon/index.html"
+      }
+    ]
+  },
+  {
+    "id": "splatoon3",
+    "title": "スプラトゥーン3",
+    "score": 4,
+    "category": "fps-tps action",
+    "hard": "switch",
+    "thumbnail": "assets/game/Splatoon3.jpg",
+    "alt": "スプラトゥーン3",
+    "synopsis": "ナワバリバトルや協力プレイをテンポよく楽しめるアクションシューティング。",
+    "links": [
+      {
+        "label": "LINK",
+        "href": "https://www.nintendo.com/jp/switch/av5ja/"
+      }
+    ]
+  },
+  {
+    "id": "human-fall-flat",
+    "title": "ヒューマンフォールフラット",
+    "score": 1,
+    "category": "action party",
+    "hard": "steam pc switch",
+    "thumbnail": "assets/game/human-fall-flat.jpg",
+    "alt": "ヒューマンフォールフラット",
+    "synopsis": "ふにゃふにゃした操作でギミックを解く、協力型アクションパズル。",
+    "links": [
+      {
+        "label": "LINK",
+        "href": "https://www.humanfallflat.com/"
+      }
+    ]
+  },
+  {
+    "id": "super-smash-bros",
+    "title": "大乱闘スマッシュブラザーズ SPECIAL",
+    "score": 4,
+    "category": "action party",
+    "hard": "switch",
+    "thumbnail": "assets/game/Super-Smash-Bros.jpg",
+    "alt": "大乱闘スマッシュブラザーズ SPECIAL",
+    "synopsis": "さまざまなキャラクターで吹っ飛ばし合う対戦アクション。",
+    "links": [
+      {
+        "label": "LINK",
+        "href": "https://www.smashbros.com/ja_JP/"
+      }
+    ]
+  },
+  {
+    "id": "zelda-breath-of-the-wild",
+    "title": "ゼルダの伝説 ブレス オブ ザ ワイルド",
+    "score": 5,
+    "category": "open-world adventure",
+    "hard": "switch",
+    "thumbnail": "assets/game/zeruda-burewai.jpg",
+    "alt": "ゼルダの伝説 ブレス オブ ザ ワイルド",
+    "synopsis": "広大なハイラルを自由に探索する、オープンワールドアドベンチャー。",
+    "links": [
+      {
+        "label": "LINK",
+        "href": "https://www.nintendo.co.jp/zelda/botw/"
+      }
+    ]
+  },
+  {
+    "id": "zelda-tears-of-the-kingdom",
+    "title": "ゼルダの伝説 ティアーズ オブ ザ キングダム",
+    "score": 4,
+    "category": "open-world adventure",
+    "hard": "switch",
+    "thumbnail": "assets/game/zeruda-teliakin.jpg",
+    "alt": "ゼルダの伝説 ティアーズ オブ ザ キングダム",
+    "synopsis": "空と地上を行き来しながら創造的に冒険するアクションアドベンチャー。",
+    "links": [
+      {
+        "label": "LINK",
+        "href": "https://www.nintendo.co.jp/zelda/totk/"
+      }
+    ]
+  },
+  {
+    "id": "suika-game",
+    "title": "スイカゲーム",
+    "score": 4,
+    "category": "puzzle",
+    "hard": "switch",
+    "thumbnail": "assets/game/suika-game.jpg",
+    "alt": "スイカゲーム",
+    "synopsis": "フルーツを組み合わせて大きくしていく、シンプルなパズルゲーム。",
+    "links": [
+      {
+        "label": "LINK",
+        "href": "https://www.aladdinx.jp/pages/suika-game"
+      }
+    ]
+  },
+  {
+    "id": "doraemon-nobita-farm",
+    "title": "ドラえもん のび太の牧場物語",
+    "score": 5,
+    "category": "simulation",
+    "hard": "switch",
+    "thumbnail": "assets/game/doraemon.jpg",
+    "alt": "ドラえもん のび太の牧場物語",
+    "synopsis": "牧場生活とドラえもんの世界観をゆったり楽しめるシミュレーション。",
+    "links": [
+      {
+        "label": "LINK",
+        "href": "https://bd.bn-ent.net/"
+      }
+    ]
+  },
+  {
+    "id": "asobi-taisen-51",
+    "title": "世界のアソビ大全51",
+    "score": 4,
+    "category": "party strategy",
+    "hard": "switch",
+    "thumbnail": "assets/game/asobitaisen.jpg",
+    "alt": "アソビ大全51",
+    "synopsis": "定番のボードゲームやカードゲームをまとめて遊べるテーブルゲーム集。",
+    "links": [
+      {
+        "label": "LINK",
+        "href": "https://www.nintendo.com/jp/switch/as7ta/"
+      }
+    ]
+  },
+  {
+    "id": "animal-crossing-new-horizons",
+    "title": "あつまれどうぶつの森",
+    "score": 3,
+    "category": "simulation",
+    "hard": "switch",
+    "thumbnail": "assets/game/atumori.jpg",
+    "alt": "あつまれどうぶつの森",
+    "synopsis": "島で暮らしながら家具や景観づくりを楽しむ生活シミュレーション。",
+    "links": [
+      {
+        "label": "LINK",
+        "href": "https://www.nintendo.com/jp/switch/acbaa/"
+      }
+    ]
+  },
+  {
+    "id": "super-mario-maker2",
+    "title": "スーパーマリオメーカー2",
+    "score": 3,
+    "category": "action",
+    "hard": "switch",
+    "thumbnail": "assets/game/super-mario-maker2.jpg",
+    "alt": "スーパーマリオメーカー2",
+    "synopsis": "マリオのコースを作って遊べるクリエイティブなアクションゲーム。",
+    "links": [
+      {
+        "label": "LINK",
+        "href": "https://www.nintendo.com/jp/switch/baaqa/"
+      }
+    ]
+  },
+  {
+    "id": "momotetsu",
+    "title": "桃太郎電鉄 ～昭和 平成 令和も定番！～",
+    "score": 2,
+    "category": "party strategy",
+    "hard": "switch",
+    "thumbnail": "assets/game/momotarou.jpg",
+    "alt": "桃太郎電鉄 ～昭和 平成 令和も定番！～",
+    "synopsis": "日本各地を巡りながら資産を増やしていく定番すごろくゲーム。",
+    "links": [
+      {
+        "label": "LINK",
+        "href": "https://www.konami.com/games/momotetsu/teiban/"
+      }
+    ]
+  },
+  {
+    "id": "mario-party-super-stars",
+    "title": "マリオパーティ スーパースターズ",
+    "score": 4,
+    "category": "party",
+    "hard": "switch",
+    "thumbnail": "assets/game/mario-party-super-stars.jpg",
+    "alt": "マリオパーティ スーパースターズ",
+    "synopsis": "ミニゲームとボードで盛り上がるパーティーゲーム。",
+    "links": [
+      {
+        "label": "LINK",
+        "href": "https://www.nintendo.com/jp/switch/az82a/"
+      }
+    ]
+  },
+  {
+    "id": "fall-guys",
+    "title": "FALL GUYS",
+    "score": 4,
+    "category": "action party",
+    "hard": "steam pc switch",
+    "thumbnail": "assets/game/fall-guys.jpg",
+    "alt": "FALL GUYS",
+    "synopsis": "障害物コースを勝ち抜く、にぎやかなパーティーアクション。",
+    "links": [
+      {
+        "label": "LINK",
+        "href": "https://www.fallguys.com/"
+      }
+    ]
+  },
+  {
+    "id": "yomawari-series",
+    "title": "夜廻シリーズ",
+    "score": 5,
+    "category": "horror adventure",
+    "hard": "steam pc switch",
+    "thumbnail": "assets/game/yomawari1.jpg",
+    "alt": "夜廻シリーズ",
+    "synopsis": "夜の街を探索する、静かで不気味なホラーアドベンチャーシリーズ。",
+    "links": [
+      {
+        "label": "LINK",
+        "href": "#"
+      }
+    ],
+    "series": {
+      "title": "Included titles",
+      "items": [
+        "夜廻",
+        "深夜廻",
+        "夜廻三"
+      ]
+    }
+  },
+  {
+    "id": "mario-kart8",
+    "title": "マリオカート8 デラックス",
+    "score": 4,
+    "category": "racing party",
+    "hard": "switch",
+    "thumbnail": "assets/game/mario-cart8.jpg",
+    "alt": "マリオカート8 デラックス",
+    "synopsis": "アイテムとテクニックで競う、定番のレースゲーム。",
+    "links": [
+      {
+        "label": "LINK",
+        "href": "https://www.nintendo.com/jp/switch/aabpa/index.html"
+      }
+    ]
+  },
+  {
+    "id": "yawaraka-atama-jyuku",
+    "title": "やわらかあたま塾",
+    "score": 3,
+    "category": "puzzle",
+    "hard": "ds",
+    "thumbnail": "assets/game/yawaraka-atama-jyuku.webp",
+    "alt": "やわらかあたま塾",
+    "synopsis": "直感的なミニゲームで頭の柔らかさを鍛えるトレーニングゲーム。",
+    "links": [
+      {
+        "label": "LINK",
+        "href": "#"
+      }
+    ]
+  },
+  {
+    "id": "mario-kart-ds",
+    "title": "マリオカートDS",
+    "score": 5,
+    "category": "racing party",
+    "hard": "ds",
+    "thumbnail": "assets/game/mario-cartDS.webp",
+    "alt": "マリオカートDS",
+    "synopsis": "DSで遊べる、アイテムとテクニックが楽しいレースゲーム。",
+    "links": [
+      {
+        "label": "LINK",
+        "href": "#"
+      }
+    ]
+  },
+  {
+    "id": "new-super-mario-bros",
+    "title": "New スーパーマリオブラザーズ",
+    "score": 5,
+    "category": "action",
+    "hard": "ds",
+    "thumbnail": "assets/game/newmario.webp",
+    "alt": "New スーパーマリオブラザーズ",
+    "synopsis": "横スクロールで遊びやすい、王道のマリオアクション。",
+    "links": [
+      {
+        "label": "LINK",
+        "href": "#"
+      }
+    ]
+  },
+  {
+    "id": "inazuma-eleven-series",
+    "title": "イナズマイレブン DSシリーズ",
+    "score": 5,
+    "category": "rpg sports",
+    "hard": "ds",
+    "thumbnail": "assets/game/inazuma-irebun.webp",
+    "alt": "イナズマイレブン DSシリーズ",
+    "synopsis": "サッカーとRPGを組み合わせた、熱い物語のシリーズ。",
+    "links": [
+      {
+        "label": "LINK",
+        "href": "#"
+      }
+    ],
+    "series": {
+      "title": "Included titles",
+      "items": [
+        "イナズマイレブン",
+        "イナズマイレブン2 脅威の侵略者",
+        "イナズマイレブン3 世界への挑戦!!"
+      ]
+    }
+  },
+  {
+    "id": "puyo-puyo",
+    "title": "ぷよぷよ!!",
+    "score": 4,
+    "category": "puzzle party",
+    "hard": "ds",
+    "thumbnail": "assets/game/puyopuyo.webp",
+    "alt": "ぷよぷよ!!",
+    "synopsis": "連鎖を組んで対戦する、定番の落ち物パズルゲーム。",
+    "links": [
+      {
+        "label": "LINK",
+        "href": "https://puyo.sega.jp/portal/"
+      }
+    ]
+  },
+  {
+    "id": "oideyo-animal-crossing",
+    "title": "おいでよどうぶつの森",
+    "score": 5,
+    "category": "simulation",
+    "hard": "ds",
+    "thumbnail": "assets/game/oimori.webp",
+    "alt": "おいでよどうぶつの森",
+    "synopsis": "村での暮らしをゆったり楽しむ生活シミュレーション。",
+    "links": [
+      {
+        "label": "LINK",
+        "href": "#"
+      }
+    ]
+  },
+  {
+    "id": "tomodachi-collection",
+    "title": "トモダチコレクション",
+    "score": 4,
+    "category": "simulation",
+    "hard": "ds",
+    "thumbnail": "assets/game/tomokore.webp",
+    "alt": "トモダチコレクション",
+    "synopsis": "Miiたちの生活や関係を眺めて楽しむシミュレーション。",
+    "links": [
+      {
+        "label": "LINK",
+        "href": "#"
+      }
+    ]
+  },
+  {
+    "id": "brain-training-ds",
+    "title": "脳を鍛える大人のDSトレーニング",
+    "score": 3,
+    "category": "puzzle",
+    "hard": "ds",
+    "thumbnail": "assets/game/nouwokitaeruDS.webp",
+    "alt": "脳を鍛える大人のDSトレーニング",
+    "synopsis": "計算や記憶などで脳を鍛えるDSトレーニングソフト。",
+    "links": [
+      {
+        "label": "LINK",
+        "href": "#"
+      }
+    ]
+  },
+  {
+    "id": "pokemon-dash",
+    "title": "ポケモンダッシュ",
+    "score": 3,
+    "category": "racing action",
+    "hard": "ds",
+    "thumbnail": "assets/game/pokemon-dash.webp",
+    "alt": "ポケモンダッシュ",
+    "synopsis": "ポケモンをタッチ操作で走らせるレースゲーム。",
+    "links": [
+      {
+        "label": "LINK",
+        "href": "#"
+      }
+    ]
+  },
+  {
+    "id": "kirby-super-star-ultra",
+    "title": "星のカービィ ウルトラスーパーデラックス",
+    "score": 3,
+    "category": "action",
+    "hard": "ds",
+    "thumbnail": "assets/game/ka-bi-DS.webp",
+    "alt": "星のカービィ ウルトラスーパーデラックス",
+    "synopsis": "複数のモードを楽しめる、カービィのアクションゲーム。",
+    "links": [
+      {
+        "label": "LINK",
+        "href": "#"
+      }
+    ]
+  },
+  {
+    "id": "rhythm-tengoku-gold",
+    "title": "リズム天国ゴールド",
+    "score": 3,
+    "category": "rhythm",
+    "hard": "ds",
+    "thumbnail": "assets/game/rizumutengoku.webp",
+    "alt": "リズム天国ゴールド",
+    "synopsis": "リズムに合わせて短いゲームをこなす音楽ゲーム。",
+    "links": [
+      {
+        "label": "LINK",
+        "href": "#"
+      }
+    ]
+  },
+  {
+    "id": "made-in-ore",
+    "title": "メイドイン俺",
+    "score": 4,
+    "category": "party",
+    "hard": "ds",
+    "thumbnail": "assets/game/made-in-ore.webp",
+    "alt": "メイドイン俺",
+    "synopsis": "短いゲームを遊んだり作ったりできる、テンポのよいミニゲーム集。",
+    "links": [
+      {
+        "label": "LINK",
+        "href": "#"
+      }
+    ]
+  },
+  {
+    "id": "monster-hunter-portable",
+    "title": "モンスターハンターポータブルシリーズ",
+    "score": 4,
+    "category": "action rpg",
+    "hard": "psp",
+    "thumbnail": "assets/game/monhan.webp",
+    "alt": "モンスターハンターポータブルシリーズ",
+    "synopsis": "素材を集めて装備を作り、巨大なモンスターに挑むハンティングアクション。",
+    "links": [
+      {
+        "label": "LINK",
+        "href": "https://www.capcom-games.com/monsterhunter/"
+      }
+    ],
+    "series": {
+      "title": "Included titles",
+      "items": [
+        "モンスターハンターポータブル",
+        "モンスターハンターポータブル 2nd",
+        "モンスターハンターポータブル 3rd"
+      ]
+    }
+  },
+  {
+    "id": "ai-igo",
+    "title": "AI囲碁",
+    "score": 5,
+    "category": "strategy",
+    "hard": "psp",
+    "thumbnail": "assets/game/AI-igo.webp",
+    "alt": "AI囲碁",
+    "synopsis": "じっくり考えて盤面を進める囲碁ゲーム。",
+    "links": [
+      {
+        "label": "LINK",
+        "href": "#"
+      }
+    ]
+  },
+  {
+    "id": "mario-kart-wii",
+    "title": "マリオカートWii",
+    "score": 5,
+    "category": "racing party",
+    "hard": "wii",
+    "thumbnail": "assets/game/mario-cart-wii.webp",
+    "alt": "マリオカートWii",
+    "synopsis": "ハンドル操作でも遊べる、Wiiの定番レースゲーム。",
+    "links": [
+      {
+        "label": "LINK",
+        "href": "https://www.nintendo.co.jp/wii/rmcj/"
+      }
+    ]
+  },
+  {
+    "id": "wii-sports-resort",
+    "title": "Wii Sports Resort",
+    "score": 5,
+    "category": "sports party",
+    "hard": "wii",
+    "thumbnail": "assets/game/wii-sports.webp",
+    "alt": "Wii Sports Resort",
+    "synopsis": "リゾートを舞台にさまざまなスポーツを体感できるパーティーゲーム。",
+    "links": [
+      {
+        "label": "LINK",
+        "href": "https://www.nintendo.co.jp/wii/rztj/"
+      }
+    ]
+  },
+  {
+    "id": "mario-sonic-london-olympics",
+    "title": "マリオ&ソニック AT ロンドンオリンピック™",
+    "score": 4,
+    "category": "sports party",
+    "hard": "wii",
+    "thumbnail": "assets/game/mario-sonikku.jpg",
+    "alt": "マリオ&ソニック AT ロンドンオリンピック™",
+    "synopsis": "マリオとソニックのキャラクターで競技を楽しめるスポーツゲーム。",
+    "links": [
+      {
+        "label": "LINK",
+        "href": "#"
+      }
+    ]
+  },
+  {
+    "id": "wii-party",
+    "title": "Wii Party",
+    "score": 5,
+    "category": "party",
+    "hard": "wii",
+    "thumbnail": "assets/game/wii-party.webp",
+    "alt": "Wii Party",
+    "synopsis": "みんなで遊べるミニゲームが詰まったWiiのパーティーゲーム。",
+    "links": [
+      {
+        "label": "LINK",
+        "href": "https://www.nintendo.co.jp/wii/supj/"
+      }
+    ]
+  },
+  {
+    "id": "new-super-mario-bros-wii",
+    "title": "New スーパーマリオブラザーズ Wii",
+    "score": 4,
+    "category": "action party",
+    "hard": "wii",
+    "thumbnail": "assets/game/new-mario-wii.webp",
+    "alt": "New スーパーマリオブラザーズ Wii",
+    "synopsis": "複数人でも遊べる横スクロールのマリオアクション。",
+    "links": [
+      {
+        "label": "LINK",
+        "href": "https://www.nintendo.co.jp/wii/smnj/"
+      }
+    ]
+  },
+  {
+    "id": "inazuma-eleven-strikers",
+    "title": "イナズマイレブン ストライカーズ",
+    "score": 5,
+    "category": "sports action",
+    "hard": "wii",
+    "thumbnail": "assets/game/inaire-sutoraika-.webp",
+    "alt": "イナズマイレブン ストライカーズ",
+    "synopsis": "必殺技を使った派手な試合が楽しめるサッカーアクション。",
+    "links": [
+      {
+        "label": "LINK",
+        "href": "#"
+      }
+    ]
+  },
+  {
+    "id": "super-monkey-ball-athletic",
+    "title": "スーパーモンキーボール アスレチック",
+    "score": 3,
+    "category": "action party",
+    "hard": "wii",
+    "thumbnail": "assets/game/monki-bo-ru.jpg",
+    "alt": "スーパーモンキーボール アスレチック",
+    "synopsis": "ボールに入ったキャラクターを転がして進むアクションゲーム。",
+    "links": [
+      {
+        "label": "LINK",
+        "href": "#"
+      }
+    ]
+  },
+  {
+    "id": "wii-mario-tennis-gc",
+    "title": "Wiiであそぶ マリオテニスGC",
+    "score": 4,
+    "category": "sports party",
+    "hard": "wii",
+    "thumbnail": "assets/game/mari-tenisu.jpg",
+    "alt": "Wiiであそぶ マリオテニスGC",
+    "synopsis": "Wii操作で楽しめるマリオテニスのスポーツゲーム。",
+    "links": [
+      {
+        "label": "LINK",
+        "href": "https://www.nintendo.co.jp/wii/rmaj/"
+      }
+    ]
+  },
+  {
+    "id": "my-sims",
+    "title": "ぼくとシムのまち",
+    "score": 5,
+    "category": "simulation",
+    "hard": "wii",
+    "thumbnail": "assets/game/bokutosimunomati-wii.jpg",
+    "alt": "ぼくとシムのまち",
+    "synopsis": "街づくりと住民との交流を楽しむシミュレーションゲーム。",
+    "links": [
+      {
+        "label": "LINK",
+        "href": "#"
+      }
+    ]
+  },
+  {
+    "id": "my-sims-racing",
+    "title": "ぼくとシムのまちレーシング",
+    "score": 5,
+    "category": "racing party",
+    "hard": "wii",
+    "thumbnail": "assets/game/bokutosimunomati-cart-wii.webp",
+    "alt": "ぼくとシムのまちレーシング",
+    "synopsis": "ぼくとシムのまちの世界で走るレースゲーム。",
+    "links": [
+      {
+        "label": "LINK",
+        "href": "#"
+      }
+    ]
+  },
+  {
+    "id": "nodame-cantabile-ds",
+    "title": "のだめカンタービレ",
+    "score": 5,
+    "category": "rhythm",
+    "hard": "ds",
+    "thumbnail": "assets/game/nodame-ds.webp",
+    "alt": "のだめカンタービレ",
+    "synopsis": "音楽に合わせて演奏を楽しむ、のだめカンタービレのリズムゲーム。",
+    "links": [
+      {
+        "label": "LINK",
+        "href": "#"
+      }
+    ]
+  }
+]

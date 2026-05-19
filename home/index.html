@@ -227,9 +227,9 @@
             <h3>アニメ</h3>
             <p>今まで見たアニメ一覧表 | アニメ評価</p>
         </a>
-        <a href="/manga/" class="content-item anim-box">
-            <h3>漫画</h3>
-            <p>今まで読んだ漫画一覧表 | 漫画評価</p>
+        <a href="/movie/" class="content-item anim-box">
+            <h3>映画＆ドラマ</h3>
+            <p>今まで見た映画とドラマの一覧表 | 映画＆ドラマ評価</p>
         </a>
         <a href="/game/" class="content-item anim-box">
             <h3>ゲーム</h3>
@@ -266,7 +266,7 @@
                         <a href="/" class="footer-link">ホーム</a>
                         <a href="/profile/" class="footer-link">プロフィール</a>
                         <a href="/anime/" class="footer-link">アニメ</a>
-                        <a href="/manga/" class="footer-link">漫画</a>
+                        <a href="/movie/" class="footer-link">映画＆ドラマ</a>
                         <a href="/game/" class="footer-link">ゲーム</a>
                         <a href="/archive/" class="footer-link">ツール</a>
                     </div>
@@ -351,7 +351,7 @@
         const typewriterEl = document.getElementById("typewriter-text");
         const statusFooterEl = document.getElementById("status-footer");
         const initText = "Akasa1529 の記録を整理しています...";
-        const finalText = "PROFILE / ANIME / MANGA / GAME / TOOL";
+        const finalText = "PROFILE / ANIME / MOVIE / GAME / TOOL";
         let j = 0;
 
         function typeWriter() {
@@ -413,14 +413,14 @@
                 '/home/': 'home/index.html',
                 '/profile/': 'profile/index.html',
                 '/anime/': 'anime/index.html',
-                '/manga/': 'manga/index.html',
+                '/movie/': 'movie/index.html',
                 '/game/': 'game/index.html',
                 '/archive/': 'archive/index.html',
                 '/privacy/': 'privacy/index.html',
                 '/ticket/': 'ticket/index.html'
             };
             const path = decodeURIComponent(window.location.pathname).replace(/\\/g, '/');
-            const nestedPage = /\/(home|profile|anime|manga|game|archive|privacy|ticket)\/index\.html$/i.test(path);
+            const nestedPage = /\/(home|profile|anime|movie|game|archive|privacy|ticket)\/index\.html$/i.test(path);
             const siteRoot = path.replace(nestedPage ? /\/[^/]+\/index\.html$/i : /\/[^/]+$/i, '/');
             document.querySelectorAll('a[href]').forEach(link => {
                 const href = link.getAttribute('href');

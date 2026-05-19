@@ -11,7 +11,7 @@
     </script>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Manga Archive | Akasa1529 archive</title>
+    <title>Movie & Drama Archive | Akasa1529 archive</title>
     <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@200;800&family=Space+Mono&family=Noto+Sans+JP:wght@300;700&display=swap" rel="stylesheet">
     <style>
         :root {
@@ -156,7 +156,7 @@
         }
         .section-container { max-width: 900px; margin: 0 auto; padding: 20px; }
 
-        .manga-item {
+        .movie-item {
             display: grid;
             grid-template-columns: 280px 1fr;
             gap: 30px;
@@ -166,11 +166,11 @@
             margin-bottom: 30px;
             transition: 0.5s ease;
         }
-        .manga-item.hidden { display: none !important; }
-        @media (max-width: 768px) { .manga-item { grid-template-columns: 1fr; } }
+        .movie-item.hidden { display: none !important; }
+        @media (max-width: 768px) { .movie-item { grid-template-columns: 1fr; } }
 
         /* サムネイル */
-        .manga-thumb {
+        .movie-thumb {
             width: 100%;
             aspect-ratio: 16/9;
             background: #08080c;
@@ -178,8 +178,8 @@
             position: relative;
             overflow: hidden;
         }
-        .manga-thumb img { width: 100%; height: 100%; object-fit: contain; }
-        .manga-thumb::after {
+        .movie-thumb img { width: 100%; height: 100%; object-fit: contain; }
+        .movie-thumb::after {
             content: 'NO IMAGE';
             position: absolute;
             top: 50%; left: 50%;
@@ -190,7 +190,7 @@
         }
 
         .rating { font-family: var(--font-mono); color: var(--accent); font-size: 0.8rem; margin-bottom: 10px; display: block; }
-        .manga-title { font-size: 1.4rem; font-weight: 700; margin-bottom: 10px; }
+        .movie-title { font-size: 1.4rem; font-weight: 700; margin-bottom: 10px; }
         .synopsis { font-size: 0.85rem; color: #aaa; margin-bottom: 20px; }
 
 
@@ -231,8 +231,8 @@
     <div class="grain"></div>
 
     <section class="hero" id="top">
-        <h1 class="main-title" id="target-title">MANGA ARCHIVE</h1>
-        <p style="font-family: var(--font-mono); font-size: 0.7rem; color: var(--accent);">評価とメモ</p>
+        <h1 class="main-title" id="target-title">MOVIE & DRAMA</h1>
+        <p style="font-family: var(--font-mono); font-size: 0.7rem; color: var(--accent);">映画とドラマの記録</p>
     </section>
     <div class="filter-dialog" id="filter-dialog" aria-hidden="true">
         <div class="filter-panel" role="dialog" aria-modal="true" aria-labelledby="filter-dialog-title">
@@ -243,36 +243,38 @@
             <div class="filter-controls">
         <div class="filter-group">
             <span class="filter-label">評価:</span>
-            <button class="f-btn active" onclick="filterRating('all')">ALL</button>
-            <button class="f-btn" onclick="filterRating('5')">★★★★★</button>
-            <button class="f-btn" onclick="filterRating('4')">★★★★☆</button>
-            <button class="f-btn" onclick="filterRating('3')">★★★☆☆</button>
-            <button class="f-btn" onclick="filterRating('2')">★★☆☆☆</button>
-            <button class="f-btn" onclick="filterRating('1')">★☆☆☆☆</button>
+            <button class="f-btn active" data-filter-group="rating" data-filter-value="all" onclick="filterRating('all')">ALL</button>
+            <button class="f-btn" data-filter-group="rating" data-filter-value="5" onclick="filterRating('5')">★★★★★</button>
+            <button class="f-btn" data-filter-group="rating" data-filter-value="4" onclick="filterRating('4')">★★★★☆</button>
+            <button class="f-btn" data-filter-group="rating" data-filter-value="3" onclick="filterRating('3')">★★★☆☆</button>
+            <button class="f-btn" data-filter-group="rating" data-filter-value="2" onclick="filterRating('2')">★★☆☆☆</button>
+            <button class="f-btn" data-filter-group="rating" data-filter-value="1" onclick="filterRating('1')">★☆☆☆☆</button>
         </div>
         <div class="filter-group">
-            <span class="filter-label">Genre:</span>
-            <button class="f-btn active" onclick="filterGenre('all')">ALL</button>
-            <button class="f-btn" onclick="filterGenre('romance')">恋愛</button>
-            <button class="f-btn" onclick="filterGenre('battle')">戦闘</button>
-            <button class="f-btn" onclick="filterGenre('drama')">感動/日常</button>
+            <span class="filter-label">Type:</span>
+            <button class="f-btn active" data-filter-group="type" data-filter-value="all" onclick="filterType('all')">ALL</button>
+            <button class="f-btn" data-filter-group="type" data-filter-value="movie" onclick="filterType('movie')">映画</button>
+            <button class="f-btn" data-filter-group="type" data-filter-value="drama" onclick="filterType('drama')">ドラマ</button>
         </div>
-    </div>
+        <div class="filter-actions">
+            <button class="f-btn filter-clear" data-filter-action="clear" onclick="clearFilters()">クリア</button>
+        </div>
+            </div>
         </div>
     </div>
 <nav class="table-of-contents">
         <div class="archive-toolbar">
             <div></div>
-            <div class="toc-title">目次</div>
-            <button class="toc-filter-toggle" type="button" onclick="toggleFilterDialog(true)">絞り込み</button>
+            <div class="toc-title">MOVIE LIST</div>
+            <button class="toc-filter-toggle" type="button" onclick="toggleFilterDialog(true)">FILTER</button>
         </div>
         <div class="toc-links" id="toc-list"></div>
     </nav>
 
-    <main class="section-container" id="manga-list">
+    <main class="section-container" id="movie-list" data-source="../movie-data.json">
         <section class="empty-state anim-box">
-            <h2>漫画一覧は準備中</h2>
-            <p>漫画のタイトル、評価、サムネイルを追加したらここに表示します。</p>
+            <h2>movie-data.json を読み込んでいます</h2>
+            <p>映画＆ドラマ一覧を準備しています。</p>
         </section>
     </main>
 
@@ -293,7 +295,7 @@
                         <a href="/" class="footer-link">ホーム</a>
                         <a href="/profile/" class="footer-link">プロフィール</a>
                         <a href="/anime/" class="footer-link">アニメ</a>
-                        <a href="/manga/" class="footer-link">漫画</a>
+                        <a href="/movie/" class="footer-link">映画＆ドラマ</a>
                         <a href="/game/" class="footer-link">ゲーム</a>
                         <a href="/archive/" class="footer-link">ツール</a>
                     </div>
@@ -365,7 +367,6 @@
     </script>
 
     <script>
-        // タイトルの出現演出
         const title = document.getElementById('target-title');
         const text = title.innerText; title.innerHTML = '';
         text.split('').forEach((char, i) => {
@@ -376,135 +377,11 @@
             title.appendChild(span);
         });
 
-        let currentRating = 'all';
-        let currentGenre = 'all';
-
-        window.addEventListener('DOMContentLoaded', () => {
-            sortMangaByScore();
-            generateTOC();
-        });
-
-        function sortMangaByScore() {
-            const list = document.getElementById('manga-list');
-            const items = Array.from(list.getElementsByClassName('manga-item'));
-            items.sort((a, b) => b.getAttribute('data-score') - a.getAttribute('data-score'));
-            items.forEach(item => list.appendChild(item));
-        }
-
-        function generateTOC() {
-            const tocList = document.getElementById('toc-list');
-            const items = document.querySelectorAll('.manga-item');
-            tocList.innerHTML = '';
-            items.forEach(item => {
-                if (!item.classList.contains('hidden')) {
-                    const title = item.querySelector('.manga-title').innerText;
-                    const score = item.getAttribute('data-score');
-                    const link = document.createElement('a');
-                    link.href = `#${item.id}`;
-                    link.title = title;
-                    link.innerHTML = `[★${score}] ${title}`;
-                    link.addEventListener('click', event => {
-                        event.preventDefault();
-                        item.scrollIntoView({ behavior: 'smooth', block: 'center' });
-                        history.replaceState(null, '', `#${item.id}`);
-                    });
-                    tocList.appendChild(link);
-                }
-            });
-        }
-        function toggleFilterDialog(open) {
-            const dialog = document.getElementById('filter-dialog');
-            if (!dialog) return;
-            dialog.classList.toggle('is-open', open);
-            dialog.setAttribute('aria-hidden', open ? 'false' : 'true');
-        }
-
-        document.addEventListener('click', event => {
-            const dialog = document.getElementById('filter-dialog');
-            if (dialog && event.target === dialog) toggleFilterDialog(false);
-        });
-
-        document.addEventListener('keydown', event => {
-            if (event.key === 'Escape') toggleFilterDialog(false);
-        });
-
-        function filterRating(val) {
-            currentRating = val;
-            updateFilterButtons('rating', val);
-            applyFilters();
-        }
-
-        function filterGenre(val) {
-            currentGenre = val;
-            updateFilterButtons('genre', val);
-            applyFilters();
-        }
-
-        function getFilterButtonValue(btn) {
-            const action = btn.getAttribute('onclick') || '';
-            const match = action.match(/\('([^']+)'\)/);
-            return match ? match[1] : '';
-        }
-
-        function updateFilterButtons(type, val) {
-            const groupIdx = type === 'rating' ? 0 : 1;
-            const group = document.querySelectorAll('.filter-group')[groupIdx];
-            if (!group) return;
-            group.querySelectorAll('.f-btn').forEach(btn => {
-                btn.classList.toggle('active', getFilterButtonValue(btn) === val);
-            });
-        }
-
-
-        function handleFilterControlClick(event) {
-            const button = event.target.closest('button');
-            if (!button) return;
-            if (button.classList.contains('toc-filter-toggle')) {
-                event.preventDefault();
-                toggleFilterDialog(true);
-                return;
-            }
-            if (button.classList.contains('filter-close')) {
-                event.preventDefault();
-                toggleFilterDialog(false);
-                return;
-            }
-            const action = button.getAttribute('onclick') || '';
-            const value = getFilterButtonValue(button);
-            if (!value) return;
-            if (action.startsWith('filterRating')) {
-                event.preventDefault();
-                filterRating(value);
-                return;
-            }
-            if (action.startsWith('filterGenre')) {
-                event.preventDefault();
-                filterGenre(value);
-                return;
-            }
-        }
-
-        document.addEventListener('click', handleFilterControlClick);
-
-        function applyFilters() {
-            document.querySelectorAll('.manga-item').forEach(item => {
-                const score = parseInt(item.getAttribute('data-score'));
-                const genres = item.getAttribute('data-genre') || '';
-                const rMatch = currentRating === 'all' || String(score) === currentRating;
-                const gMatch = (currentGenre === 'all') || genres.includes(currentGenre);
-                item.classList.toggle('hidden', !(rMatch && gMatch));
-            });
-            generateTOC();
-        }
-
-        // スクロール監視
-        const observer = new IntersectionObserver((entries) => {
+        window.archiveObserver = new IntersectionObserver((entries) => {
             entries.forEach(entry => {
                 entry.target.classList.toggle('is-animated', entry.isIntersecting);
             });
         }, { threshold: 0.15 });
-
-        document.querySelectorAll('.anim-box').forEach(box => observer.observe(box));
     </script>
     <script>
         (() => {
@@ -514,14 +391,14 @@
                 '/home/': 'home/index.html',
                 '/profile/': 'profile/index.html',
                 '/anime/': 'anime/index.html',
-                '/manga/': 'manga/index.html',
+                '/movie/': 'movie/index.html',
                 '/game/': 'game/index.html',
                 '/archive/': 'archive/index.html',
                 '/privacy/': 'privacy/index.html',
                 '/ticket/': 'ticket/index.html'
             };
             const path = decodeURIComponent(window.location.pathname).replace(/\\/g, '/');
-            const nestedPage = /\/(home|profile|anime|manga|game|archive|privacy|ticket)\/index\.html$/i.test(path);
+            const nestedPage = /\/(home|profile|anime|movie|game|archive|privacy|ticket)\/index\.html$/i.test(path);
             const siteRoot = path.replace(nestedPage ? /\/[^/]+\/index\.html$/i : /\/[^/]+$/i, '/');
             document.querySelectorAll('a[href]').forEach(link => {
                 const href = link.getAttribute('href');
@@ -530,6 +407,7 @@
             });
         })();
     </script>
+    <script src="../assets/js/movie-archive.js?v=20260519-movie"></script>
 
     <script src="../assets/js/site-counter.js"></script>
     <script src="../assets/js/site-menu.js?v=20260516-this-page"></script>

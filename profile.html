@@ -298,7 +298,7 @@
                         <a href="/" class="footer-link">ホーム</a>
                         <a href="/profile/" class="footer-link">プロフィール</a>
                         <a href="/anime/" class="footer-link">アニメ</a>
-                        <a href="/manga/" class="footer-link">漫画</a>
+                        <a href="/movie/" class="footer-link">映画＆ドラマ</a>
                         <a href="/game/" class="footer-link">ゲーム</a>
                         <a href="/archive/" class="footer-link">ツール</a>
                     </div>
@@ -398,14 +398,14 @@
                 '/home/': 'home/index.html',
                 '/profile/': 'profile/index.html',
                 '/anime/': 'anime/index.html',
-                '/manga/': 'manga/index.html',
+                '/movie/': 'movie/index.html',
                 '/game/': 'game/index.html',
                 '/archive/': 'archive/index.html',
                 '/privacy/': 'privacy/index.html',
                 '/ticket/': 'ticket/index.html'
             };
             const path = decodeURIComponent(window.location.pathname).replace(/\\/g, '/');
-            const nestedPage = /\/(home|profile|anime|manga|game|archive|privacy|ticket)\/index\.html$/i.test(path);
+            const nestedPage = /\/(home|profile|anime|movie|game|archive|privacy|ticket)\/index\.html$/i.test(path);
             const siteRoot = path.replace(nestedPage ? /\/[^/]+\/index\.html$/i : /\/[^/]+$/i, '/');
             document.querySelectorAll('a[href]').forEach(link => {
                 const href = link.getAttribute('href');

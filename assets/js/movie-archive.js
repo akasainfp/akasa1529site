@@ -1,28 +1,4 @@
 (() => {
-    const typeLabels = {
-        movie: '映画',
-        drama: 'ドラマ'
-    };
-
-    const genreLabels = {
-        animation: 'アニメーション',
-        romance: '恋愛',
-        'sci-fi': 'SF',
-        comedy: 'コメディ',
-        action: 'アクション',
-        fantasy: 'ファンタジー',
-        family: '家族',
-        drama: 'ドラマ',
-        adventure: '冒険',
-        suspense: 'サスペンス',
-        music: '音楽',
-        mystery: 'ミステリー',
-        history: '歴史',
-        medical: '医療',
-        business: 'ビジネス',
-        school: '学園'
-    };
-
     const selectedRatings = new Set();
     const selectedTypes = new Set();
     const selectedGenres = new Set();
@@ -51,14 +27,6 @@
         return `${'★'.repeat(value)}${'☆'.repeat(Math.max(0, 5 - value))}`;
     }
 
-    function renderTags(item) {
-        const tags = [`<span class="movie-tag">${escapeHtml(typeLabels[item.type] || item.type || '映画')}</span>`];
-        (item.genres || []).forEach(genre => {
-            tags.push(`<span class="movie-tag movie-tag-genre">${escapeHtml(genreLabels[genre] || genre)}</span>`);
-        });
-        return tags.join('');
-    }
-
     function renderActions(item) {
         const hasSeries = item.series && Array.isArray(item.series.items) && item.series.items.length;
         if (!hasSeries) return '';
@@ -80,10 +48,7 @@
         return `<article class="movie-item anim-box" id="${escapeHtml(item.id)}" data-score="${escapeHtml(item.score)}" data-type="${type}" data-genre="${escapeHtml(genres.join(' '))}">
             <div class="movie-thumb">${thumbnail ? `<img src="${escapeHtml(thumbnail)}" alt="${title}">` : '<span>NO IMAGE</span>'}</div>
             <div class="movie-info">
-                <div class="movie-meta-top">
-                    <div class="movie-tags">${renderTags(item)}</div>
-                    <span class="rating">評価: ${ratingStars(item.score)}</span>
-                </div>
+                <span class="rating">評価: ${ratingStars(item.score)}</span>
                 <h2 class="movie-title">${title}</h2>
                 ${item.note ? `<p class="synopsis">${escapeHtml(item.note)}</p>` : '<p class="synopsis">あらすじやメモは movie-data.json から追加できます。</p>'}
                 ${renderActions(item)}

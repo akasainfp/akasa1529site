@@ -1,5 +1,10 @@
 [ 
   {
+    "date": "2026-05-24",
+    "title": "update",
+    "body": "discord webhookを追加しチャンネルでアップデート通知を受け取れるようになりました"
+  },
+  {
     "date": "2026-05-23",
     "title": "warning",
     "body": "Nord VPNやVirusTotalでマルウェア検出がされましたがこれらは新規ドメインに起きやすい事でマルウェアは仕組んでおりません。Githubにソースコード全てを公開していますhttps://github.com/akasainfp"

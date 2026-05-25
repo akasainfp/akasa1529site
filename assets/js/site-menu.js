@@ -8,12 +8,13 @@
         '/anime/': 'anime/index.html',
         '/movie/': 'movie/index.html',
         '/game/': 'game/index.html',
+        '/music/': 'music/index.html',
         '/archive/': 'archive/index.html',
         '/privacy/': 'privacy/index.html',
         '/ticket/': 'ticket/index.html'
     };
     const path = decodeURIComponent(window.location.pathname).replace(/\\/g, '/');
-    const nestedPage = /\/(home|profile|anime|movie|game|archive|privacy|ticket)\/index\.html$/i.test(path);
+    const nestedPage = /\/(home|profile|anime|movie|game|music|archive|privacy|ticket)\/index\.html$/i.test(path);
     const homePage = window.location.protocol !== 'file:'
         ? (path === '/' || /\/home\/?$/i.test(path))
         : (!nestedPage && /\/index\.html$/i.test(path)) || /\/home\/index\.html$/i.test(path);
@@ -176,6 +177,7 @@
         { href: '/anime/', label: 'ANIME', sub: 'archive' },
         { href: '/movie/', label: 'MOVIE', sub: 'movie & drama' },
         { href: '/game/', label: 'GAME', sub: 'archive' },
+        { href: '/music/', label: 'MUSIC', sub: 'bgm' },
         { href: '/archive/', label: 'TOOL', sub: 'works' },
         { href: '/ticket/', label: 'CONTACT', sub: 'discord' },
         { href: '/privacy/', label: 'PRIVACY', sub: 'policy' }

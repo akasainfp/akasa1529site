@@ -27,6 +27,10 @@
         return `${'★'.repeat(value)}${'☆'.repeat(Math.max(0, 5 - value))}`;
     }
 
+    function typeLabel(type) {
+        return type === 'drama' ? 'ドラマ' : '映画';
+    }
+
     function renderActions(item) {
         const hasSeries = item.series && Array.isArray(item.series.items) && item.series.items.length;
         const url = String(item.url || '').trim();
@@ -54,7 +58,10 @@
         return `<article class="movie-item anim-box" id="${escapeHtml(item.id)}" data-score="${escapeHtml(item.score)}" data-type="${type}" data-genre="${escapeHtml(genres.join(' '))}">
             <div class="movie-thumb">${thumbnail ? `<img src="${escapeHtml(thumbnail)}" alt="${title}">` : '<span>NO IMAGE</span>'}</div>
             <div class="movie-info">
-                <span class="rating">評価: ${ratingStars(item.score)}</span>
+                <div class="movie-meta-top">
+                    <span class="movie-type-tag">${escapeHtml(typeLabel(item.type))}</span>
+                    <span class="rating">評価: ${ratingStars(item.score)}</span>
+                </div>
                 <h2 class="movie-title">${title}</h2>
                 ${item.note ? `<p class="synopsis">${escapeHtml(item.note)}</p>` : '<p class="synopsis">あらすじやメモは movie-data.json から追加できます。</p>'}
                 ${renderActions(item)}

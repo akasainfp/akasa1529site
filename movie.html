@@ -218,7 +218,9 @@
             z-index: -1;
         }
 
-        .rating { font-family: var(--font-mono); color: var(--accent); font-size: 0.8rem; margin-bottom: 10px; display: block; }
+        .movie-meta-top { display: flex; align-items: center; gap: 10px; flex-wrap: wrap; margin-bottom: 10px; }
+        .movie-type-tag { font-family: var(--font-mono); font-size: 0.58rem; letter-spacing: 0.08em; color: #8f80ff; border: 1px solid rgba(125, 95, 255, 0.28); background: rgba(125, 95, 255, 0.06); padding: 2px 7px; line-height: 1.6; }
+        .rating { font-family: var(--font-mono); color: var(--accent); font-size: 0.8rem; margin-bottom: 0; display: block; }
         .movie-title { font-size: 1.4rem; font-weight: 700; margin-bottom: 10px; }
         .synopsis { font-size: 0.85rem; color: #aaa; margin-bottom: 20px; }
 
@@ -451,7 +453,7 @@
             });
         })();
     </script>
-    <script src="assets/js/movie-archive.js?v=20260520-card-meta"></script>
+    <script src="assets/js/movie-archive.js?v=20260525-type-tags"></script>
 
     <script src="assets/js/site-counter.js"></script>
     <script src="assets/js/site-menu.js?v=20260519-movie-menu"></script>

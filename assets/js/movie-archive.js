@@ -29,8 +29,14 @@
 
     function renderActions(item) {
         const hasSeries = item.series && Array.isArray(item.series.items) && item.series.items.length;
-        if (!hasSeries) return '';
-        return `<div class="movie-actions"><button class="series-toggle" type="button" aria-expanded="false" aria-controls="${escapeHtml(item.id)}-titles" onclick="toggleSeries(this)">TITLES</button></div>`;
+        const url = String(item.url || '').trim();
+        const urlButton = url
+            ? `<a href="${escapeHtml(url)}" target="_blank" rel="noopener" class="btn-search">URL</a>`
+            : '<span class="btn-search movie-link-disabled" aria-disabled="true">URL</span>';
+        const seriesButton = hasSeries
+            ? `<button class="series-toggle" type="button" aria-expanded="false" aria-controls="${escapeHtml(item.id)}-titles" onclick="toggleSeries(this)">TITLES</button>`
+            : '';
+        return `<div class="movie-actions">${urlButton}${seriesButton}</div>`;
     }
 
     function renderSeries(item) {

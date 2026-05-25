@@ -10,7 +10,8 @@
       "sci-fi"
     ],
     "thumbnail": "assets/movie/natuton.jpg",
-    "note": "不思議なトンネルをめぐって、失ったものと向き合う青春SF。限られた時間の中で進む恋と選択が中心。"
+    "note": "不思議なトンネルをめぐって、失ったものと向き合う青春SF。限られた時間の中で進む恋と選択が中心。",
+    "url": "https://natsuton.com/"
   },
   {
     "id": "movie-02",
@@ -23,7 +24,8 @@
       "romance"
     ],
     "thumbnail": "assets/movie/meikuaga-ru.jpg",
-    "note": "人工的に作られた少女との出会いを通して、人の心や愛情の形を描くSFアニメ映画。"
+    "note": "人工的に作られた少女との出会いを通して、人の心や愛情の形を描くSFアニメ映画。",
+    "url": "https://make-a-girl.com/"
   },
   {
     "id": "movie-03",
@@ -35,7 +37,8 @@
       "action"
     ],
     "thumbnail": "assets/movie/hatarakusaibou1.jpg",
-    "note": "体内で働く細胞たちを人間の姿で描く実写エンタメ。病気や免疫の仕組みをアクションとコメディで見せる。"
+    "note": "体内で働く細胞たちを人間の姿で描く実写エンタメ。病気や免疫の仕組みをアクションとコメディで見せる。",
+    "url": "https://wwws.warnerbros.co.jp/saibou-movie/"
   },
   {
     "id": "movie-04",
@@ -48,7 +51,8 @@
       "fantasy"
     ],
     "thumbnail": "assets/movie/tenkinoko.jpg",
-    "note": "雨が降り続く東京で、天気を晴れにできる少女と少年が出会う物語。世界よりも大切なものを選ぶ青春ファンタジー。"
+    "note": "雨が降り続く東京で、天気を晴れにできる少女と少年が出会う物語。世界よりも大切なものを選ぶ青春ファンタジー。",
+    "url": "https://tenkinoko.com/"
   },
   {
     "id": "movie-05",
@@ -61,7 +65,8 @@
       "family"
     ],
     "thumbnail": "assets/movie/summerwars.jpg",
-    "note": "田舎の大家族と仮想世界OZを舞台に、世界規模の危機へ立ち向かう夏のSF群像劇。"
+    "note": "田舎の大家族と仮想世界OZを舞台に、世界規模の危機へ立ち向かう夏のSF群像劇。",
+    "url": "https://s-wars.jp/"
   },
   {
     "id": "movie-06",
@@ -74,7 +79,8 @@
       "action"
     ],
     "thumbnail": "assets/movie/bakemononoko.jpg",
-    "note": "人間界で孤独だった少年が、バケモノの世界で師匠と出会い成長していく冒険ファンタジー。"
+    "note": "人間界で孤独だった少年が、バケモノの世界で師匠と出会い成長していく冒険ファンタジー。",
+    "url": "http://www.bakemono-no-ko.jp/"
   },
   {
     "id": "movie-07",
@@ -87,7 +93,8 @@
       "fantasy"
     ],
     "thumbnail": "assets/movie/yourname.jpg",
-    "note": "夢の中で入れ替わる少年少女が、時間と距離を越えて互いを探す青春ラブストーリー。"
+    "note": "夢の中で入れ替わる少年少女が、時間と距離を越えて互いを探す青春ラブストーリー。",
+    "url": "https://www.kiminona.com/"
   },
   {
     "id": "movie-08",
@@ -100,7 +107,8 @@
       "drama"
     ],
     "thumbnail": "assets/movie/ametoyuki.jpg",
-    "note": "おおかみおとこの子どもを育てる母と、雨と雪それぞれの成長を描く家族の物語。"
+    "note": "おおかみおとこの子どもを育てる母と、雨と雪それぞれの成長を描く家族の物語。",
+    "url": "https://promo.kadokawa.co.jp/ookami/"
   },
   {
     "id": "movie-09",
@@ -113,7 +121,8 @@
       "adventure"
     ],
     "thumbnail": "assets/movie/suzumenotojimari.jpg",
-    "note": "災いを呼ぶ扉を閉じるため、少女が日本各地を旅するロードムービー型ファンタジー。"
+    "note": "災いを呼ぶ扉を閉じるため、少女が日本各地を旅するロードムービー型ファンタジー。",
+    "url": "https://suzume-tojimari-movie.jp/"
   },
   {
     "id": "movie-10",
@@ -126,7 +135,8 @@
       "sci-fi"
     ],
     "thumbnail": "assets/movie/bokugaaisitakimihe.jpg",
-    "note": "並行世界を題材に、別の選択肢に分かれていく恋と人生を描くSFラブストーリー。"
+    "note": "並行世界を題材に、別の選択肢に分かれていく恋と人生を描くSFラブストーリー。",
+    "url": "https://bokuaici.jp/"
   },
   {
     "id": "movie-11",
@@ -139,7 +149,8 @@
       "sci-fi"
     ],
     "thumbnail": "assets/movie/kimigaaisitabokuhe.jpg",
-    "note": "もう一つの並行世界から、運命の相手を選ぼうとする少年の恋を描くSFラブストーリー。"
+    "note": "もう一つの並行世界から、運命の相手を選ぼうとする少年の恋を描くSFラブストーリー。",
+    "url": "https://bokuaici.jp/"
   },
   {
     "id": "movie-12",
@@ -150,7 +161,8 @@
       "action"
     ],
     "thumbnail": "assets/movie/reborn.jpg",
-    "note": "元特殊傭兵の男が、圧倒的な近接戦闘術で敵に立ち向かうハードアクション。"
+    "note": "元特殊傭兵の男が、圧倒的な近接戦闘術で敵に立ち向かうハードアクション。",
+    "url": ""
   },
   {
     "id": "movie-13",
@@ -162,7 +174,8 @@
       "comedy"
     ],
     "thumbnail": "assets/movie/greenbook.jpg",
-    "note": "黒人ピアニストと白人運転手が旅を通じて互いを知っていく、実話をもとにしたヒューマンドラマ。"
+    "note": "黒人ピアニストと白人運転手が旅を通じて互いを知っていく、実話をもとにしたヒューマンドラマ。",
+    "url": ""
   },
   {
     "id": "movie-14",
@@ -174,7 +187,8 @@
       "suspense"
     ],
     "thumbnail": "assets/movie/sinkansendaibakuha.jpg",
-    "note": "爆弾を仕掛けられた新幹線をめぐり、乗客と関係者が極限状態で対応するサスペンス。"
+    "note": "爆弾を仕掛けられた新幹線をめぐり、乗客と関係者が極限状態で対応するサスペンス。",
+    "url": ""
   },
   {
     "id": "movie-15",
@@ -185,7 +199,8 @@
       "comedy"
     ],
     "thumbnail": "assets/movie/gokusyufudou.jpg",
-    "note": "元極道の男が専業主夫として全力で家事に挑む、ギャップが楽しいコメディ。"
+    "note": "元極道の男が専業主夫として全力で家事に挑む、ギャップが楽しいコメディ。",
+    "url": "https://www.ytv.co.jp/gokushufudo/"
   },
   {
     "id": "movie-16",
@@ -197,7 +212,8 @@
       "comedy"
     ],
     "thumbnail": "assets/movie/saikyoufutari.jpg",
-    "note": "全身麻痺の富豪と介護人になった青年が、衝突しながら友情を築くヒューマンドラマ。"
+    "note": "全身麻痺の富豪と介護人になった青年が、衝突しながら友情を築くヒューマンドラマ。",
+    "url": ""
   },
   {
     "id": "movie-17",
@@ -210,7 +226,8 @@
       "music"
     ],
     "thumbnail": "assets/movie/ainoutagoe.jpg",
-    "note": "転校生として現れたAI少女が、歌で周囲の心を動かしていく青春SFミュージカル。"
+    "note": "転校生として現れたAI少女が、歌で周囲の心を動かしていく青春SFミュージカル。",
+    "url": "https://ainouta.jp/"
   },
   {
     "id": "movie-18",
@@ -222,7 +239,8 @@
       "sci-fi"
     ],
     "thumbnail": "assets/movie/puraltutofo-mu.jpg",
-    "note": "階層構造の施設で食料が上から下へ運ばれる設定を通じ、格差と人間性を描くスリラー。"
+    "note": "階層構造の施設で食料が上から下へ運ばれる設定を通じ、格差と人間性を描くスリラー。",
+    "url": ""
   },
   {
     "id": "movie-19",
@@ -234,7 +252,8 @@
       "suspense"
     ],
     "thumbnail": "assets/movie/reberuriltuji.jpg",
-    "note": "小さな町の権力構造に巻き込まれた男が、不正と暴力に立ち向かうサスペンスアクション。"
+    "note": "小さな町の権力構造に巻き込まれた男が、不正と暴力に立ち向かうサスペンスアクション。",
+    "url": "https://www.netflix.com/title/81155964"
   },
   {
     "id": "movie-20",
@@ -246,7 +265,8 @@
       "drama"
     ],
     "thumbnail": "assets/movie/5sentijiltusya.jpg",
-    "note": "すれ違う時間と距離の中で、初恋の記憶を抱え続ける男女を描く恋愛ドラマ。"
+    "note": "すれ違う時間と距離の中で、初恋の記憶を抱え続ける男女を描く恋愛ドラマ。",
+    "url": "https://5cm-movie.jp/"
   },
   {
     "id": "movie-21",
@@ -259,7 +279,8 @@
       "drama"
     ],
     "thumbnail": "assets/movie/suizou.jpg",
-    "note": "余命を隠す少女と孤独な少年の交流を通じ、生きることの意味を描く青春ドラマ。"
+    "note": "余命を隠す少女と孤独な少年の交流を通じ、生きることの意味を描く青春ドラマ。",
+    "url": "https://kimisui-anime.com/"
   },
   {
     "id": "movie-22",
@@ -271,7 +292,8 @@
       "drama"
     ],
     "thumbnail": "assets/movie/suizou1.jpg",
-    "note": "余命わずかな少女とクラスメイトの少年が過ごした日々を、回想とともに描く実写青春ドラマ。"
+    "note": "余命わずかな少女とクラスメイトの少年が過ごした日々を、回想とともに描く実写青春ドラマ。",
+    "url": ""
   },
   {
     "id": "movie-23",
@@ -284,7 +306,8 @@
       "adventure"
     ],
     "thumbnail": "assets/movie/hatesinaki.jpg",
-    "note": "王女スカーレットの旅と戦いを通じて、生きる意味や復讐を描くファンタジー作品。"
+    "note": "王女スカーレットの旅と戦いを通じて、生きる意味や復讐を描くファンタジー作品。",
+    "url": "https://scarlet-movie.jp/"
   },
   {
     "id": "movie-24",
@@ -328,7 +351,8 @@
         "STAND BY ME ドラえもん",
         "STAND BY ME ドラえもん2"
       ]
-    }
+    },
+    "url": "https://dora-movie.com/"
   },
   {
     "id": "movie-25",
@@ -349,7 +373,8 @@
         "謎メキ！花の天カス学園",
         "ほか視聴済み作品は随時追記"
       ]
-    }
+    },
+    "url": "https://www.shinchan-movie.com/"
   },
   {
     "id": "movie-26",
@@ -368,7 +393,8 @@
       "items": [
         "視聴済みタイトルは後で追記"
       ]
-    }
+    },
+    "url": "https://www.conan-movie.jp/"
   },
   {
     "id": "movie-27",
@@ -381,7 +407,8 @@
       "fantasy"
     ],
     "thumbnail": "assets/movie/kimetu.jpg",
-    "note": "鬼殺隊の戦いを劇場版スケールで描くシリーズ。仲間との絆と鬼との激闘が中心。"
+    "note": "鬼殺隊の戦いを劇場版スケールで描くシリーズ。仲間との絆と鬼との激闘が中心。",
+    "url": "https://kimetsu.com/anime/"
   },
   {
     "id": "movie-28",
@@ -393,7 +420,8 @@
       "mystery"
     ],
     "thumbnail": "assets/movie/bakudan.jpg",
-    "note": "爆弾事件をめぐる緊迫した駆け引きと、犯人の言葉に翻弄される人々を描くサスペンス。"
+    "note": "爆弾事件をめぐる緊迫した駆け引きと、犯人の言葉に翻弄される人々を描くサスペンス。",
+    "url": "https://wwws.warnerbros.co.jp/bakudan-movie/"
   },
   {
     "id": "movie-29",
@@ -404,7 +432,8 @@
       "drama"
     ],
     "thumbnail": "assets/movie/turegautu.jpg",
-    "note": "うつ病になった夫と支える妻の日々を、やさしい視点で描く夫婦のヒューマンドラマ。"
+    "note": "うつ病になった夫と支える妻の日々を、やさしい視点で描く夫婦のヒューマンドラマ。",
+    "url": ""
   },
   {
     "id": "movie-30",
@@ -416,7 +445,8 @@
       "history"
     ],
     "thumbnail": "assets/movie/sinkaisyakubakumatuden.jpg",
-    "note": "幕末の人物や出来事を新しい解釈と笑いで描く歴史コメディ。"
+    "note": "幕末の人物や出来事を新しい解釈と笑いで描く歴史コメディ。",
+    "url": "https://new-bakumatsu.jp/"
   },
   {
     "id": "movie-31",
@@ -439,7 +469,8 @@
         "るろうに剣心 最終章 The Final",
         "るろうに剣心 最終章 The Beginning"
       ]
-    }
+    },
+    "url": "https://wwws.warnerbros.co.jp/rurouni-kenshin2020/"
   },
   {
     "id": "movie-32",
@@ -451,7 +482,8 @@
       "drama"
     ],
     "thumbnail": "assets/movie/renaisaiban.jpg",
-    "note": "恋愛を裁判になぞらえ、気持ちのすれ違いや罪悪感を描く恋愛ドラマ。"
+    "note": "恋愛を裁判になぞらえ、気持ちのすれ違いや罪悪感を描く恋愛ドラマ。",
+    "url": "https://renai-saiban.toho.co.jp/"
   },
   {
     "id": "movie-33",
@@ -464,7 +496,8 @@
       "fantasy"
     ],
     "thumbnail": "assets/movie/summerghost.jpg",
-    "note": "それぞれ悩みを抱える高校生たちが、夏に現れる幽霊を探す短編青春ファンタジー。"
+    "note": "それぞれ悩みを抱える高校生たちが、夏に現れる幽霊を探す短編青春ファンタジー。",
+    "url": "https://summerghost.jp/"
   },
   {
     "id": "movie-34",
@@ -476,7 +509,8 @@
       "comedy"
     ],
     "thumbnail": "assets/movie/tyoukaguyahime.jpg",
-    "note": "かぐや姫の物語を現代的なテンションで描く、華やかなファンタジー作品。"
+    "note": "かぐや姫の物語を現代的なテンションで描く、華やかなファンタジー作品。",
+    "url": ""
   },
   {
     "id": "movie-35",
@@ -488,7 +522,8 @@
       "suspense"
     ],
     "thumbnail": "assets/movie/deltutiage.jpg",
-    "note": "教師への告発をめぐり、報道や周囲の視線によって人生が揺さぶられる社会派ドラマ。"
+    "note": "教師への告発をめぐり、報道や周囲の視線によって人生が揺さぶられる社会派ドラマ。",
+    "url": ""
   },
   {
     "id": "movie-36",
@@ -510,7 +545,8 @@
         "教場 Reunion",
         "教場 Requiem"
       ]
-    }
+    },
+    "url": "https://www.fujitv.co.jp/kyojo/"
   },
   {
     "id": "movie-37",
@@ -523,7 +559,8 @@
       "suspense"
     ],
     "thumbnail": "assets/movie/theendofthefk.jpg",
-    "note": "問題を抱えた少年少女が逃避行を続ける、ブラックユーモアの強い青春ドラマ。"
+    "note": "問題を抱えた少年少女が逃避行を続ける、ブラックユーモアの強い青春ドラマ。",
+    "url": "https://www.netflix.com/title/80175722"
   },
   {
     "id": "movie-38",
@@ -536,7 +573,8 @@
       "drama"
     ],
     "thumbnail": "assets/movie/kotonohanoniwa.jpg",
-    "note": "雨の日の庭園で出会う少年と女性の、静かで繊細な距離感を描く恋愛アニメ。"
+    "note": "雨の日の庭園で出会う少年と女性の、静かで繊細な距離感を描く恋愛アニメ。",
+    "url": "https://www.kotonohanoniwa.jp/"
   },
   {
     "id": "movie-39",
@@ -548,7 +586,8 @@
       "drama"
     ],
     "thumbnail": "assets/movie/rultukubaltuku.jpg",
-    "note": "漫画を描く二人の少女の出会いと創作への思いを、短く鋭く描く青春ドラマ。"
+    "note": "漫画を描く二人の少女の出会いと創作への思いを、短く鋭く描く青春ドラマ。",
+    "url": "https://lookback-anime.com/"
   },
   {
     "id": "movie-40",
@@ -560,7 +599,8 @@
       "drama"
     ],
     "thumbnail": "assets/movie/aigananda.jpg",
-    "note": "一方通行の恋にのめり込む女性を通じて、好きでいることの苦さを描く恋愛ドラマ。"
+    "note": "一方通行の恋にのめり込む女性を通じて、好きでいることの苦さを描く恋愛ドラマ。",
+    "url": ""
   },
   {
     "id": "movie-41",
@@ -573,7 +613,8 @@
       "drama"
     ],
     "thumbnail": "assets/movie/MIU404.jpg",
-    "note": "機動捜査隊のバディが、限られた時間の中で事件に向き合う刑事ドラマ。"
+    "note": "機動捜査隊のバディが、限られた時間の中で事件に向き合う刑事ドラマ。",
+    "url": "https://www.tbs.co.jp/MIU404_TBS/"
   },
   {
     "id": "movie-42",
@@ -585,7 +626,8 @@
       "medical"
     ],
     "thumbnail": "assets/movie/dokuta-howaito.jpg",
-    "note": "正体不明の女性が医学知識で診断を導き、病院の謎にも関わっていく医療ミステリー。"
+    "note": "正体不明の女性が医学知識で診断を導き、病院の謎にも関わっていく医療ミステリー。",
+    "url": "https://www.ktv.co.jp/dr_white/"
   },
   {
     "id": "movie-43",
@@ -598,7 +640,8 @@
       "drama"
     ],
     "thumbnail": "assets/movie/futekisetu.jpg",
-    "note": "昭和の教師が令和へタイムスリップし、価値観の違いを笑いと共に描くコメディドラマ。"
+    "note": "昭和の教師が令和へタイムスリップし、価値観の違いを笑いと共に描くコメディドラマ。",
+    "url": "https://www.tbs.co.jp/futekisetsu_tbs/"
   },
   {
     "id": "movie-44",
@@ -610,7 +653,8 @@
       "drama"
     ],
     "thumbnail": "assets/movie/sayonaranotuduki.jpg",
-    "note": "喪失を抱えた人々が偶然のつながりを通して再び誰かを想う恋愛ドラマ。"
+    "note": "喪失を抱えた人々が偶然のつながりを通して再び誰かを想う恋愛ドラマ。",
+    "url": "https://www.netflix.com/title/81512217"
   },
   {
     "id": "movie-45",
@@ -623,7 +667,8 @@
       "drama"
     ],
     "thumbnail": "assets/movie/foruteluna.jpg",
-    "note": "死が近い人が見える青年が、大切な人の運命を変えようとする恋愛ファンタジー。"
+    "note": "死が近い人が見える青年が、大切な人の運命を変えようとする恋愛ファンタジー。",
+    "url": ""
   },
   {
     "id": "movie-46",
@@ -636,7 +681,8 @@
       "drama"
     ],
     "thumbnail": "assets/movie/tokyoMER.jpg",
-    "note": "重大事故や災害現場に駆けつける救命チームの奮闘を描く医療アクション。"
+    "note": "重大事故や災害現場に駆けつける救命チームの奮闘を描く医療アクション。",
+    "url": "https://www.tbs.co.jp/TokyoMER_tbs/"
   },
   {
     "id": "movie-47",
@@ -649,7 +695,8 @@
       "drama"
     ],
     "thumbnail": "assets/movie/ikage-mu.jpg",
-    "note": "借金を抱えた人々が、命がけのゲームに参加する韓国サバイバルスリラー。"
+    "note": "借金を抱えた人々が、命がけのゲームに参加する韓国サバイバルスリラー。",
+    "url": "https://www.netflix.com/title/81040344"
   },
   {
     "id": "movie-48",
@@ -661,7 +708,8 @@
       "mystery"
     ],
     "thumbnail": "assets/movie/konfiJP.jpg",
-    "note": "信用詐欺師たちが大がかりな作戦で悪人から金を奪う、痛快なコンゲーム作品。"
+    "note": "信用詐欺師たちが大がかりな作戦で悪人から金を奪う、痛快なコンゲーム作品。",
+    "url": "https://confidenceman-movie.com/"
   },
   {
     "id": "movie-49",
@@ -673,7 +721,8 @@
       "drama"
     ],
     "thumbnail": "assets/movie/japantinbotu2021.jpg",
-    "note": "日本列島の危機を前に、政治家や研究者たちが国家規模の決断に迫られるドラマ。"
+    "note": "日本列島の危機を前に、政治家や研究者たちが国家規模の決断に迫られるドラマ。",
+    "url": "https://japansinks2020.com/"
   },
   {
     "id": "movie-50",
@@ -685,7 +734,8 @@
       "drama"
     ],
     "thumbnail": "assets/movie/yowaihi-ro-.jpg",
-    "note": "頭脳派の少年が暴力の連鎖に巻き込まれながら、仲間と自分を守る学園アクション。"
+    "note": "頭脳派の少年が暴力の連鎖に巻き込まれながら、仲間と自分を守る学園アクション。",
+    "url": ""
   },
   {
     "id": "movie-51",
@@ -697,7 +747,8 @@
       "romance"
     ],
     "thumbnail": "assets/movie/kaseifunagisa.jpg",
-    "note": "仕事一筋の女性と家政婦として現れた男性の交流を描く、温かいラブコメディ。"
+    "note": "仕事一筋の女性と家政婦として現れた男性の交流を描く、温かいラブコメディ。",
+    "url": "https://www.tbs.co.jp/WATANAGI_tbs/"
   },
   {
     "id": "movie-52",
@@ -709,7 +760,8 @@
       "business"
     ],
     "thumbnail": "assets/movie/riltutiman.jpg",
-    "note": "IT企業社長と就活生の出会いから、仕事と恋が動き出すビジネスラブストーリー。"
+    "note": "IT企業社長と就活生の出会いから、仕事と恋が動き出すビジネスラブストーリー。",
+    "url": ""
   },
   {
     "id": "movie-53",
@@ -721,7 +773,8 @@
       "drama"
     ],
     "thumbnail": "assets/movie/houkagokarute.jpg",
-    "note": "学校医が子どもたちの不調や心のサインに向き合う、学園医療ドラマ。"
+    "note": "学校医が子どもたちの不調や心のサインに向き合う、学園医療ドラマ。",
+    "url": "https://www.ntv.co.jp/houkagokarte/"
   },
   {
     "id": "movie-54",
@@ -733,7 +786,8 @@
       "drama"
     ],
     "thumbnail": "assets/movie/doragonsakura.jpg",
-    "note": "落ちこぼれ生徒たちが東大合格を目指し、勉強と人生を変えていく学園ドラマ。"
+    "note": "落ちこぼれ生徒たちが東大合格を目指し、勉強と人生を変えていく学園ドラマ。",
+    "url": "https://www.tbs.co.jp/dragonzakura/"
   },
   {
     "id": "movie-55",
@@ -745,7 +799,8 @@
       "suspense"
     ],
     "thumbnail": "assets/movie/sinhanninfuragu.jpg",
-    "note": "家族失踪事件をきっかけに、主人公が世間の疑惑と真相に追い詰められていくミステリー。"
+    "note": "家族失踪事件をきっかけに、主人公が世間の疑惑と真相に追い詰められていくミステリー。",
+    "url": "https://www.ntv.co.jp/shinhannin-flag/"
   },
   {
     "id": "movie-56",
@@ -757,6 +812,7 @@
       "drama"
     ],
     "thumbnail": "assets/movie/hakozume.jpg",
-    "note": "交番勤務の女性警察官たちの日常と事件対応を、笑いとリアルさで描く警察ドラマ。"
+    "note": "交番勤務の女性警察官たちの日常と事件対応を、笑いとリアルさで描く警察ドラマ。",
+    "url": "https://www.ntv.co.jp/hakozume/"
   }
 ]

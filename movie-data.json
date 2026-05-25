@@ -9,7 +9,7 @@
       "romance",
       "sci-fi"
     ],
-    "thumbnail": "",
+    "thumbnail": "assets/movie/natuton.jpg",
     "note": "不思議なトンネルをめぐって、失ったものと向き合う青春SF。限られた時間の中で進む恋と選択が中心。"
   },
   {
@@ -22,7 +22,7 @@
       "sci-fi",
       "romance"
     ],
-    "thumbnail": "",
+    "thumbnail": "assets/movie/meikuaga-ru.jpg",
     "note": "人工的に作られた少女との出会いを通して、人の心や愛情の形を描くSFアニメ映画。"
   },
   {
@@ -34,7 +34,7 @@
       "comedy",
       "action"
     ],
-    "thumbnail": "",
+    "thumbnail": "assets/movie/hatarakusaibou1.jpg",
     "note": "体内で働く細胞たちを人間の姿で描く実写エンタメ。病気や免疫の仕組みをアクションとコメディで見せる。"
   },
   {
@@ -47,7 +47,7 @@
       "romance",
       "fantasy"
     ],
-    "thumbnail": "",
+    "thumbnail": "assets/movie/tenkinoko.jpg",
     "note": "雨が降り続く東京で、天気を晴れにできる少女と少年が出会う物語。世界よりも大切なものを選ぶ青春ファンタジー。"
   },
   {
@@ -60,7 +60,7 @@
       "sci-fi",
       "family"
     ],
-    "thumbnail": "",
+    "thumbnail": "assets/movie/summerwars.jpg",
     "note": "田舎の大家族と仮想世界OZを舞台に、世界規模の危機へ立ち向かう夏のSF群像劇。"
   },
   {
@@ -73,7 +73,7 @@
       "fantasy",
       "action"
     ],
-    "thumbnail": "",
+    "thumbnail": "assets/movie/bakemononoko.jpg",
     "note": "人間界で孤独だった少年が、バケモノの世界で師匠と出会い成長していく冒険ファンタジー。"
   },
   {
@@ -86,7 +86,7 @@
       "romance",
       "fantasy"
     ],
-    "thumbnail": "",
+    "thumbnail": "assets/movie/yourname.jpg",
     "note": "夢の中で入れ替わる少年少女が、時間と距離を越えて互いを探す青春ラブストーリー。"
   },
   {
@@ -99,7 +99,7 @@
       "family",
       "drama"
     ],
-    "thumbnail": "",
+    "thumbnail": "assets/movie/ametoyuki.jpg",
     "note": "おおかみおとこの子どもを育てる母と、雨と雪それぞれの成長を描く家族の物語。"
   },
   {
@@ -112,7 +112,7 @@
       "fantasy",
       "adventure"
     ],
-    "thumbnail": "",
+    "thumbnail": "assets/movie/suzumenotojimari.jpg",
     "note": "災いを呼ぶ扉を閉じるため、少女が日本各地を旅するロードムービー型ファンタジー。"
   },
   {
@@ -125,7 +125,7 @@
       "romance",
       "sci-fi"
     ],
-    "thumbnail": "",
+    "thumbnail": "assets/movie/bokugaaisitakimihe.jpg",
     "note": "並行世界を題材に、別の選択肢に分かれていく恋と人生を描くSFラブストーリー。"
   },
   {
@@ -138,7 +138,7 @@
       "romance",
       "sci-fi"
     ],
-    "thumbnail": "",
+    "thumbnail": "assets/movie/kimigaaisitabokuhe.jpg",
     "note": "もう一つの並行世界から、運命の相手を選ぼうとする少年の恋を描くSFラブストーリー。"
   },
   {
@@ -149,7 +149,7 @@
     "genres": [
       "action"
     ],
-    "thumbnail": "",
+    "thumbnail": "assets/movie/reborn.jpg",
     "note": "元特殊傭兵の男が、圧倒的な近接戦闘術で敵に立ち向かうハードアクション。"
   },
   {
@@ -161,7 +161,7 @@
       "drama",
       "comedy"
     ],
-    "thumbnail": "",
+    "thumbnail": "assets/movie/greenbook.jpg",
     "note": "黒人ピアニストと白人運転手が旅を通じて互いを知っていく、実話をもとにしたヒューマンドラマ。"
   },
   {
@@ -173,7 +173,7 @@
       "action",
       "suspense"
     ],
-    "thumbnail": "",
+    "thumbnail": "assets/movie/sinkansendaibakuha.jpg",
     "note": "爆弾を仕掛けられた新幹線をめぐり、乗客と関係者が極限状態で対応するサスペンス。"
   },
   {
@@ -184,7 +184,7 @@
     "genres": [
       "comedy"
     ],
-    "thumbnail": "",
+    "thumbnail": "assets/movie/gokusyufudou.jpg",
     "note": "元極道の男が専業主夫として全力で家事に挑む、ギャップが楽しいコメディ。"
   },
   {
@@ -196,7 +196,7 @@
       "drama",
       "comedy"
     ],
-    "thumbnail": "",
+    "thumbnail": "assets/movie/saikyoufutari.jpg",
     "note": "全身麻痺の富豪と介護人になった青年が、衝突しながら友情を築くヒューマンドラマ。"
   },
   {
@@ -209,7 +209,7 @@
       "sci-fi",
       "music"
     ],
-    "thumbnail": "",
+    "thumbnail": "assets/movie/ainoutagoe.jpg",
     "note": "転校生として現れたAI少女が、歌で周囲の心を動かしていく青春SFミュージカル。"
   },
   {
@@ -221,7 +221,7 @@
       "suspense",
       "sci-fi"
     ],
-    "thumbnail": "",
+    "thumbnail": "assets/movie/puraltutofo-mu.jpg",
     "note": "階層構造の施設で食料が上から下へ運ばれる設定を通じ、格差と人間性を描くスリラー。"
   },
   {
@@ -233,7 +233,7 @@
       "action",
       "suspense"
     ],
-    "thumbnail": "",
+    "thumbnail": "assets/movie/reberuriltuji.jpg",
     "note": "小さな町の権力構造に巻き込まれた男が、不正と暴力に立ち向かうサスペンスアクション。"
   },
   {
@@ -245,7 +245,7 @@
       "romance",
       "drama"
     ],
-    "thumbnail": "",
+    "thumbnail": "assets/movie/5sentijiltusya.jpg",
     "note": "すれ違う時間と距離の中で、初恋の記憶を抱え続ける男女を描く恋愛ドラマ。"
   },
   {
@@ -258,7 +258,7 @@
       "romance",
       "drama"
     ],
-    "thumbnail": "",
+    "thumbnail": "assets/movie/suizou.jpg",
     "note": "余命を隠す少女と孤独な少年の交流を通じ、生きることの意味を描く青春ドラマ。"
   },
   {
@@ -270,7 +270,7 @@
       "romance",
       "drama"
     ],
-    "thumbnail": "",
+    "thumbnail": "assets/movie/suizou1.jpg",
     "note": "余命わずかな少女とクラスメイトの少年が過ごした日々を、回想とともに描く実写青春ドラマ。"
   },
   {
@@ -283,7 +283,7 @@
       "fantasy",
       "adventure"
     ],
-    "thumbnail": "",
+    "thumbnail": "assets/movie/hatesinaki.jpg",
     "note": "王女スカーレットの旅と戦いを通じて、生きる意味や復讐を描くファンタジー作品。"
   },
   {
@@ -296,7 +296,7 @@
       "family",
       "adventure"
     ],
-    "thumbnail": "assets/movie/doraemon-series.jpg",
+    "thumbnail": "assets/movie/doraemon.jpg",
     "note": "ポンコツのび太を救うべく21世紀からやってきたドラえもんの秘密道具で紡ぐ友情ストーリー。",
     "series": {
       "title": "Included titles",
@@ -340,7 +340,7 @@
       "comedy",
       "family"
     ],
-    "thumbnail": "assets/movie/crayon-shinchan-series.jpg",
+    "thumbnail": "assets/movie/kureyonsintyan.jpg",
     "note": "野原一家としんのすけが、笑いと意外な感動を交えて事件に巻き込まれる劇場版シリーズ。視聴済みの代表作を内訳に整理。",
     "series": {
       "title": "Included titles",
@@ -361,7 +361,7 @@
       "mystery",
       "action"
     ],
-    "thumbnail": "assets/movie/detective-conan-series.jpg",
+    "thumbnail": "assets/movie/konan.jpg",
     "note": "江戸川コナンが大規模事件や爆破事件に挑む、推理とアクションの劇場版シリーズ。一部視聴済みとして整理。",
     "series": {
       "title": "Included titles",
@@ -380,7 +380,7 @@
       "action",
       "fantasy"
     ],
-    "thumbnail": "",
+    "thumbnail": "assets/movie/kimetu.jpg",
     "note": "鬼殺隊の戦いを劇場版スケールで描くシリーズ。仲間との絆と鬼との激闘が中心。"
   },
   {
@@ -392,18 +392,18 @@
       "suspense",
       "mystery"
     ],
-    "thumbnail": "",
+    "thumbnail": "assets/movie/bakudan.jpg",
     "note": "爆弾事件をめぐる緊迫した駆け引きと、犯人の言葉に翻弄される人々を描くサスペンス。"
   },
   {
     "id": "movie-29",
     "title": "ツレがうつになりまして。",
-    "score": 3,
+    "score": 4,
     "type": "movie",
     "genres": [
       "drama"
     ],
-    "thumbnail": "",
+    "thumbnail": "assets/movie/turegautu.jpg",
     "note": "うつ病になった夫と支える妻の日々を、やさしい視点で描く夫婦のヒューマンドラマ。"
   },
   {
@@ -415,7 +415,7 @@
       "comedy",
       "history"
     ],
-    "thumbnail": "",
+    "thumbnail": "assets/movie/sinkaisyakubakumatuden.jpg",
     "note": "幕末の人物や出来事を新しい解釈と笑いで描く歴史コメディ。"
   },
   {
@@ -428,7 +428,7 @@
       "history",
       "drama"
     ],
-    "thumbnail": "assets/movie/rurouni-kenshin-live-action-series.jpg",
+    "thumbnail": "assets/movie/rurouni.jpg",
     "note": "人斬りだった剣心が、過去と向き合いながら大切な人々を守る実写アクションシリーズ全作。",
     "series": {
       "title": "Included titles",
@@ -450,7 +450,7 @@
       "romance",
       "drama"
     ],
-    "thumbnail": "",
+    "thumbnail": "assets/movie/renaisaiban.jpg",
     "note": "恋愛を裁判になぞらえ、気持ちのすれ違いや罪悪感を描く恋愛ドラマ。"
   },
   {
@@ -463,7 +463,7 @@
       "drama",
       "fantasy"
     ],
-    "thumbnail": "",
+    "thumbnail": "assets/movie/summerghost.jpg",
     "note": "それぞれ悩みを抱える高校生たちが、夏に現れる幽霊を探す短編青春ファンタジー。"
   },
   {
@@ -475,7 +475,7 @@
       "fantasy",
       "comedy"
     ],
-    "thumbnail": "",
+    "thumbnail": "assets/movie/tyoukaguyahime.jpg",
     "note": "かぐや姫の物語を現代的なテンションで描く、華やかなファンタジー作品。"
   },
   {
@@ -487,20 +487,30 @@
       "drama",
       "suspense"
     ],
-    "thumbnail": "",
+    "thumbnail": "assets/movie/deltutiage.jpg",
     "note": "教師への告発をめぐり、報道や周囲の視線によって人生が揺さぶられる社会派ドラマ。"
   },
   {
     "id": "movie-36",
-    "title": "教場 全シーズン",
+    "title": "教場 シリーズ",
     "score": 5,
     "type": "drama",
     "genres": [
       "mystery",
       "drama"
     ],
-    "thumbnail": "",
-    "note": "警察学校を舞台に、冷徹な教官が生徒たちの覚悟と弱さを見抜いていく緊張感あるドラマ。"
+    "thumbnail": "assets/movie/kyoujyou.jpg",
+    "note": "警察学校を舞台に、冷徹な教官が生徒たちの覚悟と弱さを見抜いていく緊張感あるドラマ。",
+    "series": {
+      "title": "Included titles",
+      "items": [
+        "教場",
+        "教場II",
+        "風間公親－教場0－",
+        "教場 Reunion",
+        "教場 Requiem"
+      ]
+    }
   },
   {
     "id": "movie-37",
@@ -512,7 +522,7 @@
       "comedy",
       "suspense"
     ],
-    "thumbnail": "",
+    "thumbnail": "assets/movie/theendofthefk.jpg",
     "note": "問題を抱えた少年少女が逃避行を続ける、ブラックユーモアの強い青春ドラマ。"
   },
   {
@@ -525,7 +535,7 @@
       "romance",
       "drama"
     ],
-    "thumbnail": "",
+    "thumbnail": "assets/movie/kotonohanoniwa.jpg",
     "note": "雨の日の庭園で出会う少年と女性の、静かで繊細な距離感を描く恋愛アニメ。"
   },
   {
@@ -537,7 +547,7 @@
       "animation",
       "drama"
     ],
-    "thumbnail": "",
+    "thumbnail": "assets/movie/rultukubaltuku.jpg",
     "note": "漫画を描く二人の少女の出会いと創作への思いを、短く鋭く描く青春ドラマ。"
   },
   {
@@ -549,7 +559,7 @@
       "romance",
       "drama"
     ],
-    "thumbnail": "",
+    "thumbnail": "assets/movie/aigananda.jpg",
     "note": "一方通行の恋にのめり込む女性を通じて、好きでいることの苦さを描く恋愛ドラマ。"
   },
   {
@@ -562,7 +572,7 @@
       "action",
       "drama"
     ],
-    "thumbnail": "",
+    "thumbnail": "assets/movie/MIU404.jpg",
     "note": "機動捜査隊のバディが、限られた時間の中で事件に向き合う刑事ドラマ。"
   },
   {
@@ -574,7 +584,7 @@
       "mystery",
       "medical"
     ],
-    "thumbnail": "",
+    "thumbnail": "assets/movie/dokuta-howaito.jpg",
     "note": "正体不明の女性が医学知識で診断を導き、病院の謎にも関わっていく医療ミステリー。"
   },
   {
@@ -587,7 +597,7 @@
       "sci-fi",
       "drama"
     ],
-    "thumbnail": "",
+    "thumbnail": "assets/movie/futekisetu.jpg",
     "note": "昭和の教師が令和へタイムスリップし、価値観の違いを笑いと共に描くコメディドラマ。"
   },
   {
@@ -599,7 +609,7 @@
       "romance",
       "drama"
     ],
-    "thumbnail": "",
+    "thumbnail": "assets/movie/sayonaranotuduki.jpg",
     "note": "喪失を抱えた人々が偶然のつながりを通して再び誰かを想う恋愛ドラマ。"
   },
   {
@@ -612,7 +622,7 @@
       "fantasy",
       "drama"
     ],
-    "thumbnail": "",
+    "thumbnail": "assets/movie/foruteluna.jpg",
     "note": "死が近い人が見える青年が、大切な人の運命を変えようとする恋愛ファンタジー。"
   },
   {
@@ -625,7 +635,7 @@
       "action",
       "drama"
     ],
-    "thumbnail": "",
+    "thumbnail": "assets/movie/tokyoMER.jpg",
     "note": "重大事故や災害現場に駆けつける救命チームの奮闘を描く医療アクション。"
   },
   {
@@ -638,7 +648,7 @@
       "action",
       "drama"
     ],
-    "thumbnail": "",
+    "thumbnail": "assets/movie/ikage-mu.jpg",
     "note": "借金を抱えた人々が、命がけのゲームに参加する韓国サバイバルスリラー。"
   },
   {
@@ -650,19 +660,19 @@
       "comedy",
       "mystery"
     ],
-    "thumbnail": "",
+    "thumbnail": "assets/movie/konfiJP.jpg",
     "note": "信用詐欺師たちが大がかりな作戦で悪人から金を奪う、痛快なコンゲーム作品。"
   },
   {
     "id": "movie-49",
-    "title": "日本沈没",
+    "title": "日本沈没 2021",
     "score": 4,
     "type": "drama",
     "genres": [
       "sci-fi",
       "drama"
     ],
-    "thumbnail": "",
+    "thumbnail": "assets/movie/japantinbotu2021.jpg",
     "note": "日本列島の危機を前に、政治家や研究者たちが国家規模の決断に迫られるドラマ。"
   },
   {
@@ -674,7 +684,7 @@
       "action",
       "drama"
     ],
-    "thumbnail": "",
+    "thumbnail": "assets/movie/yowaihi-ro-.jpg",
     "note": "頭脳派の少年が暴力の連鎖に巻き込まれながら、仲間と自分を守る学園アクション。"
   },
   {
@@ -686,7 +696,7 @@
       "comedy",
       "romance"
     ],
-    "thumbnail": "",
+    "thumbnail": "assets/movie/kaseifunagisa.jpg",
     "note": "仕事一筋の女性と家政婦として現れた男性の交流を描く、温かいラブコメディ。"
   },
   {
@@ -698,7 +708,7 @@
       "romance",
       "business"
     ],
-    "thumbnail": "",
+    "thumbnail": "assets/movie/riltutiman.jpg",
     "note": "IT企業社長と就活生の出会いから、仕事と恋が動き出すビジネスラブストーリー。"
   },
   {
@@ -710,7 +720,7 @@
       "medical",
       "drama"
     ],
-    "thumbnail": "",
+    "thumbnail": "assets/movie/houkagokarute.jpg",
     "note": "学校医が子どもたちの不調や心のサインに向き合う、学園医療ドラマ。"
   },
   {
@@ -722,7 +732,7 @@
       "school",
       "drama"
     ],
-    "thumbnail": "",
+    "thumbnail": "assets/movie/doragonsakura.jpg",
     "note": "落ちこぼれ生徒たちが東大合格を目指し、勉強と人生を変えていく学園ドラマ。"
   },
   {
@@ -734,7 +744,7 @@
       "mystery",
       "suspense"
     ],
-    "thumbnail": "",
+    "thumbnail": "assets/movie/sinhanninfuragu.jpg",
     "note": "家族失踪事件をきっかけに、主人公が世間の疑惑と真相に追い詰められていくミステリー。"
   },
   {
@@ -746,7 +756,7 @@
       "comedy",
       "drama"
     ],
-    "thumbnail": "",
+    "thumbnail": "assets/movie/hakozume.jpg",
     "note": "交番勤務の女性警察官たちの日常と事件対応を、笑いとリアルさで描く警察ドラマ。"
   }
 ]

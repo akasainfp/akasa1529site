@@ -175,7 +175,7 @@
 
         .movie-item {
             display: grid;
-            grid-template-columns: 280px 1fr;
+            grid-template-columns: 190px 1fr;
             gap: 30px;
             background: rgba(255, 255, 255, 0.01);
             border: 1px solid rgba(255, 255, 255, 0.05);
@@ -184,12 +184,15 @@
             transition: 0.5s ease;
         }
         .movie-item.hidden { display: none !important; }
-        @media (max-width: 768px) { .movie-item { grid-template-columns: 1fr; } }
+        @media (max-width: 768px) {
+            .movie-item { grid-template-columns: 1fr; }
+            .movie-thumb { max-width: 220px; margin: 0 auto; }
+        }
 
         /* サムネイル */
         .movie-thumb {
             width: 100%;
-            aspect-ratio: 16/9;
+            aspect-ratio: 2/3;
             background: #08080c;
             border: 1px solid rgba(255, 255, 255, 0.05);
             position: relative;

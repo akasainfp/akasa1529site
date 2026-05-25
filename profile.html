@@ -177,6 +177,55 @@
             .device-list li { grid-template-columns: 1fr; gap: 4px; }
         }
 
+        .timeline-card { padding-bottom: 28px; }
+        .timeline-head {
+            display: flex;
+            justify-content: space-between;
+            gap: 24px;
+            align-items: end;
+            margin-bottom: 28px;
+        }
+        .timeline-head h3 { margin-bottom: 0; }
+        .timeline-sub { font-family: var(--font-mono); color: #555; font-size: 0.66rem; letter-spacing: 0.14em; text-align: right; }
+        .life-timeline {
+            position: relative;
+            display: grid;
+            grid-template-columns: repeat(5, minmax(150px, 1fr));
+            gap: 18px;
+            overflow-x: auto;
+            padding: 18px 2px 12px;
+            scrollbar-width: thin;
+            scrollbar-color: rgba(125,95,255,0.45) transparent;
+        }
+        .life-timeline::before {
+            content: "";
+            position: absolute;
+            left: 0;
+            right: 0;
+            top: 42px;
+            height: 1px;
+            background: linear-gradient(90deg, transparent, rgba(125,95,255,0.55), rgba(255,255,255,0.08), transparent);
+        }
+        .timeline-point { position: relative; min-width: 150px; padding-top: 42px; }
+        .timeline-point::before {
+            content: "";
+            position: absolute;
+            top: 17px;
+            left: 0;
+            width: 10px;
+            height: 10px;
+            border: 1px solid var(--accent);
+            background: #050505;
+            box-shadow: 0 0 14px rgba(125,95,255,0.35);
+        }
+        .timeline-year { font-family: var(--font-mono); color: var(--accent); font-size: 0.78rem; letter-spacing: 0.16em; margin-bottom: 10px; }
+        .timeline-title { color: var(--text); font-size: 0.96rem; font-weight: 700; line-height: 1.6; }
+        .timeline-note { margin-top: 8px; color: #666; font-family: var(--font-mono); font-size: 0.62rem; letter-spacing: 0.08em; }
+        @media (max-width: 768px) {
+            .timeline-head { align-items: flex-start; flex-direction: column; }
+            .timeline-sub { text-align: left; }
+            .life-timeline { grid-template-columns: repeat(5, 170px); }
+        }
         /* --- フッター --- */
         footer {
             background: rgba(5, 5, 5, 0.95);
@@ -272,6 +321,41 @@
             </div>
         </div>
 
+        <div class="anim-box profile-grid">
+            <div class="info-card timeline-card">
+                <div class="timeline-head">
+                    <h3>Life / Internet Timeline</h3>
+                    <div class="timeline-sub">LIFE EVENTS / INTERNET TIMELINE</div>
+                </div>
+                <div class="life-timeline" aria-label="Akasa1529の人生年表とインターネット年表">
+                    <div class="timeline-point">
+                        <div class="timeline-year">2008</div>
+                        <div class="timeline-title">Akasa1529誕生</div>
+                        <div class="timeline-note">START</div>
+                    </div>
+                    <div class="timeline-point">
+                        <div class="timeline-year">2017</div>
+                        <div class="timeline-title">少年野球所属</div>
+                        <div class="timeline-note">BASEBALL</div>
+                    </div>
+                    <div class="timeline-point">
+                        <div class="timeline-year">2019</div>
+                        <div class="timeline-title">都大会準優勝</div>
+                        <div class="timeline-note">RUNNER-UP</div>
+                    </div>
+                    <div class="timeline-point">
+                        <div class="timeline-year">2021</div>
+                        <div class="timeline-title">一体型PCを所有</div>
+                        <div class="timeline-note">FIRST PC</div>
+                    </div>
+                    <div class="timeline-point">
+                        <div class="timeline-year">2025</div>
+                        <div class="timeline-title">VRChatスタート</div>
+                        <div class="timeline-note">VR / ONLINE</div>
+                    </div>
+                </div>
+            </div>
+        </div>
         <div class="anim-box">
             <div style="font-family: var(--font-mono); font-size: 0.75rem; color: var(--accent); letter-spacing: 0.2em; margin-bottom: 30px; display: flex; align-items: center; gap: 15px;">
                 CONNECT

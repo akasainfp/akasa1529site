@@ -17,35 +17,24 @@ function normalizeCategory(value) {
     return value.name || value.title || value.id || 'note';
 }
 
-function hashToBase36(value) {
-    let hash = 2166136261;
-    for (let i = 0; i < value.length; i += 1) {
-        hash ^= value.charCodeAt(i);
-        hash = Math.imul(hash, 16777619);
-    }
-    return (hash >>> 0).toString(36);
-}
-
-function getPostSlug(post) {
-    if (typeof post.slug === 'string' && /^[a-z0-9]{7}$/i.test(post.slug)) {
-        return post.slug.toLowerCase();
-    }
-    const source = String(post.id || post.slug || post.title || 'blog');
-    return hashToBase36(source).slice(0, 7).padEnd(7, '0');
+function normalizeImage(value) {
+    if (!value) return '';
+    if (typeof value === 'string') return value;
+    return value.url || '';
 }
 
 function normalizePost(post) {
     const body = post.body || post.content || '';
     const excerpt = post.excerpt || post.description || stripHtml(body).slice(0, 90);
     return {
-        id: post.id || post.slug || post.title,
-        slug: getPostSlug(post),
+        id: post.id || post.title,
         title: post.title || 'Untitled',
         excerpt,
         body,
         category: normalizeCategory(post.category || post.type),
         publishedAt: post.publishedAt || post.date || post.createdAt || '',
-        tags: post.tags || []
+        tags: post.tags || [],
+        eyecatch: normalizeImage(post.eyecatch || post.image || post.thumbnail)
     };
 }
 
@@ -68,13 +57,14 @@ function renderPosts(posts) {
         const date = formatDate(post.publishedAt);
         const tags = Array.isArray(post.tags) ? post.tags.map(tag => typeof tag === 'string' ? tag : tag.name).filter(Boolean) : [];
         const tagText = tags.length ? '<span>' + tags.map(escapeHtml).join(' / ') + '</span>' : '';
-        const href = '/blog/' + encodeURIComponent(post.slug);
+        const eyecatch = post.eyecatch ? '<img class="blog-eyecatch" src="' + escapeHtml(post.eyecatch) + '" alt="' + escapeHtml(post.title) + '" loading="lazy">' : '';
         return '<article class="blog-card" data-blog-card>' +
+            eyecatch +
             '<div class="blog-meta"><span>' + (date || 'NO DATE') + '</span><span class="blog-category">' + escapeHtml(post.category) + '</span>' + tagText + '</div>' +
-            '<h2><a href="' + href + '">' + escapeHtml(post.title) + '</a></h2>' +
+            '<h2>' + escapeHtml(post.title) + '</h2>' +
             '<p class="blog-excerpt">' + escapeHtml(post.excerpt) + '</p>' +
             '<div class="blog-body">' + (post.body || '<p>' + escapeHtml(post.excerpt) + '</p>') + '</div>' +
-            '<div class="blog-actions"><a class="blog-toggle" href="' + href + '">OPEN</a><button class="blog-toggle" type="button" data-blog-toggle aria-expanded="false">READ HERE</button></div>' +
+            '<div class="blog-actions"><button class="blog-toggle" type="button" data-blog-toggle aria-expanded="false">READ</button></div>' +
         '</article>';
     }).join('');
 }
@@ -115,7 +105,7 @@ document.addEventListener('click', event => {
     const card = button.closest('[data-blog-card]');
     const open = !card.classList.contains('is-open');
     card.classList.toggle('is-open', open);
-    button.textContent = open ? 'CLOSE' : 'READ HERE';
+    button.textContent = open ? 'CLOSE' : 'READ';
     button.setAttribute('aria-expanded', String(open));
 });
 

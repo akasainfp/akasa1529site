@@ -5,13 +5,27 @@ function escapeHtml(value) {
     return String(value ?? '').replace(/[&<>"]/g, char => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[char]));
 }
 
+function stripHtml(value) {
+    const element = document.createElement('div');
+    element.innerHTML = value || '';
+    return element.textContent || element.innerText || '';
+}
+
+function normalizeCategory(value) {
+    if (!value) return 'note';
+    if (typeof value === 'string') return value;
+    return value.name || value.title || value.id || 'note';
+}
+
 function normalizePost(post) {
+    const body = post.body || post.content || '';
+    const excerpt = post.excerpt || post.description || stripHtml(body).slice(0, 90);
     return {
         id: post.id || post.slug || post.title,
         title: post.title || 'Untitled',
-        excerpt: post.excerpt || post.description || '',
-        body: post.body || post.content || '',
-        category: post.category || post.type || 'note',
+        excerpt,
+        body,
+        category: normalizeCategory(post.category || post.type),
         publishedAt: post.publishedAt || post.date || post.createdAt || '',
         tags: post.tags || []
     };

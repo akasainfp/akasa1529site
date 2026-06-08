@@ -99,7 +99,7 @@
             <div style="margin-bottom: 60px;"><a href="#top" class="footer-link" style="font-family: var(--font-mono); font-size: 0.7rem; letter-spacing: 0.3em;">BACK TO TOP</a></div>
             <div class="footer-grid">
                 <div class="footer-col"><h4>自己紹介</h4><div class="footer-links"><a href="/profile/" class="footer-link">プロフィール</a><a href="/ticket/" class="footer-link">お問い合わせ</a></div></div>
-                <div class="footer-col"><h4>アーカイブ</h4><div class="footer-links"><a href="/" class="footer-link">ホーム</a><a href="/profile/" class="footer-link">プロフィール</a><a href="/anime/" class="footer-link">アニメ</a><a href="/movie/" class="footer-link">映画＆ドラマ</a><a href="/game/" class="footer-link">ゲーム</a><a href="/music/" class="footer-link">音楽</a><a href="/archive/" class="footer-link">ツール</a></div></div>
+                <div class="footer-col"><h4>アーカイブ</h4><div class="footer-links"><a href="/" class="footer-link">ホーム</a><a href="/profile/" class="footer-link">プロフィール</a><a href="/anime/" class="footer-link">アニメ</a><a href="/movie/" class="footer-link">映画＆ドラマ</a><a href="/game/" class="footer-link">ゲーム</a><a href="/music/" class="footer-link">音楽</a><a href="/blog/" class="footer-link">ブログ</a><a href="/archive/" class="footer-link">ツール</a></div></div>
                 <div class="footer-col">
                     <h4>SNS</h4>
                     <div class="footer-links">
@@ -161,12 +161,13 @@
                 '/movie/': 'movie/index.html',
                 '/game/': 'game/index.html',
                 '/music/': 'music/index.html',
+                '/blog/': 'blog/index.html',
                 '/archive/': 'archive/index.html',
                 '/privacy/': 'privacy/index.html',
                 '/ticket/': 'ticket/index.html'
             };
             const path = decodeURIComponent(window.location.pathname).replace(/\\/g, '/');
-            const nestedPage = /\/(home|profile|anime|movie|game|music|archive|privacy|ticket)\/index\.html$/i.test(path);
+            const nestedPage = /\/(home|profile|anime|movie|game|music|blog|archive|privacy|ticket)\/index\.html$/i.test(path);
             const siteRoot = path.replace(nestedPage ? /\/[^/]+\/index\.html$/i : /\/[^/]+$/i, '/');
             document.querySelectorAll('a[href]').forEach(link => {
                 const href = link.getAttribute('href');
@@ -177,6 +178,6 @@
     </script>
 
     <script src="../assets/js/site-counter.js"></script>
-    <script src="../assets/js/site-menu.js?v=20260525-music"></script>
+    <script src="../assets/js/site-menu.js?v=20260609-blog"></script>
 </body>
 </html>

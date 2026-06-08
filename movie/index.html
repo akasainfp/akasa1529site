@@ -344,6 +344,7 @@
                         <a href="/movie/" class="footer-link">映画＆ドラマ</a>
                         <a href="/game/" class="footer-link">ゲーム</a>
                         <a href="/music/" class="footer-link">音楽</a>
+                        <a href="/blog/" class="footer-link">ブログ</a>
                         <a href="/archive/" class="footer-link">ツール</a>
                     </div>
                 </div>
@@ -441,12 +442,13 @@
                 '/movie/': 'movie/index.html',
                 '/game/': 'game/index.html',
                 '/music/': 'music/index.html',
+                '/blog/': 'blog/index.html',
                 '/archive/': 'archive/index.html',
                 '/privacy/': 'privacy/index.html',
                 '/ticket/': 'ticket/index.html'
             };
             const path = decodeURIComponent(window.location.pathname).replace(/\\/g, '/');
-            const nestedPage = /\/(home|profile|anime|movie|game|music|archive|privacy|ticket)\/index\.html$/i.test(path);
+            const nestedPage = /\/(home|profile|anime|movie|game|music|blog|archive|privacy|ticket)\/index\.html$/i.test(path);
             const siteRoot = path.replace(nestedPage ? /\/[^/]+\/index\.html$/i : /\/[^/]+$/i, '/');
             document.querySelectorAll('a[href]').forEach(link => {
                 const href = link.getAttribute('href');
@@ -458,6 +460,6 @@
     <script src="../assets/js/movie-archive.js?v=20260525-type-tags"></script>
 
     <script src="../assets/js/site-counter.js"></script>
-    <script src="../assets/js/site-menu.js?v=20260525-music"></script>
+    <script src="../assets/js/site-menu.js?v=20260609-blog"></script>
 </body>
 </html>

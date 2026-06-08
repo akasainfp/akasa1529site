@@ -10,4 +10,5 @@ database_id = "REPLACE_WITH_YOUR_D1_DATABASE_ID"
 
 # Add this route in Cloudflare after moving DNS to Cloudflare:
 # www.akasa1529.site/api/*
+# www.akasa1529.site/blog/*
 

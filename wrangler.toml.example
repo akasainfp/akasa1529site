@@ -2,6 +2,11 @@ name = "akasa1529-visitor-counter"
 main = "cloudflare-worker.js"
 compatibility_date = "2026-05-16"
 
+[vars]
+BLOG_URL = "https://www.akasa1529.site/blog/"
+MICROCMS_SERVICE_DOMAIN = "ezg7dan3lv"
+MICROCMS_ENDPOINT = "blogs"
+
 # After creating a D1 database, replace database_id below.
 [[d1_databases]]
 binding = "DB"
@@ -10,4 +15,5 @@ database_id = "REPLACE_WITH_YOUR_D1_DATABASE_ID"
 
 # Add this route in Cloudflare after moving DNS to Cloudflare:
 # www.akasa1529.site/api/*
+# /api/blog-webhook is used by microCMS to notify Discord.
 

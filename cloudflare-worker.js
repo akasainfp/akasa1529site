@@ -116,15 +116,13 @@ async function handleBlogWebhook(request, env, url) {
 
 async function sendDiscordBlogNotification(env, post) {
     const blogUrl = env.BLOG_URL || 'https://www.akasa1529.site/blog/';
-    const description = truncate(stripHtml(post.body || post.excerpt || ''), 3800) || '新しいBlogが追加されました。';
+    const bodyText = truncate(stripHtml(post.body || post.excerpt || ''), 3600) || '新しいBlogが追加されました。';
+    const description = `${bodyText}\n\n${blogUrl}`;
     const embed = {
         title: truncate(post.title, 250),
         url: blogUrl,
         description,
-        color: 0x2f263a,
-        fields: [
-            { name: 'BlogURL', value: blogUrl, inline: false }
-        ],
+        color: 0xffd700,
         timestamp: post.publishedAt || new Date().toISOString()
     };
 
@@ -137,7 +135,8 @@ async function sendDiscordBlogNotification(env, post) {
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
             username: 'Akasa1529 blog',
-            content: '新しいBlogが追加されました',
+            content: '<@&1515742409605124126> 新しいBlogが追加されました',
+            allowed_mentions: { roles: ['1515742409605124126'] },
             embeds: [embed]
         })
     });

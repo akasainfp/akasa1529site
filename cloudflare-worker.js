@@ -55,6 +55,33 @@ async function handleVisits(request, env) {
     return Response.json({ total }, { headers: JSON_HEADERS });
 }
 
+async function handleBlogPermalink(request, url) {
+    if (request.method !== 'GET' && request.method !== 'HEAD') {
+        return new Response('Method not allowed', { status: 405 });
+    }
+
+    const contentId = decodeURIComponent(url.pathname.replace(/^\/blog\//, '').replace(/\/$/, ''));
+    if (!/^[A-Za-z0-9_-]{1,128}$/.test(contentId)) {
+        return new Response('Not found', { status: 404 });
+    }
+
+    const blogUrl = new URL('/blog.html', url.origin);
+    blogUrl.searchParams.set('id', contentId);
+    const response = await fetch(new Request(blogUrl.toString(), request));
+    if (!response.ok || request.method === 'HEAD') {
+        return response;
+    }
+
+    const html = await response.text();
+    const rewritten = html.includes('<base ')
+        ? html
+        : html.replace('<head>', '<head>\n    <base href="/">');
+    const headers = new Headers(response.headers);
+    headers.set('Content-Type', 'text/html; charset=utf-8');
+    headers.set('Cache-Control', 'no-store');
+    headers.delete('Content-Length');
+    return new Response(rewritten, { status: response.status, headers });
+}
 async function handleBlogWebhook(request, env, url) {
     if (request.method === 'OPTIONS') {
         return new Response(null, { status: 204, headers: JSON_HEADERS });
@@ -115,9 +142,9 @@ async function handleBlogWebhook(request, env, url) {
 }
 
 async function sendDiscordBlogNotification(env, post) {
-    const blogUrl = env.BLOG_URL || 'https://www.akasa1529.site/blog/';
-    const bodyText = truncate(stripHtml(post.body || post.excerpt || ''), 3600) || '新しいBlogが追加されました。';
-    const description = `${bodyText}\n\n${blogUrl}`;
+    const blogUrl = buildBlogUrl(env, post.id);
+    const bodyText = stripHtml(post.body || post.excerpt || '');
+    const description = `${createDiscordPreview(bodyText)}\n\n[===詳細はこちらから===](${blogUrl})`;
     const embed = {
         title: truncate(post.title, 250),
         url: blogUrl,
@@ -225,6 +252,24 @@ function truncate(value, max) {
     const text = String(value || '');
     return text.length > max ? text.slice(0, max - 1) + '…' : text;
 }
+function buildBlogUrl(env, contentId) {
+    const base = env.BLOG_URL || 'https://www.akasa1529.site/blog/';
+    if (!contentId) return base;
+    return `${base.replace(/\/$/, '')}/${encodeURIComponent(contentId)}`;
+}
+
+function createDiscordPreview(value) {
+    const lines = String(value || '')
+        .split(/\r?\n+/)
+        .map(line => line.trim())
+        .filter(Boolean)
+        .slice(0, 2)
+        .map(line => truncate(line, 80));
+
+    const preview = lines.join('\n') || '新しいBlogが追加されました。';
+    return `${preview}....`;
+}
+
 
 function stableId(value) {
     let hash = 0;

@@ -27,7 +27,7 @@ function normalizePost(post) {
     const body = post.body || post.content || '';
     const excerpt = post.excerpt || post.description || stripHtml(body).slice(0, 90);
     return {
-        id: post.id || post.title,
+        id: String(post.id || post.contentId || post.title),
         title: post.title || 'Untitled',
         excerpt,
         body,
@@ -45,6 +45,31 @@ function formatDate(value) {
     return date.toLocaleDateString('ja-JP', { year: 'numeric', month: '2-digit', day: '2-digit' }).replaceAll('/', '.');
 }
 
+function getRequestedPostId() {
+    const params = new URLSearchParams(window.location.search);
+    const queryId = params.get('id');
+    if (queryId) return queryId;
+
+    const match = window.location.pathname.match(/^\/blog\/([^/]+)\/?$/);
+    return match ? decodeURIComponent(match[1]) : '';
+}
+
+function openRequestedPost() {
+    const requestedId = getRequestedPostId();
+    if (!requestedId || !blogList) return;
+
+    const card = blogList.querySelector('[data-blog-id="' + CSS.escape(requestedId) + '"]');
+    if (!card) return;
+
+    const button = card.querySelector('[data-blog-toggle]');
+    card.classList.add('is-open');
+    if (button) {
+        button.textContent = '閉じる';
+        button.setAttribute('aria-expanded', 'true');
+    }
+    card.scrollIntoView({ block: 'start', behavior: 'smooth' });
+}
+
 function renderPosts(posts) {
     if (!blogList) return;
     const normalized = posts.map(normalizePost);
@@ -58,7 +83,7 @@ function renderPosts(posts) {
         const tags = Array.isArray(post.tags) ? post.tags.map(tag => typeof tag === 'string' ? tag : tag.name).filter(Boolean) : [];
         const tagText = tags.length ? '<span>' + tags.map(escapeHtml).join(' / ') + '</span>' : '';
         const eyecatch = post.eyecatch ? '<img class="blog-eyecatch" src="' + escapeHtml(post.eyecatch) + '" alt="' + escapeHtml(post.title) + '" loading="lazy">' : '';
-        return '<article class="blog-card" data-blog-card>' +
+        return '<article class="blog-card" data-blog-card data-blog-id="' + escapeHtml(post.id) + '">' +
             eyecatch +
             '<div class="blog-meta"><span>' + (date || 'NO DATE') + '</span><span class="blog-category">' + escapeHtml(post.category) + '</span>' + tagText + '</div>' +
             '<h2>' + escapeHtml(post.title) + '</h2>' +
@@ -66,6 +91,8 @@ function renderPosts(posts) {
             '<div class="blog-actions"><button class="blog-toggle" type="button" data-blog-toggle aria-expanded="false">もっと見る</button></div>' +
         '</article>';
     }).join('');
+
+    openRequestedPost();
 }
 
 async function fetchMicroCMSPosts(config) {

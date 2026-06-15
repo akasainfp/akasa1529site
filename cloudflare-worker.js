@@ -10,6 +10,10 @@ export default {
             return handleBlogWebhook(request, env, url);
         }
 
+        if (url.pathname.startsWith('/blog/') && url.pathname !== '/blog/') {
+            return handleBlogPermalink(request, url);
+        }
+
         return new Response('Not found', { status: 404 });
     }
 };

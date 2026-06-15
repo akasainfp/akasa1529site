@@ -11,11 +11,11 @@ export default {
         }
 
         if (url.pathname === '/blog/') {
-            return handleBlogPage(request, url);
+            return handleBlogPage(request, env, url);
         }
 
         if (url.pathname.startsWith('/blog/')) {
-            return handleBlogPermalink(request, url);
+            return handleBlogPermalink(request, env, url);
         }
 
         return new Response('Not found', { status: 404 });
@@ -63,7 +63,7 @@ async function handleVisits(request, env) {
     return Response.json({ total }, { headers: JSON_HEADERS });
 }
 
-async function handleBlogPage(request, url, contentId = '') {
+async function handleBlogPage(request, env, url, contentId = '') {
     if (request.method !== 'GET' && request.method !== 'HEAD') {
         return new Response('Method not allowed', { status: 405 });
     }
@@ -78,9 +78,12 @@ async function handleBlogPage(request, url, contentId = '') {
     }
 
     const html = await response.text();
-    const rewritten = html.includes('<base ')
+    const withBase = html.includes('<base ')
         ? html
         : html.replace('<head>', '<head>\n    <base href="/">');
+    const rewritten = contentId
+        ? await injectBlogMeta(withBase, env, contentId)
+        : withBase;
     const headers = new Headers(response.headers);
     headers.set('Content-Type', 'text/html; charset=utf-8');
     headers.set('Cache-Control', 'no-store');
@@ -88,7 +91,7 @@ async function handleBlogPage(request, url, contentId = '') {
     return new Response(rewritten, { status: response.status, headers });
 }
 
-async function handleBlogPermalink(request, url) {
+async function handleBlogPermalink(request, env, url) {
     if (request.method !== 'GET' && request.method !== 'HEAD') {
         return new Response('Method not allowed', { status: 405 });
     }
@@ -98,7 +101,7 @@ async function handleBlogPermalink(request, url) {
         return new Response('Not found', { status: 404 });
     }
 
-    return handleBlogPage(request, url, contentId);
+    return handleBlogPage(request, env, url, contentId);
 }
 async function handleBlogWebhook(request, env, url) {
     if (request.method === 'OPTIONS') {
@@ -187,6 +190,55 @@ async function sendDiscordBlogNotification(env, post) {
     });
 }
 
+async function injectBlogMeta(html, env, contentId) {
+    const fetched = await fetchMicrocmsPost(env, contentId);
+    const post = normalizeBlogPost(fetched);
+    if (!post.title) return html;
+
+    const blogUrl = buildBlogUrl(env, contentId);
+    const title = `${post.title} | Akasa1529 blog`;
+    const description = truncate(stripHtml(post.body || post.excerpt || ''), 140) || 'Akasa1529のBlog記事です。';
+    const image = post.eyecatch || 'https://www.akasa1529.site/assets/profile/icon.jpg';
+
+    let rewritten = html;
+    rewritten = replaceTitle(rewritten, title);
+    rewritten = replaceCanonical(rewritten, blogUrl);
+    rewritten = replaceMeta(rewritten, 'name', 'description', description);
+    rewritten = replaceMeta(rewritten, 'property', 'og:title', title);
+    rewritten = replaceMeta(rewritten, 'property', 'og:description', description);
+    rewritten = replaceMeta(rewritten, 'property', 'og:type', 'article');
+    rewritten = replaceMeta(rewritten, 'property', 'og:url', blogUrl);
+    rewritten = replaceMeta(rewritten, 'property', 'og:image', image);
+    rewritten = replaceMeta(rewritten, 'property', 'og:image:alt', post.title);
+    rewritten = replaceMeta(rewritten, 'name', 'twitter:card', 'summary_large_image');
+    rewritten = replaceMeta(rewritten, 'name', 'twitter:title', title);
+    rewritten = replaceMeta(rewritten, 'name', 'twitter:description', description);
+    rewritten = replaceMeta(rewritten, 'name', 'twitter:image', image);
+    return rewritten;
+}
+
+function replaceTitle(html, title) {
+    const tag = `<title>${escapeText(title)}</title>`;
+    return /<title>.*?<\/title>/i.test(html)
+        ? html.replace(/<title>.*?<\/title>/i, tag)
+        : html.replace('</head>', `    ${tag}\n</head>`);
+}
+
+function replaceCanonical(html, url) {
+    const tag = `<link rel="canonical" href="${escapeAttribute(url)}">`;
+    return /<link\s+rel="canonical"[^>]*>/i.test(html)
+        ? html.replace(/<link\s+rel="canonical"[^>]*>/i, tag)
+        : html.replace('</head>', `    ${tag}\n</head>`);
+}
+
+function replaceMeta(html, kind, key, content) {
+    const escapedKey = escapeRegExp(key);
+    const pattern = new RegExp(`<meta\\s+${kind}="${escapedKey}"[^>]*>`, 'i');
+    const tag = `<meta ${kind}="${escapeAttribute(key)}" content="${escapeAttribute(content)}">`;
+    return pattern.test(html)
+        ? html.replace(pattern, tag)
+        : html.replace('</head>', `    ${tag}\n</head>`);
+}
 function extractBlogContent(payload) {
     return payload?.contents?.new ||
         payload?.content?.new ||
@@ -289,6 +341,23 @@ function createDiscordPreview(value) {
 }
 
 
+function escapeText(value) {
+    return String(value || '')
+        .replace(/&/g, '&amp;')
+        .replace(/</g, '&lt;')
+        .replace(/>/g, '&gt;');
+}
+
+function escapeAttribute(value) {
+    return escapeText(value)
+        .replace(/"/g, '&quot;')
+        .replace(/'/g, '&#39;')
+        .replace(/\r?\n/g, ' ');
+}
+
+function escapeRegExp(value) {
+    return String(value || '').replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+}
 function stableId(value) {
     let hash = 0;
     const text = String(value || '');

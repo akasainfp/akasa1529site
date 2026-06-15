@@ -85,7 +85,7 @@ function renderPosts(posts) {
         const eyecatch = post.eyecatch ? '<img class="blog-eyecatch" src="' + escapeHtml(post.eyecatch) + '" alt="' + escapeHtml(post.title) + '" loading="lazy">' : '';
         return '<article class="blog-card" data-blog-card data-blog-id="' + escapeHtml(post.id) + '">' +
             eyecatch +
-            '<div class="blog-meta"><span>' + (date || 'NO DATE') + '</span><span class="blog-category">' + escapeHtml(post.category) + '</span>' + tagText + '</div>' +
+            '<div class="blog-meta"><span>' + (date || 'NO DATE') + '</span><span>ID=' + escapeHtml(post.id) + '</span><span class="blog-category">' + escapeHtml(post.category) + '</span>' + tagText + '</div>' +
             '<h2>' + escapeHtml(post.title) + '</h2>' +
             '<div class="blog-body">' + (post.body || '<p>' + escapeHtml(post.excerpt) + '</p>') + '</div>' +
             '<div class="blog-actions"><button class="blog-toggle" type="button" data-blog-toggle aria-expanded="false">もっと見る</button></div>' +

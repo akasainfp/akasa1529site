@@ -213,6 +213,8 @@
         .log-date { font-family: var(--font-mono); color: var(--accent); font-size: 0.7rem; letter-spacing: 0.08em; }
         .log-content { min-width: 0; line-height: 1.9; overflow-wrap: anywhere; word-break: normal; }
         .log-title { color: #aaa; font-weight: 700; }
+        .discord-join { display: inline-flex; width: fit-content; margin-top: 18px; border: 1px solid rgba(125,95,255,0.35); color: var(--accent); padding: 10px 14px; font-family: var(--font-mono); font-size: 0.72rem; letter-spacing: 0.12em; text-transform: uppercase; transition: border-color 0.2s ease, color 0.2s ease, transform 0.2s ease; }
+        .discord-join:hover { border-color: var(--accent); color: #fff; transform: translateY(-1px); }
         @media (max-width: 768px) {
             .site-stat { right: 24px; bottom: 28px; }
             .change-log { padding: 30px 24px; }
@@ -263,13 +265,14 @@
             <h3>ツール</h3>
             <p>今まで作ったツール一覧</p>
         </a>
-        <section class="change-log anim-box" aria-labelledby="change-log-title">
-            <h3 id="change-log-title">Change Log</h3>
-            <div class="log-list" id="change-log-list">
+        <section class="change-log discord-announce anim-box" aria-labelledby="discord-announce-title">
+            <h3 id="discord-announce-title">Discord</h3>
+            <div class="log-list">
                 <div class="log-entry">
-                    <time class="log-date" datetime="2026-05-13">2026.05.13</time>
-                    <p>changelog.json を読み込んでいます。</p>
+                    <span class="log-date">SERVER</span>
+                    <p class="log-content"><strong class="log-title">更新情報はDiscordへ</strong> サイトの更新履歴やお知らせはDiscordで共有しています。気軽に参加してください。</p>
                 </div>
+                <a class="discord-join" href="https://discord.gg/UkWxPdEZ7h" target="_blank" rel="noopener">Discordに参加</a>
             </div>
         </section>    </div>
 
@@ -407,29 +410,6 @@
         }, { threshold: 0.15 });
 
         document.querySelectorAll('.anim-box').forEach(box => observer.observe(box));
-        async function loadChangeLog() {
-            const list = document.getElementById('change-log-list');
-            if (!list) return;
-            const currentPath = decodeURIComponent(window.location.pathname).replace(/\\/g, '/');
-            const nestedHome = /\/home\/?(?:index\.html)?$/i.test(currentPath);
-            const source = nestedHome ? '../changelog.json' : 'changelog.json';
-            try {
-                const response = await fetch(source, { cache: 'no-store' });
-                if (!response.ok) throw new Error('Change log not found');
-                const entries = await response.json();
-                const escapeHtml = value => String(value || '').replace(/[&<>"']/g, char => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[char]));
-                list.innerHTML = entries.map(entry => {
-                    const date = escapeHtml(entry.date || '');
-                    const label = date.replaceAll('-', '.');
-                    const title = entry.title ? `<strong class="log-title">${escapeHtml(entry.title)}</strong> ` : '';
-                    const body = escapeHtml(entry.body || '').replace(/\r?\n/g, '<br>');
-                    return `<div class="log-entry"><time class="log-date" datetime="${date}">${label}</time><p class="log-content">${title}${body}</p></div>`;
-                }).join('');
-            } catch (error) {
-                list.innerHTML = '<div class="log-entry"><time class="log-date" datetime="2026-05-13">2026.05.13</time><p>changelog.json を読み込めませんでした。</p></div>';
-            }
-        }
-        loadChangeLog();
 
     </script>
     <script>

@@ -10,7 +10,11 @@ export default {
             return handleBlogWebhook(request, env, url);
         }
 
-        if (url.pathname.startsWith('/blog/') && url.pathname !== '/blog/') {
+        if (url.pathname === '/blog/') {
+            return handleBlogPage(request, url);
+        }
+
+        if (url.pathname.startsWith('/blog/')) {
             return handleBlogPermalink(request, url);
         }
 
@@ -59,18 +63,15 @@ async function handleVisits(request, env) {
     return Response.json({ total }, { headers: JSON_HEADERS });
 }
 
-async function handleBlogPermalink(request, url) {
+async function handleBlogPage(request, url, contentId = '') {
     if (request.method !== 'GET' && request.method !== 'HEAD') {
         return new Response('Method not allowed', { status: 405 });
     }
 
-    const contentId = decodeURIComponent(url.pathname.replace(/^\/blog\//, '').replace(/\/$/, ''));
-    if (!/^[A-Za-z0-9_-]{1,128}$/.test(contentId)) {
-        return new Response('Not found', { status: 404 });
-    }
-
     const blogUrl = new URL('/blog.html', url.origin);
-    blogUrl.searchParams.set('id', contentId);
+    if (contentId) {
+        blogUrl.searchParams.set('id', contentId);
+    }
     const response = await fetch(new Request(blogUrl.toString(), request));
     if (!response.ok || request.method === 'HEAD') {
         return response;
@@ -85,6 +86,19 @@ async function handleBlogPermalink(request, url) {
     headers.set('Cache-Control', 'no-store');
     headers.delete('Content-Length');
     return new Response(rewritten, { status: response.status, headers });
+}
+
+async function handleBlogPermalink(request, url) {
+    if (request.method !== 'GET' && request.method !== 'HEAD') {
+        return new Response('Method not allowed', { status: 405 });
+    }
+
+    const contentId = decodeURIComponent(url.pathname.replace(/^\/blog\//, '').replace(/\/$/, ''));
+    if (!/^[A-Za-z0-9_-]{1,128}$/.test(contentId)) {
+        return new Response('Not found', { status: 404 });
+    }
+
+    return handleBlogPage(request, url, contentId);
 }
 async function handleBlogWebhook(request, env, url) {
     if (request.method === 'OPTIONS') {

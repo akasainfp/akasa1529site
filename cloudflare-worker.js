@@ -197,7 +197,7 @@ async function injectBlogMeta(html, env, contentId) {
 
     const blogUrl = buildBlogUrl(env, contentId);
     const title = `${post.title} | Akasa1529 blog`;
-    const description = truncate(stripHtml(post.body || post.excerpt || ''), 140) || 'Akasa1529のBlog記事です。';
+    const description = createOgpDescription(post.body || post.excerpt || '') || 'Akasa1529のBlog記事です。';
     const image = post.eyecatch || 'https://www.akasa1529.site/assets/profile/icon.jpg';
 
     let rewritten = html;
@@ -328,6 +328,10 @@ function buildBlogUrl(env, contentId) {
     return `${base.replace(/\/$/, '')}/${encodeURIComponent(contentId)}`;
 }
 
+function createOgpDescription(value) {
+    const text = stripHtml(value).replace(/\s+/g, ' ').trim();
+    return text ? `${truncate(text, 72)}...` : '';
+}
 function createDiscordPreview(value) {
     const lines = String(value || '')
         .split(/\r?\n+/)

@@ -45,6 +45,29 @@ function formatDate(value) {
     return date.toLocaleDateString('ja-JP', { year: 'numeric', month: '2-digit', day: '2-digit' }).replaceAll('/', '.');
 }
 
+function buildPostUrl(postId) {
+    const origin = window.location.origin && window.location.origin !== 'null'
+        ? window.location.origin
+        : 'https://www.akasa1529.site';
+    return origin.replace(/\/$/, '') + '/blog/' + encodeURIComponent(postId);
+}
+
+async function copyText(value) {
+    if (navigator.clipboard && window.isSecureContext) {
+        await navigator.clipboard.writeText(value);
+        return;
+    }
+
+    const textarea = document.createElement('textarea');
+    textarea.value = value;
+    textarea.setAttribute('readonly', '');
+    textarea.style.position = 'fixed';
+    textarea.style.left = '-9999px';
+    document.body.appendChild(textarea);
+    textarea.select();
+    document.execCommand('copy');
+    textarea.remove();
+}
 function getRequestedPostId() {
     const params = new URLSearchParams(window.location.search);
     const queryId = params.get('id');
@@ -85,7 +108,7 @@ function renderPosts(posts) {
         const eyecatch = post.eyecatch ? '<img class="blog-eyecatch" src="' + escapeHtml(post.eyecatch) + '" alt="' + escapeHtml(post.title) + '" loading="lazy">' : '';
         return '<article class="blog-card" data-blog-card data-blog-id="' + escapeHtml(post.id) + '">' +
             eyecatch +
-            '<div class="blog-meta"><span>' + (date || 'NO DATE') + '</span><span>ID=' + escapeHtml(post.id) + '</span><span class="blog-category">' + escapeHtml(post.category) + '</span>' + tagText + '</div>' +
+            '<div class="blog-meta"><span>' + (date || 'NO DATE') + '</span><span>ID=' + escapeHtml(post.id) + '</span><button class="blog-copy" type="button" data-blog-copy data-url="' + escapeHtml(buildPostUrl(post.id)) + '" aria-label="記事URLをコピー">COPY URL</button><span class="blog-category">' + escapeHtml(post.category) + '</span>' + tagText + '</div>' +
             '<h2>' + escapeHtml(post.title) + '</h2>' +
             '<div class="blog-body">' + (post.body || '<p>' + escapeHtml(post.excerpt) + '</p>') + '</div>' +
             '<div class="blog-actions"><button class="blog-toggle" type="button" data-blog-toggle aria-expanded="false">もっと見る</button></div>' +
@@ -125,7 +148,18 @@ async function loadBlogPosts() {
     }
 }
 
-document.addEventListener('click', event => {
+document.addEventListener('click', async event => {
+    const copyButton = event.target.closest('[data-blog-copy]');
+    if (copyButton) {
+        await copyText(copyButton.dataset.url || '');
+        const label = copyButton.textContent;
+        copyButton.textContent = 'COPIED';
+        window.setTimeout(() => {
+            copyButton.textContent = label;
+        }, 1400);
+        return;
+    }
+
     const button = event.target.closest('[data-blog-toggle]');
     if (!button) return;
     const card = button.closest('[data-blog-card]');

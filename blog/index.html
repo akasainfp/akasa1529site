@@ -41,6 +41,8 @@
         .blog-eyecatch { display: block; width: 100%; max-width: none; margin: 0 0 24px; aspect-ratio: 2.2 / 1; max-height: 320px; object-fit: cover; border: 1px solid var(--line); background: var(--soft); }
         .blog-meta { display: flex; flex-wrap: wrap; gap: 12px; align-items: center; margin-bottom: 14px; font-family: var(--font-mono); font-size: 0.72rem; color: #999; letter-spacing: 0.08em; }
         .blog-category { color: #555; background: var(--soft); border: 1px solid var(--line); padding: 2px 8px; }
+        .blog-copy { border: 0; background: transparent; color: #777; padding: 0; font-family: var(--font-mono); font-size: 0.72rem; letter-spacing: 0.08em; cursor: pointer; transition: color 0.2s ease; }
+        .blog-copy:hover, .blog-copy:focus-visible { color: #111; text-decoration: underline; text-underline-offset: 4px; outline: none; }
         .blog-card h2 { font-size: clamp(1.35rem, 3vw, 2rem); line-height: 1.45; margin-bottom: 12px; }
         .blog-excerpt { color: var(--muted); font-size: 0.96rem; }
         .blog-body { display: none; margin-top: 24px; padding-top: 24px; border-top: 1px solid var(--line); color: #333; }
@@ -97,7 +99,7 @@
         })();
     </script>
     <script src="../assets/js/blog-config.js?v=20260609-blog"></script>
-    <script src="../assets/js/blog-archive.js?v=20260615-idmeta"></script>
+    <script src="../assets/js/blog-archive.js?v=20260616-copyurl"></script>
     <script src="../assets/js/site-menu.js?v=20260609-blog"></script>
 </body>
 </html>

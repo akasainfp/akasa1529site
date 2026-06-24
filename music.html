@@ -118,6 +118,7 @@
     <script>
         particlesJS("particles-js", { particles: { number: { value: 80, density: { enable: true, value_area: 800 } }, color: { value: "#ffffff" }, shape: { type: "circle" }, opacity: { value: 0.25, random: true }, size: { value: 2, random: true }, line_linked: { enable: true, distance: 150, color: "#ffffff", opacity: 0.16, width: 1 }, move: { enable: true, speed: 1.2, direction: "none", random: true, straight: false, out_mode: "out" } }, interactivity: { detect_on: "canvas", events: { onhover: { enable: true, mode: "grab" }, onclick: { enable: true, mode: "push" }, resize: true }, modes: { grab: { distance: 140, line_linked: { opacity: 1 } }, push: { particles_nb: 4 } } }, retina_detect: true });
         (() => {
+            if (window.location.protocol !== 'file:') return;
             const cleanPages = { '/': 'index.html', '/home/': 'home/index.html', '/profile/': 'profile/index.html', '/anime/': 'anime/index.html', '/movie/': 'movie/index.html', '/game/': 'game/index.html', '/music/': 'music/index.html', '/archive/': 'archive/index.html', '/privacy/': 'privacy/index.html', '/ticket/': 'ticket/index.html' };
             const path = decodeURIComponent(window.location.pathname).replace(/\\/g, '/');
             const nestedPage = /\/(home|profile|anime|movie|game|music|blog|archive|privacy|ticket)\/index\.html$/i.test(path);

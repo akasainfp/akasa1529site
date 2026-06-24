@@ -96,6 +96,20 @@ async function handleMusicPage(request, url) {
         ? html
         : html.replace('<head>', '<head>\n    <base href="/">');
 
+    const dataResponse = await fetch(rawBase + '/music-data.json?fresh=20260625-youtube', {
+        cf: { cacheTtl: 0, cacheEverything: false }
+    });
+    if (dataResponse.ok) {
+        try {
+            const items = await dataResponse.json();
+            html = html.replace(
+                /<section class="music-grid" id="music-grid" data-source="music-data.json" aria-label="[^"]*"></section>/,
+                '<section class="music-grid" id="music-grid" data-source="music-data.json" aria-label="music cards">' + renderMusicCardsForHtml(items) + '</section>'
+            );
+        } catch (error) {
+            // Keep the empty grid and let the browser-side fallback handle it.
+        }
+    }
     const scriptResponse = await fetch(rawBase + '/assets/js/music-archive.js?fresh=20260625-youtube', {
         cf: { cacheTtl: 0, cacheEverything: false }
     });
@@ -113,6 +127,33 @@ async function handleMusicPage(request, url) {
     headers.delete('Content-Length');
     return new Response(html, { status: response.status, headers });
 }
+function renderMusicCardsForHtml(items) {
+    const list = Array.isArray(items) ? items : [];
+    return list.map(item => {
+        const id = escapeAttribute(item?.youtubeId || '');
+        const tags = Array.isArray(item?.tags)
+            ? item.tags.map(tag => '<span class="music-tag">' + escapeText(tag) + '</span>').join('')
+            : '';
+        const about = item?.description || item?.category || '';
+        const playButton = id
+            ? '<button class="play-button" type="button" data-play-music>\u518d\u751f\u3059\u308b</button>'
+            : '<span class="play-unavailable">NO VIDEO</span>';
+        return '<article class="music-card" data-youtube-id="' + id + '">' +
+            '<p class="scene-text">' + escapeText(about) + '</p>' +
+            '<div class="track-box">' +
+                '<div class="music-title">' + escapeText(item?.title || '') + ' <span>/ ' + escapeText(item?.artist || '') + '</span></div>' +
+                '<div class="music-tags">' + tags + '</div>' +
+                '<div class="player-shell">' + playButton +
+                    '<div class="player-frame-wrap">' +
+                        '<button class="player-close" type="button" data-close-music aria-label="YouTube\u3092\u9589\u3058\u308b">CLOSE</button>' +
+                        '<iframe class="youtube-frame" title="' + escapeAttribute(item?.title || 'YouTube') + '" loading="lazy" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>' +
+                    '</div>' +
+                '</div>' +
+            '</div>' +
+        '</article>';
+    }).join('');
+}
+
 async function handleBlogPage(request, env, url, contentId = '') {
     if (request.method !== 'GET' && request.method !== 'HEAD') {
         return new Response('Method not allowed', { status: 405 });

@@ -77,7 +77,7 @@ async function handleMusicPage(request, url) {
     }
 
     const musicUrl = new URL('/music.html', url.origin);
-    musicUrl.searchParams.set('fresh', '20260625');
+    musicUrl.searchParams.set('fresh', '20260625-youtube');
     const response = await fetch(new Request(musicUrl.toString(), request));
     if (!response.ok || request.method === 'HEAD') {
         return response;

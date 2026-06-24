@@ -61,6 +61,15 @@
         .music-title span { color: #777; font-weight: 400; }
         .music-tags { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 18px; }
         .music-tag { color: #8f80ff; border: 1px solid rgba(125,95,255,0.24); background: rgba(125,95,255,0.05); padding: 3px 8px; font-size: 0.58rem; letter-spacing: 0.08em; }
+        .player-shell { margin-top: 22px; }
+        .play-button, .player-close, .play-unavailable { width: 100%; min-height: 46px; border: 1px solid rgba(125,95,255,0.32); background: rgba(0,0,0,0.18); color: var(--accent); font-family: var(--font-mono); letter-spacing: 0.16em; transition: 0.25s ease; }
+        .play-unavailable { display: grid; place-items: center; color: #555; border-color: rgba(255,255,255,0.08); }
+        .play-button:hover, .play-button:focus-visible, .player-close:hover, .player-close:focus-visible { color: #fff; border-color: var(--accent); background: rgba(125,95,255,0.1); outline: none; }
+        .player-frame-wrap { display: none; }
+        .youtube-frame { width: 100%; aspect-ratio: 16/9; border: 1px solid rgba(255,255,255,0.08); background: #000; }
+        .music-card.is-playing .player-frame-wrap { display: block; }
+        .music-card.is-playing .play-button { display: none; }
+        .player-close { margin-bottom: 10px; min-height: 34px; font-size: 0.62rem; }
         footer { padding: 100px 0 50px; background: #000; border-top: 1px solid rgba(255,255,255,0.05); }
         .footer-content { max-width: 1200px; margin: 0 auto; padding: 0 40px; }
         .footer-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 40px; margin-bottom: 80px; }
@@ -126,7 +135,7 @@
             document.querySelectorAll('a[href]').forEach(link => { const href = link.getAttribute('href'); if (!cleanPages[href]) return; link.href = siteRoot + cleanPages[href]; });
         })();
     </script>
-    <script src="assets/js/music-archive.js?v=20260625-fields"></script>
+    <script src="assets/js/music-archive.js?v=20260625-youtube"></script>
     <script src="assets/js/site-counter.js"></script>
     <script src="assets/js/site-menu.js?v=20260609-blog"></script>
 </body>

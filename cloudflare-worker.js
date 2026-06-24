@@ -103,7 +103,7 @@ async function handleMusicPage(request, url) {
         try {
             const items = await dataResponse.json();
             html = html.replace(
-                /<section class="music-grid" id="music-grid" data-source="music-data.json" aria-label="[^"]*"></section>/,
+                new RegExp('<section class="music-grid" id="music-grid" data-source="music-data.json" aria-label="[^\"]*"></section>'),
                 '<section class="music-grid" id="music-grid" data-source="music-data.json" aria-label="music cards">' + renderMusicCardsForHtml(items) + '</section>'
             );
         } catch (error) {

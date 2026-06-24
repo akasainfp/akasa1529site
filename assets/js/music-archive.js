@@ -24,29 +24,14 @@ function escapeHtml(value) {
 
 function renderMusicCards(items) {
     if (!musicGrid) return;
-    musicGrid.innerHTML = items.map((item, index) => {
-        const id = escapeHtml(item.youtubeId || '');
+    musicGrid.innerHTML = items.map(item => {
         const tags = (item.tags || []).map(tag => `<span class="music-tag">${escapeHtml(tag)}</span>`).join('');
-        const link = id ? `<a class="youtube-link" href="https://www.youtube.com/watch?v=${id}" target="_blank" rel="noopener">OPEN YOUTUBE</a>` : '';
-        const playButton = id ? '<button class="play-button" type="button" data-play-music>再生する</button>' : '<span class="play-unavailable">NO VIDEO</span>';
-        return `<article class="music-card anim-box" data-youtube-id="${id}">
-            <div class="card-top"><div class="card-kicker">SCENE ${String(index + 1).padStart(2, '0')}</div><div class="music-era">${escapeHtml(item.era)}</div></div>
-            <h3>${escapeHtml(item.category)}</h3>
-            <p class="scene-text">${escapeHtml(item.description)}</p>
+        const about = item.description || item.category || '';
+        return `<article class="music-card anim-box">
+            <p class="scene-text">${escapeHtml(about)}</p>
             <div class="track-box">
-                <div class="music-title">${escapeHtml(item.title)}</div>
-                <div class="artist">${escapeHtml(item.artist)}</div>
-                <p class="comment">${escapeHtml(item.comment)}</p>
-                <p class="memory">${escapeHtml(item.memory)}</p>
+                <div class="music-title">${escapeHtml(item.title)} <span>/ ${escapeHtml(item.artist)}</span></div>
                 <div class="music-tags">${tags}</div>
-                <div class="player-shell">
-                    ${playButton}
-                    <div class="player-frame-wrap">
-                        <button class="player-close" type="button" data-close-music aria-label="YouTubeを閉じる">CLOSE</button>
-                        <iframe class="youtube-frame" title="${escapeHtml(item.title)}" loading="lazy" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
-                    </div>
-                    ${link}
-                </div>
             </div>
         </article>`;
     }).join('');
@@ -71,26 +56,5 @@ async function loadMusicData() {
         renderMusicCards(fallbackMusicScenes);
     }
 }
-
-document.addEventListener('click', event => {
-    const playButton = event.target.closest('[data-play-music]');
-    const closeButton = event.target.closest('[data-close-music]');
-
-    if (playButton) {
-        const card = playButton.closest('.music-card');
-        const id = card.dataset.youtubeId;
-        const frame = card.querySelector('.youtube-frame');
-        if (!id || !frame) return;
-        frame.src = `https://www.youtube-nocookie.com/embed/${id}?rel=0&modestbranding=1&autoplay=1`;
-        card.classList.add('is-playing');
-    }
-
-    if (closeButton) {
-        const card = closeButton.closest('.music-card');
-        const frame = card.querySelector('.youtube-frame');
-        if (frame) frame.src = '';
-        card.classList.remove('is-playing');
-    }
-});
 
 loadMusicData();

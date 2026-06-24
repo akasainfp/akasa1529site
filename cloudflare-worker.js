@@ -76,22 +76,42 @@ async function handleMusicPage(request, url) {
         return new Response('Method not allowed', { status: 405 });
     }
 
-    const musicUrl = new URL('/music.html', url.origin);
-    musicUrl.searchParams.set('fresh', '20260625-youtube');
-    const response = await fetch(new Request(musicUrl.toString(), request));
+    const rawBase = 'https://raw.githubusercontent.com/akasainfp/akasa1529site/main';
+    let response = await fetch(rawBase + '/music.html?fresh=20260625-youtube', {
+        cf: { cacheTtl: 0, cacheEverything: false }
+    });
+
+    if (!response.ok) {
+        const musicUrl = new URL('/music.html', url.origin);
+        musicUrl.searchParams.set('fresh', '20260625-youtube');
+        response = await fetch(new Request(musicUrl.toString(), request));
+    }
+
     if (!response.ok || request.method === 'HEAD') {
         return response;
     }
 
-    const html = await response.text();
-    const rewritten = html.includes('<base ')
+    let html = await response.text();
+    html = html.includes('<base ')
         ? html
         : html.replace('<head>', '<head>\n    <base href="/">');
+
+    const scriptResponse = await fetch(rawBase + '/assets/js/music-archive.js?fresh=20260625-youtube', {
+        cf: { cacheTtl: 0, cacheEverything: false }
+    });
+    if (scriptResponse.ok) {
+        const script = await scriptResponse.text();
+        html = html.replace(
+            /<script\s+src="assets\/js\/music-archive\.js[^>]*><\/script>/,
+            '<script>\n' + script + '\n</script>'
+        );
+    }
+
     const headers = new Headers(response.headers);
     headers.set('Content-Type', 'text/html; charset=utf-8');
     headers.set('Cache-Control', 'no-store');
     headers.delete('Content-Length');
-    return new Response(rewritten, { status: response.status, headers });
+    return new Response(html, { status: response.status, headers });
 }
 async function handleBlogPage(request, env, url, contentId = '') {
     if (request.method !== 'GET' && request.method !== 'HEAD') {

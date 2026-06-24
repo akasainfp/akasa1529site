@@ -10,6 +10,14 @@ export default {
             return handleBlogWebhook(request, env, url);
         }
 
+        if (url.pathname === '/music/' || url.pathname === '/music/index.html') {
+            return handleMusicPage(request, url);
+        }
+
+        if (url.pathname === '/music/privacy/index.html') {
+            return Response.redirect(new URL('/privacy/', url.origin).toString(), 302);
+        }
+
         if (url.pathname === '/blog/') {
             return handleBlogPage(request, env, url);
         }
@@ -63,6 +71,28 @@ async function handleVisits(request, env) {
     return Response.json({ total }, { headers: JSON_HEADERS });
 }
 
+async function handleMusicPage(request, url) {
+    if (request.method !== 'GET' && request.method !== 'HEAD') {
+        return new Response('Method not allowed', { status: 405 });
+    }
+
+    const musicUrl = new URL('/music.html', url.origin);
+    musicUrl.searchParams.set('fresh', '20260625');
+    const response = await fetch(new Request(musicUrl.toString(), request));
+    if (!response.ok || request.method === 'HEAD') {
+        return response;
+    }
+
+    const html = await response.text();
+    const rewritten = html.includes('<base ')
+        ? html
+        : html.replace('<head>', '<head>\n    <base href="/">');
+    const headers = new Headers(response.headers);
+    headers.set('Content-Type', 'text/html; charset=utf-8');
+    headers.set('Cache-Control', 'no-store');
+    headers.delete('Content-Length');
+    return new Response(rewritten, { status: response.status, headers });
+}
 async function handleBlogPage(request, env, url, contentId = '') {
     if (request.method !== 'GET' && request.method !== 'HEAD') {
         return new Response('Method not allowed', { status: 405 });

@@ -77,13 +77,13 @@ async function handleMusicPage(request, url) {
     }
 
     const rawBase = 'https://raw.githubusercontent.com/akasainfp/akasa1529site/main';
-    let response = await fetch(rawBase + '/music.html?fresh=20260625-artists', {
+    let response = await fetch(rawBase + '/music.html?fresh=20260625-artists2', {
         cf: { cacheTtl: 0, cacheEverything: false }
     });
 
     if (!response.ok) {
         const musicUrl = new URL('/music.html', url.origin);
-        musicUrl.searchParams.set('fresh', '20260625-artists');
+        musicUrl.searchParams.set('fresh', '20260625-artists2');
         response = await fetch(new Request(musicUrl.toString(), request));
     }
 
@@ -96,7 +96,7 @@ async function handleMusicPage(request, url) {
         ? html
         : html.replace('<head>', '<head>\n    <base href="/">');
 
-    const dataResponse = await fetch(rawBase + '/music-data.json?fresh=20260625-artists', {
+    const dataResponse = await fetch(rawBase + '/music-data.json?fresh=20260625-artists2', {
         cf: { cacheTtl: 0, cacheEverything: false }
     });
     if (dataResponse.ok) {
@@ -110,7 +110,7 @@ async function handleMusicPage(request, url) {
             // Keep the empty grid and let the browser-side fallback handle it.
         }
     }
-    const artistDataResponse = await fetch(rawBase + '/music-artists.json?fresh=20260625-artists', {
+    const artistDataResponse = await fetch(rawBase + '/music-artists.json?fresh=20260625-artists2', {
         cf: { cacheTtl: 0, cacheEverything: false }
     });
     if (artistDataResponse.ok) {
@@ -124,7 +124,7 @@ async function handleMusicPage(request, url) {
             // Keep the empty artist grid and let browser-side rendering handle it.
         }
     }
-    const scriptResponse = await fetch(rawBase + '/assets/js/music-archive.js?fresh=20260625-artists', {
+    const scriptResponse = await fetch(rawBase + '/assets/js/music-archive.js?fresh=20260625-artists2', {
         cf: { cacheTtl: 0, cacheEverything: false }
     });
     if (scriptResponse.ok) {

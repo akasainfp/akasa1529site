@@ -118,7 +118,7 @@ async function handleMusicPage(request, url) {
             const artists = await artistDataResponse.json();
             html = html.replace(
                 new RegExp('<div class="artist-grid" id="artist-grid" data-source="[^"]+" aria-label="[^"]*"></div>'),
-                '<div class="artist-grid" id="artist-grid" data-source="music-artists.json" aria-label="music artists">' + renderArtistCardsForHtml(artists) + '</div>'
+                '<div class="artist-grid" id="artist-grid" data-source="' + rawBase + '/music-artists.json?fresh=20260625-artists2" aria-label="music artists">' + renderArtistCardsForHtml(artists) + '</div>'
             );
         } catch (error) {
             // Keep the empty artist grid and let browser-side rendering handle it.

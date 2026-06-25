@@ -124,6 +124,8 @@ async function handleMusicPage(request, url) {
     const headers = new Headers(response.headers);
     headers.set('Content-Type', 'text/html; charset=utf-8');
     headers.set('Cache-Control', 'no-store');
+    headers.delete('Content-Security-Policy');
+    headers.delete('X-Content-Security-Policy');
     headers.delete('Content-Length');
     return new Response(html, { status: response.status, headers });
 }

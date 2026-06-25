@@ -73,26 +73,28 @@ function renderMusicCards(items) {
     }).join('');
 }
 
-async function loadJson(source, fallback) {
+async function loadJson(source) {
     try {
         const response = await fetch(source, { cache: 'no-store' });
         if (!response.ok) throw new Error(`HTTP ${response.status}`);
         const items = await response.json();
-        return Array.isArray(items) ? items : fallback;
+        return Array.isArray(items) ? items : null;
     } catch (error) {
-        return fallback;
+        return null;
     }
 }
 
 async function loadMusicPageData() {
     if (artistGrid) {
-        const artists = await loadJson(artistGrid.dataset.source || 'music-artists.json', fallbackArtists);
-        renderArtists(artists);
+        const artists = await loadJson(artistGrid.dataset.source || 'music-artists.json');
+        if (artists) renderArtists(artists);
+        else if (!artistGrid.children.length) renderArtists(fallbackArtists);
     }
 
     if (musicGrid) {
-        const items = await loadJson(musicGrid.dataset.source || 'music-data.json', fallbackMusicScenes);
-        renderMusicCards(items);
+        const items = await loadJson(musicGrid.dataset.source || 'music-data.json');
+        if (items) renderMusicCards(items);
+        else if (!musicGrid.children.length) renderMusicCards(fallbackMusicScenes);
     }
 
     setupAnimation();

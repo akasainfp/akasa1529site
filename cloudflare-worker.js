@@ -77,13 +77,13 @@ async function handleMusicPage(request, url) {
     }
 
     const rawBase = 'https://raw.githubusercontent.com/akasainfp/akasa1529site/main';
-    let response = await fetch(rawBase + '/music.html?fresh=20260625-artists2', {
+    let response = await fetch(rawBase + '/music.html?fresh=20260626-artist-links', {
         cf: { cacheTtl: 0, cacheEverything: false }
     });
 
     if (!response.ok) {
         const musicUrl = new URL('/music.html', url.origin);
-        musicUrl.searchParams.set('fresh', '20260625-artists2');
+        musicUrl.searchParams.set('fresh', '20260626-artist-links');
         response = await fetch(new Request(musicUrl.toString(), request));
     }
 
@@ -96,7 +96,7 @@ async function handleMusicPage(request, url) {
         ? html
         : html.replace('<head>', '<head>\n    <base href="/">');
 
-    const dataResponse = await fetch(rawBase + '/music-data.json?fresh=20260625-artists2', {
+    const dataResponse = await fetch(rawBase + '/music-data.json?fresh=20260626-artist-links', {
         cf: { cacheTtl: 0, cacheEverything: false }
     });
     if (dataResponse.ok) {
@@ -110,7 +110,7 @@ async function handleMusicPage(request, url) {
             // Keep the empty grid and let the browser-side fallback handle it.
         }
     }
-    const artistDataResponse = await fetch(rawBase + '/music-artists.json?fresh=20260625-artists2', {
+    const artistDataResponse = await fetch(rawBase + '/music-artists.json?fresh=20260626-artist-links', {
         cf: { cacheTtl: 0, cacheEverything: false }
     });
     if (artistDataResponse.ok) {
@@ -118,13 +118,13 @@ async function handleMusicPage(request, url) {
             const artists = await artistDataResponse.json();
             html = html.replace(
                 new RegExp('<div class="artist-grid" id="artist-grid" data-source="[^"]+" aria-label="[^"]*"></div>'),
-                '<div class="artist-grid" id="artist-grid" data-source="' + rawBase + '/music-artists.json?fresh=20260625-artists2" aria-label="music artists">' + renderArtistCardsForHtml(artists) + '</div>'
+                '<div class="artist-grid" id="artist-grid" data-source="' + rawBase + '/music-artists.json?fresh=20260626-artist-links" aria-label="music artists">' + renderArtistCardsForHtml(artists) + '</div>'
             );
         } catch (error) {
             // Keep the empty artist grid and let browser-side rendering handle it.
         }
     }
-    const scriptResponse = await fetch(rawBase + '/assets/js/music-archive.js?fresh=20260625-artists2', {
+    const scriptResponse = await fetch(rawBase + '/assets/js/music-archive.js?fresh=20260626-artist-links', {
         cf: { cacheTtl: 0, cacheEverything: false }
     });
     if (scriptResponse.ok) {
@@ -170,17 +170,24 @@ function renderMusicCardsForHtml(items) {
     }).join('');
 }
 
+function normalizeArtistUrl(value) {
+    const url = String(value || '').trim();
+    return url.toLowerCase().startsWith('https://') || url.toLowerCase().startsWith('http://') ? url : '';
+}
+
 function renderArtistCardsForHtml(items) {
     const list = Array.isArray(items) ? items : [];
     return list.map(item => {
         const tags = Array.isArray(item?.tags)
             ? item.tags.map(tag => '<span class="artist-tag">' + escapeText(tag) + '</span>').join('')
             : '';
-        return '<article class="artist-card">' +
-            '<div class="artist-name">' + escapeText(item?.name || '') + '</div>' +
+        const url = normalizeArtistUrl(item?.url);
+        const inner = '<div class="artist-name">' + escapeText(item?.name || '') + '</div>' +
             '<p class="artist-note">' + escapeText(item?.note || '') + '</p>' +
-            '<div class="artist-tags">' + tags + '</div>' +
-        '</article>';
+            '<div class="artist-tags">' + tags + '</div>';
+        return url
+            ? '<a class="artist-card" href="' + escapeAttribute(url) + '" target="_blank" rel="noopener noreferrer">' + inner + '</a>'
+            : '<article class="artist-card">' + inner + '</article>';
     }).join('');
 }
 

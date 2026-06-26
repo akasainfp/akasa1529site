@@ -14,9 +14,9 @@ const fallbackMusicScenes = [
 ];
 
 const fallbackArtists = [
-    { name: 'Ado', note: '\u8868\u73fe\u529b\u3068\u58f0\u306e\u5f37\u3055\u304c\u597d\u304d\u3002', tags: ['VOCAL', 'J-POP'] },
-    { name: 'LiSA', note: '\u30a2\u30cb\u30bd\u30f3\u3067\u6c17\u5206\u3092\u4e0a\u3052\u305f\u3044\u6642\u306b\u805e\u304f\u3002', tags: ['ANISON', 'ROCK'] },
-    { name: 'JELEE', note: '\u4f5c\u696d\u4e2d\u306b\u6d41\u3057\u3084\u3059\u3044\u7a7a\u6c17\u611f\u304c\u597d\u304d\u3002', tags: ['BGM', 'ANIME'] }
+    { name: 'Ado', note: '\u8868\u73fe\u529b\u3068\u58f0\u306e\u5f37\u3055\u304c\u597d\u304d\u3002', url: '', tags: ['VOCAL', 'J-POP'] },
+    { name: 'LiSA', note: '\u30a2\u30cb\u30bd\u30f3\u3067\u6c17\u5206\u3092\u4e0a\u3052\u305f\u3044\u6642\u306b\u805e\u304f\u3002', url: '', tags: ['ANISON', 'ROCK'] },
+    { name: 'JELEE', note: '\u4f5c\u696d\u4e2d\u306b\u6d41\u3057\u3084\u3059\u3044\u7a7a\u6c17\u611f\u304c\u597d\u304d\u3002', url: '', tags: ['BGM', 'ANIME'] }
 ];
 
 function escapeHtml(value) {
@@ -37,15 +37,22 @@ function setupAnimation() {
     document.querySelectorAll('.anim-box').forEach(el => observer.observe(el));
 }
 
+function normalizeArtistUrl(value) {
+    const url = String(value || '').trim();
+    return url.toLowerCase().startsWith('https://') || url.toLowerCase().startsWith('http://') ? url : '';
+}
+
 function renderArtists(items) {
     if (!artistGrid) return;
     artistGrid.innerHTML = items.map(item => {
         const tags = (item.tags || []).map(tag => `<span class="artist-tag">${escapeHtml(tag)}</span>`).join('');
-        return `<article class="artist-card">
-            <div class="artist-name">${escapeHtml(item.name)}</div>
+        const url = normalizeArtistUrl(item.url);
+        const inner = `<div class="artist-name">${escapeHtml(item.name)}</div>
             <p class="artist-note">${escapeHtml(item.note || '')}</p>
-            <div class="artist-tags">${tags}</div>
-        </article>`;
+            <div class="artist-tags">${tags}</div>`;
+        return url
+            ? `<a class="artist-card" href="${escapeHtml(url)}" target="_blank" rel="noopener noreferrer">${inner}</a>`
+            : `<article class="artist-card">${inner}</article>`;
     }).join('');
 }
 

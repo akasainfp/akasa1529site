@@ -196,11 +196,10 @@ async function handleBlogPage(request, env, url, contentId = '') {
         return new Response('Method not allowed', { status: 405 });
     }
 
-    const blogUrl = new URL('/blog.html', url.origin);
-    if (contentId) {
-        blogUrl.searchParams.set('id', contentId);
-    }
-    const response = await fetch(new Request(blogUrl.toString(), request));
+    const rawBase = 'https://raw.githubusercontent.com/akasainfp/akasa1529site/main';
+    const response = await fetch(rawBase + '/blog.html?fresh=20260628-vps-blog-worker', {
+        cf: { cacheTtl: 0, cacheEverything: false }
+    });
     if (!response.ok || request.method === 'HEAD') {
         return response;
     }
@@ -448,7 +447,7 @@ function stripHtml(value) {
 
 function truncate(value, max) {
     const text = String(value || '');
-    return text.length > max ? text.slice(0, max - 1) + '…' : text;
+    return text.length > max ? text.slice(0, max - 1) + '...' : text;
 }
 function buildBlogUrl(env, contentId) {
     const base = env.BLOG_URL || 'https://www.akasa1529.site/blog/';
@@ -458,7 +457,7 @@ function buildBlogUrl(env, contentId) {
 
 function createOgpDescription(value) {
     const text = stripHtml(value).replace(/\s+/g, ' ').trim();
-    return text ? `${truncate(text, 72)}...` : '';
+    return text ? truncate(text, 72) : '';
 }
 function createDiscordPreview(value) {
     const lines = String(value || '')
@@ -468,7 +467,7 @@ function createDiscordPreview(value) {
         .slice(0, 2)
         .map(line => truncate(line, 80));
 
-    const preview = lines.join('\n') || '新しいBlogが追加されました。';
+    const preview = lines.join('\\n') || '新しいBlogが追加されました。';
     return `${preview}....`;
 }
 

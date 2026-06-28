@@ -1,0 +1,47 @@
+name: Deploy to LumenWEB
+
+on:
+  push:
+    branches:
+      - main
+  workflow_dispatch:
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Install lftp
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y lftp
+
+      - name: Deploy site via SFTP
+        env:
+          SFTP_HOST: node1.activevm.net
+          SFTP_PORT: "2022"
+          SFTP_USER: useru330glid.bbe4fd83
+          SFTP_PASSWORD: ${{ secrets.LUMENWEB_SFTP_PASSWORD }}
+        run: |
+          lftp -u "$SFTP_USER","$SFTP_PASSWORD" -p "$SFTP_PORT" "sftp://$SFTP_HOST" <<'LFTP'
+          set sftp:auto-confirm yes
+          set net:max-retries 2
+          set net:timeout 30
+          mirror -R --verbose --only-newer \
+            --exclude-glob .git/** \
+            --exclude-glob .github/** \
+            --exclude-glob .wrangler/** \
+            --exclude-glob .gitignore \
+            --exclude-glob CNAME \
+            --exclude-glob wrangler.toml \
+            --exclude-glob wrangler.toml.example \
+            --exclude-glob cloudflare-worker.js \
+            --exclude-glob VISITOR_COUNTER_SETUP.md \
+            --exclude-glob MICROCMS_BLOG_SETUP.md \
+            --exclude-glob MICROCMS_DISCORD_WEBHOOK_SETUP.md \
+            ./ webroot/
+          bye
+          LFTP

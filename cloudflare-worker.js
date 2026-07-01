@@ -214,6 +214,8 @@ async function handleBlogPage(request, env, url, contentId = '') {
     const headers = new Headers(response.headers);
     headers.set('Content-Type', 'text/html; charset=utf-8');
     headers.set('Cache-Control', 'no-store');
+    headers.delete('Content-Security-Policy');
+    headers.delete('X-Content-Security-Policy');
     headers.delete('Content-Length');
     return new Response(rewritten, { status: response.status, headers });
 }
@@ -316,7 +318,6 @@ async function sendDiscordBlogNotification(env, post) {
         })
     });
 }
-
 async function injectBlogMeta(html, env, contentId) {
     const fetched = await fetchMicrocmsPost(env, contentId);
     const post = normalizeBlogPost(fetched);
@@ -343,7 +344,6 @@ async function injectBlogMeta(html, env, contentId) {
     rewritten = replaceMeta(rewritten, 'name', 'twitter:image', image);
     return rewritten;
 }
-
 function replaceTitle(html, title) {
     const tag = `<title>${escapeText(title)}</title>`;
     return /<title>.*?<\/title>/i.test(html)

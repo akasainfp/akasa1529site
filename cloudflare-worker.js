@@ -10,6 +10,10 @@ export default {
             return handleBlogWebhook(request, env, url);
         }
 
+        if (url.pathname === '/api/blog-likes') {
+            return handleBlogLikes(request, env, url);
+        }
+
         if (url.pathname === '/music/' || url.pathname === '/music/index.html') {
             return handleMusicPage(request, url);
         }
@@ -232,6 +236,65 @@ async function handleBlogPermalink(request, env, url) {
 
     return handleBlogPage(request, env, url, contentId);
 }
+async function handleBlogLikes(request, env, url) {
+    if (request.method === 'OPTIONS') {
+        return new Response(null, { status: 204, headers: JSON_HEADERS });
+    }
+
+    await ensureSchema(env);
+
+    if (request.method === 'GET') {
+        const postId = String(url.searchParams.get('postId') || '');
+        const visitorId = String(url.searchParams.get('visitorId') || '');
+        const validPost = validateBlogPostId(postId);
+        if (!validPost) {
+            return Response.json({ error: 'Invalid post id' }, { status: 400, headers: JSON_HEADERS });
+        }
+
+        const total = await getBlogLikeTotal(env, postId);
+        const liked = validateVisitorId(visitorId)
+            ? Boolean(await env.DB.prepare('SELECT 1 FROM blog_likes WHERE post_id = ? AND visitor_id = ?').bind(postId, visitorId).first())
+            : false;
+        return Response.json({ postId, total, liked }, { headers: JSON_HEADERS });
+    }
+
+    if (request.method !== 'POST') {
+        return Response.json({ error: 'Method not allowed' }, { status: 405, headers: JSON_HEADERS });
+    }
+
+    let payload;
+    try {
+        payload = await request.json();
+    } catch (error) {
+        return Response.json({ error: 'Invalid JSON' }, { status: 400, headers: JSON_HEADERS });
+    }
+
+    const postId = String(payload.postId || '');
+    const visitorId = String(payload.visitorId || '');
+    if (!validateBlogPostId(postId) || !validateVisitorId(visitorId)) {
+        return Response.json({ error: 'Invalid like payload' }, { status: 400, headers: JSON_HEADERS });
+    }
+
+    const existing = await env.DB.prepare(
+        'SELECT 1 FROM blog_likes WHERE post_id = ? AND visitor_id = ?'
+    ).bind(postId, visitorId).first();
+
+    let liked = false;
+    if (existing) {
+        await env.DB.prepare(
+            'DELETE FROM blog_likes WHERE post_id = ? AND visitor_id = ?'
+        ).bind(postId, visitorId).run();
+    } else {
+        await env.DB.prepare(
+            'INSERT OR IGNORE INTO blog_likes (post_id, visitor_id, created_at) VALUES (?, ?, ?)'
+        ).bind(postId, visitorId, new Date().toISOString()).run();
+        liked = true;
+    }
+
+    const total = await getBlogLikeTotal(env, postId);
+    return Response.json({ postId, total, liked }, { headers: JSON_HEADERS });
+}
+
 async function handleBlogWebhook(request, env, url) {
     if (request.method === 'OPTIONS') {
         return new Response(null, { status: 204, headers: JSON_HEADERS });
@@ -423,11 +486,33 @@ async function ensureSchema(env) {
             notified_at TEXT NOT NULL
         )
     `).run();
+
+    await env.DB.prepare(`
+        CREATE TABLE IF NOT EXISTS blog_likes (
+            post_id TEXT NOT NULL,
+            visitor_id TEXT NOT NULL,
+            created_at TEXT NOT NULL,
+            PRIMARY KEY (post_id, visitor_id)
+        )
+    `).run();
 }
 
 async function getTotal(env) {
     const result = await env.DB.prepare('SELECT COUNT(*) AS total FROM visitors').first();
     return Number(result?.total || 0);
+}
+
+async function getBlogLikeTotal(env, postId) {
+    const result = await env.DB.prepare('SELECT COUNT(*) AS total FROM blog_likes WHERE post_id = ?').bind(postId).first();
+    return Number(result?.total || 0);
+}
+
+function validateBlogPostId(value) {
+    return /^[A-Za-z0-9_-]{1,128}$/.test(String(value || ''));
+}
+
+function validateVisitorId(value) {
+    return /^[A-Za-z0-9._:-]{8,128}$/.test(String(value || ''));
 }
 
 function stripHtml(value) {

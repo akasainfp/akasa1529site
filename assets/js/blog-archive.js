@@ -1,5 +1,6 @@
 const blogList = document.getElementById('blog-list');
 const blogCount = document.getElementById('blog-count');
+const likeStorageKey = 'akasa1529.blogLikeVisitorId';
 
 function escapeHtml(value) {
     return String(value ?? '').replace(/[&<>"]/g, char => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[char]));
@@ -50,6 +51,54 @@ function buildPostUrl(postId) {
         ? window.location.origin
         : 'https://www.akasa1529.site';
     return origin.replace(/\/$/, '') + '/blog/' + encodeURIComponent(postId);
+}
+
+function getLikeVisitorId() {
+    try {
+        const stored = localStorage.getItem(likeStorageKey);
+        if (stored) return stored;
+        const id = (crypto.randomUUID ? crypto.randomUUID() : String(Date.now()) + '-' + Math.random().toString(36).slice(2));
+        localStorage.setItem(likeStorageKey, id);
+        return id;
+    } catch (error) {
+        return 'visitor-' + Math.random().toString(36).slice(2) + Date.now();
+    }
+}
+
+function applyLikeState(button, data) {
+    const total = Number(data && data.total ? data.total : 0);
+    const liked = Boolean(data && data.liked);
+    button.classList.toggle('is-liked', liked);
+    button.setAttribute('aria-pressed', String(liked));
+    button.innerHTML = (liked ? 'LIKED' : 'LIKE') + ' <span data-like-count>' + total + '</span>';
+}
+
+async function fetchBlogLike(postId) {
+    const params = new URLSearchParams({ postId, visitorId: getLikeVisitorId() });
+    const response = await fetch('/api/blog-likes?' + params.toString(), { cache: 'no-store' });
+    if (!response.ok) throw new Error('Failed to load likes');
+    return response.json();
+}
+
+async function toggleBlogLike(postId) {
+    const response = await fetch('/api/blog-likes', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ postId, visitorId: getLikeVisitorId() })
+    });
+    if (!response.ok) throw new Error('Failed to update like');
+    return response.json();
+}
+
+function loadBlogLikes() {
+    document.querySelectorAll('[data-blog-like]').forEach(async button => {
+        try {
+            applyLikeState(button, await fetchBlogLike(button.dataset.postId || ''));
+        } catch (error) {
+            button.classList.add('is-disabled');
+            button.setAttribute('disabled', 'disabled');
+        }
+    });
 }
 
 async function copyText(value) {
@@ -111,11 +160,12 @@ function renderPosts(posts) {
             '<div class="blog-meta"><span>' + (date || 'NO DATE') + '</span><span>ID=' + escapeHtml(post.id) + '</span><button class="blog-copy" type="button" data-blog-copy data-url="' + escapeHtml(buildPostUrl(post.id)) + '" aria-label="記事URLをコピー">COPY URL</button><span class="blog-category">' + escapeHtml(post.category) + '</span>' + tagText + '</div>' +
             '<h2>' + escapeHtml(post.title) + '</h2>' +
             '<div class="blog-body">' + (post.body || '<p>' + escapeHtml(post.excerpt) + '</p>') + '</div>' +
-            '<div class="blog-actions"><button class="blog-toggle" type="button" data-blog-toggle aria-expanded="false">もっと見る</button></div>' +
+            '<div class="blog-actions"><button class="blog-like" type="button" data-blog-like data-post-id="' + escapeHtml(post.id) + '" aria-pressed="false">LIKE <span data-like-count>0</span></button><button class="blog-toggle" type="button" data-blog-toggle aria-expanded="false">もっと見る</button></div>' +
         '</article>';
     }).join('');
 
     openRequestedPost();
+    loadBlogLikes();
 }
 
 async function fetchMicroCMSPosts(config) {
@@ -149,6 +199,19 @@ async function loadBlogPosts() {
 }
 
 document.addEventListener('click', async event => {
+    const likeButton = event.target.closest('[data-blog-like]');
+    if (likeButton) {
+        likeButton.disabled = true;
+        try {
+            applyLikeState(likeButton, await toggleBlogLike(likeButton.dataset.postId || ''));
+        } catch (error) {
+            likeButton.textContent = 'ERROR';
+        } finally {
+            likeButton.disabled = false;
+        }
+        return;
+    }
+
     const copyButton = event.target.closest('[data-blog-copy]');
     if (copyButton) {
         await copyText(copyButton.dataset.url || '');

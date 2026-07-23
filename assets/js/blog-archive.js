@@ -73,15 +73,33 @@ function applyLikeState(button, data) {
     button.innerHTML = (liked ? 'LIKED' : 'LIKE') + ' <span data-like-count>' + total + '</span>';
 }
 
+function getBlogApiBase() {
+    const config = window.AKASA_BLOG_CONFIG || {};
+    if (typeof config.apiBase === 'string' && config.apiBase.trim()) {
+        return config.apiBase.trim().replace(/\/$/, '');
+    }
+    const localHost = ['localhost', '127.0.0.1'].includes(window.location.hostname) || window.location.protocol === 'file:';
+    if (localHost && typeof config.localApiBase === 'string' && config.localApiBase.trim()) {
+        return config.localApiBase.trim().replace(/\/$/, '');
+    }
+    return '';
+}
+
+function buildBlogLikeApiUrl(query) {
+    const base = getBlogApiBase();
+    const path = base ? '/api/blog/likes' : '/api/blog-likes';
+    return base + path + (query ? '?' + query : '');
+}
+
 async function fetchBlogLike(postId) {
     const params = new URLSearchParams({ postId, visitorId: getLikeVisitorId() });
-    const response = await fetch('/api/blog-likes?' + params.toString(), { cache: 'no-store' });
+    const response = await fetch(buildBlogLikeApiUrl(params.toString()), { cache: 'no-store' });
     if (!response.ok) throw new Error('Failed to load likes');
     return response.json();
 }
 
 async function toggleBlogLike(postId) {
-    const response = await fetch('/api/blog-likes', {
+    const response = await fetch(buildBlogLikeApiUrl(), {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ postId, visitorId: getLikeVisitorId() })

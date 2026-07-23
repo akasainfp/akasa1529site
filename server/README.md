@@ -23,3 +23,11 @@ ActiveVM notes:
 - Requirements file: `server/requirements.txt`
 - The SQLite file is created under `server_data/akasa1529.db`.
 - Do not commit `server_data/`.
+
+## Frontend API switching
+
+`assets/js/blog-config.js` controls where Blog API requests go.
+
+- `apiBase: ''` keeps production on the current Cloudflare Worker.
+- Local pages automatically use `localApiBase: 'http://localhost:6110'` when opened on localhost or file URLs.
+- Set `apiBase` later when the FastAPI server becomes the production API.

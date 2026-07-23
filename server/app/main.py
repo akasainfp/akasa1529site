@@ -13,9 +13,9 @@ app.add_middleware(
     allow_origins=[
         "https://www.akasa1529.site",
         "https://akasa1529.site",
-        "http://localhost:8000",
-        "http://127.0.0.1:8000",
+        "null",
     ],
+    allow_origin_regex=r"https?://(localhost|127\.0\.0\.1)(:\d+)?",
     allow_credentials=False,
     allow_methods=["GET", "POST", "OPTIONS"],
     allow_headers=["*"],

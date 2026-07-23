@@ -3,3 +3,7 @@ wrangler.toml
 .env
 .env.*
 node_modules/
+server_data/
+.venv/
+__pycache__/
+*.pyc

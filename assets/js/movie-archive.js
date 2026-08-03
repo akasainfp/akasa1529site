@@ -206,6 +206,7 @@
             sortMovieByScore();
             generateTOC();
             observeItems();
+            window.movieCenterSlider = window.initArchiveCenterSlider?.({ listId: 'movie-list', itemSelector: '.movie-item', titleSelector: '.movie-title' });
         } catch (error) {
             list.innerHTML = '<section class="empty-state anim-box"><h2>movie-data.json を読み込めませんでした</h2><p>ローカルで確認する場合は簡易サーバー経由で開いてください。</p></section>';
             observeItems();

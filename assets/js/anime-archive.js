@@ -36,8 +36,9 @@
     function renderItem(item) {
         const genres = Array.isArray(item.genres) ? item.genres.join(' ') : '';
         const image = assetUrl(item.image || '');
+        const opAudio = assetUrl(item.opAudio || item.audio || item.opUrl || item.audioUrl || item.openingAudio || '');
         return `
-        <article class="anime-item anim-box" id="${escapeHtml(item.id)}" data-score="${escapeHtml(item.score)}" data-genre="${escapeHtml(genres)}" data-jikan-query="${escapeHtml(item.jikanQuery || item.title)}">
+        <article class="anime-item anim-box" id="${escapeHtml(item.id)}" data-score="${escapeHtml(item.score)}" data-genre="${escapeHtml(genres)}" data-jikan-query="${escapeHtml(item.jikanQuery || item.title)}" data-op-audio="${escapeHtml(opAudio)}">
             <div class="anime-thumb"><img src="${escapeHtml(image)}" alt="${escapeHtml(item.title)}" loading="lazy"></div>
             <div class="anime-info">
                 <span class="rating">評価: ${stars(item.score)}</span>
@@ -256,6 +257,7 @@
             generateTOC();
             document.querySelectorAll('.anim-box').forEach(box => window.archiveObserver?.observe(box));
             observeJikan();
+            window.animeCenterSlider = window.initArchiveCenterSlider?.({ listId: 'anime-list', itemSelector: '.anime-item', titleSelector: '.anime-title', audio: true });
         } catch {
             list.innerHTML = '<section class="empty-state anim-box"><h2>anime-data.json ???????????</h2><p>?????????????????????????</p></section>';
         }

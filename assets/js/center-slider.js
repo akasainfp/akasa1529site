@@ -1,5 +1,20 @@
 
 (() => {
+    const routeWork = new URLSearchParams(window.location.search).get('work');
+    let routeLoader = null;
+    if (routeWork && document.body) {
+        routeLoader = document.createElement('div');
+        routeLoader.className = 'archive-route-loader';
+        routeLoader.setAttribute('aria-label', 'Loading');
+        routeLoader.innerHTML = '<span class="archive-route-spinner" aria-hidden="true"></span>';
+        document.body.appendChild(routeLoader);
+    }
+    function finishRouteLoading() {
+        if (!routeLoader) return;
+        routeLoader.classList.add('is-hidden');
+        window.setTimeout(() => routeLoader?.remove(), 260);
+    }
+
     const defaults = {
         listId: '',
         itemSelector: '',
@@ -265,6 +280,7 @@
             refresh();
             const target = initialIndex(items());
             if (target >= 0) setActive(target, true, true);
+            finishRouteLoading();
         }, 0);
         return { refresh, setActive };
     }

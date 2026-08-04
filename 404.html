@@ -1,12 +1,27 @@
 <!doctype html>
 <html lang="ja">
-<head><meta charset="utf-8"><title>Akasa1529 archive</title></head>
-<body><p>Loading...</p><script>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Akasa1529 archive</title>
+<style>
+html, body { margin: 0; min-height: 100%; background: #050508; color: #888; }
+body { min-height: 100vh; display: grid; place-items: center; font-family: Arial, sans-serif; }
+.loader { display: grid; justify-items: center; gap: 16px; }
+.spinner { width: 34px; height: 34px; border: 2px solid rgba(125,95,255,.22); border-top-color: #7d5fff; border-radius: 50%; animation: spin .8s linear infinite; }
+@keyframes spin { to { transform: rotate(360deg); } }
+</style>
+</head>
+<body>
+<div class="loader" aria-label="Loading"><span class="spinner" aria-hidden="true"></span></div>
+<script>
 (function () {
   var match = location.pathname.match(/^\/(anime|movie|game)\/([^/]+)\/?$/i);
-  if (match) {
-    location.replace('/' + match[1].toLowerCase() + '/?work=' + encodeURIComponent(match[2]));
-  }
+  if (!match) return;
+  var work = match[2];
+  try { work = decodeURIComponent(work); } catch (error) {}
+  location.replace('/' + match[1].toLowerCase() + '/?work=' + encodeURIComponent(work));
 })();
-</script></body>
+</script>
+</body>
 </html>

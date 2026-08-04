@@ -9,7 +9,13 @@
     ],
     "image": "assets/anime/komi.jpg",
     "synopsis": "容姿端麗だが極度のコミュ症。友達100人を作る目標に向かって進む物語。",
-    "jikanQuery": "古見さんは、コミュ症です。"
+    "jikanQuery": "古見さんは、コミュ症です。",
+    "openingTheme": {
+      "title": "シンデレラ",
+      "artist": "サイダーガール",
+      "source": "ja.wikipedia.org",
+      "youtube": ""
+    }
   },
   {
     "id": "makeine",
@@ -33,7 +39,13 @@
     ],
     "image": "assets/anime/yorimoi.jpg",
     "synopsis": "南極を目指す4人の少女たち。何かを変えたい強い想いが形になる感動の物語。",
-    "jikanQuery": "宇宙よりも遠い場所"
+    "jikanQuery": "宇宙よりも遠い場所",
+    "openingTheme": {
+      "title": "The Girls Are Alright!",
+      "artist": "saya",
+      "source": "ja.wikipedia.org",
+      "youtube": ""
+    }
   },
   {
     "id": "yorukura",
@@ -44,7 +56,13 @@
     ],
     "image": "assets/anime/yorukura.jpg",
     "synopsis": "渋谷の夜、匿名で活動する少女たちのクリエイティブ青春群像劇。",
-    "jikanQuery": "夜のクラゲは泳げない"
+    "jikanQuery": "夜のクラゲは泳げない",
+    "openingTheme": {
+      "title": "イロドリ",
+      "artist": "カノエラナ",
+      "source": "ja.wikipedia.org",
+      "youtube": ""
+    }
   },
   {
     "id": "bokuyaba",
@@ -56,7 +74,13 @@
     ],
     "image": "assets/anime/bokuyaba.jpg",
     "synopsis": "中二病の市川と美少女・山田。距離の縮まる過程が丁寧に描かれるラブコメ。",
-    "jikanQuery": "僕の心のヤバイやつ"
+    "jikanQuery": "僕の心のヤバイやつ",
+    "openingTheme": {
+      "title": "斜陽",
+      "artist": "ヨルシカ",
+      "source": "ja.wikipedia.org",
+      "youtube": ""
+    }
   },
   {
     "id": "iroduku",
@@ -69,7 +93,13 @@
     ],
     "image": "assets/anime/iroduku.jpg",
     "synopsis": "魔法使いの家系の少女が過去へ飛び、心の色を取り戻す物語。",
-    "jikanQuery": "色づく世界の明日から"
+    "jikanQuery": "色づく世界の明日から",
+    "openingTheme": {
+      "title": "17才",
+      "artist": "",
+      "source": "ja.wikipedia.org",
+      "youtube": ""
+    }
   },
   {
     "id": "onimai",
@@ -178,7 +208,13 @@
     ],
     "image": "assets/anime/kanojox.jpg",
     "synopsis": "唾液を介して感情を共有する、ミステリアスな純愛物語。",
-    "jikanQuery": "謎の彼女X"
+    "jikanQuery": "謎の彼女X",
+    "openingTheme": {
+      "title": "恋のオーケストラ",
+      "artist": "",
+      "source": "ja.wikipedia.org",
+      "youtube": ""
+    }
   },
   {
     "id": "milkyway",
@@ -202,7 +238,13 @@
     ],
     "image": "assets/anime/shibouyuugi.jpg",
     "synopsis": "命懸けのゲームで賞金を稼ぐ、少女たちの残酷な生存戦略。",
-    "jikanQuery": "死亡遊戯で飯を食う。"
+    "jikanQuery": "死亡遊戯で飯を食う。",
+    "openingTheme": {
+      "title": "¬Ersterbend",
+      "artist": "LIN (MADKID)",
+      "source": "ja.wikipedia.org",
+      "youtube": ""
+    }
   },
   {
     "id": "abyss",
@@ -215,7 +257,13 @@
     ],
     "image": "assets/anime/made-in-abyss.jpg",
     "synopsis": "底知れぬ巨大な穴「アビス」。美しさと残酷さが共存する冒険譚。",
-    "jikanQuery": "メイドインアビス"
+    "jikanQuery": "メイドインアビス",
+    "openingTheme": {
+      "title": "憧れに捧ぐ花",
+      "artist": "リコ（富田美憂）、レグ（伊瀬茉莉也）、ナナチ（井澤詩織）",
+      "source": "ja.wikipedia.org",
+      "youtube": ""
+    }
   },
   {
     "id": "lycoris",
@@ -227,7 +275,13 @@
     ],
     "image": "assets/anime/lycoris.jpg",
     "synopsis": "治安を守る少女たち。正反対な二人のコンビ劇とアクション。",
-    "jikanQuery": "リコリス・リコイル"
+    "jikanQuery": "リコリス・リコイル",
+    "openingTheme": {
+      "title": "ALIVE",
+      "artist": "ClariS",
+      "source": "ja.wikipedia.org",
+      "youtube": ""
+    }
   },
   {
     "id": "bisque",
@@ -239,7 +293,13 @@
     ],
     "image": "assets/anime/bisque.jpg",
     "synopsis": "コスプレ好きなギャルと雛人形職人志望の男子の交流を描く青春ラブコメ。",
-    "jikanQuery": "その着せ替え人形は恋をする"
+    "jikanQuery": "その着せ替え人形は恋をする",
+    "openingTheme": {
+      "title": "燦々デイズ",
+      "artist": "スピラ・スピカ",
+      "source": "ja.wikipedia.org",
+      "youtube": ""
+    }
   },
   {
     "id": "skip",
@@ -251,7 +311,13 @@
     ],
     "image": "assets/anime/skip.jpg",
     "synopsis": "石川から上京した少女。周囲を自然体で動かす心地よい青春劇。",
-    "jikanQuery": "スキップとローファー"
+    "jikanQuery": "スキップとローファー",
+    "openingTheme": {
+      "title": "メロウ",
+      "artist": "須田景凪",
+      "source": "ja.wikipedia.org",
+      "youtube": ""
+    }
   },
   {
     "id": "spyfamily",
@@ -275,7 +341,13 @@
     ],
     "image": "assets/anime/satsuriku.jpg",
     "synopsis": "記憶喪失の少女と殺人鬼。奇妙な約束で繋がれた二人の脱出劇。",
-    "jikanQuery": "殺戮の天使"
+    "jikanQuery": "殺戮の天使",
+    "openingTheme": {
+      "title": "Vital",
+      "artist": "遠藤正明",
+      "source": "ja.wikipedia.org",
+      "youtube": ""
+    }
   },
   {
     "id": "nichijou",
@@ -298,7 +370,13 @@
     ],
     "image": "assets/anime/tawawa.jpg",
     "synopsis": "憂鬱な月曜日の朝に届く、ささやかな交流と癒しのひととき。",
-    "jikanQuery": "月曜日のたわわ"
+    "jikanQuery": "月曜日のたわわ",
+    "openingTheme": {
+      "title": "乙女のたわわ",
+      "artist": "アイちゃん（原田彩楓）",
+      "source": "ja.wikipedia.org",
+      "youtube": ""
+    }
   },
   {
     "id": "seihantai",
@@ -310,7 +388,13 @@
     ],
     "image": "assets/anime/seihantai.jpg",
     "synopsis": "陽キャ女子と陰キャ男子。正反対な二人の心地よい距離感の恋愛劇。",
-    "jikanQuery": "正反対な君と僕"
+    "jikanQuery": "正反対な君と僕",
+    "openingTheme": {
+      "title": "メガネを外して",
+      "artist": "乃紫",
+      "source": "ja.wikipedia.org",
+      "youtube": ""
+    }
   },
   {
     "id": "kaoru",
@@ -322,7 +406,13 @@
     ],
     "image": "assets/anime/kaoru.jpg",
     "synopsis": "隣り合う二つの高校。壁を越えて想い合う真っ直ぐな心の物語。",
-    "jikanQuery": "薫る花は凛と咲く"
+    "jikanQuery": "薫る花は凛と咲く",
+    "openingTheme": {
+      "title": "まなざしは光",
+      "artist": "キタニタツヤ",
+      "source": "ja.wikipedia.org",
+      "youtube": ""
+    }
   },
   {
     "id": "lily",
@@ -334,7 +424,13 @@
     ],
     "image": "assets/anime/lily.jpg",
     "synopsis": "一瞬のきらめきを切り取った、少女たちの日常の断片。",
-    "jikanQuery": "もめんたりー・リリィ"
+    "jikanQuery": "もめんたりー・リリィ",
+    "openingTheme": {
+      "title": "おいしいサバイバー",
+      "artist": "花冷え。",
+      "source": "ja.wikipedia.org",
+      "youtube": ""
+    }
   },
   {
     "id": "toumei",
@@ -359,7 +455,13 @@
     ],
     "image": "assets/anime/magicalsite.jpg",
     "synopsis": "不幸な少女たちが手にした魔法のステッキ。ダークな魔法少女劇。",
-    "jikanQuery": "魔法少女サイト"
+    "jikanQuery": "魔法少女サイト",
+    "openingTheme": {
+      "title": "Changing point",
+      "artist": "i☆Ris",
+      "source": "ja.wikipedia.org",
+      "youtube": ""
+    }
   },
   {
     "id": "hataraku",
@@ -383,7 +485,13 @@
     ],
     "image": "assets/anime/5hanayome.jpg",
     "synopsis": "落第寸前の五つ子と家庭教師。誰と結ばれるかのラブコメディ。",
-    "jikanQuery": "五等分の花嫁"
+    "jikanQuery": "五等分の花嫁",
+    "openingTheme": {
+      "title": "五等分の気持ち",
+      "artist": "花澤香菜、竹達彩奈、伊藤美来、佐倉綾音、水瀬いのりからなる「中野家の五つ子」",
+      "source": "ja.wikipedia.org",
+      "youtube": ""
+    }
   },
   {
     "id": "kusuriya",
@@ -419,7 +527,13 @@
     ],
     "image": "assets/anime/futari.png",
     "synopsis": "新婚夫婦が性を学びながら愛を育む教育的な側面もある物語。",
-    "jikanQuery": "ふたりエッチ"
+    "jikanQuery": "ふたりエッチ",
+    "openingTheme": {
+      "title": "sync",
+      "artist": "新谷さなえ",
+      "source": "ja.wikipedia.org",
+      "youtube": ""
+    }
   },
   {
     "id": "danjyo",
@@ -466,7 +580,13 @@
     ],
     "image": "assets/anime/yamada999.jpg",
     "synopsis": "ネトゲを通じて出会った二人が、リアルな恋へと変化していく物語。",
-    "jikanQuery": "山田くんとLv999の恋をする"
+    "jikanQuery": "山田くんとLv999の恋をする",
+    "openingTheme": {
+      "title": "ぐらでーしょん feat. 北澤ゆうほ",
+      "artist": "KANA-BOON",
+      "source": "ja.wikipedia.org",
+      "youtube": ""
+    }
   },
   {
     "id": "aohako",
@@ -478,7 +598,13 @@
     ],
     "image": "assets/anime/aohako.jpg",
     "synopsis": "部活に打ち込む少年と少女。朝の体育館から始まる純愛青春劇。",
-    "jikanQuery": "アオのハコ"
+    "jikanQuery": "アオのハコ",
+    "openingTheme": {
+      "title": "Same Blue",
+      "artist": "Official髭男dism",
+      "source": "ja.wikipedia.org",
+      "youtube": ""
+    }
   },
   {
     "id": "arknights",
@@ -490,7 +616,13 @@
     ],
     "image": "assets/anime/arknights.jpg",
     "synopsis": "感染症が蔓延する世界での戦いと、救済を求める物語。",
-    "jikanQuery": "アークナイツ"
+    "jikanQuery": "アークナイツ",
+    "openingTheme": {
+      "title": "Alive",
+      "artist": "ReoNa",
+      "source": "ja.wikipedia.org",
+      "youtube": ""
+    }
   },
   {
     "id": "watakon",
@@ -503,7 +635,13 @@
     ],
     "image": "assets/anime/watakon.jpg",
     "synopsis": "虐げられてきた少女が、冷酷な軍人と出会い愛を知る和風ファンタジー。",
-    "jikanQuery": "わたしの幸せな結婚"
+    "jikanQuery": "わたしの幸せな結婚",
+    "openingTheme": {
+      "title": "貴方の側に。",
+      "artist": "りりあ。",
+      "source": "ja.wikipedia.org",
+      "youtube": ""
+    }
   },
   {
     "id": "oddtaxy",
@@ -526,6 +664,12 @@
     ],
     "image": "assets/anime/japan2020.jpg",
     "synopsis": "突如始まった日本の沈没。極限状態での家族のサバイバル。",
-    "jikanQuery": "日本沈没2020"
+    "jikanQuery": "日本沈没2020",
+    "openingTheme": {
+      "title": "a life",
+      "artist": "",
+      "source": "ja.wikipedia.org",
+      "youtube": ""
+    }
   }
 ]

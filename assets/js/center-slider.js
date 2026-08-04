@@ -6,7 +6,9 @@
         titleSelector: '',
         tocSelector: '#toc-list',
         audio: false,
-        audioKeys: ['opAudio', 'audio', 'opUrl', 'audioUrl', 'openingAudio']
+        audioKeys: ['opYoutube', 'themeYoutube', 'youtube', 'youtubeUrl', 'opAudio', 'audio', 'opUrl', 'audioUrl', 'openingAudio'],
+        audioLabel: 'OP',
+        archiveName: ''
     };
 
     function visibleItems(track, selector) {
@@ -38,59 +40,88 @@
         return '';
     }
 
-    function createAudioControls(stage, track, itemSelector, keys) {
+    let youtubeApiPromise = null;
+
+    function loadYoutubeApi() {
+        if (window.YT?.Player) return Promise.resolve(window.YT);
+        if (youtubeApiPromise) return youtubeApiPromise;
+        youtubeApiPromise = new Promise(resolve => {
+            const previous = window.onYouTubeIframeAPIReady;
+            window.onYouTubeIframeAPIReady = () => { previous?.(); resolve(window.YT); };
+            const script = document.createElement('script');
+            script.src = 'https://www.youtube.com/iframe_api';
+            script.async = true;
+            document.head.appendChild(script);
+        });
+        return youtubeApiPromise;
+    }
+
+    function youtubeId(value) {
+        try {
+            const url = new URL(value);
+            if (url.hostname === 'youtu.be') return url.pathname.slice(1).split('/')[0];
+            if (url.hostname.includes('youtube.com')) {
+                if (url.pathname === '/watch') return url.searchParams.get('v') || '';
+                const parts = url.pathname.split('/').filter(Boolean);
+                const embedIndex = parts.indexOf('embed');
+                if (embedIndex >= 0) return parts[embedIndex + 1] || '';
+                const shortsIndex = parts.indexOf('shorts');
+                if (shortsIndex >= 0) return parts[shortsIndex + 1] || '';
+            }
+        } catch {}
+        return '';
+    }
+
+    function createAudioControls(stage, track, itemSelector, keys, labelText) {
         const audio = new Audio();
         audio.loop = true;
         audio.volume = 0.22;
         let enabled = false;
         let currentSrc = '';
+        let player = null;
+        let playerVideoId = '';
+        let playerReady = false;
+
+        const playerHost = document.createElement('div');
+        playerHost.className = 'archive-youtube-player';
+        playerHost.setAttribute('aria-hidden', 'true');
+        stage.appendChild(playerHost);
 
         const control = document.createElement('div');
         control.className = 'archive-audio-control is-muted';
-        control.innerHTML = '<button class="archive-audio-toggle" type="button" aria-pressed="false">OP</button><input class="archive-audio-volume" type="range" min="0" max="100" value="22" aria-label="OP volume"><span class="archive-audio-label">OP READY</span>';
+        control.innerHTML = '<button class="archive-audio-toggle" type="button" aria-pressed="false">' + (labelText || 'OP') + '</button><input class="archive-audio-volume" type="range" min="0" max="100" value="22" aria-label="\u97f3\u91cf"><span class="archive-audio-label">READY</span>';
         stage.appendChild(control);
 
         const button = control.querySelector('.archive-audio-toggle');
         const volume = control.querySelector('.archive-audio-volume');
         const label = control.querySelector('.archive-audio-label');
 
-        function activeItem() {
-            return track.querySelector(itemSelector + '.is-active') || visibleItems(track, itemSelector)[0];
+        function activeItem() { return track.querySelector(itemSelector + '.is-active') || visibleItems(track, itemSelector)[0]; }
+        function pauseAll() { audio.pause(); if (playerReady) player.pauseVideo(); }
+        function ensureYoutubePlayer() {
+            if (player || !window.YT?.Player) return;
+            player = new window.YT.Player(playerHost, { width: '1', height: '1', videoId: '', playerVars: { autoplay: 0, controls: 0, rel: 0, playsinline: 1 }, events: { onReady: event => { playerReady = true; event.target.setVolume(Number(volume.value)); if (playerVideoId) event.target.loadVideoById(playerVideoId); if (enabled) event.target.playVideo(); } } });
         }
-
         function syncAudio() {
             const item = activeItem();
             const src = item ? getAudioSrc(item, keys) : '';
-            label.textContent = src ? 'OP READY' : 'NO OP';
-            if (!src) {
-                audio.pause();
-                currentSrc = '';
-                return;
-            }
+            const videoId = youtubeId(src);
+            label.textContent = src ? 'READY' : 'NO MUSIC';
+            if (!src) { pauseAll(); currentSrc = ''; return; }
             if (src !== currentSrc) {
-                currentSrc = src;
-                audio.src = src;
+                pauseAll(); currentSrc = src;
+                if (videoId) {
+                    playerVideoId = videoId;
+                    loadYoutubeApi().then(() => { ensureYoutubePlayer(); if (player && playerReady) { player.loadVideoById(playerVideoId); player.setVolume(Number(volume.value)); if (!enabled) player.pauseVideo(); } });
+                } else audio.src = src;
             }
-            if (enabled) audio.play().catch(() => {
-                enabled = false;
-                button.setAttribute('aria-pressed', 'false');
-                control.classList.add('is-muted');
-                label.textContent = 'CLICK OP';
-            });
+            if (!enabled) return;
+            if (videoId) {
+                loadYoutubeApi().then(() => { ensureYoutubePlayer(); if (!player || !playerReady) return; if (playerVideoId !== videoId) { playerVideoId = videoId; player.loadVideoById(videoId); } player.playVideo(); });
+            } else audio.play().catch(() => { enabled = false; button.setAttribute('aria-pressed', 'false'); control.classList.add('is-muted'); label.textContent = 'CLICK ' + (labelText || 'OP'); });
         }
-
-        button.addEventListener('click', () => {
-            enabled = !enabled;
-            button.setAttribute('aria-pressed', String(enabled));
-            control.classList.toggle('is-muted', !enabled);
-            if (enabled) syncAudio();
-            else audio.pause();
-        });
-
-        volume.addEventListener('input', () => {
-            audio.volume = Number(volume.value) / 100;
-        });
-
+        button.addEventListener('click', () => { enabled = !enabled; button.setAttribute('aria-pressed', String(enabled)); control.classList.toggle('is-muted', !enabled); if (enabled) syncAudio(); else pauseAll(); });
+        volume.addEventListener('input', () => { audio.volume = Number(volume.value) / 100; if (playerReady) player.setVolume(Number(volume.value)); });
         return { syncAudio };
     }
 
@@ -117,13 +148,63 @@
         stage.appendChild(status);
 
         const toc = document.querySelector(config.tocSelector);
-        const audioController = config.audio ? createAudioControls(stage, track, config.itemSelector, config.audioKeys) : null;
+        const audioController = config.audio ? createAudioControls(stage, track, config.itemSelector, config.audioKeys, config.audioLabel) : null;
         let activeIndex = 0;
         let scrollTimer = null;
 
         function items() { return visibleItems(track, config.itemSelector); }
 
-        function setActive(index, shouldScroll = true) {
+        function archiveName() {
+            if (config.archiveName) return config.archiveName;
+            const path = decodeURIComponent(window.location.pathname).replace(/\\/g, '/');
+            const match = path.match(/\/(anime|movie|game)(?:\/|\.html)/i);
+            return match ? match[1].toLowerCase() : '';
+        }
+
+        function workTitle(item) {
+            return item?.querySelector(config.titleSelector)?.textContent?.trim() || item?.id || '';
+        }
+
+        function workUrl(item) {
+            const name = archiveName();
+            if (!name) return '';
+            const slug = encodeURIComponent(workTitle(item)).replace(/%20/g, '-');
+            return '/' + name + '/' + slug;
+        }
+
+        function syncWorkUrl(item) {
+            const href = workUrl(item);
+            if (!href) return;
+            if (window.location.protocol === 'file:') {
+                history.replaceState(null, '', '#' + (item?.id || ''));
+                return;
+            }
+            history.replaceState(null, '', href);
+        }
+
+        function requestedWork() {
+            const query = new URLSearchParams(window.location.search).get('work');
+            if (query) return query;
+            const name = archiveName();
+            const path = decodeURIComponent(window.location.pathname).replace(/\\/g, '/');
+            if (!name) return '';
+            const prefix = '/' + name + '/';
+            if (!path.toLowerCase().startsWith(prefix.toLowerCase())) return '';
+            return path.slice(prefix.length).replace(/\/$/, '');
+        }
+
+        function initialIndex(currentItems) {
+            const requested = requestedWork();
+            if (!requested) return -1;
+            const normalized = requested.toLowerCase();
+            return currentItems.findIndex(item => {
+                const title = workTitle(item);
+                const slug = encodeURIComponent(title).replace(/%20/g, '-').toLowerCase();
+                return item.id.toLowerCase() === normalized || slug === normalized || title.toLowerCase() === normalized;
+            });
+        }
+
+        function setActive(index, shouldScroll = true, updateUrl = true) {
             const currentItems = items();
             if (!currentItems.length) {
                 status.textContent = '00 / 00';
@@ -132,6 +213,7 @@
             activeIndex = Math.max(0, Math.min(index, currentItems.length - 1));
             currentItems.forEach((item, idx) => item.classList.toggle('is-active', idx === activeIndex));
             const active = currentItems[activeIndex];
+            if (updateUrl) syncWorkUrl(active);
             status.textContent = String(activeIndex + 1).padStart(2, '0') + ' / ' + String(currentItems.length).padStart(2, '0');
             if (toc && active) {
                 toc.querySelectorAll('a').forEach(link => {
@@ -142,11 +224,10 @@
             if (shouldScroll && active) active.scrollIntoView({ behavior: 'smooth', inline: 'center', block: 'nearest' });
             audioController?.syncAudio();
         }
-
         function refresh() {
             const currentItems = items();
             const current = currentItems.findIndex(item => item.classList.contains('is-active'));
-            setActive(current >= 0 ? current : 0, false);
+            setActive(current >= 0 ? current : 0, false, false);
         }
 
         nav.querySelector('[data-slider-prev]').addEventListener('click', () => setActive(activeIndex - 1));
@@ -180,7 +261,11 @@
         const observer = new MutationObserver(refresh);
         observer.observe(track, { childList: true, subtree: false, attributes: true, attributeFilter: ['class'] });
         window.addEventListener('resize', () => setActive(activeIndex, false));
-        window.setTimeout(refresh, 0);
+        window.setTimeout(() => {
+            refresh();
+            const target = initialIndex(items());
+            if (target >= 0) setActive(target, true, true);
+        }, 0);
         return { refresh, setActive };
     }
 

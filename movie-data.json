@@ -25,7 +25,13 @@
     ],
     "thumbnail": "assets/movie/meikuaga-ru.jpg",
     "note": "人工的に作られた少女との出会いを通して、人の心や愛情の形を描くSFアニメ映画。",
-    "url": "https://make-a-girl.com/"
+    "url": "https://make-a-girl.com/",
+    "themeSong": {
+      "title": "花星",
+      "artist": "Eve",
+      "source": "ja.wikipedia.org",
+      "youtube": ""
+    }
   },
   {
     "id": "movie-03",
@@ -52,7 +58,13 @@
     ],
     "thumbnail": "assets/movie/tenkinoko.jpg",
     "note": "雨が降り続く東京で、天気を晴れにできる少女と少年が出会う物語。世界よりも大切なものを選ぶ青春ファンタジー。",
-    "url": "https://tenkinoko.com/"
+    "url": "https://tenkinoko.com/",
+    "themeSong": {
+      "title": "愛にできることはまだあるかい",
+      "artist": "RADWIMPS",
+      "source": "ja.wikipedia.org",
+      "youtube": ""
+    }
   },
   {
     "id": "movie-05",
@@ -66,7 +78,13 @@
     ],
     "thumbnail": "assets/movie/summerwars.jpg",
     "note": "田舎の大家族と仮想世界OZを舞台に、世界規模の危機へ立ち向かう夏のSF群像劇。",
-    "url": "https://s-wars.jp/"
+    "url": "https://s-wars.jp/",
+    "themeSong": {
+      "title": "僕らの夏の夢",
+      "artist": "????",
+      "source": "ja.wikipedia.org",
+      "youtube": ""
+    }
   },
   {
     "id": "movie-06",
@@ -80,7 +98,13 @@
     ],
     "thumbnail": "assets/movie/bakemononoko.jpg",
     "note": "人間界で孤独だった少年が、バケモノの世界で師匠と出会い成長していく冒険ファンタジー。",
-    "url": "http://www.bakemono-no-ko.jp/"
+    "url": "http://www.bakemono-no-ko.jp/",
+    "themeSong": {
+      "title": "Starting Over",
+      "artist": "Mr.Children",
+      "source": "ja.wikipedia.org",
+      "youtube": ""
+    }
   },
   {
     "id": "movie-07",
@@ -108,7 +132,13 @@
     ],
     "thumbnail": "assets/movie/ametoyuki.jpg",
     "note": "おおかみおとこの子どもを育てる母と、雨と雪それぞれの成長を描く家族の物語。",
-    "url": "https://promo.kadokawa.co.jp/ookami/"
+    "url": "https://promo.kadokawa.co.jp/ookami/",
+    "themeSong": {
+      "title": "おかあさんの唄",
+      "artist": "??????",
+      "source": "ja.wikipedia.org",
+      "youtube": ""
+    }
   },
   {
     "id": "movie-09",

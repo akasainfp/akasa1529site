@@ -55,7 +55,8 @@
         const title = escapeHtml(item.title);
         const type = escapeHtml(item.type || 'movie');
         const genres = Array.isArray(item.genres) ? item.genres.map(String) : [];
-        return `<article class="movie-item anim-box" id="${escapeHtml(item.id)}" data-score="${escapeHtml(item.score)}" data-type="${type}" data-genre="${escapeHtml(genres.join(' '))}">
+        const themeYoutube = item.themeSong?.youtube || item.youtube || '';
+        return `<article class="movie-item anim-box" id="${escapeHtml(item.id)}" data-score="${escapeHtml(item.score)}" data-type="${type}" data-genre="${escapeHtml(genres.join(' '))}" data-theme-youtube="${escapeHtml(themeYoutube)}">
             <div class="movie-thumb">${thumbnail ? `<img src="${escapeHtml(thumbnail)}" alt="${title}">` : '<span>NO IMAGE</span>'}</div>
             <div class="movie-info">
                 <div class="movie-meta-top">
@@ -206,7 +207,7 @@
             sortMovieByScore();
             generateTOC();
             observeItems();
-            window.movieCenterSlider = window.initArchiveCenterSlider?.({ listId: 'movie-list', itemSelector: '.movie-item', titleSelector: '.movie-title' });
+            window.movieCenterSlider = window.initArchiveCenterSlider?.({ listId: 'movie-list', itemSelector: '.movie-item', titleSelector: '.movie-title', audio: true, audioLabel: '\u4e3b\u984c\u6b4c' });
         } catch (error) {
             list.innerHTML = '<section class="empty-state anim-box"><h2>movie-data.json を読み込めませんでした</h2><p>ローカルで確認する場合は簡易サーバー経由で開いてください。</p></section>';
             observeItems();

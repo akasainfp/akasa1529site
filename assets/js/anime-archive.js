@@ -36,9 +36,9 @@
     function renderItem(item) {
         const genres = Array.isArray(item.genres) ? item.genres.join(' ') : '';
         const image = assetUrl(item.image || '');
-        const opAudio = assetUrl(item.opAudio || item.audio || item.opUrl || item.audioUrl || item.openingAudio || '');
+        const opYoutube = item.openingTheme?.youtube || item.opYoutube || item.youtube || '';
         return `
-        <article class="anime-item anim-box" id="${escapeHtml(item.id)}" data-score="${escapeHtml(item.score)}" data-genre="${escapeHtml(genres)}" data-jikan-query="${escapeHtml(item.jikanQuery || item.title)}" data-op-audio="${escapeHtml(opAudio)}">
+        <article class="anime-item anim-box" id="${escapeHtml(item.id)}" data-score="${escapeHtml(item.score)}" data-genre="${escapeHtml(genres)}" data-jikan-query="${escapeHtml(item.jikanQuery || item.title)}" data-op-youtube="${escapeHtml(opYoutube)}">
             <div class="anime-thumb"><img src="${escapeHtml(image)}" alt="${escapeHtml(item.title)}" loading="lazy"></div>
             <div class="anime-info">
                 <span class="rating">評価: ${stars(item.score)}</span>

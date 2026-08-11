@@ -111,6 +111,23 @@
     overflow-wrap: anywhere;
 }
 
+.archive-slider-track > .game-item {
+    height: fit-content;
+    min-height: 0;
+    align-self: flex-start;
+}
+.archive-slider-track > .game-item .game-thumb {
+    aspect-ratio: 16 / 9;
+}
+.archive-slider-track > .movie-item {
+    height: fit-content;
+    min-height: 0;
+    align-self: flex-start;
+}
+.archive-slider-track > .movie-item .movie-thumb {
+    aspect-ratio: 2 / 3;
+}
+
 .archive-slider-nav {
     position: absolute;
     left: 0;

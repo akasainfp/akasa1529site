@@ -30,7 +30,7 @@
     <meta name="twitter:image" content="https://www.akasa1529.site/assets/profile/icon.jpg">
     <!-- OGP image idea: Use a black background, white Akasa1529 | archive text, a purple accent, and subtle particle lines. -->
     <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@200;800&family=Space+Mono&family=Noto+Sans+JP:wght@300;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="assets/css/archive-slider.css?v=20260804-poster-ratio">
+    <link rel="stylesheet" href="assets/css/archive-slider.css?v=20260812-card-ratio">
     <style>
         :root {
             --bg: #000000;
@@ -131,11 +131,11 @@
         .anim-box.is-animated { opacity: 1; transform: translateY(0); }
 
         .game-item { display: grid; grid-template-columns: 280px 1fr; gap: 30px; background: rgba(255, 255, 255, 0.01); border: 1px solid rgba(255, 255, 255, 0.05); padding: 30px; margin-bottom: 30px; transition: 0.5s ease; }
-        .game-item { align-items: start; }
+        .game-item { align-items: start; align-content: start; min-height: 0; }
         .game-item.hidden { display: none !important; }
         @media (max-width: 768px) { .game-item { grid-template-columns: 1fr; } }
 
-        .game-thumb { align-self: start; width: 100%; aspect-ratio: 16/9; background: #08080c; border: 1px solid rgba(255, 255, 255, 0.05); overflow: hidden; position: relative; display: flex; align-items: center; justify-content: center; isolation: isolate; }
+        .game-thumb { align-self: start; height: auto; width: 100%; aspect-ratio: 16/9; background: #08080c; border: 1px solid rgba(255, 255, 255, 0.05); overflow: hidden; position: relative; display: flex; align-items: center; justify-content: center; isolation: isolate; }
         .game-thumb::before { content: ""; position: absolute; inset: 0; background-image: var(--thumb-bg); background-size: cover; background-position: center; filter: blur(18px); opacity: 0; transform: scale(1.08); transition: opacity 0.3s; z-index: 0; }
         .game-thumb img { width: 100%; height: 100%; object-fit: contain; display: block; position: relative; z-index: 1; }
         .game-thumb.is-package::before { opacity: 0.18; }

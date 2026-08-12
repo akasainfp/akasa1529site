@@ -14,7 +14,7 @@
     overflow-y: hidden;
     scroll-snap-type: x mandatory;
     scroll-padding-inline: max(22px, calc((100% - min(700px, 76vw)) / 2));
-    padding: 18px max(22px, calc((100% - min(700px, 76vw)) / 2)) 28px;
+    padding: 36px max(22px, calc((100% - min(700px, 76vw)) / 2)) 44px;
     max-width: none !important;
     -webkit-overflow-scrolling: touch;
     scrollbar-width: none;
@@ -32,24 +32,38 @@
     padding: 0 !important;
     overflow: hidden;
     scroll-snap-align: center;
-    opacity: 0.42;
-    transform: scale(0.78);
+    opacity: 0.42 !important;
+    transform: scale(0.78) !important;
     transform-origin: center center;
     filter: saturate(0.58);
-    border-color: rgba(255, 255, 255, 0.08);
+    animation: none !important;
+    box-sizing: border-box;
+    background: #050508;
+    border: 1px solid rgba(255, 255, 255, 0.18);
+    box-shadow: 0 10px 26px rgba(0, 0, 0, 0.24);
     transition: opacity 0.35s ease, transform 0.35s ease, filter 0.35s ease, border-color 0.35s ease, box-shadow 0.35s ease;
+}
+
+
+.archive-slider-track > .anime-item.anim-box,
+.archive-slider-track > .game-item.anim-box,
+.archive-slider-track > .movie-item.anim-box,
+.archive-slider-track > .anime-item.anim-box.is-animated,
+.archive-slider-track > .game-item.anim-box.is-animated,
+.archive-slider-track > .movie-item.anim-box.is-animated {
+    animation: none !important;
 }
 
 .archive-slider-track > .anime-item.is-active,
 .archive-slider-track > .game-item.is-active,
 .archive-slider-track > .movie-item.is-active {
-    opacity: 1;
-    transform: scale(1.14);
+    opacity: 1 !important;
+    transform: scale(1.14) !important;
     filter: saturate(1);
     position: relative;
     z-index: 2;
-    border-color: rgba(125, 95, 255, 0.55);
-    box-shadow: 0 20px 55px rgba(0, 0, 0, 0.34), 0 0 24px rgba(125, 95, 255, 0.09);
+    border-color: rgba(125, 95, 255, 0.72);
+    box-shadow: 0 0 0 7px rgba(0, 0, 0, 0.86), 0 20px 55px rgba(0, 0, 0, 0.42), 0 0 24px rgba(125, 95, 255, 0.12);
 }
 
 .archive-slider-track > .anime-item.hidden,
@@ -212,13 +226,13 @@
 
 @media (max-width: 768px) {
     .archive-slider-stage { max-width: 100%; padding: 0 10px 82px; margin-bottom: 68px; }
-    .archive-slider-track { gap: 14px; padding-inline: 12px; scroll-padding-inline: 12px; }
+    .archive-slider-track { gap: 14px; padding: 28px 12px 34px; scroll-padding-inline: 12px; }
     .archive-slider-track > .anime-item,
     .archive-slider-track > .game-item,
-    .archive-slider-track > .movie-item { flex-basis: calc(100vw - 72px); transform: scale(0.82); }
+    .archive-slider-track > .movie-item { flex-basis: calc(100vw - 72px); transform: scale(0.82) !important; }
     .archive-slider-track > .anime-item.is-active,
     .archive-slider-track > .game-item.is-active,
-    .archive-slider-track > .movie-item.is-active { transform: scale(1.10); }
+    .archive-slider-track > .movie-item.is-active { transform: scale(1.10) !important; }
     .archive-slider-track > .anime-item .anime-thumb,
     .archive-slider-track > .game-item .game-thumb { aspect-ratio: 4 / 3; }
     .archive-slider-track > .movie-item .movie-thumb { aspect-ratio: 2 / 3; }

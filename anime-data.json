@@ -26,7 +26,7 @@
       "comedy",
       "drama"
     ],
-    "image": "assets/anime/makeine.jpg",
+    "image": "assets/anime/makeine.jpg?v=20260812-v1",
     "synopsis": "恋に敗れたヒロインたちの、敗北から始まる新しい青春劇。",
     "jikanQuery": "負けヒロインが多すぎる！"
   },
@@ -37,7 +37,7 @@
     "genres": [
       "drama"
     ],
-    "image": "assets/anime/yorimoi.jpg",
+    "image": "assets/anime/yorimoi.jpg?v=20260812-v1",
     "synopsis": "南極を目指す4人の少女たち。何かを変えたい強い想いが形になる感動の物語。",
     "jikanQuery": "宇宙よりも遠い場所",
     "openingTheme": {
@@ -54,7 +54,7 @@
     "genres": [
       "drama"
     ],
-    "image": "assets/anime/yorukura.jpg",
+    "image": "assets/anime/yorukura.jpg?v=20260812-v1",
     "synopsis": "渋谷の夜、匿名で活動する少女たちのクリエイティブ青春群像劇。",
     "jikanQuery": "夜のクラゲは泳げない",
     "openingTheme": {
@@ -72,7 +72,7 @@
       "romance",
       "comedy"
     ],
-    "image": "assets/anime/bokuyaba.jpg",
+    "image": "assets/anime/bokuyaba.jpg?v=20260812-v1",
     "synopsis": "中二病の市川と美少女・山田。距離の縮まる過程が丁寧に描かれるラブコメ。",
     "jikanQuery": "僕の心のヤバイやつ",
     "openingTheme": {
@@ -91,7 +91,7 @@
       "drama",
       "fantasy"
     ],
-    "image": "assets/anime/iroduku.jpg",
+    "image": "assets/anime/iroduku.jpg?v=20260812-v1",
     "synopsis": "魔法使いの家系の少女が過去へ飛び、心の色を取り戻す物語。",
     "jikanQuery": "色づく世界の明日から",
     "openingTheme": {
@@ -108,7 +108,7 @@
     "genres": [
       "comedy"
     ],
-    "image": "assets/anime/onimai.jpg",
+    "image": "assets/anime/onimai.jpg?v=20260812-v1",
     "synopsis": "妹の薬で女の子になった引きこもりの兄が、少しずつ社会と繋がる物語。",
     "jikanQuery": "お兄ちゃんはおしまい！"
   },
@@ -120,7 +120,7 @@
       "romance",
       "fantasy"
     ],
-    "image": "assets/anime/yofukashi.jpg",
+    "image": "assets/anime/yofukashi.jpg?v=20260812-v1",
     "synopsis": "不眠の少年と吸血鬼。夜の街で「恋」を探すスタイリッシュな物語。",
     "jikanQuery": "よふかしのうた"
   },
@@ -132,7 +132,7 @@
       "romance",
       "comedy"
     ],
-    "image": "assets/anime/gokon.jpg",
+    "image": "assets/anime/gokon.jpg?v=20260812-v1",
     "synopsis": "合コン相手が全員男装女子だった、新しい視点のラブコメディ。",
     "jikanQuery": "合コンに行ったら女が居なかった話"
   },
@@ -143,7 +143,7 @@
     "genres": [
       "drama"
     ],
-    "image": "assets/anime/chi.jpg",
+    "image": "assets/anime/chi.jpg?v=20260812-v1",
     "synopsis": "地動説に命を懸けた人々の、信念のバトンを受け継ぐ物語。",
     "jikanQuery": "チ。―地球の運動について―"
   },
@@ -156,7 +156,7 @@
       "fantasy",
       "romance"
     ],
-    "image": "assets/anime/sao.jpg",
+    "image": "assets/anime/sao.jpg?v=20260812-v1",
     "synopsis": "仮想世界でのデスゲーム。キリトの戦いと絆を描く金字塔。",
     "jikanQuery": "ソードアート・オンライン"
   },
@@ -168,7 +168,7 @@
       "romance",
       "comedy"
     ],
-    "image": "assets/anime/megane.jpg",
+    "image": "assets/anime/megane.jpg?v=20260812-v1",
     "synopsis": "メガネを忘れた三重さんと彼女を助ける小村君の至近距離ラブコメ。",
     "jikanQuery": "好きな子がメガネを忘れた"
   },
@@ -181,7 +181,7 @@
       "fantasy",
       "drama"
     ],
-    "image": "assets/anime/frieren.jpg",
+    "image": "assets/anime/frieren.jpg?v=20260812-v1",
     "synopsis": "魔王討伐後の世界。長寿のフリーレンが人を知る旅に出る後日談ファンタジー。",
     "jikanQuery": "葬送のフリーレン"
   },
@@ -194,7 +194,7 @@
       "fantasy",
       "drama"
     ],
-    "image": "assets/anime/mushoku.jpg",
+    "image": "assets/anime/mushoku.jpg?v=20260812-v1",
     "synopsis": "異世界で今度こそ本気で生きる。人生の再構築を描く大河物語。",
     "jikanQuery": "無職転生"
   },
@@ -206,7 +206,7 @@
       "romance",
       "comedy"
     ],
-    "image": "assets/anime/kanojox.jpg",
+    "image": "assets/anime/kanojox.jpg?v=20260812-v1",
     "synopsis": "唾液を介して感情を共有する、ミステリアスな純愛物語。",
     "jikanQuery": "謎の彼女X",
     "openingTheme": {
@@ -224,7 +224,7 @@
       "romance",
       "comedy"
     ],
-    "image": "assets/anime/milkyway.jpg",
+    "image": "assets/anime/milkyway.jpg?v=20260812-v1",
     "synopsis": "幻想的な世界での出会いと、地下鉄の先に広がる銀河の物語。",
     "jikanQuery": "銀河鉄道ミルキーサブウェイ"
   },
@@ -236,7 +236,7 @@
       "battle",
       "mystery"
     ],
-    "image": "assets/anime/shibouyuugi.jpg",
+    "image": "assets/anime/shibouyuugi.jpg?v=20260812-v1",
     "synopsis": "命懸けのゲームで賞金を稼ぐ、少女たちの残酷な生存戦略。",
     "jikanQuery": "死亡遊戯で飯を食う。",
     "openingTheme": {
@@ -255,7 +255,7 @@
       "fantasy",
       "drama"
     ],
-    "image": "assets/anime/made-in-abyss.jpg",
+    "image": "assets/anime/made-in-abyss.jpg?v=20260812-v1",
     "synopsis": "底知れぬ巨大な穴「アビス」。美しさと残酷さが共存する冒険譚。",
     "jikanQuery": "メイドインアビス",
     "openingTheme": {
@@ -273,7 +273,7 @@
       "battle",
       "comedy"
     ],
-    "image": "assets/anime/lycoris.jpg",
+    "image": "assets/anime/lycoris.jpg?v=20260812-v1",
     "synopsis": "治安を守る少女たち。正反対な二人のコンビ劇とアクション。",
     "jikanQuery": "リコリス・リコイル",
     "openingTheme": {
@@ -291,7 +291,7 @@
       "romance",
       "comedy"
     ],
-    "image": "assets/anime/bisque.jpg",
+    "image": "assets/anime/bisque.jpg?v=20260812-v1",
     "synopsis": "コスプレ好きなギャルと雛人形職人志望の男子の交流を描く青春ラブコメ。",
     "jikanQuery": "その着せ替え人形は恋をする",
     "openingTheme": {
@@ -309,7 +309,7 @@
       "romance",
       "drama"
     ],
-    "image": "assets/anime/skip.jpg",
+    "image": "assets/anime/skip.jpg?v=20260812-v1",
     "synopsis": "石川から上京した少女。周囲を自然体で動かす心地よい青春劇。",
     "jikanQuery": "スキップとローファー",
     "openingTheme": {
@@ -327,7 +327,7 @@
       "battle",
       "comedy"
     ],
-    "image": "assets/anime/spyfamily.jpg",
+    "image": "assets/anime/spyfamily.jpg?v=20260812-v1",
     "synopsis": "スパイ・殺し屋・超能力者の仮初め家族が送るホームコメディ。",
     "jikanQuery": "SPY×FAMILY"
   },
@@ -339,7 +339,7 @@
       "battle",
       "mystery"
     ],
-    "image": "assets/anime/satsuriku.jpg",
+    "image": "assets/anime/satsuriku.jpg?v=20260812-v1",
     "synopsis": "記憶喪失の少女と殺人鬼。奇妙な約束で繋がれた二人の脱出劇。",
     "jikanQuery": "殺戮の天使",
     "openingTheme": {
@@ -356,7 +356,7 @@
     "genres": [
       "comedy"
     ],
-    "image": "assets/anime/nichijou.jpg",
+    "image": "assets/anime/nichijou.jpg?v=20260812-v1",
     "synopsis": "女子高生やロボが織り成すシュールで壮大な日常コメディ。",
     "jikanQuery": "日常"
   },

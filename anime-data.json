@@ -13,8 +13,7 @@
     "openingTheme": {
       "title": "シンデレラ",
       "artist": "サイダーガール",
-      "source": "ja.wikipedia.org",
-      "youtube": ""
+      "youtube": "https://www.youtube.com/watch?v=S5trUWlf0hI"
     }
   },
   {
@@ -28,7 +27,12 @@
     ],
     "image": "assets/anime/makeine.jpg?v=20260812-v1",
     "synopsis": "恋に敗れたヒロインたちの、敗北から始まる新しい青春劇。",
-    "jikanQuery": "負けヒロインが多すぎる！"
+    "jikanQuery": "負けヒロインが多すぎる！",
+    "openingTheme": {
+      "title": "",
+      "artist": "",
+      "youtube": "https://youtu.be/7GJOBkIgWHc"
+    }
   },
   {
     "id": "yorimoi",
@@ -43,8 +47,7 @@
     "openingTheme": {
       "title": "The Girls Are Alright!",
       "artist": "saya",
-      "source": "ja.wikipedia.org",
-      "youtube": ""
+      "youtube": "https://www.youtube.com/watch?v=KjujhbdPoCU"
     }
   },
   {
@@ -60,8 +63,7 @@
     "openingTheme": {
       "title": "イロドリ",
       "artist": "カノエラナ",
-      "source": "ja.wikipedia.org",
-      "youtube": ""
+      "youtube": "https://youtu.be/Nm-50XXPnoU"
     }
   },
   {
@@ -78,8 +80,7 @@
     "openingTheme": {
       "title": "斜陽",
       "artist": "ヨルシカ",
-      "source": "ja.wikipedia.org",
-      "youtube": ""
+      "youtube": "https://www.youtube.com/watch?v=Za2FmwuIEwY"
     }
   },
   {
@@ -97,8 +98,7 @@
     "openingTheme": {
       "title": "17才",
       "artist": "",
-      "source": "ja.wikipedia.org",
-      "youtube": ""
+      "youtube": "https://www.youtube.com/watch?v=CP6xbsxyRKI"
     }
   },
   {
@@ -110,7 +110,12 @@
     ],
     "image": "assets/anime/onimai.jpg?v=20260812-v1",
     "synopsis": "妹の薬で女の子になった引きこもりの兄が、少しずつ社会と繋がる物語。",
-    "jikanQuery": "お兄ちゃんはおしまい！"
+    "jikanQuery": "お兄ちゃんはおしまい！",
+    "openingTheme": {
+      "title": "",
+      "artist": "",
+      "youtube": "https://youtu.be/cHcMHceZEuk"
+    }
   },
   {
     "id": "yofukashi",
@@ -122,7 +127,12 @@
     ],
     "image": "assets/anime/yofukashi.jpg?v=20260812-v1",
     "synopsis": "不眠の少年と吸血鬼。夜の街で「恋」を探すスタイリッシュな物語。",
-    "jikanQuery": "よふかしのうた"
+    "jikanQuery": "よふかしのうた",
+    "openingTheme": {
+      "title": "",
+      "artist": "",
+      "youtube": "https://youtu.be/AwXRPWmgLbU"
+    }
   },
   {
     "id": "gokon",
@@ -134,7 +144,12 @@
     ],
     "image": "assets/anime/gokon.jpg?v=20260812-v1",
     "synopsis": "合コン相手が全員男装女子だった、新しい視点のラブコメディ。",
-    "jikanQuery": "合コンに行ったら女が居なかった話"
+    "jikanQuery": "合コンに行ったら女が居なかった話",
+    "openingTheme": {
+      "title": "",
+      "artist": "",
+      "youtube": "https://www.youtube.com/watch?v=W4YKPLS7o8o"
+    }
   },
   {
     "id": "chi",
@@ -145,7 +160,12 @@
     ],
     "image": "assets/anime/chi.jpg?v=20260812-v1",
     "synopsis": "地動説に命を懸けた人々の、信念のバトンを受け継ぐ物語。",
-    "jikanQuery": "チ。―地球の運動について―"
+    "jikanQuery": "チ。―地球の運動について―",
+    "openingTheme": {
+      "title": "",
+      "artist": "",
+      "youtube": "https://youtu.be/eZAocot63s8"
+    }
   },
   {
     "id": "sao",
@@ -158,7 +178,12 @@
     ],
     "image": "assets/anime/sao.jpg?v=20260812-v1",
     "synopsis": "仮想世界でのデスゲーム。キリトの戦いと絆を描く金字塔。",
-    "jikanQuery": "ソードアート・オンライン"
+    "jikanQuery": "ソードアート・オンライン",
+    "openingTheme": {
+      "title": "",
+      "artist": "",
+      "youtube": "https://www.youtube.com/watch?v=Y4kfe8R1Iqs"
+    }
   },
   {
     "id": "megane",
@@ -170,7 +195,12 @@
     ],
     "image": "assets/anime/megane.jpg?v=20260812-v1",
     "synopsis": "メガネを忘れた三重さんと彼女を助ける小村君の至近距離ラブコメ。",
-    "jikanQuery": "好きな子がメガネを忘れた"
+    "jikanQuery": "好きな子がメガネを忘れた",
+    "openingTheme": {
+      "title": "",
+      "artist": "",
+      "youtube": "https://www.youtube.com/watch?v=mpWnhkMLIu4"
+    }
   },
   {
     "id": "frieren",
@@ -183,7 +213,12 @@
     ],
     "image": "assets/anime/frieren.jpg?v=20260812-v1",
     "synopsis": "魔王討伐後の世界。長寿のフリーレンが人を知る旅に出る後日談ファンタジー。",
-    "jikanQuery": "葬送のフリーレン"
+    "jikanQuery": "葬送のフリーレン",
+    "openingTheme": {
+      "title": "",
+      "artist": "",
+      "youtube": "https://youtu.be/QoGM9hCxr4k"
+    }
   },
   {
     "id": "mushoku",
@@ -196,7 +231,12 @@
     ],
     "image": "assets/anime/mushoku.jpg?v=20260812-v1",
     "synopsis": "異世界で今度こそ本気で生きる。人生の再構築を描く大河物語。",
-    "jikanQuery": "無職転生"
+    "jikanQuery": "無職転生",
+    "openingTheme": {
+      "title": "",
+      "artist": "",
+      "youtube": "https://youtu.be/hZ6TnKvB2rc"
+    }
   },
   {
     "id": "kanojox",
@@ -212,8 +252,7 @@
     "openingTheme": {
       "title": "恋のオーケストラ",
       "artist": "",
-      "source": "ja.wikipedia.org",
-      "youtube": ""
+      "youtube": "https://youtu.be/ah-dMoAvSPs"
     }
   },
   {
@@ -226,7 +265,12 @@
     ],
     "image": "assets/anime/milkyway.jpg?v=20260812-v1",
     "synopsis": "幻想的な世界での出会いと、地下鉄の先に広がる銀河の物語。",
-    "jikanQuery": "銀河鉄道ミルキーサブウェイ"
+    "jikanQuery": "銀河鉄道ミルキーサブウェイ",
+    "openingTheme": {
+      "title": "",
+      "artist": "",
+      "youtube": "https://youtu.be/6vK8A3npElM"
+    }
   },
   {
     "id": "shibogame",
@@ -242,8 +286,7 @@
     "openingTheme": {
       "title": "¬Ersterbend",
       "artist": "LIN (MADKID)",
-      "source": "ja.wikipedia.org",
-      "youtube": ""
+      "youtube": "https://www.youtube.com/watch?v=VugBZB4gNGk"
     }
   },
   {
@@ -261,8 +304,7 @@
     "openingTheme": {
       "title": "憧れに捧ぐ花",
       "artist": "リコ（富田美憂）、レグ（伊瀬茉莉也）、ナナチ（井澤詩織）",
-      "source": "ja.wikipedia.org",
-      "youtube": ""
+      "youtube": "https://www.youtube.com/watch?v=zdv082ZzvxU"
     }
   },
   {
@@ -279,8 +321,7 @@
     "openingTheme": {
       "title": "ALIVE",
       "artist": "ClariS",
-      "source": "ja.wikipedia.org",
-      "youtube": ""
+      "youtube": "https://youtu.be/VxR_BYPG7v4"
     }
   },
   {
@@ -297,8 +338,7 @@
     "openingTheme": {
       "title": "燦々デイズ",
       "artist": "スピラ・スピカ",
-      "source": "ja.wikipedia.org",
-      "youtube": ""
+      "youtube": "https://www.youtube.com/watch?v=oG4eu4HMtbo"
     }
   },
   {
@@ -315,8 +355,7 @@
     "openingTheme": {
       "title": "メロウ",
       "artist": "須田景凪",
-      "source": "ja.wikipedia.org",
-      "youtube": ""
+      "youtube": "https://youtu.be/PJirQlsWemk"
     }
   },
   {
@@ -329,7 +368,12 @@
     ],
     "image": "assets/anime/spyfamily.jpg?v=20260812-v1",
     "synopsis": "スパイ・殺し屋・超能力者の仮初め家族が送るホームコメディ。",
-    "jikanQuery": "SPY×FAMILY"
+    "jikanQuery": "SPY×FAMILY",
+    "openingTheme": {
+      "title": "",
+      "artist": "",
+      "youtube": "https://www.youtube.com/watch?v=U_rWZK_8vUY"
+    }
   },
   {
     "id": "satsuriku",
@@ -345,8 +389,7 @@
     "openingTheme": {
       "title": "Vital",
       "artist": "遠藤正明",
-      "source": "ja.wikipedia.org",
-      "youtube": ""
+      "youtube": "https://www.youtube.com/watch?v=CVlyghaNP_g"
     }
   },
   {
@@ -358,7 +401,12 @@
     ],
     "image": "assets/anime/nichijou.jpg?v=20260812-v1",
     "synopsis": "女子高生やロボが織り成すシュールで壮大な日常コメディ。",
-    "jikanQuery": "日常"
+    "jikanQuery": "日常",
+    "openingTheme": {
+      "title": "",
+      "artist": "",
+      "youtube": "https://www.youtube.com/watch?v=a5vW5pMoSJ0"
+    }
   },
   {
     "id": "tawawa",
@@ -374,7 +422,6 @@
     "openingTheme": {
       "title": "乙女のたわわ",
       "artist": "アイちゃん（原田彩楓）",
-      "source": "ja.wikipedia.org",
       "youtube": ""
     }
   },
@@ -392,8 +439,7 @@
     "openingTheme": {
       "title": "メガネを外して",
       "artist": "乃紫",
-      "source": "ja.wikipedia.org",
-      "youtube": ""
+      "youtube": "https://youtu.be/JIn6WqZ_Fs4"
     }
   },
   {
@@ -410,8 +456,7 @@
     "openingTheme": {
       "title": "まなざしは光",
       "artist": "キタニタツヤ",
-      "source": "ja.wikipedia.org",
-      "youtube": ""
+      "youtube": "https://youtu.be/8WLNNu78mUk"
     }
   },
   {
@@ -428,8 +473,7 @@
     "openingTheme": {
       "title": "おいしいサバイバー",
       "artist": "花冷え。",
-      "source": "ja.wikipedia.org",
-      "youtube": ""
+      "youtube": "https://youtu.be/aTdDYP7-KXA"
     }
   },
   {
@@ -442,7 +486,12 @@
     ],
     "image": "assets/anime/toumei.jpg",
     "synopsis": "目に見えない男と目の見えない女。心の交流を描く純愛。",
-    "jikanQuery": "透明男と人間女～そのうち夫婦になるふたり～"
+    "jikanQuery": "透明男と人間女～そのうち夫婦になるふたり～",
+    "openingTheme": {
+      "title": "",
+      "artist": "",
+      "youtube": "https://youtu.be/hcpOaVa12DA"
+    }
   },
   {
     "id": "magicalsite",
@@ -459,8 +508,7 @@
     "openingTheme": {
       "title": "Changing point",
       "artist": "i☆Ris",
-      "source": "ja.wikipedia.org",
-      "youtube": ""
+      "youtube": "https://youtu.be/O_6VgvxMB84"
     }
   },
   {
@@ -473,7 +521,12 @@
     ],
     "image": "assets/anime/hataraku-saibou.jpg",
     "synopsis": "体内の細胞たちを擬人化。面白く学べる体内エンターテインメント。",
-    "jikanQuery": "はたらく細胞！"
+    "jikanQuery": "はたらく細胞！",
+    "openingTheme": {
+      "title": "",
+      "artist": "",
+      "youtube": "https://www.youtube.com/watch?v=aFe3srrhLdI"
+    }
   },
   {
     "id": "5hanayome",
@@ -489,8 +542,7 @@
     "openingTheme": {
       "title": "五等分の気持ち",
       "artist": "花澤香菜、竹達彩奈、伊藤美来、佐倉綾音、水瀬いのりからなる「中野家の五つ子」",
-      "source": "ja.wikipedia.org",
-      "youtube": ""
+      "youtube": "https://www.youtube.com/watch?v=K52aXiTcXwI"
     }
   },
   {
@@ -503,7 +555,12 @@
     ],
     "image": "assets/anime/kusuriya.jpg",
     "synopsis": "宮中の陰謀や怪事件を薬草の知識で解決する猫猫の活躍。",
-    "jikanQuery": "薬屋のひとりごと"
+    "jikanQuery": "薬屋のひとりごと",
+    "openingTheme": {
+      "title": "",
+      "artist": "",
+      "youtube": "https://youtu.be/z9JZB08qy44"
+    }
   },
   {
     "id": "shikimori",
@@ -515,7 +572,12 @@
     ],
     "image": "assets/anime/shikimorisan.jpg",
     "synopsis": "不幸体質な彼氏と、時々イケメン化する彼女のラブコメ。",
-    "jikanQuery": "かわいいだけじゃない式守さん"
+    "jikanQuery": "かわいいだけじゃない式守さん",
+    "openingTheme": {
+      "title": "",
+      "artist": "",
+      "youtube": "https://youtu.be/bWTGWUH9-Nc"
+    }
   },
   {
     "id": "futari",
@@ -531,7 +593,6 @@
     "openingTheme": {
       "title": "sync",
       "artist": "新谷さなえ",
-      "source": "ja.wikipedia.org",
       "youtube": ""
     }
   },
@@ -545,7 +606,12 @@
     ],
     "image": "assets/anime/danjyo.jpg",
     "synopsis": "親友同士だった二人の関係が、徐々に変化していく青春劇。",
-    "jikanQuery": "男女の友情は成立する？（いや、しないっ!!）"
+    "jikanQuery": "男女の友情は成立する？（いや、しないっ!!）",
+    "openingTheme": {
+      "title": "",
+      "artist": "",
+      "youtube": "https://www.youtube.com/watch?v=-7h--XTyj8A"
+    }
   },
   {
     "id": "watamote",
@@ -556,7 +622,12 @@
     ],
     "image": "assets/anime/watamote.jpg",
     "synopsis": "モテることを夢見る少女の空回りする日常と、その後の変化。",
-    "jikanQuery": "私がモテないのはどう考えてもお前らが悪い！"
+    "jikanQuery": "私がモテないのはどう考えてもお前らが悪い！",
+    "openingTheme": {
+      "title": "",
+      "artist": "",
+      "youtube": "https://www.youtube.com/watch?v=F9ud8j9SMvU"
+    }
   },
   {
     "id": "oshinoko",
@@ -568,7 +639,12 @@
     ],
     "image": "assets/anime/oshinoko.jpg",
     "synopsis": "芸能界の光と闇。転生から始まる復讐と成長のサスペンス。",
-    "jikanQuery": "推しの子"
+    "jikanQuery": "推しの子",
+    "openingTheme": {
+      "title": "",
+      "artist": "",
+      "youtube": "https://www.youtube.com/watch?v=PgBvV9ofjmA"
+    }
   },
   {
     "id": "yamada999",
@@ -584,8 +660,7 @@
     "openingTheme": {
       "title": "ぐらでーしょん feat. 北澤ゆうほ",
       "artist": "KANA-BOON",
-      "source": "ja.wikipedia.org",
-      "youtube": ""
+      "youtube": "https://youtu.be/mkxZXJN3zjI"
     }
   },
   {
@@ -602,8 +677,7 @@
     "openingTheme": {
       "title": "Same Blue",
       "artist": "Official髭男dism",
-      "source": "ja.wikipedia.org",
-      "youtube": ""
+      "youtube": "https://youtu.be/d0jg9hNHqn8"
     }
   },
   {
@@ -620,8 +694,7 @@
     "openingTheme": {
       "title": "Alive",
       "artist": "ReoNa",
-      "source": "ja.wikipedia.org",
-      "youtube": ""
+      "youtube": "https://youtu.be/1XKJqBrhyeE"
     }
   },
   {
@@ -639,8 +712,7 @@
     "openingTheme": {
       "title": "貴方の側に。",
       "artist": "りりあ。",
-      "source": "ja.wikipedia.org",
-      "youtube": ""
+      "youtube": "https://www.youtube.com/watch?v=22snn05aEyQ"
     }
   },
   {
@@ -653,7 +725,12 @@
     ],
     "image": "assets/anime/oddtaxy.jpg",
     "synopsis": "タクシー運転手が運ぶ客たちの会話が、一つの事件に収束するミステリー。",
-    "jikanQuery": "ODDTAXI（オッドタクシー）"
+    "jikanQuery": "ODDTAXI（オッドタクシー）",
+    "openingTheme": {
+      "title": "",
+      "artist": "",
+      "youtube": "https://www.youtube.com/watch?v=jX-Ry1VxeDQ"
+    }
   },
   {
     "id": "japan2020",
@@ -668,8 +745,7 @@
     "openingTheme": {
       "title": "a life",
       "artist": "",
-      "source": "ja.wikipedia.org",
-      "youtube": ""
+      "youtube": "https://www.youtube.com/watch?v=TWSFcx1FcD4"
     }
   }
 ]

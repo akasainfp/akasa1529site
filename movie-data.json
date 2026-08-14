@@ -11,7 +11,12 @@
     ],
     "thumbnail": "assets/movie/natuton.jpg",
     "note": "不思議なトンネルをめぐって、失ったものと向き合う青春SF。限られた時間の中で進む恋と選択が中心。",
-    "url": "https://natsuton.com/"
+    "url": "https://natsuton.com/",
+    "themeSong": {
+      "title": "",
+      "artist": "",
+      "youtube": "https://youtu.be/1lYb9nLO_FY"
+    }
   },
   {
     "id": "movie-02",
@@ -29,8 +34,7 @@
     "themeSong": {
       "title": "花星",
       "artist": "Eve",
-      "source": "ja.wikipedia.org",
-      "youtube": ""
+      "youtube": "https://youtu.be/T96pY_Ul0s0"
     }
   },
   {
@@ -44,7 +48,12 @@
     ],
     "thumbnail": "assets/movie/hatarakusaibou1.jpg",
     "note": "体内で働く細胞たちを人間の姿で描く実写エンタメ。病気や免疫の仕組みをアクションとコメディで見せる。",
-    "url": "https://wwws.warnerbros.co.jp/saibou-movie/"
+    "url": "https://wwws.warnerbros.co.jp/saibou-movie/",
+    "themeSong": {
+      "title": "",
+      "artist": "",
+      "youtube": "https://youtu.be/Vv2n31gL85I"
+    }
   },
   {
     "id": "movie-04",
@@ -62,8 +71,7 @@
     "themeSong": {
       "title": "愛にできることはまだあるかい",
       "artist": "RADWIMPS",
-      "source": "ja.wikipedia.org",
-      "youtube": ""
+      "youtube": "https://youtu.be/EQ94zflNqn4"
     }
   },
   {
@@ -82,7 +90,6 @@
     "themeSong": {
       "title": "僕らの夏の夢",
       "artist": "????",
-      "source": "ja.wikipedia.org",
       "youtube": ""
     }
   },
@@ -102,8 +109,7 @@
     "themeSong": {
       "title": "Starting Over",
       "artist": "Mr.Children",
-      "source": "ja.wikipedia.org",
-      "youtube": ""
+      "youtube": "https://youtu.be/3PnCgAlmK3Q"
     }
   },
   {
@@ -118,7 +124,12 @@
     ],
     "thumbnail": "assets/movie/yourname.jpg",
     "note": "夢の中で入れ替わる少年少女が、時間と距離を越えて互いを探す青春ラブストーリー。",
-    "url": "https://www.kiminona.com/"
+    "url": "https://www.kiminona.com/",
+    "themeSong": {
+      "title": "",
+      "artist": "",
+      "youtube": "https://youtu.be/PDSkFeMVNFs"
+    }
   },
   {
     "id": "movie-08",
@@ -136,8 +147,7 @@
     "themeSong": {
       "title": "おかあさんの唄",
       "artist": "??????",
-      "source": "ja.wikipedia.org",
-      "youtube": ""
+      "youtube": "https://www.youtube.com/watch?v=WcRa7TRhJgE"
     }
   },
   {
@@ -152,7 +162,12 @@
     ],
     "thumbnail": "assets/movie/suzumenotojimari.jpg",
     "note": "災いを呼ぶ扉を閉じるため、少女が日本各地を旅するロードムービー型ファンタジー。",
-    "url": "https://suzume-tojimari-movie.jp/"
+    "url": "https://suzume-tojimari-movie.jp/",
+    "themeSong": {
+      "title": "",
+      "artist": "",
+      "youtube": "https://youtu.be/TDi-hGRYX6g"
+    }
   },
   {
     "id": "movie-10",
@@ -166,7 +181,12 @@
     ],
     "thumbnail": "assets/movie/bokugaaisitakimihe.jpg",
     "note": "並行世界を題材に、別の選択肢に分かれていく恋と人生を描くSFラブストーリー。",
-    "url": "https://bokuaici.jp/"
+    "url": "https://bokuaici.jp/",
+    "themeSong": {
+      "title": "",
+      "artist": "",
+      "youtube": "https://youtu.be/_olv1Sw14_g"
+    }
   },
   {
     "id": "movie-11",
@@ -180,7 +200,12 @@
     ],
     "thumbnail": "assets/movie/kimigaaisitabokuhe.jpg",
     "note": "もう一つの並行世界から、運命の相手を選ぼうとする少年の恋を描くSFラブストーリー。",
-    "url": "https://bokuaici.jp/"
+    "url": "https://bokuaici.jp/",
+    "themeSong": {
+      "title": "",
+      "artist": "",
+      "youtube": "https://youtu.be/3Yq58d2rsRk"
+    }
   },
   {
     "id": "movie-12",
@@ -192,7 +217,12 @@
     ],
     "thumbnail": "assets/movie/reborn.jpg",
     "note": "元特殊傭兵の男が、圧倒的な近接戦闘術で敵に立ち向かうハードアクション。",
-    "url": "https://udenflameworks.com/reborn/"
+    "url": "https://udenflameworks.com/reborn/",
+    "themeSong": {
+      "title": "",
+      "artist": "",
+      "youtube": ""
+    }
   },
   {
     "id": "movie-13",
@@ -205,7 +235,12 @@
     ],
     "thumbnail": "assets/movie/greenbook.jpg",
     "note": "黒人ピアニストと白人運転手が旅を通じて互いを知っていく、実話をもとにしたヒューマンドラマ。",
-    "url": "https://gaga.ne.jp/greenbook/"
+    "url": "https://gaga.ne.jp/greenbook/",
+    "themeSong": {
+      "title": "",
+      "artist": "",
+      "youtube": ""
+    }
   },
   {
     "id": "movie-14",
@@ -218,7 +253,12 @@
     ],
     "thumbnail": "assets/movie/sinkansendaibakuha.jpg",
     "note": "爆弾を仕掛けられた新幹線をめぐり、乗客と関係者が極限状態で対応するサスペンス。",
-    "url": "https://shirogumi.com/works/others/2025-10.html"
+    "url": "https://shirogumi.com/works/others/2025-10.html",
+    "themeSong": {
+      "title": "",
+      "artist": "",
+      "youtube": ""
+    }
   },
   {
     "id": "movie-15",
@@ -230,7 +270,12 @@
     ],
     "thumbnail": "assets/movie/gokusyufudou.jpg",
     "note": "元極道の男が専業主夫として全力で家事に挑む、ギャップが楽しいコメディ。",
-    "url": "https://www.ytv.co.jp/gokushufudo/"
+    "url": "https://www.ytv.co.jp/gokushufudo/",
+    "themeSong": {
+      "title": "",
+      "artist": "",
+      "youtube": "https://www.youtube.com/watch?v=ye1YacA8HvE"
+    }
   },
   {
     "id": "movie-16",
@@ -243,7 +288,12 @@
     ],
     "thumbnail": "assets/movie/saikyoufutari.jpg",
     "note": "全身麻痺の富豪と介護人になった青年が、衝突しながら友情を築くヒューマンドラマ。",
-    "url": "https://www.gaga.co.jp/screening/%E6%9C%80%E5%BC%B7%E3%81%AE%E3%81%B5%E3%81%9F%E3%82%8A/"
+    "url": "https://www.gaga.co.jp/screening/%E6%9C%80%E5%BC%B7%E3%81%AE%E3%81%B5%E3%81%9F%E3%82%8A/",
+    "themeSong": {
+      "title": "",
+      "artist": "",
+      "youtube": ""
+    }
   },
   {
     "id": "movie-17",
@@ -257,7 +307,12 @@
     ],
     "thumbnail": "assets/movie/ainoutagoe.jpg",
     "note": "転校生として現れたAI少女が、歌で周囲の心を動かしていく青春SFミュージカル。",
-    "url": "https://ainouta.jp/"
+    "url": "https://ainouta.jp/",
+    "themeSong": {
+      "title": "",
+      "artist": "",
+      "youtube": "https://youtu.be/58q1s6B8lCM"
+    }
   },
   {
     "id": "movie-18",
@@ -270,7 +325,12 @@
     ],
     "thumbnail": "assets/movie/puraltutofo-mu.jpg",
     "note": "階層構造の施設で食料が上から下へ運ばれる設定を通じ、格差と人間性を描くスリラー。",
-    "url": "https://klockworx.com/movies/4889/"
+    "url": "https://klockworx.com/movies/4889/",
+    "themeSong": {
+      "title": "",
+      "artist": "",
+      "youtube": ""
+    }
   },
   {
     "id": "movie-19",
@@ -283,7 +343,12 @@
     ],
     "thumbnail": "assets/movie/reberuriltuji.jpg",
     "note": "小さな町の権力構造に巻き込まれた男が、不正と暴力に立ち向かうサスペンスアクション。",
-    "url": "https://www.netflix.com/title/81155964"
+    "url": "https://www.netflix.com/title/81155964",
+    "themeSong": {
+      "title": "",
+      "artist": "",
+      "youtube": ""
+    }
   },
   {
     "id": "movie-20",
@@ -296,7 +361,12 @@
     ],
     "thumbnail": "assets/movie/5sentijiltusya.jpg",
     "note": "すれ違う時間と距離の中で、初恋の記憶を抱え続ける男女を描く恋愛ドラマ。",
-    "url": "https://5cm-movie.jp/"
+    "url": "https://5cm-movie.jp/",
+    "themeSong": {
+      "title": "",
+      "artist": "",
+      "youtube": "https://www.youtube.com/watch?v=1cnndBdzCAk"
+    }
   },
   {
     "id": "movie-21",
@@ -310,7 +380,12 @@
     ],
     "thumbnail": "assets/movie/suizou.jpg",
     "note": "余命を隠す少女と孤独な少年の交流を通じ、生きることの意味を描く青春ドラマ。",
-    "url": "https://kimisui-anime.com/"
+    "url": "https://kimisui-anime.com/",
+    "themeSong": {
+      "title": "",
+      "artist": "",
+      "youtube": "https://youtu.be/KFvVslApCPc"
+    }
   },
   {
     "id": "movie-22",
@@ -323,7 +398,12 @@
     ],
     "thumbnail": "assets/movie/suizou1.jpg",
     "note": "余命わずかな少女とクラスメイトの少年が過ごした日々を、回想とともに描く実写青春ドラマ。",
-    "url": "https://hlo.tohotheater.jp/net/movie/TNPI3060J01.do?sakuhin_cd=014258"
+    "url": "https://hlo.tohotheater.jp/net/movie/TNPI3060J01.do?sakuhin_cd=014258",
+    "themeSong": {
+      "title": "",
+      "artist": "",
+      "youtube": "https://youtu.be/_kXE9FHQy9E"
+    }
   },
   {
     "id": "movie-23",
@@ -337,7 +417,12 @@
     ],
     "thumbnail": "assets/movie/hatesinaki.jpg",
     "note": "王女スカーレットの旅と戦いを通じて、生きる意味や復讐を描くファンタジー作品。",
-    "url": "https://scarlet-movie.jp/"
+    "url": "https://scarlet-movie.jp/",
+    "themeSong": {
+      "title": "",
+      "artist": "",
+      "youtube": "https://www.youtube.com/watch?v=1OtnowDsnYc"
+    }
   },
   {
     "id": "movie-24",
@@ -382,7 +467,12 @@
         "STAND BY ME ドラえもん2"
       ]
     },
-    "url": "https://dora-movie.com/"
+    "url": "https://dora-movie.com/",
+    "themeSong": {
+      "title": "",
+      "artist": "",
+      "youtube": "https://www.youtube.com/watch?v=vpCS50GW5aQ"
+    }
   },
   {
     "id": "movie-25",
@@ -404,7 +494,12 @@
         "ほか視聴済み作品は随時追記"
       ]
     },
-    "url": "https://www.shinchan-movie.com/"
+    "url": "https://www.shinchan-movie.com/",
+    "themeSong": {
+      "title": "",
+      "artist": "",
+      "youtube": ""
+    }
   },
   {
     "id": "movie-26",
@@ -424,7 +519,12 @@
         "視聴済みタイトルは後で追記"
       ]
     },
-    "url": "https://www.conan-movie.jp/"
+    "url": "https://www.conan-movie.jp/",
+    "themeSong": {
+      "title": "",
+      "artist": "",
+      "youtube": "https://www.youtube.com/watch?v=2pv1X4UiYhk"
+    }
   },
   {
     "id": "movie-27",
@@ -438,7 +538,12 @@
     ],
     "thumbnail": "assets/movie/kimetu.jpg",
     "note": "鬼殺隊の戦いを劇場版スケールで描くシリーズ。仲間との絆と鬼との激闘が中心。",
-    "url": "https://kimetsu.com/anime/"
+    "url": "https://kimetsu.com/anime/",
+    "themeSong": {
+      "title": "",
+      "artist": "",
+      "youtube": "https://youtu.be/4DxL6IKmXx4"
+    }
   },
   {
     "id": "movie-28",
@@ -451,7 +556,12 @@
     ],
     "thumbnail": "assets/movie/bakudan.jpg",
     "note": "爆弾事件をめぐる緊迫した駆け引きと、犯人の言葉に翻弄される人々を描くサスペンス。",
-    "url": "https://wwws.warnerbros.co.jp/bakudan-movie/"
+    "url": "https://wwws.warnerbros.co.jp/bakudan-movie/",
+    "themeSong": {
+      "title": "",
+      "artist": "",
+      "youtube": "https://www.youtube.com/watch?v=rM_LCeeqZhs"
+    }
   },
   {
     "id": "movie-29",
@@ -463,7 +573,12 @@
     ],
     "thumbnail": "assets/movie/turegautu.jpg",
     "note": "うつ病になった夫と支える妻の日々を、やさしい視点で描く夫婦のヒューマンドラマ。",
-    "url": "https://www.toei-video.co.jp/catalog/drtd03503/"
+    "url": "https://www.toei-video.co.jp/catalog/drtd03503/",
+    "themeSong": {
+      "title": "",
+      "artist": "",
+      "youtube": ""
+    }
   },
   {
     "id": "movie-30",
@@ -476,7 +591,12 @@
     ],
     "thumbnail": "assets/movie/sinkaisyakubakumatuden.jpg",
     "note": "幕末の人物や出来事を新しい解釈と笑いで描く歴史コメディ。",
-    "url": "https://new-bakumatsu.jp/"
+    "url": "https://new-bakumatsu.jp/",
+    "themeSong": {
+      "title": "",
+      "artist": "",
+      "youtube": "https://youtu.be/Fq2mUjjUlyk"
+    }
   },
   {
     "id": "movie-31",
@@ -500,7 +620,12 @@
         "るろうに剣心 最終章 The Beginning"
       ]
     },
-    "url": "https://wwws.warnerbros.co.jp/rurouni-kenshin2020/"
+    "url": "https://wwws.warnerbros.co.jp/rurouni-kenshin2020/",
+    "themeSong": {
+      "title": "",
+      "artist": "",
+      "youtube": "https://www.youtube.com/watch?v=Hh9yZWeTmVM"
+    }
   },
   {
     "id": "movie-32",
@@ -513,7 +638,12 @@
     ],
     "thumbnail": "assets/movie/renaisaiban.jpg",
     "note": "恋愛を裁判になぞらえ、気持ちのすれ違いや罪悪感を描く恋愛ドラマ。",
-    "url": "https://renai-saiban.toho.co.jp/"
+    "url": "https://renai-saiban.toho.co.jp/",
+    "themeSong": {
+      "title": "",
+      "artist": "",
+      "youtube": "https://www.youtube.com/watch?v=dOcVpHjZoeQ"
+    }
   },
   {
     "id": "movie-33",
@@ -527,7 +657,12 @@
     ],
     "thumbnail": "assets/movie/summerghost.jpg",
     "note": "それぞれ悩みを抱える高校生たちが、夏に現れる幽霊を探す短編青春ファンタジー。",
-    "url": "https://summerghost.jp/"
+    "url": "https://summerghost.jp/",
+    "themeSong": {
+      "title": "",
+      "artist": "",
+      "youtube": ""
+    }
   },
   {
     "id": "movie-34",
@@ -540,7 +675,12 @@
     ],
     "thumbnail": "assets/movie/tyoukaguyahime.jpg",
     "note": "かぐや姫の物語を現代的なテンションで描く、華やかなファンタジー作品。",
-    "url": "https://www.cho-kaguyahime.com/"
+    "url": "https://www.cho-kaguyahime.com/",
+    "themeSong": {
+      "title": "",
+      "artist": "",
+      "youtube": "https://youtu.be/qbT7bBYz5YA"
+    }
   },
   {
     "id": "movie-35",
@@ -553,7 +693,12 @@
     ],
     "thumbnail": "assets/movie/deltutiage.jpg",
     "note": "教師への告発をめぐり、報道や周囲の視線によって人生が揺さぶられる社会派ドラマ。",
-    "url": "https://www.detchiagemovie.jp/"
+    "url": "https://www.detchiagemovie.jp/",
+    "themeSong": {
+      "title": "",
+      "artist": "",
+      "youtube": "https://youtu.be/AcgVdNFT73k"
+    }
   },
   {
     "id": "movie-36",
@@ -576,7 +721,12 @@
         "教場 Requiem"
       ]
     },
-    "url": "https://www.fujitv.co.jp/kyojo/"
+    "url": "https://www.fujitv.co.jp/kyojo/",
+    "themeSong": {
+      "title": "",
+      "artist": "",
+      "youtube": ""
+    }
   },
   {
     "id": "movie-37",
@@ -590,7 +740,12 @@
     ],
     "thumbnail": "assets/movie/theendofthefk.jpg",
     "note": "問題を抱えた少年少女が逃避行を続ける、ブラックユーモアの強い青春ドラマ。",
-    "url": "https://www.netflix.com/title/80175722"
+    "url": "https://www.netflix.com/title/80175722",
+    "themeSong": {
+      "title": "",
+      "artist": "",
+      "youtube": ""
+    }
   },
   {
     "id": "movie-38",
@@ -604,7 +759,12 @@
     ],
     "thumbnail": "assets/movie/kotonohanoniwa.jpg",
     "note": "雨の日の庭園で出会う少年と女性の、静かで繊細な距離感を描く恋愛アニメ。",
-    "url": "https://www.kotonohanoniwa.jp/"
+    "url": "https://www.kotonohanoniwa.jp/",
+    "themeSong": {
+      "title": "",
+      "artist": "",
+      "youtube": "https://youtu.be/kKYoH7O1Kdg"
+    }
   },
   {
     "id": "movie-39",
@@ -617,7 +777,12 @@
     ],
     "thumbnail": "assets/movie/rultukubaltuku.jpg",
     "note": "漫画を描く二人の少女の出会いと創作への思いを、短く鋭く描く青春ドラマ。",
-    "url": "https://lookback-anime.com/"
+    "url": "https://lookback-anime.com/",
+    "themeSong": {
+      "title": "",
+      "artist": "",
+      "youtube": "https://youtu.be/EOgf9bXHZgI"
+    }
   },
   {
     "id": "movie-40",
@@ -630,7 +795,12 @@
     ],
     "thumbnail": "assets/movie/aigananda.jpg",
     "note": "一方通行の恋にのめり込む女性を通じて、好きでいることの苦さを描く恋愛ドラマ。",
-    "url": "https://animoproduce.co.jp/products/3016/"
+    "url": "https://animoproduce.co.jp/products/3016/",
+    "themeSong": {
+      "title": "",
+      "artist": "",
+      "youtube": "https://youtu.be/u1A53wFN9A0"
+    }
   },
   {
     "id": "movie-41",
@@ -644,7 +814,12 @@
     ],
     "thumbnail": "assets/movie/MIU404.jpg",
     "note": "機動捜査隊のバディが、限られた時間の中で事件に向き合う刑事ドラマ。",
-    "url": "https://www.tbs.co.jp/MIU404_TBS/"
+    "url": "https://www.tbs.co.jp/MIU404_TBS/",
+    "themeSong": {
+      "title": "",
+      "artist": "",
+      "youtube": "https://youtu.be/UFQEttrn6CQ"
+    }
   },
   {
     "id": "movie-42",
@@ -657,7 +832,12 @@
     ],
     "thumbnail": "assets/movie/dokuta-howaito.jpg",
     "note": "正体不明の女性が医学知識で診断を導き、病院の謎にも関わっていく医療ミステリー。",
-    "url": "https://www.ktv.co.jp/dr_white/"
+    "url": "https://www.ktv.co.jp/dr_white/",
+    "themeSong": {
+      "title": "",
+      "artist": "",
+      "youtube": "https://www.youtube.com/watch?v=BMb5IetESGE"
+    }
   },
   {
     "id": "movie-43",
@@ -671,7 +851,12 @@
     ],
     "thumbnail": "assets/movie/futekisetu.jpg",
     "note": "昭和の教師が令和へタイムスリップし、価値観の違いを笑いと共に描くコメディドラマ。",
-    "url": "https://www.tbs.co.jp/futekisetsu_tbs/"
+    "url": "https://www.tbs.co.jp/futekisetsu_tbs/",
+    "themeSong": {
+      "title": "",
+      "artist": "",
+      "youtube": "https://www.youtube.com/watch?v=k8AJfmyurWo"
+    }
   },
   {
     "id": "movie-44",
@@ -684,7 +869,12 @@
     ],
     "thumbnail": "assets/movie/sayonaranotuduki.jpg",
     "note": "喪失を抱えた人々が偶然のつながりを通して再び誰かを想う恋愛ドラマ。",
-    "url": "https://www.netflix.com/title/81512217"
+    "url": "https://www.netflix.com/title/81512217",
+    "themeSong": {
+      "title": "",
+      "artist": "",
+      "youtube": "https://www.youtube.com/watch?v=FqWBQv7h_3I"
+    }
   },
   {
     "id": "movie-45",
@@ -698,7 +888,12 @@
     ],
     "thumbnail": "assets/movie/foruteluna.jpg",
     "note": "死が近い人が見える青年が、大切な人の運命を変えようとする恋愛ファンタジー。",
-    "url": "https://oneworks.jp/works/%E3%83%95%E3%82%A9%E3%83%AB%E3%83%88%E3%82%A5%E3%83%8A%E3%81%AE%E7%9E%B3/"
+    "url": "https://oneworks.jp/works/%E3%83%95%E3%82%A9%E3%83%AB%E3%83%88%E3%82%A5%E3%83%8A%E3%81%AE%E7%9E%B3/",
+    "themeSong": {
+      "title": "",
+      "artist": "",
+      "youtube": "https://www.youtube.com/watch?v=-CHkmLyE_wc"
+    }
   },
   {
     "id": "movie-46",
@@ -712,7 +907,12 @@
     ],
     "thumbnail": "assets/movie/tokyoMER.jpg",
     "note": "重大事故や災害現場に駆けつける救命チームの奮闘を描く医療アクション。",
-    "url": "https://www.tbs.co.jp/TokyoMER_tbs/"
+    "url": "https://www.tbs.co.jp/TokyoMER_tbs/",
+    "themeSong": {
+      "title": "",
+      "artist": "",
+      "youtube": "https://www.youtube.com/watch?v=aVIYo4zWoSc"
+    }
   },
   {
     "id": "movie-47",
@@ -726,7 +926,12 @@
     ],
     "thumbnail": "assets/movie/ikage-mu.jpg",
     "note": "借金を抱えた人々が、命がけのゲームに参加する韓国サバイバルスリラー。",
-    "url": "https://www.netflix.com/title/81040344"
+    "url": "https://www.netflix.com/title/81040344",
+    "themeSong": {
+      "title": "",
+      "artist": "",
+      "youtube": ""
+    }
   },
   {
     "id": "movie-48",
@@ -739,7 +944,12 @@
     ],
     "thumbnail": "assets/movie/konfiJP.jpg",
     "note": "信用詐欺師たちが大がかりな作戦で悪人から金を奪う、痛快なコンゲーム作品。",
-    "url": "https://confidenceman-movie.com/"
+    "url": "https://confidenceman-movie.com/",
+    "themeSong": {
+      "title": "",
+      "artist": "",
+      "youtube": "https://www.youtube.com/watch?v=EHw005ZqCXk"
+    }
   },
   {
     "id": "movie-49",
@@ -752,7 +962,12 @@
     ],
     "thumbnail": "assets/movie/japantinbotu2021.jpg",
     "note": "日本列島の危機を前に、政治家や研究者たちが国家規模の決断に迫られるドラマ。",
-    "url": "https://japansinks2020.com/"
+    "url": "https://japansinks2020.com/",
+    "themeSong": {
+      "title": "",
+      "artist": "",
+      "youtube": "https://www.youtube.com/watch?v=wTPLBZepeNY"
+    }
   },
   {
     "id": "movie-50",
@@ -765,7 +980,12 @@
     ],
     "thumbnail": "assets/movie/yowaihi-ro-.jpg",
     "note": "頭脳派の少年が暴力の連鎖に巻き込まれながら、仲間と自分を守る学園アクション。",
-    "url": "https://kadokawa-kplus.com/contents/yowaiheroclass1/"
+    "url": "https://kadokawa-kplus.com/contents/yowaiheroclass1/",
+    "themeSong": {
+      "title": "",
+      "artist": "",
+      "youtube": "https://youtu.be/-wKs73hPhCE"
+    }
   },
   {
     "id": "movie-51",
@@ -778,7 +998,12 @@
     ],
     "thumbnail": "assets/movie/kaseifunagisa.jpg",
     "note": "仕事一筋の女性と家政婦として現れた男性の交流を描く、温かいラブコメディ。",
-    "url": "https://www.tbs.co.jp/WATANAGI_tbs/"
+    "url": "https://www.tbs.co.jp/WATANAGI_tbs/",
+    "themeSong": {
+      "title": "",
+      "artist": "",
+      "youtube": "https://www.youtube.com/watch?v=yOAwvRmVIyo"
+    }
   },
   {
     "id": "movie-52",
@@ -791,7 +1016,12 @@
     ],
     "thumbnail": "assets/movie/riltutiman.jpg",
     "note": "IT企業社長と就活生の出会いから、仕事と恋が動き出すビジネスラブストーリー。",
-    "url": "https://www.fujitv.co.jp/b_hp/richman-poorwoman/"
+    "url": "https://www.fujitv.co.jp/b_hp/richman-poorwoman/",
+    "themeSong": {
+      "title": "",
+      "artist": "",
+      "youtube": "https://youtu.be/aRyjZa89g4o"
+    }
   },
   {
     "id": "movie-53",
@@ -804,7 +1034,12 @@
     ],
     "thumbnail": "assets/movie/houkagokarute.jpg",
     "note": "学校医が子どもたちの不調や心のサインに向き合う、学園医療ドラマ。",
-    "url": "https://www.ntv.co.jp/houkagokarte/"
+    "url": "https://www.ntv.co.jp/houkagokarte/",
+    "themeSong": {
+      "title": "",
+      "artist": "",
+      "youtube": "https://youtu.be/O3HwZncopUo"
+    }
   },
   {
     "id": "movie-54",
@@ -817,7 +1052,12 @@
     ],
     "thumbnail": "assets/movie/doragonsakura.jpg",
     "note": "落ちこぼれ生徒たちが東大合格を目指し、勉強と人生を変えていく学園ドラマ。",
-    "url": "https://www.tbs.co.jp/dragonzakura/"
+    "url": "https://www.tbs.co.jp/dragonzakura/",
+    "themeSong": {
+      "title": "",
+      "artist": "",
+      "youtube": "https://www.youtube.com/watch?v=AgjtmlsVhcM"
+    }
   },
   {
     "id": "movie-55",
@@ -830,7 +1070,12 @@
     ],
     "thumbnail": "assets/movie/sinhanninfuragu.jpg",
     "note": "家族失踪事件をきっかけに、主人公が世間の疑惑と真相に追い詰められていくミステリー。",
-    "url": "https://www.ntv.co.jp/shinhannin-flag/"
+    "url": "https://www.ntv.co.jp/shinhannin-flag/",
+    "themeSong": {
+      "title": "",
+      "artist": "",
+      "youtube": "https://youtu.be/_bi810k_b9c"
+    }
   },
   {
     "id": "movie-56",
@@ -843,6 +1088,11 @@
     ],
     "thumbnail": "assets/movie/hakozume.jpg",
     "note": "交番勤務の女性警察官たちの日常と事件対応を、笑いとリアルさで描く警察ドラマ。",
-    "url": "https://www.ntv.co.jp/hakozume/"
+    "url": "https://www.ntv.co.jp/hakozume/",
+    "themeSong": {
+      "title": "",
+      "artist": "",
+      "youtube": "https://youtu.be/oPdIjsctolE"
+    }
   }
 ]

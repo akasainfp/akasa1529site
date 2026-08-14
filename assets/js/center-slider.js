@@ -106,15 +106,27 @@
 
         const control = document.createElement('div');
         control.className = 'archive-audio-control is-muted';
-        control.innerHTML = '<button class="archive-audio-toggle" type="button" aria-pressed="false">' + (labelText || 'OP') + '</button><input class="archive-audio-volume" type="range" min="0" max="100" value="22" aria-label="\u97f3\u91cf"><span class="archive-audio-label">READY</span>';
+        control.innerHTML = '<button class="archive-audio-action archive-audio-play" type="button" aria-pressed="false" aria-label="Play">PLAY</button><button class="archive-audio-action archive-audio-stop" type="button" aria-label="Stop">STOP</button><button class="archive-audio-action archive-audio-youtube" type="button" aria-label="Open in YouTube">YouTube</button><input class="archive-audio-volume" type="range" min="0" max="100" value="22" aria-label="\u97f3\u91cf"><span class="archive-audio-label">READY</span>';
         stage.appendChild(control);
 
-        const button = control.querySelector('.archive-audio-toggle');
+        const playButton = control.querySelector('.archive-audio-play');
+        const stopButton = control.querySelector('.archive-audio-stop');
+        const youtubeButton = control.querySelector('.archive-audio-youtube');
         const volume = control.querySelector('.archive-audio-volume');
         const label = control.querySelector('.archive-audio-label');
 
         function activeItem() { return track.querySelector(itemSelector + '.is-active') || visibleItems(track, itemSelector)[0]; }
+        function currentSource() { return getAudioSrc(activeItem(), keys); }
+        function updateButtons(src) {
+            const available = Boolean(src);
+            playButton.disabled = !available;
+            stopButton.disabled = !available;
+            youtubeButton.disabled = !available;
+            playButton.textContent = enabled ? 'PAUSE' : 'PLAY';
+            control.classList.toggle('is-muted', !enabled);
+        }
         function pauseAll() { audio.pause(); if (playerReady) player.pauseVideo(); }
+        function stopAll() { audio.pause(); audio.currentTime = 0; if (playerReady) player.stopVideo(); }
         function ensureYoutubePlayer() {
             if (player || !window.YT?.Player) return;
             player = new window.YT.Player(playerHost, { width: '1', height: '1', videoId: '', playerVars: { autoplay: 0, controls: 0, rel: 0, playsinline: 1 }, events: { onReady: event => { playerReady = true; event.target.setVolume(Number(volume.value)); if (playerVideoId) event.target.loadVideoById(playerVideoId); if (enabled) event.target.playVideo(); } } });
@@ -123,7 +135,8 @@
             const item = activeItem();
             const src = item ? getAudioSrc(item, keys) : '';
             const videoId = youtubeId(src);
-            label.textContent = src ? 'READY' : 'NO MUSIC';
+            label.textContent = src ? (enabled ? 'PLAYING' : 'READY') : 'NO MUSIC';
+            updateButtons(src);
             if (!src) { pauseAll(); currentSrc = ''; return; }
             if (src !== currentSrc) {
                 pauseAll(); currentSrc = src;
@@ -135,13 +148,28 @@
             if (!enabled) return;
             if (videoId) {
                 loadYoutubeApi().then(() => { ensureYoutubePlayer(); if (!player || !playerReady) return; if (playerVideoId !== videoId) { playerVideoId = videoId; player.loadVideoById(videoId); } player.playVideo(); });
-            } else audio.play().catch(() => { enabled = false; button.setAttribute('aria-pressed', 'false'); control.classList.add('is-muted'); label.textContent = 'CLICK ' + (labelText || 'OP'); });
+            } else audio.play().catch(() => { enabled = false; label.textContent = 'CLICK PLAY'; updateButtons(src); });
         }
-        button.addEventListener('click', () => { enabled = !enabled; button.setAttribute('aria-pressed', String(enabled)); control.classList.toggle('is-muted', !enabled); if (enabled) syncAudio(); else pauseAll(); });
+        playButton.addEventListener('click', () => {
+            if (!currentSource()) return;
+            enabled = !enabled;
+            updateButtons(currentSource());
+            if (enabled) syncAudio(); else { pauseAll(); label.textContent = 'PAUSED'; }
+        });
+        stopButton.addEventListener('click', () => {
+            if (!currentSource()) return;
+            enabled = false;
+            stopAll();
+            label.textContent = 'STOPPED';
+            updateButtons(currentSource());
+        });
+        youtubeButton.addEventListener('click', () => {
+            const src = currentSource();
+            if (src) window.open(src, '_blank', 'noopener,noreferrer');
+        });
         volume.addEventListener('input', () => { audio.volume = Number(volume.value) / 100; if (playerReady) player.setVolume(Number(volume.value)); });
         return { syncAudio };
     }
-
     function initArchiveSlider(options) {
         const config = { ...defaults, ...options };
         const track = document.getElementById(config.listId);

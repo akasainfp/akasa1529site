@@ -32,11 +32,13 @@
 
     function getClosestIndex(track, items) {
         if (!items.length) return -1;
-        const center = track.scrollLeft + track.clientWidth / 2;
+        const trackRect = track.getBoundingClientRect();
+        const center = trackRect.left + track.clientWidth / 2;
         let best = 0;
         let bestDistance = Infinity;
         items.forEach((item, index) => {
-            const itemCenter = item.offsetLeft + item.offsetWidth / 2;
+            const itemRect = item.getBoundingClientRect();
+            const itemCenter = itemRect.left + itemRect.width / 2;
             const distance = Math.abs(center - itemCenter);
             if (distance < bestDistance) {
                 best = index;
@@ -166,6 +168,8 @@
         const audioController = config.audio ? createAudioControls(stage, track, config.itemSelector, config.audioKeys, config.audioLabel) : null;
         let activeIndex = 0;
         let scrollTimer = null;
+        let programmaticScroll = false;
+        let programmaticScrollTimer = null;
 
         function items() { return visibleItems(track, config.itemSelector); }
 
@@ -236,7 +240,15 @@
                     link.classList.toggle('is-current', id === active.id);
                 });
             }
-            if (shouldScroll && active) active.scrollIntoView({ behavior: 'smooth', inline: 'center', block: 'nearest' });
+            if (shouldScroll && active) {
+                programmaticScroll = true;
+                window.clearTimeout(programmaticScrollTimer);
+                active.scrollIntoView({ behavior: 'smooth', inline: 'center', block: 'nearest' });
+                programmaticScrollTimer = window.setTimeout(() => {
+                    programmaticScroll = false;
+                    setActive(activeIndex, false, false);
+                }, 500);
+            }
             audioController?.syncAudio();
         }
         function refresh() {
@@ -249,6 +261,7 @@
         nav.querySelector('[data-slider-next]').addEventListener('click', () => setActive(activeIndex + 1));
 
         track.addEventListener('scroll', () => {
+            if (programmaticScroll) return;
             window.clearTimeout(scrollTimer);
             scrollTimer = window.setTimeout(() => setActive(getClosestIndex(track, items()), false), 80);
         }, { passive: true });

@@ -22,10 +22,6 @@
         return `${'★'.repeat(value)}${'☆'.repeat(Math.max(0, 5 - value))}`;
     }
 
-    function searchUrl(base, title) {
-        return `${base}${encodeURIComponent(title)}`;
-    }
-
     function assetUrl(src) {
         if (!src || /^(?:https?:)?\/\//.test(src) || src.startsWith('/')) return src;
         const path = decodeURIComponent(window.location.pathname).replace(/\\/g, '/');
@@ -37,6 +33,10 @@
         const genres = Array.isArray(item.genres) ? item.genres.join(' ') : '';
         const image = assetUrl(item.image || '');
         const opYoutube = item.openingTheme?.youtube || item.opYoutube || item.youtube || '';
+        const sites = Array.isArray(item.sites) ? item.sites : [];
+        const siteLinks = sites.filter(site => site && site.label && site.url).map(site => `
+                    <a href="${escapeHtml(site.url)}" target="_blank" rel="noopener noreferrer" class="btn-search site-link">${escapeHtml(site.label)}</a>
+                `).join('');
         return `
         <article class="anime-item anim-box" id="${escapeHtml(item.id)}" data-score="${escapeHtml(item.score)}" data-genre="${escapeHtml(genres)}" data-jikan-query="${escapeHtml(item.jikanQuery || item.title)}" data-op-youtube="${escapeHtml(opYoutube)}">
             <div class="anime-thumb"><img src="${escapeHtml(image)}" alt="${escapeHtml(item.title)}" loading="lazy"></div>
@@ -45,9 +45,8 @@
                 <h2 class="anime-title">${escapeHtml(item.title)}</h2>
                 <p class="synopsis">${escapeHtml(item.synopsis)}</p>
                 <div class="anime-meta" data-jikan-meta>情報を取得中</div>
-                <div class="search-links">
-                    <a href="${searchUrl('https://www.nicovideo.jp/search/', item.title)}" target="_blank" class="btn-search">NICONICO</a>
-                    <a href="${searchUrl('https://animestore.docomo.ne.jp/animestore/sch_pc?key=', item.title)}" target="_blank" class="btn-search">D-ANIME</a>
+                <div class="search-links site-links">
+                    ${siteLinks}
                 </div>
             </div>
         </article>`;
@@ -172,19 +171,28 @@
     }
 
     async function fetchJikan(query) {
-        const response = await fetch(`https://api.jikan.moe/v4/anime?q=${encodeURIComponent(query)}&limit=1`, { cache: 'force-cache' });
-        if (!response.ok) throw new Error('Jikan request failed');
-        const json = await response.json();
-        const hit = json.data?.[0];
-        if (!hit) return null;
-        return {
-            malId: hit.mal_id,
-            type: hit.type,
-            year: hit.year,
-            episodes: hit.episodes,
-            score: hit.score,
-            image: hit.images?.jpg?.large_image_url || hit.images?.jpg?.image_url || ''
-        };
+        let lastError;
+        for (let attempt = 0; attempt < 3; attempt += 1) {
+            try {
+                const response = await fetch(`https://api.jikan.moe/v4/anime?q=${encodeURIComponent(query)}&limit=1`, { cache: 'no-store' });
+                if (!response.ok) throw new Error(`Jikan request failed: ${response.status}`);
+                const json = await response.json();
+                const hit = json.data?.[0];
+                if (!hit) return null;
+                return {
+                    malId: hit.mal_id,
+                    type: hit.type,
+                    year: hit.year,
+                    episodes: hit.episodes,
+                    score: hit.score,
+                    image: hit.images?.jpg?.large_image_url || hit.images?.jpg?.image_url || ''
+                };
+            } catch (error) {
+                lastError = error;
+                await new Promise(resolve => setTimeout(resolve, 1800 * (attempt + 1)));
+            }
+        }
+        throw lastError || new Error('Jikan request failed');
     }
 
     async function runJikanQueue() {
@@ -205,17 +213,13 @@
             } catch {
                 applyJikanMeta(article, null);
             }
-            await new Promise(resolve => setTimeout(resolve, 900));
+            await new Promise(resolve => setTimeout(resolve, 1800));
         }
         jikanBusy = false;
     }
 
     function observeJikan() {
-        document.querySelectorAll('.anime-item').forEach(item => {
-            if (!item.querySelector('.anime-thumb img')?.getAttribute('src')) {
-                queueJikanForImage(item);
-            }
-        });
+        document.querySelectorAll('.anime-item').forEach(item => queueJikanForImage(item));
         if (!jikanEnabled || !('IntersectionObserver' in window)) {
             document.querySelectorAll('.anime-item').forEach(item => {
                 queueJikanForImage(item);

@@ -106,42 +106,80 @@
 
         const control = document.createElement('div');
         control.className = 'archive-audio-control is-muted';
-        control.innerHTML = '<button class="archive-audio-toggle" type="button" aria-pressed="false">' + (labelText || 'OP') + '</button><input class="archive-audio-volume" type="range" min="0" max="100" value="22" aria-label="\u97f3\u91cf"><span class="archive-audio-label">READY</span>';
+        const playIcon = '<svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="currentColor" aria-hidden="true"><path d="M320-200v-560l440 280-440 280Zm80-280Zm0 134 210-134-210-134v268Z"/></svg>';
+        const pauseIcon = '<svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="currentColor" aria-hidden="true"><path d="M520-200v-560h240v560H520Zm-320 0v-560h240v560H200Zm400-80h80v-400h-80v400Zm-320 0h80v-400h-80v400Zm0-400v400-400Zm320 0v400-400Z"/></svg>';
+        const stopIcon = '<svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="currentColor" aria-hidden="true"><path d="M320-640v320-320Zm-80 400v-480h480v480H240Zm80-80h320v-320H320v320Z"/></svg>';
+        const volumeIcon = '<svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="currentColor" aria-hidden="true"><path d="M560-131v-82q90-26 145-100t55-168q0-94-55-168T560-749v-82q124 28 202 125.5T840-481q0 127-78 224.5T560-131ZM120-360v-240h160l200-200v640L280-360H120Zm440 40v-322q47 22 73.5 66t26.5 96q0 51-26.5 94.5T560-320ZM400-606l-86 86H200v80h114l86 86v-252ZM300-480Z"/></svg>';
+        const externalIcon = '<svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="currentColor" aria-hidden="true"><path d="M200-120q-33 0-56.5-23.5T120-200v-560q0-33 23.5-56.5T200-840h280v80H200v560h560v-280h80v280q0 33-23.5 56.5T760-120H200Zm188-212-56-56 372-372H560v-80h280v280h-80v-144L388-332Z"/></svg>';
+        control.innerHTML = '<button class="archive-audio-action archive-audio-play" type="button" aria-pressed="false" aria-label="Play" title="Play">' + playIcon + '</button><button class="archive-audio-action archive-audio-stop" type="button" aria-label="Stop" title="Stop">' + stopIcon + '</button><button class="archive-audio-action archive-audio-youtube" type="button" aria-label="Open in YouTube" title="Open in YouTube">' + externalIcon + '</button><span class="archive-audio-volume-icon" aria-hidden="true">' + volumeIcon + '</span><input class="archive-audio-volume" type="range" min="0" max="100" value="22" aria-label="Volume"><span class="archive-audio-label">READY</span>';
         stage.appendChild(control);
 
-        const button = control.querySelector('.archive-audio-toggle');
+        const playButton = control.querySelector('.archive-audio-play');
+        const stopButton = control.querySelector('.archive-audio-stop');
+        const youtubeButton = control.querySelector('.archive-audio-youtube');
         const volume = control.querySelector('.archive-audio-volume');
         const label = control.querySelector('.archive-audio-label');
 
         function activeItem() { return track.querySelector(itemSelector + '.is-active') || visibleItems(track, itemSelector)[0]; }
+        function currentSource() { return getAudioSrc(activeItem(), keys); }
+        function updateButtons(src) {
+            const available = Boolean(src);
+            playButton.disabled = !available;
+            stopButton.disabled = !available;
+            youtubeButton.disabled = !available;
+            playButton.innerHTML = enabled ? pauseIcon : playIcon;
+            control.classList.toggle('is-muted', !enabled);
+        }
         function pauseAll() { audio.pause(); if (playerReady) player.pauseVideo(); }
+        function stopAll() { audio.pause(); audio.currentTime = 0; if (playerReady) player.stopVideo(); }
         function ensureYoutubePlayer() {
             if (player || !window.YT?.Player) return;
-            player = new window.YT.Player(playerHost, { width: '1', height: '1', videoId: '', playerVars: { autoplay: 0, controls: 0, rel: 0, playsinline: 1 }, events: { onReady: event => { playerReady = true; event.target.setVolume(Number(volume.value)); if (playerVideoId) event.target.loadVideoById(playerVideoId); if (enabled) event.target.playVideo(); } } });
+            player = new window.YT.Player(playerHost, { width: '1', height: '1', videoId: '', playerVars: { autoplay: 0, controls: 0, rel: 0, playsinline: 1 }, events: { onReady: event => { playerReady = true; event.target.setVolume(Number(volume.value)); if (playerVideoId) { if (enabled) event.target.loadVideoById(playerVideoId); else event.target.cueVideoById(playerVideoId); } if (enabled) event.target.playVideo(); } } });
         }
         function syncAudio() {
             const item = activeItem();
             const src = item ? getAudioSrc(item, keys) : '';
             const videoId = youtubeId(src);
-            label.textContent = src ? 'READY' : 'NO MUSIC';
+            label.textContent = src ? (enabled ? 'PLAYING' : 'READY') : 'NO MUSIC';
+            updateButtons(src);
             if (!src) { pauseAll(); currentSrc = ''; return; }
             if (src !== currentSrc) {
                 pauseAll(); currentSrc = src;
                 if (videoId) {
                     playerVideoId = videoId;
-                    loadYoutubeApi().then(() => { ensureYoutubePlayer(); if (player && playerReady) { player.loadVideoById(playerVideoId); player.setVolume(Number(volume.value)); if (!enabled) player.pauseVideo(); } });
+                    loadYoutubeApi().then(() => { ensureYoutubePlayer(); if (player && playerReady) { if (enabled) player.loadVideoById(playerVideoId); else player.cueVideoById(playerVideoId); player.setVolume(Number(volume.value)); } });
                 } else audio.src = src;
             }
             if (!enabled) return;
             if (videoId) {
                 loadYoutubeApi().then(() => { ensureYoutubePlayer(); if (!player || !playerReady) return; if (playerVideoId !== videoId) { playerVideoId = videoId; player.loadVideoById(videoId); } player.playVideo(); });
-            } else audio.play().catch(() => { enabled = false; button.setAttribute('aria-pressed', 'false'); control.classList.add('is-muted'); label.textContent = 'CLICK ' + (labelText || 'OP'); });
+            } else audio.play().catch(() => { enabled = false; label.textContent = 'CLICK PLAY'; updateButtons(src); });
         }
-        button.addEventListener('click', () => { enabled = !enabled; button.setAttribute('aria-pressed', String(enabled)); control.classList.toggle('is-muted', !enabled); if (enabled) syncAudio(); else pauseAll(); });
+        playButton.addEventListener('click', () => {
+            if (!currentSource()) return;
+            enabled = !enabled;
+            updateButtons(currentSource());
+            if (enabled) syncAudio(); else { pauseAll(); label.textContent = 'PAUSED'; }
+        });
+        stopButton.addEventListener('click', () => {
+            if (!currentSource()) return;
+            enabled = false;
+            stopAll();
+            label.textContent = 'STOPPED';
+            updateButtons(currentSource());
+        });
+        youtubeButton.addEventListener('click', () => {
+            const src = currentSource();
+            if (!src) return;
+            enabled = false;
+            stopAll();
+            label.textContent = 'STOPPED';
+            updateButtons(src);
+            window.open(src, '_blank', 'noopener,noreferrer');
+        });
         volume.addEventListener('input', () => { audio.volume = Number(volume.value) / 100; if (playerReady) player.setVolume(Number(volume.value)); });
         return { syncAudio };
     }
-
     function initArchiveSlider(options) {
         const config = { ...defaults, ...options };
         const track = document.getElementById(config.listId);
@@ -172,6 +210,41 @@
         let programmaticScrollTimer = null;
 
         function items() { return visibleItems(track, config.itemSelector); }
+
+        function toggleItemDetails(item) {
+            const currentItems = items();
+            const index = currentItems.indexOf(item);
+            if (index < 0) return;
+            currentItems.forEach(other => {
+                if (other !== item) {
+                    other.classList.remove('is-expanded');
+                    other.setAttribute('aria-expanded', 'false');
+                }
+            });
+            setActive(index, true);
+            const expanded = !item.classList.contains('is-expanded');
+            item.classList.toggle('is-expanded', expanded);
+            item.setAttribute('aria-expanded', String(expanded));
+        }
+
+        function prepareItems() {
+            items().forEach(item => {
+                item.tabIndex = 0;
+                item.setAttribute('role', 'button');
+                if (!item.hasAttribute('aria-expanded')) item.setAttribute('aria-expanded', 'false');
+                if (item.dataset.detailReady === 'true') return;
+                item.dataset.detailReady = 'true';
+                item.addEventListener('click', event => {
+                    if (event.target.closest('a, button, input, select, textarea')) return;
+                    toggleItemDetails(item);
+                });
+                item.addEventListener('keydown', event => {
+                    if (!['Enter', ' '].includes(event.key) || event.target.closest('a, button, input, select, textarea')) return;
+                    event.preventDefault();
+                    toggleItemDetails(item);
+                });
+            });
+        }
 
         function archiveName() {
             if (config.archiveName) return config.archiveName;
@@ -229,7 +302,14 @@
                 status.textContent = '00 / 00';
                 return;
             }
+            const previousActiveIndex = activeIndex;
             activeIndex = Math.max(0, Math.min(index, currentItems.length - 1));
+            if (previousActiveIndex !== activeIndex) {
+                currentItems.forEach(item => {
+                    item.classList.remove('is-expanded');
+                    item.setAttribute('aria-expanded', 'false');
+                });
+            }
             currentItems.forEach((item, idx) => item.classList.toggle('is-active', idx === activeIndex));
             const active = currentItems[activeIndex];
             if (updateUrl) syncWorkUrl(active);
@@ -252,6 +332,7 @@
             audioController?.syncAudio();
         }
         function refresh() {
+            prepareItems();
             const currentItems = items();
             const current = currentItems.findIndex(item => item.classList.contains('is-active'));
             setActive(current >= 0 ? current : 0, false, false);
@@ -262,6 +343,8 @@
 
         track.addEventListener('scroll', () => {
             if (programmaticScroll) return;
+            const expanded = track.querySelector('.is-expanded.is-active');
+            if (expanded) return;
             window.clearTimeout(scrollTimer);
             scrollTimer = window.setTimeout(() => setActive(getClosestIndex(track, items()), false), 80);
         }, { passive: true });
@@ -290,9 +373,11 @@
         observer.observe(track, { childList: true, subtree: false, attributes: true, attributeFilter: ['class'] });
         window.addEventListener('resize', () => setActive(activeIndex, false));
         window.setTimeout(() => {
+            prepareItems();
             refresh();
             const target = initialIndex(items());
             if (target >= 0) setActive(target, true, true);
+            else if (items().length) setActive(0, true, false);
             finishRouteLoading();
         }, 0);
         return { refresh, setActive };

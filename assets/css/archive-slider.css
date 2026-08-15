@@ -106,8 +106,7 @@
     overflow: visible;
     transform: scale(1.14) !important;
     z-index: 4;
-    border: 1px solid rgba(125, 95, 255, 0.9) !important;
-    box-shadow: 0 0 0 5px rgba(5, 5, 8, 0.92), 0 0 0 6px rgba(125, 95, 255, 0.78), 0 24px 60px rgba(0, 0, 0, 0.5);
+    border-color: rgba(125, 95, 255, 0.9) !important;
 }
 
 .archive-slider-track > .anime-item.is-expanded .anime-info,
@@ -245,7 +244,7 @@
 .archive-audio-control {
     position: absolute;
     right: 52px;
-    bottom: 34px;
+    bottom: 18px;
     z-index: 6;
     display: flex;
     align-items: center;
@@ -315,7 +314,7 @@
     .archive-slider-nav { top: auto; bottom: 18px; transform: none; justify-content: center; gap: 12px; }
     .archive-slider-btn { width: 38px; height: 38px; }
     .archive-slider-status { left: 18px; bottom: 30px; }
-    .archive-audio-control { right: 16px; bottom: 76px; max-width: calc(100% - 32px); gap: 6px; }
+    .archive-audio-control { right: 16px; bottom: 66px; max-width: calc(100% - 32px); gap: 6px; }
     .archive-audio-volume { width: 100px; flex: 1 1 100px; }
 }
 

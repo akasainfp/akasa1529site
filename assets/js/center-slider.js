@@ -1,8 +1,10 @@
 
 (() => {
     const routeWork = new URLSearchParams(window.location.search).get('work');
+    const routePath = decodeURIComponent(window.location.pathname).replace(/\\/g, '/');
+    const hasPathWork = /\/(anime|game|movie)\/[^/]+/i.test(routePath);
     let routeLoader = null;
-    if (routeWork && document.body) {
+    if ((routeWork || hasPathWork) && document.body) {
         routeLoader = document.createElement('div');
         routeLoader.className = 'archive-route-loader';
         routeLoader.setAttribute('aria-label', 'Loading');
@@ -285,14 +287,22 @@
             return path.slice(prefix.length).replace(/\/$/, '');
         }
 
+        function normalizeWork(value) {
+            return decodeURIComponent(String(value || ''))
+                .replace(/\/$/, '')
+                .replace(/-/g, ' ')
+                .trim()
+                .toLowerCase();
+        }
+
         function initialIndex(currentItems) {
             const requested = requestedWork();
             if (!requested) return -1;
-            const normalized = requested.toLowerCase();
+            const normalized = normalizeWork(requested);
             return currentItems.findIndex(item => {
                 const title = workTitle(item);
                 const slug = encodeURIComponent(title).replace(/%20/g, '-').toLowerCase();
-                return item.id.toLowerCase() === normalized || slug === normalized || title.toLowerCase() === normalized;
+                return normalizeWork(item.id) === normalized || normalizeWork(slug) === normalized || normalizeWork(title) === normalized;
             });
         }
 

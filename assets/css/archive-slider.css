@@ -62,7 +62,7 @@
 .archive-slider-track > .game-item.is-active,
 .archive-slider-track > .movie-item.is-active {
     opacity: 1 !important;
-    transform: scale(1.14) !important;
+    transform: scale(1.04) !important;
     filter: saturate(1);
     position: relative;
     z-index: 2;
@@ -104,7 +104,7 @@
     height: auto !important;
     min-height: 0 !important;
     overflow: visible;
-    transform: scale(1.14) !important;
+    transform: scale(1.04) !important;
     z-index: 4;
     border-color: rgba(125, 95, 255, 0.9) !important;
 }
@@ -301,7 +301,7 @@
     .archive-slider-track > .movie-item { flex-basis: calc(100vw - 72px); transform: scale(0.82) !important; }
     .archive-slider-track > .anime-item.is-active,
     .archive-slider-track > .game-item.is-active,
-    .archive-slider-track > .movie-item.is-active { transform: scale(1.10) !important; }
+    .archive-slider-track > .movie-item.is-active { transform: scale(1.03) !important; }
     .archive-slider-track > .anime-item .anime-thumb,
     .archive-slider-track > .game-item .game-thumb { aspect-ratio: 4 / 3; }
     .archive-slider-track > .movie-item .movie-thumb { aspect-ratio: 2 / 3; }

@@ -294,6 +294,19 @@
 .toc-links a.is-current { color: #fff !important; border-left-color: var(--accent) !important; background: rgba(125, 95, 255, 0.08); transform: translateX(4px); }
 
 @media (max-width: 768px) {
+    body .hero {
+        height: 48vh !important;
+        min-height: 300px;
+    }
+    body .hero .main-title {
+        max-width: 100%;
+        padding: 0 12px;
+        box-sizing: border-box;
+        overflow: hidden;
+        white-space: nowrap;
+        font-size: clamp(2rem, 8vw, 3.2rem) !important;
+        letter-spacing: 0 !important;
+    }
     .archive-slider-stage { width: 100%; max-width: 100%; padding: 0 10px 214px; margin-bottom: 68px; }
     .archive-slider-track { gap: 14px; padding: 82px 62px 230px; scroll-padding-inline: 62px; }
     .archive-slider-track > .anime-item,

@@ -8,7 +8,7 @@
   --music-mono: 'Space Mono', monospace;
 }
 
-.music-page { min-height: 100vh; max-width: 100%; overflow-x: hidden; background: var(--music-bg); color: #f2f2f4; font-family: var(--music-font); line-height: 1.7; }
+.music-page { min-height: 100vh; max-width: 100%; overflow-x: hidden; background: transparent; color: #f2f2f4; font-family: var(--music-font); line-height: 1.7; }
 .music-page * { box-sizing: border-box; }
 .music-main { width: min(1120px, calc(100% - 36px)); max-width: 100%; margin: 0 auto; padding: 120px 0 110px; }
 .music-hero { padding: 80px 0 56px; }

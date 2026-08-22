@@ -98,18 +98,23 @@
         @media (max-width: 560px) { .section-container { padding-inline: 18px; } .intro-block, .listen-note, .music-card { padding: 24px; } .footer-bottom { flex-direction: column; gap: 16px; align-items: flex-start; } }
     </style>
     <style>
+        body > #particles-js { position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: -5 !important; background: #000; }
+        body .music-page .music-hero { height: 60vh !important; min-height: 0 !important; padding: 0 !important; display: flex; flex-direction: column; justify-content: center; align-items: center; text-align: center; border-bottom: 1px solid rgba(255,255,255,.1); background: radial-gradient(circle at center, rgba(125,95,255,.05) 0%, transparent 70%); }
+        body .music-page .music-hero h1 { font-size: clamp(3rem, 12vw, 8rem); font-weight: 800; letter-spacing: -.04em; line-height: 1; margin: 0; }
+        body .music-page .music-main { max-width: 900px; width: calc(100% - 40px); padding: 20px; }
         body .music-page .music-grid { grid-template-columns: repeat(2, minmax(0, 1fr)) !important; }
         body .music-page .music-card { padding: 22px !important; }
         body .music-page .music-hero p { white-space: normal !important; overflow-wrap: anywhere; }
-        @media (max-width: 700px) { body .music-page .music-grid { grid-template-columns: 1fr !important; } body .music-page .music-card { padding: 17px !important; } }
+        @media (max-width: 768px) { body .music-page .music-main { width: 100%; padding: 20px; } body .music-page .music-grid { grid-template-columns: 1fr !important; } body .music-page .music-card { padding: 17px !important; } }
     </style>
 </head>
 <body>
     <div id="particles-js"></div>
     <div class="grain"></div>
     <main class="music-page" data-music-page data-music-view="main" data-music-data="../music-data.json" data-artists-data="../music-artists.json">
-        <div class="music-main"><a class="music-back" href="../">← HOME</a><header class="music-hero"><div class="music-eyebrow">MUSIC ARCHIVE</div><h1>MUSIC</h1><p>気分や時間帯ごとに残しておきたい、Akasa1529の人生のBGM。</p></header>
-        <nav class="music-tabs" aria-label="音楽カテゴリ"><button class="music-tab is-active" data-music-filter="new">新着</button><button class="music-tab" data-music-filter="favorite">お気に入り</button><button class="music-tab" data-music-filter="otomad">音MAD</button><a class="music-tab" href="archive/">アーカイブ</a><a class="music-tab" href="artists/">アーティスト</a></nav><div class="music-status" data-music-status></div><section class="music-grid" data-music-grid aria-label="音楽一覧"></section></div>
+        <header class="music-hero"><div class="music-eyebrow">MUSIC ARCHIVE</div><h1>MUSIC</h1><p>気分や時間帯ごとに残しておきたい、Akasa1529の人生のBGM。</p></header>
+        <div class="music-main"><a class="music-back" href="../">← HOME</a><nav class="music-tabs" aria-label="音楽カテゴリ"><button class="music-tab is-active" data-music-filter="new">新着</button><button class="music-tab" data-music-filter="favorite">お気に入り</button><button class="music-tab" data-music-filter="otomad">音MAD</button><a class="music-tab" href="archive/">アーカイブ</a><a class="music-tab" href="artists/">アーティスト</a></nav><div class="music-status" data-music-status></div><section class="music-grid" data-music-grid aria-label="音楽一覧"></section></div>
+        <footer class="music-footer"><div class="footer-content"><div class="footer-grid"><div class="footer-col"><h4>アーカイブ</h4><div class="footer-links"><a href="../" class="footer-link">ホーム</a><a href="../anime/" class="footer-link">アニメ</a><a href="../movie/" class="footer-link">映画＆ドラマ</a><a href="../game/" class="footer-link">ゲーム</a><a href="../music/" class="footer-link">音楽</a><a href="../blog/" class="footer-link">ブログ</a></div></div><div class="footer-col"><h4>SNS</h4><div class="footer-links"><a href="https://x.com/infp_player" target="_blank" rel="noopener noreferrer" class="footer-link">Twitter</a><a href="https://github.com/akasainfp" target="_blank" rel="noopener noreferrer" class="footer-link">GitHub</a><a href="https://discord.gg/y73Y6mvhU4" target="_blank" rel="noopener noreferrer" class="footer-link">Discord</a></div></div></div><div class="footer-bottom"><span>© 2026 Akasa1529.</span><span>公開中</span></div></div></footer>
     </main>
 
     <section class="hero" id="top">

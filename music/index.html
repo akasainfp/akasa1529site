@@ -21,6 +21,10 @@
     <meta name="twitter:description" content="Akasa1529を音楽で説明する、シーン別の人生のBGMページです。">
     <meta name="twitter:image" content="https://www.akasa1529.site/assets/profile/icon.jpg">
     <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@200;800&family=Space+Mono&family=Noto+Sans+JP:wght@300;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../assets/css/music-page.css">
+    <style>
+        body > .hero, body > .section-container, body > footer { display: none !important; }
+    </style>
     <style>
         :root { --bg: #050505; --text: #f0f0f0; --accent: #7d5fff; --font-main: 'Plus Jakarta Sans', 'Noto Sans JP', sans-serif; --font-mono: 'Space Mono', monospace; }
         * { margin: 0; padding: 0; box-sizing: border-box; cursor: default; }
@@ -93,10 +97,20 @@
         @media (max-width: 860px) { .music-intro, .music-grid, .artist-grid { grid-template-columns: 1fr; } .hero { min-height: 52vh; } }
         @media (max-width: 560px) { .section-container { padding-inline: 18px; } .intro-block, .listen-note, .music-card { padding: 24px; } .footer-bottom { flex-direction: column; gap: 16px; align-items: flex-start; } }
     </style>
+    <style>
+        body .music-page .music-grid { grid-template-columns: repeat(2, minmax(0, 1fr)) !important; }
+        body .music-page .music-card { padding: 22px !important; }
+        body .music-page .music-hero p { white-space: normal !important; overflow-wrap: anywhere; }
+        @media (max-width: 700px) { body .music-page .music-grid { grid-template-columns: 1fr !important; } body .music-page .music-card { padding: 17px !important; } }
+    </style>
 </head>
 <body>
     <div id="particles-js"></div>
     <div class="grain"></div>
+    <main class="music-page" data-music-page data-music-view="main" data-music-data="../music-data.json" data-artists-data="../music-artists.json">
+        <div class="music-main"><a class="music-back" href="../">← HOME</a><header class="music-hero"><div class="music-eyebrow">MUSIC ARCHIVE</div><h1>MUSIC</h1><p>気分や時間帯ごとに残しておきたい、Akasa1529の人生のBGM。</p></header>
+        <nav class="music-tabs" aria-label="音楽カテゴリ"><button class="music-tab is-active" data-music-filter="new">新着</button><button class="music-tab" data-music-filter="favorite">お気に入り</button><button class="music-tab" data-music-filter="otomad">音MAD</button><a class="music-tab" href="archive/">アーカイブ</a><a class="music-tab" href="artists/">アーティスト</a></nav><div class="music-status" data-music-status></div><section class="music-grid" data-music-grid aria-label="音楽一覧"></section></div>
+    </main>
 
     <section class="hero" id="top">
         <h1 class="main-title" id="target-title">MUSIC</h1>
@@ -193,6 +207,7 @@
         })();
     </script>
     <script src="../assets/js/music-archive.js?v=20260626-artist-links"></script>
+    <script src="../assets/js/music-page.js?v=20260823"></script>
     <script src="../assets/js/site-counter.js"></script>
     <script src="../assets/js/site-menu.js?v=20260609-blog"></script>
 </body>

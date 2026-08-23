@@ -28,5 +28,15 @@
     "added": "2026-06-24",
     "favorite": false,
     "type": "music"
+  },
+  {
+    "title": "てるてる",
+    "artist": "Garech",
+    "youtube": "https://youtu.be/bFR5DLqBguM?si=ghYFS7OefvY-rqT4",
+    "spotify": "",
+    "comment": "",
+    "added": "2026-08-24",
+    "favorite": false,
+    "type": "otomad"
   }
 ]

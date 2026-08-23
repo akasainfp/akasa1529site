@@ -81,13 +81,13 @@ async function handleMusicPage(request, url) {
     }
 
     const rawBase = 'https://raw.githubusercontent.com/akasainfp/akasa1529site/main';
-    let response = await fetch(rawBase + '/music.html?fresh=20260626-artist-links', {
+    let response = await fetch(rawBase + '/music/index.html?fresh=20260823-clean', {
         cf: { cacheTtl: 0, cacheEverything: false }
     });
 
     if (!response.ok) {
-        const musicUrl = new URL('/music.html', url.origin);
-        musicUrl.searchParams.set('fresh', '20260626-artist-links');
+        const musicUrl = new URL('/music/index.html', url.origin);
+        musicUrl.searchParams.set('fresh', '20260823-clean');
         response = await fetch(new Request(musicUrl.toString(), request));
     }
 
@@ -108,7 +108,7 @@ async function handleMusicPage(request, url) {
             const items = await dataResponse.json();
             html = html.replace(
                 new RegExp('<section class="music-grid" id="music-grid" data-source="music-data.json" aria-label="[^\"]*"></section>'),
-                '<section class="music-grid" id="music-grid" data-source="music-data.json" aria-label="music cards">' + renderMusicCardsForHtml(items) + '</section>'
+                '<section class="music-grid" id="music-grid" data-source="music-data.json" aria-label="music cards"></section>'
             );
         } catch (error) {
             // Keep the empty grid and let the browser-side fallback handle it.
@@ -122,19 +122,19 @@ async function handleMusicPage(request, url) {
             const artists = await artistDataResponse.json();
             html = html.replace(
                 new RegExp('<div class="artist-grid" id="artist-grid" data-source="[^"]+" aria-label="[^"]*"></div>'),
-                '<div class="artist-grid" id="artist-grid" data-source="' + rawBase + '/music-artists.json?fresh=20260626-artist-links" aria-label="music artists">' + renderArtistCardsForHtml(artists) + '</div>'
+                '<div class="artist-grid" id="artist-grid" data-source="' + rawBase + '/music-artists.json?fresh=20260626-artist-links" aria-label="music artists"></div>'
             );
         } catch (error) {
             // Keep the empty artist grid and let browser-side rendering handle it.
         }
     }
-    const scriptResponse = await fetch(rawBase + '/assets/js/music-archive.js?fresh=20260626-artist-links', {
+    const scriptResponse = await fetch(rawBase + '/assets/js/music-page.js?fresh=20260823-clean', {
         cf: { cacheTtl: 0, cacheEverything: false }
     });
     if (scriptResponse.ok) {
         const script = await scriptResponse.text();
         html = html.replace(
-            /<script\s+src="assets\/js\/music-archive\.js[^>]*><\/script>/,
+            /<script\s+src="assets\/js\/music-page\.js[^>]*><\/script>/,
             '<script>\n' + script + '\n</script>'
         );
     }
@@ -147,54 +147,6 @@ async function handleMusicPage(request, url) {
     headers.delete('Content-Length');
     return new Response(html, { status: response.status, headers });
 }
-function renderMusicCardsForHtml(items) {
-    const list = Array.isArray(items) ? items : [];
-    return list.map(item => {
-        const id = escapeAttribute(item?.youtubeId || '');
-        const tags = Array.isArray(item?.tags)
-            ? item.tags.map(tag => '<span class="music-tag">' + escapeText(tag) + '</span>').join('')
-            : '';
-        const about = item?.description || item?.category || '';
-        const playButton = id
-            ? '<button class="play-button" type="button" data-play-music>\u518d\u751f\u3059\u308b</button>'
-            : '<span class="play-unavailable">NO VIDEO</span>';
-        return '<article class="music-card" data-youtube-id="' + id + '">' +
-            '<p class="scene-text">' + escapeText(about) + '</p>' +
-            '<div class="track-box">' +
-                '<div class="music-title">' + escapeText(item?.title || '') + ' <span>/ ' + escapeText(item?.artist || '') + '</span></div>' +
-                '<div class="music-tags">' + tags + '</div>' +
-                '<div class="player-shell">' + playButton +
-                    '<div class="player-frame-wrap">' +
-                        '<button class="player-close" type="button" data-close-music aria-label="YouTube\u3092\u9589\u3058\u308b">CLOSE</button>' +
-                        '<iframe class="youtube-frame" title="' + escapeAttribute(item?.title || 'YouTube') + '" loading="lazy" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>' +
-                    '</div>' +
-                '</div>' +
-            '</div>' +
-        '</article>';
-    }).join('');
-}
-
-function normalizeArtistUrl(value) {
-    const url = String(value || '').trim();
-    return url.toLowerCase().startsWith('https://') || url.toLowerCase().startsWith('http://') ? url : '';
-}
-
-function renderArtistCardsForHtml(items) {
-    const list = Array.isArray(items) ? items : [];
-    return list.map(item => {
-        const tags = Array.isArray(item?.tags)
-            ? item.tags.map(tag => '<span class="artist-tag">' + escapeText(tag) + '</span>').join('')
-            : '';
-        const url = normalizeArtistUrl(item?.url);
-        const inner = '<div class="artist-name">' + escapeText(item?.name || '') + '</div>' +
-            '<p class="artist-note">' + escapeText(item?.note || '') + '</p>' +
-            '<div class="artist-tags">' + tags + '</div>';
-        return url
-            ? '<a class="artist-card" href="' + escapeAttribute(url) + '" target="_blank" rel="noopener noreferrer">' + inner + '</a>'
-            : '<article class="artist-card">' + inner + '</article>';
-    }).join('');
-}
-
 async function handleBlogPage(request, env, url, contentId = '') {
     if (request.method !== 'GET' && request.method !== 'HEAD') {
         return new Response('Method not allowed', { status: 405 });

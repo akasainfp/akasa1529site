@@ -1,6 +1,13 @@
 (() => {
   const root = document.querySelector('[data-music-page]');
   if (!root) return;
+  root.querySelector('.music-eyebrow')?.remove();
+  const hero = root.querySelector('.music-hero');
+  if (hero) hero.id = 'top';
+  const footer = root.querySelector('footer');
+  if (footer) {
+    footer.innerHTML = `<div class="footer-content"><div style="margin-bottom:60px"><a href="#top" class="footer-link" style="font-family:var(--music-mono);font-size:.7rem;letter-spacing:.3em">BACK TO TOP</a></div><div class="footer-grid"><div class="footer-col"><h4>自己紹介</h4><div class="footer-links"><a href="/profile/" class="footer-link">プロフィール</a><a href="/ticket/" class="footer-link">お問い合わせ</a></div></div><div class="footer-col"><h4>アーカイブ</h4><div class="footer-links"><a href="/" class="footer-link">ホーム</a><a href="/profile/" class="footer-link">プロフィール</a><a href="/anime/" class="footer-link">アニメ</a><a href="/movie/" class="footer-link">映画＆ドラマ</a><a href="/game/" class="footer-link">ゲーム</a><a href="/music/" class="footer-link">音楽</a><a href="/blog/" class="footer-link">ブログ</a><a href="/archive/" class="footer-link">ツール</a></div></div><div class="footer-col"><h4>SNS</h4><div class="footer-links"><a href="https://x.com/infp_player" target="_blank" rel="noopener noreferrer" class="footer-link">Twitter</a><a href="https://github.com/akasainfp" target="_blank" rel="noopener noreferrer" class="footer-link">GitHub</a><a href="https://discord.gg/y73Y6mvhU4" target="_blank" rel="noopener noreferrer" class="footer-link">Discord</a></div></div><div class="footer-col"><h4>規約</h4><div class="footer-links"><a href="/privacy/" class="footer-link">プライバシーポリシー</a></div></div></div><div class="footer-bottom"><p>&copy; 2026 Akasa1529.</p><p>公開中</p></div></div>`;
+  }
   const escape = value => String(value ?? '').replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
   const youtubeId = value => { const s = String(value || ''); const m = s.match(/(?:youtu\.be\/|youtube(?:-nocookie)?\.com\/(?:watch\?v=|embed\/))([^?&/]+)/i); return m ? m[1] : s.match(/^[\w-]{6,}$/)?.[0] || ''; };
   const thumbnailUrl = item => { const id = youtubeId(item.youtube); return item.thumbnail || (id ? `https://i.ytimg.com/vi/${escape(id)}/maxresdefault.jpg` : ''); };

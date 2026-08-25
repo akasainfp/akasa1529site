@@ -5,7 +5,7 @@
     const dataSrc = script?.dataset.animeSrc || 'anime-data.json';
     const jikanEnabled = script?.dataset.jikan !== 'off';
     const state = { ratings: new Set(), genres: new Set(), items: [] };
-    const jikanCacheKey = 'akasa1529:jikan:v1:';
+    const jikanCacheKey = 'akasa1529:jikan:v2:';
     const jikanQueue = [];
     let jikanBusy = false;
 
@@ -164,6 +164,7 @@
     }
 
     function queueJikanForImage(article) {
+        if (!jikanEnabled) return;
         if (!article || article.dataset.jikanQueued === 'true') return;
         article.dataset.jikanQueued = 'true';
         jikanQueue.push(article);
@@ -174,7 +175,10 @@
         let lastError;
         for (let attempt = 0; attempt < 3; attempt += 1) {
             try {
-                const response = await fetch(`https://api.jikan.moe/v4/anime?q=${encodeURIComponent(query)}&limit=1`, { cache: 'no-store' });
+                const controller = new AbortController();
+                const timeout = window.setTimeout(() => controller.abort(), 12000);
+                const response = await fetch(`https://api.jikan.moe/v4/anime?q=${encodeURIComponent(query)}&limit=1&sfw=true`, { cache: 'no-store', signal: controller.signal });
+                window.clearTimeout(timeout);
                 if (!response.ok) throw new Error(`Jikan request failed: ${response.status}`);
                 const json = await response.json();
                 const hit = json.data?.[0];
@@ -189,7 +193,7 @@
                 };
             } catch (error) {
                 lastError = error;
-                await new Promise(resolve => setTimeout(resolve, 1800 * (attempt + 1)));
+                await new Promise(resolve => setTimeout(resolve, 2500 * (attempt + 1)));
             }
         }
         throw lastError || new Error('Jikan request failed');
@@ -219,8 +223,8 @@
     }
 
     function observeJikan() {
-        document.querySelectorAll('.anime-item').forEach(item => queueJikanForImage(item));
-        if (!jikanEnabled || !('IntersectionObserver' in window)) {
+        if (!jikanEnabled) return;
+        if (!('IntersectionObserver' in window)) {
             document.querySelectorAll('.anime-item').forEach(item => {
                 queueJikanForImage(item);
             });

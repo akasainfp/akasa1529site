@@ -136,7 +136,7 @@
         function stopAll() { audio.pause(); audio.currentTime = 0; if (playerReady) player.stopVideo(); }
         function ensureYoutubePlayer() {
             if (player || !window.YT?.Player) return;
-            player = new window.YT.Player(playerHost, { width: '1', height: '1', videoId: '', playerVars: { autoplay: 0, controls: 0, rel: 0, playsinline: 1 }, events: { onReady: event => { playerReady = true; event.target.setVolume(Number(volume.value)); if (playerVideoId) { if (enabled) event.target.loadVideoById(playerVideoId); else event.target.cueVideoById(playerVideoId); } if (enabled) event.target.playVideo(); } } });
+            player = new window.YT.Player(playerHost, { width: '1', height: '1', videoId: '', playerVars: { autoplay: 0, controls: 0, rel: 0, playsinline: 1 }, events: { onReady: event => { playerReady = true; event.target.setVolume(Number(volume.value)); if (playerVideoId) { if (enabled) event.target.loadVideoById(playerVideoId); else event.target.cueVideoById(playerVideoId); } if (enabled) event.target.playVideo(); }, onStateChange: event => { if (event.data === window.YT.PlayerState.ENDED && enabled && playerVideoId) { event.target.seekTo(0, true); event.target.playVideo(); } } } });
         }
         function syncAudio() {
             const item = activeItem();
@@ -359,11 +359,14 @@
             scrollTimer = window.setTimeout(() => setActive(getClosestIndex(track, items()), false), 80);
         }, { passive: true });
 
-        track.addEventListener('keydown', event => {
-            if (event.key === 'ArrowLeft') setActive(activeIndex - 1);
-            if (event.key === 'ArrowRight') setActive(activeIndex + 1);
-        });
         track.tabIndex = 0;
+
+        document.addEventListener('keydown', event => {
+            if (!['ArrowLeft', 'ArrowRight'].includes(event.key) || event.repeat) return;
+            if (event.target.closest('input, textarea, select, button, a, [contenteditable="true"]')) return;
+            event.preventDefault();
+            setActive(activeIndex + (event.key === 'ArrowRight' ? 1 : -1));
+        });
 
         if (toc) {
             toc.addEventListener('click', event => {

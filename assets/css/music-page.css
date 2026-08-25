@@ -55,6 +55,8 @@ body { overflow-x: hidden; font-family: var(--music-font); line-height: 1.6; }
 .music-archive-item img { width: 128px; height: 72px; object-fit: cover; background: #111; }
 .music-archive-item h2 { font-size: 1rem; margin: 0; overflow-wrap: anywhere; }
 .music-archive-item p { color: var(--music-muted); margin: 2px 0 0; font-size: .85rem; }
+.music-archive-info { min-width: 0; }
+.music-archive-item .music-actions { margin-top: 8px; }
 .music-artist-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 18px; }
 .music-artist-card { display: block; border: 1px solid var(--music-line); background: var(--music-panel); padding: 18px; color: inherit; text-decoration: none; transition: .2s ease; }
 .music-artist-card:hover { border-color: var(--music-accent); transform: translateY(-2px); }

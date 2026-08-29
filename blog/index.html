@@ -32,6 +32,8 @@
         .blog-hero { padding: 120px 0 64px; border-bottom: 1px solid var(--line); }
         .blog-kicker { font-family: var(--font-mono); color: #888; font-size: 0.72rem; letter-spacing: 0.18em; text-transform: uppercase; margin-bottom: 28px; }
         .blog-title { font-size: clamp(3.6rem, 11vw, 8.5rem); line-height: 0.95; font-weight: 800; letter-spacing: 0; }
+        .char { display: inline-block; opacity: 0; transform: translateY(30px); filter: blur(10px); animation: revealChar 0.8s cubic-bezier(0.2, 1, 0.3, 1) forwards; }
+        @keyframes revealChar { to { opacity: 1; transform: translateY(0); filter: blur(0); } }
         .blog-lead { max-width: 620px; margin-top: 34px; color: var(--muted); font-size: 1rem; }
         .blog-topline { display: flex; justify-content: space-between; align-items: center; gap: 24px; padding: 28px 0; border-bottom: 1px solid var(--line); font-family: var(--font-mono); font-size: 0.72rem; color: #8a8a8a; letter-spacing: 0.12em; }
         .blog-layout { display: block; max-width: 760px; padding: 54px 0 120px; }
@@ -70,7 +72,7 @@
 <body>
     <header class="blog-shell blog-hero" id="top">
         <div class="blog-kicker">Akasa1529 blog</div>
-        <h1 class="blog-title">BLOG</h1>
+        <h1 class="blog-title" id="target-title">BLOG</h1>
         <p class="blog-lead">ツイート感覚でも記事書きます</p>
     </header>
 
@@ -101,7 +103,7 @@
             document.querySelectorAll('a[href]').forEach(link => { const href = link.getAttribute('href'); if (!cleanPages[href]) return; link.href = siteRoot + cleanPages[href]; });
         })();
     </script>
-    <script src="../assets/js/blog-config.js?v=20260723-api-base"></script>
+    <script src="../assets/js/site-animations.js?v=20260829"></script><script src="../assets/js/blog-config.js?v=20260723-api-base"></script>
     <script src="../assets/js/blog-archive.js?v=20260723-api-base"></script>
     <script src="../assets/js/site-menu.js?v=20260609-blog"></script>
 </body>

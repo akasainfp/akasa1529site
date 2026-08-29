@@ -22,6 +22,8 @@ body { overflow-x: hidden; font-family: var(--music-font); line-height: 1.6; }
 .music-eyebrow, .music-meta { font-family: var(--music-mono); }
 .music-eyebrow { color: var(--music-accent); font-size: .72rem; letter-spacing: .2em; }
 .music-hero h1 { margin: 16px 0 10px; font-size: clamp(3rem, 10vw, 7rem); line-height: .95; letter-spacing: -.04em; }
+.char { display: inline-block; opacity: 0; transform: translateY(30px); filter: blur(10px); animation: revealChar 0.8s cubic-bezier(0.2, 1, 0.3, 1) forwards; }
+@keyframes revealChar { to { opacity: 1; transform: translateY(0); filter: blur(0); } }
 .music-hero p { max-width: 650px; color: var(--music-muted); margin: 0; }
 .music-tabs { display: flex; flex-wrap: wrap; gap: 10px; margin: 0 0 34px; border-bottom: 1px solid var(--music-line); padding-bottom: 16px; }
 .music-tab, .music-button, .music-select, .music-search { color: #888; background: transparent; border: 1px solid rgba(255,255,255,.1); border-radius: 0; font-family: var(--music-mono); font-size: .7rem; line-height: 1.6; }

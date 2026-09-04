@@ -91,7 +91,7 @@
         return '';
     }
 
-    function createAudioControls(stage, track, itemSelector, keys, labelText) {
+    function createAudioControls(stage, track, itemSelector, keys, labelText, onPrevious) {
         const audio = new Audio();
         audio.loop = true;
         audio.volume = 0.22;
@@ -113,10 +113,11 @@
         const stopIcon = '<svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="currentColor" aria-hidden="true"><path d="M320-640v320-320Zm-80 400v-480h480v480H240Zm80-80h320v-320H320v320Z"/></svg>';
         const volumeIcon = '<svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="currentColor" aria-hidden="true"><path d="M560-131v-82q90-26 145-100t55-168q0-94-55-168T560-749v-82q124 28 202 125.5T840-481q0 127-78 224.5T560-131ZM120-360v-240h160l200-200v640L280-360H120Zm440 40v-322q47 22 73.5 66t26.5 96q0 51-26.5 94.5T560-320ZM400-606l-86 86H200v80h114l86 86v-252ZM300-480Z"/></svg>';
         const externalIcon = '<svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="currentColor" aria-hidden="true"><path d="M200-120q-33 0-56.5-23.5T120-200v-560q0-33 23.5-56.5T200-840h280v80H200v560h560v-280h80v280q0 33-23.5 56.5T760-120H200Zm188-212-56-56 372-372H560v-80h280v280h-80v-144L388-332Z"/></svg>';
-        control.innerHTML = '<div class="archive-audio-main"><button class="archive-audio-action archive-audio-play" type="button" aria-pressed="false" aria-label="Play" title="Play">' + playIcon + '</button></div><div class="archive-audio-progress-row"><span class="archive-audio-time archive-audio-current-time">0:00</span><input class="archive-audio-progress" type="range" min="0" max="1000" value="0" aria-label="Seek"><span class="archive-audio-time archive-audio-duration">--:--</span></div><div class="archive-audio-secondary"><button class="archive-audio-action archive-audio-stop" type="button" aria-label="Stop" title="Stop">' + stopIcon + '</button><button class="archive-audio-action archive-audio-youtube" type="button" aria-label="Open in YouTube" title="Open in YouTube">' + externalIcon + '</button><span class="archive-audio-volume-icon" aria-hidden="true">' + volumeIcon + '</span><input class="archive-audio-volume" type="range" min="0" max="100" value="22" aria-label="Volume"><span class="archive-audio-label">READY</span></div>';
+        control.innerHTML = '<div class="archive-audio-main"><button class="archive-audio-previous" type="button" aria-label="Previous" title="Previous">&lsaquo;</button><button class="archive-audio-action archive-audio-play" type="button" aria-pressed="false" aria-label="Play" title="Play">' + playIcon + '</button></div><div class="archive-audio-progress-row"><span class="archive-audio-time archive-audio-current-time">0:00</span><input class="archive-audio-progress" type="range" min="0" max="1000" value="0" aria-label="Seek"><span class="archive-audio-time archive-audio-duration">--:--</span></div><div class="archive-audio-secondary"><button class="archive-audio-action archive-audio-stop" type="button" aria-label="Stop" title="Stop">' + stopIcon + '</button><button class="archive-audio-action archive-audio-youtube" type="button" aria-label="Open in YouTube" title="Open in YouTube">' + externalIcon + '</button><span class="archive-audio-volume-icon" aria-hidden="true">' + volumeIcon + '</span><input class="archive-audio-volume" type="range" min="0" max="100" value="22" aria-label="Volume"><span class="archive-audio-label">READY</span></div>';
         stage.appendChild(control);
 
         const playButton = control.querySelector('.archive-audio-play');
+        const previousButton = control.querySelector('.archive-audio-previous');
         const stopButton = control.querySelector('.archive-audio-stop');
         const youtubeButton = control.querySelector('.archive-audio-youtube');
         const progress = control.querySelector('.archive-audio-progress');
@@ -124,6 +125,7 @@
         const duration = control.querySelector('.archive-audio-duration');
         const volume = control.querySelector('.archive-audio-volume');
         const label = control.querySelector('.archive-audio-label');
+        previousButton.addEventListener('click', () => onPrevious?.());
 
         function formatTime(value) {
             if (!Number.isFinite(value) || value < 0) return '0:00';
@@ -138,7 +140,9 @@
         function updateProgress(position, length) {
             const safeLength = Number.isFinite(length) && length > 0 ? length : 0;
             const safePosition = Number.isFinite(position) && position >= 0 ? position : 0;
-            progress.value = safeLength ? String(Math.round(Math.min(1, safePosition / safeLength) * 1000)) : '0';
+            const ratio = safeLength ? Math.min(1, safePosition / safeLength) : 0;
+            progress.value = String(Math.round(ratio * 1000));
+            progress.style.setProperty('--archive-progress', (ratio * 100) + '%');
             currentTime.textContent = formatTime(safePosition);
             duration.textContent = safeLength ? formatTime(safeLength) : '--:--';
         }
@@ -248,7 +252,7 @@
         stage.appendChild(status);
 
         const toc = document.querySelector(config.tocSelector);
-        const audioController = config.audio ? createAudioControls(stage, track, config.itemSelector, config.audioKeys, config.audioLabel) : null;
+        const audioController = config.audio ? createAudioControls(stage, track, config.itemSelector, config.audioKeys, config.audioLabel, () => setActive(activeIndex - 1)) : null;
         let activeIndex = 0;
         let scrollTimer = null;
         let programmaticScroll = false;

@@ -113,14 +113,36 @@
         const stopIcon = '<svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="currentColor" aria-hidden="true"><path d="M320-640v320-320Zm-80 400v-480h480v480H240Zm80-80h320v-320H320v320Z"/></svg>';
         const volumeIcon = '<svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="currentColor" aria-hidden="true"><path d="M560-131v-82q90-26 145-100t55-168q0-94-55-168T560-749v-82q124 28 202 125.5T840-481q0 127-78 224.5T560-131ZM120-360v-240h160l200-200v640L280-360H120Zm440 40v-322q47 22 73.5 66t26.5 96q0 51-26.5 94.5T560-320ZM400-606l-86 86H200v80h114l86 86v-252ZM300-480Z"/></svg>';
         const externalIcon = '<svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="currentColor" aria-hidden="true"><path d="M200-120q-33 0-56.5-23.5T120-200v-560q0-33 23.5-56.5T200-840h280v80H200v560h560v-280h80v280q0 33-23.5 56.5T760-120H200Zm188-212-56-56 372-372H560v-80h280v280h-80v-144L388-332Z"/></svg>';
-        control.innerHTML = '<button class="archive-audio-action archive-audio-play" type="button" aria-pressed="false" aria-label="Play" title="Play">' + playIcon + '</button><button class="archive-audio-action archive-audio-stop" type="button" aria-label="Stop" title="Stop">' + stopIcon + '</button><button class="archive-audio-action archive-audio-youtube" type="button" aria-label="Open in YouTube" title="Open in YouTube">' + externalIcon + '</button><span class="archive-audio-volume-icon" aria-hidden="true">' + volumeIcon + '</span><input class="archive-audio-volume" type="range" min="0" max="100" value="22" aria-label="Volume"><span class="archive-audio-label">READY</span>';
+        control.innerHTML = '<div class="archive-audio-main"><button class="archive-audio-action archive-audio-play" type="button" aria-pressed="false" aria-label="Play" title="Play">' + playIcon + '</button></div><div class="archive-audio-progress-row"><span class="archive-audio-time archive-audio-current-time">0:00</span><input class="archive-audio-progress" type="range" min="0" max="1000" value="0" aria-label="Seek"><span class="archive-audio-time archive-audio-duration">--:--</span></div><div class="archive-audio-secondary"><button class="archive-audio-action archive-audio-stop" type="button" aria-label="Stop" title="Stop">' + stopIcon + '</button><button class="archive-audio-action archive-audio-youtube" type="button" aria-label="Open in YouTube" title="Open in YouTube">' + externalIcon + '</button><span class="archive-audio-volume-icon" aria-hidden="true">' + volumeIcon + '</span><input class="archive-audio-volume" type="range" min="0" max="100" value="22" aria-label="Volume"><span class="archive-audio-label">READY</span></div>';
         stage.appendChild(control);
 
         const playButton = control.querySelector('.archive-audio-play');
         const stopButton = control.querySelector('.archive-audio-stop');
         const youtubeButton = control.querySelector('.archive-audio-youtube');
+        const progress = control.querySelector('.archive-audio-progress');
+        const currentTime = control.querySelector('.archive-audio-current-time');
+        const duration = control.querySelector('.archive-audio-duration');
         const volume = control.querySelector('.archive-audio-volume');
         const label = control.querySelector('.archive-audio-label');
+
+        function formatTime(value) {
+            if (!Number.isFinite(value) || value < 0) return '0:00';
+            const total = Math.floor(value);
+            return Math.floor(total / 60) + ':' + String(total % 60).padStart(2, '0');
+        }
+        function resetProgress() {
+            progress.value = '0';
+            currentTime.textContent = '0:00';
+            duration.textContent = '--:--';
+        }
+        function updateProgress(position, length) {
+            const safeLength = Number.isFinite(length) && length > 0 ? length : 0;
+            const safePosition = Number.isFinite(position) && position >= 0 ? position : 0;
+            progress.value = safeLength ? String(Math.round(Math.min(1, safePosition / safeLength) * 1000)) : '0';
+            currentTime.textContent = formatTime(safePosition);
+            duration.textContent = safeLength ? formatTime(safeLength) : '--:--';
+        }
+        function updateNativeProgress() { updateProgress(audio.currentTime, audio.duration); }
 
         function activeItem() { return track.querySelector(itemSelector + '.is-active') || visibleItems(track, itemSelector)[0]; }
         function currentSource() { return getAudioSrc(activeItem(), keys); }
@@ -129,7 +151,11 @@
             playButton.disabled = !available;
             stopButton.disabled = !available;
             youtubeButton.disabled = !available;
+            progress.disabled = !available;
             playButton.innerHTML = enabled ? pauseIcon : playIcon;
+            playButton.setAttribute('aria-label', enabled ? 'Pause' : 'Play');
+            playButton.title = enabled ? 'Pause' : 'Play';
+            playButton.setAttribute('aria-pressed', String(enabled));
             control.classList.toggle('is-muted', !enabled);
         }
         function pauseAll() { audio.pause(); if (playerReady) player.pauseVideo(); }
@@ -144,9 +170,9 @@
             const videoId = youtubeId(src);
             label.textContent = src ? (enabled ? 'PLAYING' : 'READY') : 'NO MUSIC';
             updateButtons(src);
-            if (!src) { pauseAll(); currentSrc = ''; return; }
+            if (!src) { pauseAll(); currentSrc = ''; resetProgress(); return; }
             if (src !== currentSrc) {
-                pauseAll(); currentSrc = src;
+                pauseAll(); currentSrc = src; resetProgress();
                 if (videoId) {
                     playerVideoId = videoId;
                     loadYoutubeApi().then(() => { ensureYoutubePlayer(); if (player && playerReady) { if (enabled) player.loadVideoById(playerVideoId); else player.cueVideoById(playerVideoId); player.setVolume(Number(volume.value)); } });
@@ -179,7 +205,24 @@
             updateButtons(src);
             window.open(src, '_blank', 'noopener,noreferrer');
         });
+        progress.addEventListener('input', () => {
+            const src = currentSource();
+            const length = youtubeId(src) && playerReady ? Number(player.getDuration()) : Number(audio.duration);
+            if (!Number.isFinite(length) || length <= 0) return;
+            const position = (Number(progress.value) / 1000) * length;
+            if (youtubeId(src) && playerReady) player.seekTo(position, true);
+            else audio.currentTime = position;
+            updateProgress(position, length);
+        });
         volume.addEventListener('input', () => { audio.volume = Number(volume.value) / 100; if (playerReady) player.setVolume(Number(volume.value)); });
+        ['timeupdate', 'durationchange', 'loadedmetadata', 'progress'].forEach(eventName => audio.addEventListener(eventName, updateNativeProgress));
+        window.setInterval(() => {
+            const src = currentSource();
+            if (!src) return;
+            if (youtubeId(src) && playerReady && playerVideoId) {
+                updateProgress(Number(player.getCurrentTime()), Number(player.getDuration()));
+            } else if (!youtubeId(src)) updateNativeProgress();
+        }, 250);
         return { syncAudio };
     }
     function initArchiveSlider(options) {

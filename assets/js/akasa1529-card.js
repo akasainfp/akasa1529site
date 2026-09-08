@@ -27,16 +27,16 @@
             performance: { desktopFPS: 60, mobileFPS: 30 }
         },
         discord: { enabled: true, userId: '931953913555464192', provider: 'lanyard' },
-        // MUSIC: set enabled:true, src:'../assets/akasa1529/music.mp3', and title:'Song title'.
-        // autoplay starts at startVolume and fades to targetVolume over fadeDuration milliseconds.
-        music: { enabled: false, src: '', title: '', autoplay: true, loop: true, startVolume: 0, targetVolume: 0.6, fadeDuration: 2000 },
+        // Set a YouTube URL (or videoId), manual title, and enabled:true. Volume is 0-100.
+        // A visible official player is required; no hidden audio-only embed.
+        music: { enabled: false, youtube: { url: '', videoId: '' }, title: '', autoplay: true, loop: true, startVolume: 0, targetVolume: 60, fadeDuration: 2000 },
         effects: { tilt: true, cursorGlow: true, gyro: true, parallax: false },
         socials: [
             { id: 'x', label: 'X', url: 'https://x.com/infp_player', color: '#f4f1f7' }, { id: 'github', label: 'GitHub', url: 'https://github.com/akasainfp', color: '#f4f1f7' }, { id: 'discord', label: 'Discord', url: 'https://discord.gg/y73Y6mvhU4', color: '#5865f2' },
             { id: 'vrchat', label: 'VRChat', url: '', color: '#1b9aaa' }, { id: 'steam', label: 'Steam', url: '', color: '#66c0f4' }, { id: 'spotify', label: 'Spotify', url: '', color: '#1ed760' }, { id: 'youtube', label: 'YouTube', url: '', color: '#ff0033' }
         ]
     };
-    const ICONS = { x: '<path d="M18.9 2H22l-6.77 7.74L23.2 22h-6.25l-4.9-6.42L6.43 22H3.3l7.24-8.28L2.8 2h6.4l4.43 5.86L18.9 2Zm-1.1 17.85h1.73L8.27 4.05H6.42L17.8 19.85Z"/>', github: '<path d="M12 2C6.48 2 2 6.58 2 12.24c0 4.52 2.87 8.35 6.84 9.7.5.1.68-.22.68-.49v-1.7c-2.78.62-3.37-1.22-3.37-1.22-.46-1.18-1.11-1.49-1.11-1.49-.91-.64.07-.63.07-.63 1 .08 1.53 1.06 1.53 1.06.9 1.6 2.35 1.14 2.92.87.09-.67.35-1.14.64-1.4-2.22-.26-4.55-1.14-4.55-5.06 0-1.12.39-2.04 1.03-2.76-.1-.26-.45-1.31.1-2.73 0 0 .84-.28 2.75 1.05A9.2 9.2 0 0 1 12 9.12c.85 0 1.7.12 2.5.35 1.9-1.33 2.74-1.05 2.74-1.05.55 1.42.2 2.47.1 2.73.64.72 1.03 1.64 1.03 2.76 0 3.93-2.34 4.8-4.57 5.05.36.32.68.94.68 1.9v2.83c0 .27.18.6.69.49A10.25 10.25 0 0 0 22 12.24C22 6.58 17.52 2 12 2Z"/>', discord: '<path d="M19.54 4.2A16.2 16.2 0 0 0 15.5 3l-.5 1.03a14.7 14.7 0 0 0-6 0L8.5 3a16.2 16.2 0 0 0-4.04 1.2C1.9 8.1 1.2 11.9 1.55 15.65A16.3 16.3 0 0 0 6.5 18.1l1.2-1.65a10.3 10.3 0 0 1-1.9-.92l.46-.36c3.67 1.72 7.65 1.72 11.28 0l.48.36c-.6.36-1.24.67-1.9.92l1.2 1.65a16.3 16.3 0 0 0 4.95-2.45c.4-4.35-.68-8.12-2.73-11.45Z"/>' };
+    // Brand SVGs: local Simple Icons symbols, assets/akasa1529/brands.svg.
     const $ = (selector) => document.querySelector(selector);
     const ageAt = (birthday, now = new Date()) => { const birth = new Date(`${birthday}T00:00:00`); let age = now.getFullYear() - birth.getFullYear(); if (now < new Date(now.getFullYear(), birth.getMonth(), birth.getDate())) age -= 1; return age; };
     const extension = (src) => (src.split('?')[0].split('.').pop() || '').toLowerCase();
@@ -66,7 +66,18 @@
     function renderProfile() {
         $('[data-profile-name]').textContent = PROFILE_CONFIG.name; $('[data-profile-avatar]').src = PROFILE_CONFIG.avatar; $('[data-profile-avatar]').alt = PROFILE_CONFIG.name; const birth = new Date(`${PROFILE_CONFIG.birthday}T00:00:00`); $('[data-profile-meta]').textContent = `${ageAt(PROFILE_CONFIG.birthday)} / ${String(birth.getMonth() + 1).padStart(2, '0')}.${String(birth.getDate()).padStart(2, '0')}`; $('[data-profile-location]').textContent = PROFILE_CONFIG.location || ''; if (PROFILE_CONFIG.bio.trim()) { const bio = $('[data-profile-bio]'); bio.textContent = PROFILE_CONFIG.bio; bio.hidden = false; }
     }
-    function renderSocials() { const root = $('[data-profile-socials]'); PROFILE_CONFIG.socials.filter((item) => item.url).forEach((item) => { const link = document.createElement('a'); link.className = 'profile-social'; link.href = item.url; link.target = '_blank'; link.rel = 'noopener noreferrer'; link.setAttribute('aria-label', item.label); link.dataset.tooltip = item.label; link.style.setProperty('--social-color', item.color || '#fff'); link.innerHTML = `<svg viewBox="0 0 24 24" aria-hidden="true">${ICONS[item.id] || '<circle cx="12" cy="12" r="8"/>'}</svg>`; root.append(link); }); }
+    function renderSocials() {
+        const root = $('[data-profile-socials]');
+        PROFILE_CONFIG.socials.filter(item => item.url).forEach(item => {
+            if (!['x','github','discord','vrchat','steam','spotify','youtube'].includes(item.id)) return;
+            const link = document.createElement('a');
+            link.className = 'profile-social'; link.href = item.url; link.target = '_blank'; link.rel = 'noopener noreferrer';
+            link.setAttribute('aria-label', item.label); link.dataset.tooltip = item.label;
+            link.style.setProperty('--social-color', item.color || '#fff');
+            link.innerHTML = `<svg viewBox="0 0 24 24" aria-hidden="true"><use href="../assets/akasa1529/brands.svg#${item.id}"></use></svg>`;
+            root.append(link);
+        });
+    }
 
     const STATUS = { online: ['Online', '#23a55a'], idle: ['Idle', '#f0b232'], dnd: ['DND', '#f23f42'], offline: ['Offline', '#80848e'] };
     function renderPresence(data) {
@@ -81,13 +92,7 @@
         const connect = () => { if (stopped || document.hidden) return; socket = new WebSocket('wss://api.lanyard.rest/socket'); socket.addEventListener('message', (event) => { const packet = JSON.parse(event.data); if (packet.op === 1) { retry = 0; heartbeat = setInterval(() => socket.readyState === WebSocket.OPEN && socket.send(JSON.stringify({ op: 3 })), packet.d.heartbeat_interval); socket.send(JSON.stringify({ op: 2, d: { subscribe_to_id: cfg.userId } })); } if (packet.t === 'INIT_STATE' && packet.d) renderPresence(packet.d); if (packet.t === 'PRESENCE_UPDATE' && packet.d) renderPresence(packet.d); }); socket.addEventListener('close', () => { clearInterval(heartbeat); if (!stopped && !document.hidden) { const delay = Math.min(30000, 3000 * (2 ** retry)); retry += 1; setTimeout(connect, delay); } }); socket.addEventListener('error', () => socket.close()); };
         fetch(`https://api.lanyard.rest/v1/users/${encodeURIComponent(cfg.userId)}`, { cache: 'no-store' }).then((response) => response.json()).then((payload) => { if (payload.success) renderPresence(payload.data); }).catch(() => {}); connect(); document.addEventListener('visibilitychange', () => { if (document.hidden) { stopped = true; clearInterval(heartbeat); if (socket) socket.close(); } else { stopped = false; retry = 0; connect(); } });
     }
-    function renderMusic() {
-        const cfg = PROFILE_CONFIG.music; const root = $('[data-profile-music]'); if (!cfg.enabled || !cfg.src || !cfg.title) return; root.hidden = false; root.innerHTML = `<div class="music-copy"><span>NOW PLAYING</span><strong></strong></div><button class="music-toggle" type="button" aria-label="Play music"><span aria-hidden="true">▶</span></button><div class="music-progress"><span class="music-time">0:00</span><input class="music-seek" type="range" min="0" max="100" value="0" aria-label="Seek music"><span class="music-duration">0:00</span></div><label class="music-volume"><span aria-hidden="true">VOL</span><input type="range" min="0" max="100" value="0" aria-label="Volume"></label>`;
-        root.querySelector('strong').textContent = cfg.title; const audio = new Audio(cfg.src); audio.loop = cfg.loop !== false; audio.volume = Math.max(0, Math.min(1, cfg.startVolume)); let fadeFrame = 0; let manualVolume = false; const toggle = root.querySelector('.music-toggle'); const seek = root.querySelector('.music-seek'); const volume = root.querySelector('.music-volume input'); const format = (value) => Number.isFinite(value) ? `${Math.floor(value / 60)}:${String(Math.floor(value % 60)).padStart(2, '0')}` : '0:00';
-        const update = () => { seek.max = Number.isFinite(audio.duration) ? audio.duration : 100; seek.value = audio.currentTime || 0; volume.value = String(Math.round(audio.volume * 100)); root.querySelector('.music-time').textContent = format(audio.currentTime); root.querySelector('.music-duration').textContent = format(audio.duration); toggle.querySelector('span').textContent = audio.paused ? '▶' : 'Ⅱ'; toggle.setAttribute('aria-label', audio.paused ? 'Play music' : 'Pause music'); };
-        const fadeIn = () => { cancelAnimationFrame(fadeFrame); const startTime = performance.now(); const from = Math.max(0, Math.min(1, cfg.startVolume)); const to = Math.max(0, Math.min(1, cfg.targetVolume)); const tick = (now) => { if (manualVolume) return; const progress = cfg.fadeDuration ? Math.min(1, (now - startTime) / cfg.fadeDuration) : 1; audio.volume = from + (to - from) * progress; volume.value = String(Math.round(audio.volume * 100)); if (progress < 1) fadeFrame = requestAnimationFrame(tick); }; fadeFrame = requestAnimationFrame(tick); };
-        const start = () => audio.play().then(fadeIn).catch(() => {}); toggle.addEventListener('click', () => audio.paused ? start() : audio.pause()); seek.addEventListener('input', () => { audio.currentTime = Number(seek.value); }); volume.addEventListener('input', (event) => { manualVolume = true; cancelAnimationFrame(fadeFrame); audio.volume = Number(event.target.value) / 100; }); audio.addEventListener('timeupdate', update); audio.addEventListener('loadedmetadata', update); document.addEventListener('pointerdown', () => { if (cfg.autoplay && audio.paused) start(); }, { once: true }); if (cfg.autoplay) start();
-    }
+    function renderMusic() { window.AkasaFinish.music(PROFILE_CONFIG.music); }
     function renderViews() { const root = $('[data-profile-views]'); fetch('/api/visits', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ visitorId: `profile-${crypto.randomUUID ? crypto.randomUUID() : Date.now()}` }), cache: 'no-store' }).then((response) => response.ok ? response.json() : Promise.reject()).then((data) => { if (data.total === undefined) return; root.innerHTML = '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 5c-5.5 0-9.5 7-9.5 7s4 7 9.5 7 9.5-7 9.5-7-4-7-9.5-7Zm0 11a4 4 0 1 1 0-8 4 4 0 0 1 0 8Z"/></svg>'; root.append(document.createTextNode(Number(data.total).toLocaleString('ja-JP'))); root.title = 'Total Views'; root.setAttribute('aria-label', `Total Views ${data.total}`); root.hidden = false; }).catch(() => {}); }
     function initEffects() {
         const card = $('[data-profile-card]'); if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return; let frame = 0; let px = 0.5; let py = 0.5; const paint = () => { frame = 0; card.style.setProperty('--glow-x', `${px * 100}%`); card.style.setProperty('--glow-y', `${py * 100}%`); }; const reset = () => { card.style.transform = ''; };
@@ -95,4 +100,5 @@
         const enableGyro = () => { if (!PROFILE_CONFIG.effects.gyro || !('DeviceOrientationEvent' in window)) return; const handler = (event) => { const gx = Math.max(-1, Math.min(1, (event.gamma || 0) / 45)); const gy = Math.max(-1, Math.min(1, ((event.beta || 45) - 45) / 45)); if (PROFILE_CONFIG.effects.tilt) card.style.transform = `rotateX(${(-gy * 1.5).toFixed(2)}deg) rotateY(${(gx * 1.5).toFixed(2)}deg)`; }; if (typeof DeviceOrientationEvent.requestPermission === 'function') DeviceOrientationEvent.requestPermission().then((result) => { if (result === 'granted') window.addEventListener('deviceorientation', handler); }).catch(() => {}); else window.addEventListener('deviceorientation', handler); }; card.addEventListener('pointerdown', enableGyro, { once: true });
     }
     renderProfile(); renderBackground(); renderSocials(); renderMusic(); renderViews(); initEffects(); loadPresence();
+    window.AkasaFinish.init();
 })();

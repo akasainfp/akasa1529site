@@ -220,8 +220,16 @@
             .log-entry { grid-template-columns: 1fr; gap: 4px; }
         }
 
+        .home-avatar { position:fixed; right:max(24px,env(safe-area-inset-right)); bottom:calc(112px + env(safe-area-inset-bottom)); z-index:90; width:48px; height:48px; border-radius:50%; border:1px solid rgba(154,124,255,.5); box-shadow:0 0 14px rgba(125,95,255,.2); transition:transform .2s,box-shadow .2s; }
+        .home-avatar img { display:block; width:100%; height:100%; object-fit:cover; border-radius:50%; }
+        .home-avatar:hover,.home-avatar:focus-visible { transform:scale(1.06); box-shadow:0 0 18px rgba(125,95,255,.32); }
+        .home-avatar:focus-visible { outline:2px solid var(--accent); outline-offset:4px; }
+        .home-avatar::after { content:'Quick Profile'; position:absolute; right:calc(100% + 12px); top:50%; transform:translateY(-50%); padding:5px 8px; border-radius:4px; background:#121016; color:#eee; font:11px var(--font-mono); white-space:nowrap; opacity:0; pointer-events:none; transition:opacity .2s; }
+        .home-avatar:hover::after,.home-avatar:focus-visible::after { opacity:1; }
+        @media(prefers-reduced-motion:reduce) { .home-avatar { transition:none; } }
     </style></head>
 <body>
+    <a class="home-avatar" href="/akasa1529/" aria-label="Quick Profile"><img src="../assets/profile/icon.jpg" width="48" height="48" alt=""></a>
 
     <div id="particles-js"></div>
     <div class="grain"></div>

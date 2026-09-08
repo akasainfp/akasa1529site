@@ -13,7 +13,19 @@
     const PROFILE_CONFIG = {
         name: 'Akasa1529', birthday: '2008-01-28', location: 'TOKYO / JAPAN', bio: '',
         avatar: '../assets/profile/icon.jpg',
-        background: { type: 'auto', src: '../assets/akasa1529/background.jpg', position: 'center center', opacity: 1 },
+        background: {
+            type: 'webgl', src: '../assets/akasa1529/background.jpg', position: 'center center', opacity: 1,
+            webgl: {
+                enabled: true,
+                base: '../assets/akasa1529/wallpaper/1261087.jpg',
+                foliageMask: '../assets/akasa1529/wallpaper/foliagesway_mask_dbd08025.png',
+                waterMask: '../assets/akasa1529/wallpaper/waterwaves_mask_99ec8e48.png',
+                rippleMask: '../assets/akasa1529/wallpaper/waterripple_mask_505b38e0.png',
+                rippleNormal: '../assets/akasa1529/wallpaper/waterripplenormal.png',
+                effects: { foliageSway: true, waterWaves: true, waterRipple: true, chromaticAberration: true, vhs: true }
+            },
+            performance: { desktopFPS: 60, mobileFPS: 30 }
+        },
         discord: { enabled: true, userId: '931953913555464192', provider: 'lanyard' },
         // MUSIC: set enabled:true, src:'../assets/akasa1529/music.mp3', and title:'Song title'.
         // autoplay starts at startVolume and fades to targetVolume over fadeDuration milliseconds.
@@ -31,6 +43,20 @@
 
     function renderBackground() {
         const image = $('.profile-backdrop-image'); const video = $('.profile-backdrop-video'); const bg = PROFILE_CONFIG.background || {};
+        if (bg.type === 'webgl') {
+            document.documentElement.style.setProperty('--background-position', bg.position || 'center center');
+            document.documentElement.style.setProperty('--background-opacity', String(Math.max(0, Math.min(1, bg.opacity ?? 1))));
+            document.body.classList.add('has-wallpaper-background');
+            if (bg.webgl?.base) {
+                image.style.backgroundImage = `url("${bg.webgl.base.replace(/"/g, '')}")`;
+                image.style.backgroundPosition = bg.position || 'center center';
+                image.style.display = 'block';
+                document.body.classList.add('has-background-media');
+            }
+            const canvas = $('[data-wallpaper-canvas]');
+            if (bg.webgl?.enabled && canvas && window.AkasaWallpaper) new window.AkasaWallpaper(canvas, bg).start();
+            return;
+        }
         if (!bg.src) return; const kind = bg.type === 'auto' ? (['mp4', 'webm'].includes(extension(bg.src)) ? 'video' : 'image') : bg.type;
         document.documentElement.style.setProperty('--background-position', bg.position || 'center center'); document.documentElement.style.setProperty('--background-opacity', String(Math.max(0, Math.min(1, bg.opacity ?? 1))));
         if (kind === 'video') { const node = document.createElement('video'); node.autoplay = true; node.muted = true; node.loop = true; node.playsInline = true; node.src = bg.src; node.addEventListener('error', () => { video.replaceChildren(); document.body.classList.remove('has-background-media'); }); video.append(node); video.style.display = 'block'; document.body.classList.add('has-background-media'); return; }

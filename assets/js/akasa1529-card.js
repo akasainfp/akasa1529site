@@ -27,12 +27,13 @@
             performance: { desktopFPS: 60, mobileFPS: 30 }
         },
         discord: { enabled: true, userId: '931953913555464192', provider: 'lanyard' },
-        // Set a YouTube URL (or videoId), manual title, and enabled:true. Volume is 0-100.
-        // A visible official player is required; no hidden audio-only embed.
+        // Local profile BGM. Volume values are 0-100.
         music: {
             enabled: true,
-            youtube: { url: 'https://www.youtube.com/watch?v=qM32vntkWDM', videoId: '' },
+            source: 'audio',
+            audio: { src: '../assets/akasa1529/audio/euphoria.mp3' },
             title: '月とロゼのEuphoria',
+            artist: '瑠芽 feat. 闇音レンリ',
             autoplay: true,
             loop: true,
             startVolume: 0,
@@ -98,8 +99,27 @@
     }
     function loadPresence() {
         const cfg = PROFILE_CONFIG.discord; if (!cfg.enabled || cfg.provider !== 'lanyard') return; let socket; let heartbeat; let retry = 0; let stopped = false;
-        const connect = () => { if (stopped || document.hidden) return; socket = new WebSocket('wss://api.lanyard.rest/socket'); socket.addEventListener('message', (event) => { const packet = JSON.parse(event.data); if (packet.op === 1) { retry = 0; heartbeat = setInterval(() => socket.readyState === WebSocket.OPEN && socket.send(JSON.stringify({ op: 3 })), packet.d.heartbeat_interval); socket.send(JSON.stringify({ op: 2, d: { subscribe_to_id: cfg.userId } })); } if (packet.t === 'INIT_STATE' && packet.d) renderPresence(packet.d); if (packet.t === 'PRESENCE_UPDATE' && packet.d) renderPresence(packet.d); }); socket.addEventListener('close', () => { clearInterval(heartbeat); if (!stopped && !document.hidden) { const delay = Math.min(30000, 3000 * (2 ** retry)); retry += 1; setTimeout(connect, delay); } }); socket.addEventListener('error', () => socket.close()); };
-        fetch(`https://api.lanyard.rest/v1/users/${encodeURIComponent(cfg.userId)}`, { cache: 'no-store' }).then((response) => response.json()).then((payload) => { if (payload.success) renderPresence(payload.data); }).catch(() => {}); connect(); document.addEventListener('visibilitychange', () => { if (document.hidden) { stopped = true; clearInterval(heartbeat); if (socket) socket.close(); } else { stopped = false; retry = 0; connect(); } });
+        const renderPacket = (packet) => {
+            if (!packet || !['INIT_STATE', 'PRESENCE_UPDATE'].includes(packet.t)) return;
+            const data = packet.d?.[cfg.userId] || packet.d;
+            if (data && Object.keys(data).length) renderPresence(data);
+        };
+        const connect = () => {
+            if (stopped || document.hidden) return;
+            socket = new WebSocket('wss://api.lanyard.rest/socket');
+            socket.addEventListener('message', (event) => {
+                let packet; try { packet = JSON.parse(event.data); } catch { return; }
+                if (packet.op === 1 && Number(packet.d?.heartbeat_interval) > 0) {
+                    retry = 0; clearInterval(heartbeat);
+                    heartbeat = setInterval(() => socket.readyState === WebSocket.OPEN && socket.send(JSON.stringify({ op: 3 })), packet.d.heartbeat_interval);
+                    socket.send(JSON.stringify({ op: 2, d: { subscribe_to_id: cfg.userId } }));
+                }
+                renderPacket(packet);
+            });
+            socket.addEventListener('close', () => { clearInterval(heartbeat); if (!stopped && !document.hidden) { const delay = Math.min(30000, 3000 * (2 ** retry)); retry += 1; setTimeout(connect, delay); } });
+            socket.addEventListener('error', () => { try { socket.close(); } catch {} });
+        };
+        fetch(`https://api.lanyard.rest/v1/users/${encodeURIComponent(cfg.userId)}`, { cache: 'no-store' }).then((response) => response.json()).then((payload) => { if (payload.success && payload.data) renderPresence(payload.data); }).catch(() => {}); connect(); document.addEventListener('visibilitychange', () => { if (document.hidden) { stopped = true; clearInterval(heartbeat); if (socket) socket.close(); } else { stopped = false; retry = 0; connect(); } });
     }
     function renderMusic() { window.AkasaFinish.music(PROFILE_CONFIG.music); }
     function getVisitorId() {

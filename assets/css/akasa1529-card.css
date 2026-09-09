@@ -17,8 +17,6 @@
 .profile-card:hover::after { opacity:.4; }
 .profile-status-indicator:is(.status-online,.status-idle,.status-dnd)::after { content:''; position:absolute; inset:-2px; border:1px solid var(--status-color); border-radius:50%; animation:status-ring 4.5s ease-out infinite; pointer-events:none; }
 @keyframes status-ring { 0%,60%,100% { opacity:0; transform:scale(1); } 65% { opacity:.32; transform:scale(1); } 90% { opacity:0; transform:scale(1.65); } }
-.profile-bgm { position:fixed; left:max(18px,env(safe-area-inset-left)); bottom:calc(62px + env(safe-area-inset-bottom)); width:356px; height:200px; z-index:5; }
-.profile-bgm iframe { display:block; width:100%; height:100%; border:0; }
 .profile-volume { position:fixed; top:max(24px,env(safe-area-inset-top)); right:max(24px,env(safe-area-inset-right)); z-index:6; display:flex; align-items:center; gap:0; padding:0; border-radius:8px; background:rgba(18,16,24,.66); backdrop-filter:blur(8px); }
 .profile-volume:is(:hover,:focus-within) { gap:8px; padding-right:8px; }
 .profile-volume button { display:grid; place-items:center; width:38px; height:38px; border:0; border-radius:8px; color:#b8a2ef; background:transparent; cursor:pointer; }
@@ -28,10 +26,6 @@
 .profile-volume input { width:0; opacity:0; padding:0; margin:0; transition:width .2s,opacity .2s; accent-color:var(--accent); }
 .profile-volume:is(:hover,:focus-within) input { width:90px; opacity:1; }
 .profile-volume button:focus-visible,.profile-volume input:focus-visible { outline:2px solid var(--accent); outline-offset:2px; }
-@media(max-width:1240px),(max-height:700px) {
-    body.has-youtube-bgm { overflow-y:auto; }
-    .profile-bgm { position:relative; left:auto; bottom:auto; width:min(356px,calc(100% - 32px)); height:200px; margin:0 auto calc(62px + env(safe-area-inset-bottom)); }
-}
 .profile-views { position:fixed; right:max(18px,env(safe-area-inset-right)); bottom:max(14px,env(safe-area-inset-bottom)); display:flex; align-items:center; gap:5px; color:var(--muted); font:10px var(--mono); } .profile-views svg { width:13px; height:13px; fill:currentColor; } @keyframes card-in { from { opacity:0; transform:translateY(11px) scale(.98); } to { opacity:1; transform:translateY(0) scale(1); } } @keyframes avatar-breathe { 0%,100% { opacity:.28; transform:scale(.96); } 50% { opacity:.58; transform:scale(1.04); } }
 body { isolation:isolate; }
 .profile-wallpaper-canvas { position:fixed; inset:0; width:100%; height:100%; pointer-events:none; opacity:0; transition:opacity .4s ease; }

@@ -29,7 +29,16 @@
         discord: { enabled: true, userId: '931953913555464192', provider: 'lanyard' },
         // Set a YouTube URL (or videoId), manual title, and enabled:true. Volume is 0-100.
         // A visible official player is required; no hidden audio-only embed.
-        music: { enabled: false, youtube: { url: '', videoId: '' }, title: '', autoplay: true, loop: true, startVolume: 0, targetVolume: 60, fadeDuration: 2000 },
+        music: {
+            enabled: true,
+            youtube: { url: 'https://www.youtube.com/watch?v=qM32vntkWDM', videoId: '' },
+            title: '月とロゼのEuphoria',
+            autoplay: true,
+            loop: true,
+            startVolume: 0,
+            targetVolume: 60,
+            fadeDuration: 2000
+        },
         effects: { tilt: true, cursorGlow: true, gyro: true, parallax: false },
         socials: [
             { id: 'x', label: 'X', url: 'https://x.com/infp_player', color: '#f4f1f7' }, { id: 'github', label: 'GitHub', url: 'https://github.com/akasainfp', color: '#f4f1f7' }, { id: 'discord', label: 'Discord', url: 'https://discord.gg/y73Y6mvhU4', color: '#5865f2' },
@@ -93,7 +102,26 @@
         fetch(`https://api.lanyard.rest/v1/users/${encodeURIComponent(cfg.userId)}`, { cache: 'no-store' }).then((response) => response.json()).then((payload) => { if (payload.success) renderPresence(payload.data); }).catch(() => {}); connect(); document.addEventListener('visibilitychange', () => { if (document.hidden) { stopped = true; clearInterval(heartbeat); if (socket) socket.close(); } else { stopped = false; retry = 0; connect(); } });
     }
     function renderMusic() { window.AkasaFinish.music(PROFILE_CONFIG.music); }
-    function renderViews() { const root = $('[data-profile-views]'); fetch('/api/visits', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ visitorId: `profile-${crypto.randomUUID ? crypto.randomUUID() : Date.now()}` }), cache: 'no-store' }).then((response) => response.ok ? response.json() : Promise.reject()).then((data) => { if (data.total === undefined) return; root.innerHTML = '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 5c-5.5 0-9.5 7-9.5 7s4 7 9.5 7 9.5-7 9.5-7-4-7-9.5-7Zm0 11a4 4 0 1 1 0-8 4 4 0 0 1 0 8Z"/></svg>'; root.append(document.createTextNode(Number(data.total).toLocaleString('ja-JP'))); root.title = 'Total Views'; root.setAttribute('aria-label', `Total Views ${data.total}`); root.hidden = false; }).catch(() => {}); }
+    function getVisitorId() {
+        const key = 'akasa1529.visitorId';
+        const read = (storage) => { try { return storage.getItem(key) || ''; } catch { return ''; } };
+        const write = (storage, id) => { try { storage.setItem(key, id); return true; } catch { return false; } };
+        const localId = read(localStorage);
+        if (localId) return localId;
+        const sessionId = read(sessionStorage);
+        if (sessionId) { write(localStorage, sessionId); return sessionId; }
+        const id = globalThis.crypto?.randomUUID ? crypto.randomUUID() : `${Date.now()}-${Math.random().toString(36).slice(2)}`;
+        if (write(localStorage, id) || write(sessionStorage, id)) return id;
+        return '';
+    }
+    function renderViews() {
+        const root = $('[data-profile-views]');
+        const visitorId = getVisitorId();
+        const request = visitorId
+            ? { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ visitorId }), cache: 'no-store' }
+            : { method: 'GET', cache: 'no-store' };
+        fetch('/api/visits', request).then((response) => response.ok ? response.json() : Promise.reject()).then((data) => { if (data.total === undefined) return; root.innerHTML = '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 5c-5.5 0-9.5 7-9.5 7s4 7 9.5 7 9.5-7 9.5-7-4-7-9.5-7Zm0 11a4 4 0 1 1 0-8 4 4 0 0 1 0 8Z"/></svg>'; root.append(document.createTextNode(Number(data.total).toLocaleString('ja-JP'))); root.title = 'Total Views'; root.setAttribute('aria-label', `Total Views ${data.total}`); root.hidden = false; }).catch(() => {});
+    }
     function initEffects() {
         const card = $('[data-profile-card]'); if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return; let frame = 0; let px = 0.5; let py = 0.5; const paint = () => { frame = 0; card.style.setProperty('--glow-x', `${px * 100}%`); card.style.setProperty('--glow-y', `${py * 100}%`); }; const reset = () => { card.style.transform = ''; };
         card.addEventListener('pointermove', (event) => { if (!window.matchMedia('(hover: hover)').matches) return; const rect = card.getBoundingClientRect(); px = (event.clientX - rect.left) / rect.width; py = (event.clientY - rect.top) / rect.height; if (PROFILE_CONFIG.effects.cursorGlow && !frame) frame = requestAnimationFrame(paint); if (PROFILE_CONFIG.effects.tilt) card.style.transform = `rotateX(${((0.5 - py) * 2.5).toFixed(2)}deg) rotateY(${((px - 0.5) * 2.5).toFixed(2)}deg)`; }); card.addEventListener('pointerleave', reset);

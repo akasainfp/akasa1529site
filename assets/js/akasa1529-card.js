@@ -34,6 +34,8 @@
             audio: { src: '../assets/akasa1529/audio/euphoria.mp3' },
             title: '月とロゼのEuphoria',
             artist: '瑠芽 feat. 闇音レンリ',
+            credit: 'Music: 瑠芽 / Vocal: 闇音レンリ',
+            creditUrl: 'https://piapro.jp/t/aKh1',
             autoplay: true,
             loop: true,
             startVolume: 0,
@@ -93,12 +95,25 @@
     function renderPresence(data) {
         const indicator = $('[data-profile-status]'); const root = $('[data-profile-presence]'); indicator.hidden = true; root.hidden = true; root.replaceChildren(); if (!data) return;
         const status = STATUS[data.discord_status]; if (status) { indicator.hidden = false; indicator.className = `profile-status-indicator status-${data.discord_status}`; indicator.title = status[0]; indicator.style.setProperty('--status-color', status[1]); }
-        const lines = status ? [status[0]] : []; const activities = Array.isArray(data.activities) ? data.activities : []; const spotifyActivity = activities.find((item) => item.name === 'Spotify' || item.type === 2); const custom = activities.find((item) => item.type === 4 && item.state); if (custom) lines.push(custom.state);
-        if (data.spotify?.song && data.spotify?.artist) lines.push(`Listening to Spotify: ${data.spotify.song} / ${data.spotify.artist}`); else if (spotifyActivity) lines.push(`Listening to Spotify${spotifyActivity.details ? `: ${spotifyActivity.details}` : ''}`); else { const activity = activities.find((item) => item.type !== 4 && item.name); if (activity) lines.push(`${activity.type === 0 ? 'Playing' : 'Activity'} ${activity.name}`); }
-        lines.slice(0, 4).forEach((line) => { const p = document.createElement('p'); p.textContent = line; root.append(p); }); if (lines.length) root.hidden = false;
+        if (!status) return;
+        const heading = document.createElement('div'); heading.className = 'profile-presence-status';
+        heading.innerHTML = '<svg viewBox="0 0 24 24" aria-hidden="true"><use href="../assets/akasa1529/brands.svg#discord"></use></svg>';
+        const statusText = document.createElement('span'); statusText.textContent = status[0]; heading.append(statusText); root.append(heading);
+        const activities = Array.isArray(data.activities) ? data.activities : [];
+        const custom = activities.find((item) => item.type === 4 && item.state);
+        const playing = activities.find((item) => item.type === 0 && item.name && item.name !== 'Spotify');
+        const spotifyActivity = activities.find((item) => item.name === 'Spotify' || item.type === 2);
+        const lines = [];
+        if (custom) lines.push(custom.state);
+        if (playing) lines.push(`Playing ${playing.name}`);
+        if (data.spotify?.song && data.spotify?.artist) lines.push(`Listening to Spotify: ${data.spotify.song} - ${data.spotify.artist}`);
+        else if (spotifyActivity) lines.push(`Listening to Spotify${spotifyActivity.details ? `: ${spotifyActivity.details}` : ''}`);
+        lines.slice(0, 3).forEach((line) => { const p = document.createElement('p'); p.textContent = line; root.append(p); }); root.hidden = false;
     }
     function loadPresence() {
         const cfg = PROFILE_CONFIG.discord; if (!cfg.enabled || cfg.provider !== 'lanyard') return; let socket; let heartbeat; let retry = 0; let stopped = false;
+        const isDevelopment = ['localhost', '127.0.0.1', '::1'].includes(location.hostname);
+        const warn = (message, detail) => { if (isDevelopment) console.warn(`[Lanyard] ${message}`, detail || ''); };
         const renderPacket = (packet) => {
             if (!packet || !['INIT_STATE', 'PRESENCE_UPDATE'].includes(packet.t)) return;
             const data = packet.d?.[cfg.userId] || packet.d;
@@ -108,7 +123,7 @@
             if (stopped || document.hidden) return;
             socket = new WebSocket('wss://api.lanyard.rest/socket');
             socket.addEventListener('message', (event) => {
-                let packet; try { packet = JSON.parse(event.data); } catch { return; }
+                let packet; try { packet = JSON.parse(event.data); } catch (error) { warn('Invalid WebSocket payload', error); return; }
                 if (packet.op === 1 && Number(packet.d?.heartbeat_interval) > 0) {
                     retry = 0; clearInterval(heartbeat);
                     heartbeat = setInterval(() => socket.readyState === WebSocket.OPEN && socket.send(JSON.stringify({ op: 3 })), packet.d.heartbeat_interval);
@@ -117,9 +132,16 @@
                 renderPacket(packet);
             });
             socket.addEventListener('close', () => { clearInterval(heartbeat); if (!stopped && !document.hidden) { const delay = Math.min(30000, 3000 * (2 ** retry)); retry += 1; setTimeout(connect, delay); } });
-            socket.addEventListener('error', () => { try { socket.close(); } catch {} });
+            socket.addEventListener('error', () => { warn('WebSocket connection failed'); try { socket.close(); } catch {} });
         };
-        fetch(`https://api.lanyard.rest/v1/users/${encodeURIComponent(cfg.userId)}`, { cache: 'no-store' }).then((response) => response.json()).then((payload) => { if (payload.success && payload.data) renderPresence(payload.data); }).catch(() => {}); connect(); document.addEventListener('visibilitychange', () => { if (document.hidden) { stopped = true; clearInterval(heartbeat); if (socket) socket.close(); } else { stopped = false; retry = 0; connect(); } });
+        fetch(`https://api.lanyard.rest/v1/users/${encodeURIComponent(cfg.userId)}`, { cache: 'no-store' }).then(async (response) => {
+            let payload; try { payload = await response.json(); } catch (error) { warn('Invalid REST payload', { status: response.status, error }); return; }
+            if (payload?.success && payload.data) { renderPresence(payload.data); return; }
+            if (payload?.error?.code === 'user_not_monitored') { warn('User is not monitored by Lanyard', { status: response.status }); return; }
+            if (payload?.success === false) { warn('REST returned success:false', { status: response.status, error: payload.error }); return; }
+            warn('Invalid REST payload', { status: response.status, payload });
+        }).catch((error) => warn('REST request failed', error));
+        connect(); document.addEventListener('visibilitychange', () => { if (document.hidden) { stopped = true; clearInterval(heartbeat); if (socket) socket.close(); } else { stopped = false; retry = 0; connect(); } });
     }
     function renderMusic() { window.AkasaFinish.music(PROFILE_CONFIG.music); }
     function getVisitorId() {
@@ -143,10 +165,37 @@
         fetch('/api/visits', request).then((response) => response.ok ? response.json() : Promise.reject()).then((data) => { if (data.total === undefined) return; root.innerHTML = '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 5c-5.5 0-9.5 7-9.5 7s4 7 9.5 7 9.5-7 9.5-7-4-7-9.5-7Zm0 11a4 4 0 1 1 0-8 4 4 0 0 1 0 8Z"/></svg>'; root.append(document.createTextNode(Number(data.total).toLocaleString('ja-JP'))); root.title = 'Total Views'; root.setAttribute('aria-label', `Total Views ${data.total}`); root.hidden = false; }).catch(() => {});
     }
     function initEffects() {
-        const card = $('[data-profile-card]'); if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return; let frame = 0; let px = 0.5; let py = 0.5; const paint = () => { frame = 0; card.style.setProperty('--glow-x', `${px * 100}%`); card.style.setProperty('--glow-y', `${py * 100}%`); }; const reset = () => { card.style.transform = ''; };
-        card.addEventListener('pointermove', (event) => { if (!window.matchMedia('(hover: hover)').matches) return; const rect = card.getBoundingClientRect(); px = (event.clientX - rect.left) / rect.width; py = (event.clientY - rect.top) / rect.height; if (PROFILE_CONFIG.effects.cursorGlow && !frame) frame = requestAnimationFrame(paint); if (PROFILE_CONFIG.effects.tilt) card.style.transform = `rotateX(${((0.5 - py) * 2.5).toFixed(2)}deg) rotateY(${((px - 0.5) * 2.5).toFixed(2)}deg)`; }); card.addEventListener('pointerleave', reset);
-        const enableGyro = () => { if (!PROFILE_CONFIG.effects.gyro || !('DeviceOrientationEvent' in window)) return; const handler = (event) => { const gx = Math.max(-1, Math.min(1, (event.gamma || 0) / 45)); const gy = Math.max(-1, Math.min(1, ((event.beta || 45) - 45) / 45)); if (PROFILE_CONFIG.effects.tilt) card.style.transform = `rotateX(${(-gy * 1.5).toFixed(2)}deg) rotateY(${(gx * 1.5).toFixed(2)}deg)`; }; if (typeof DeviceOrientationEvent.requestPermission === 'function') DeviceOrientationEvent.requestPermission().then((result) => { if (result === 'granted') window.addEventListener('deviceorientation', handler); }).catch(() => {}); else window.addEventListener('deviceorientation', handler); }; card.addEventListener('pointerdown', enableGyro, { once: true });
+        const card = $('[data-profile-card]'); const reduce = window.matchMedia('(prefers-reduced-motion: reduce)'); if (reduce.matches) return;
+        const finePointer = window.matchMedia('(hover: hover) and (pointer: fine)');
+        const lerp = .14; let frame = 0; let px = .5; let py = .5; let targetX = 0; let targetY = 0; let currentX = 0; let currentY = 0;
+        const paint = () => {
+            frame = 0;
+            if (document.body.classList.contains('background-only') || !finePointer.matches) return;
+            currentX += (targetX - currentX) * lerp; currentY += (targetY - currentY) * lerp;
+            if (PROFILE_CONFIG.effects.cursorGlow) { card.style.setProperty('--glow-x', `${px * 100}%`); card.style.setProperty('--glow-y', `${py * 100}%`); }
+            if (PROFILE_CONFIG.effects.tilt) { card.style.setProperty('--tilt-x', `${currentX.toFixed(2)}deg`); card.style.setProperty('--tilt-y', `${currentY.toFixed(2)}deg`); }
+            if (Math.abs(targetX - currentX) > .01 || Math.abs(targetY - currentY) > .01) frame = requestAnimationFrame(paint);
+        };
+        const schedule = () => { if (!frame) frame = requestAnimationFrame(paint); };
+        const center = () => { targetX = 0; targetY = 0; schedule(); };
+        window.addEventListener('pointermove', (event) => {
+            if (!finePointer.matches || document.body.classList.contains('background-only')) return;
+            px = Math.max(0, Math.min(1, event.clientX / innerWidth)); py = Math.max(0, Math.min(1, event.clientY / innerHeight));
+            targetY = (px * 2 - 1) * 14; targetX = (py * 2 - 1) * -10; schedule();
+        }, { passive: true });
+        window.addEventListener('pointerout', (event) => { if (!event.relatedTarget) center(); }); document.documentElement.addEventListener('mouseleave', center); window.addEventListener('blur', center);
+        document.addEventListener('profile-background-change', (event) => { if (event.detail) { cancelAnimationFrame(frame); frame = 0; targetX = 0; targetY = 0; currentX = 0; currentY = 0; card.style.setProperty('--tilt-x', '0deg'); card.style.setProperty('--tilt-y', '0deg'); } else schedule(); });
+        const enableGyro = () => { if (!PROFILE_CONFIG.effects.gyro || finePointer.matches || !('DeviceOrientationEvent' in window)) return; const handler = (event) => { if (document.body.classList.contains('background-only') || reduce.matches) { card.style.setProperty('--tilt-x', '0deg'); card.style.setProperty('--tilt-y', '0deg'); return; } const gx = Math.max(-1, Math.min(1, (event.gamma || 0) / 45)); const gy = Math.max(-1, Math.min(1, ((event.beta || 45) - 45) / 45)); if (PROFILE_CONFIG.effects.tilt) { card.style.setProperty('--tilt-x', `${(-gy * 1.5).toFixed(2)}deg`); card.style.setProperty('--tilt-y', `${(gx * 1.5).toFixed(2)}deg`); } }; if (typeof DeviceOrientationEvent.requestPermission === 'function') DeviceOrientationEvent.requestPermission().then((result) => { if (result === 'granted') window.addEventListener('deviceorientation', handler); }).catch(() => {}); else window.addEventListener('deviceorientation', handler); }; card.addEventListener('pointerdown', enableGyro, { once: true });
     }
-    renderProfile(); renderBackground(); renderSocials(); renderMusic(); renderViews(); initEffects(); loadPresence();
+    function initBackgroundToggle() {
+        const button = $('[data-background-toggle]'); if (!button) return;
+        button.addEventListener('click', () => {
+            const backgroundOnly = !document.body.classList.contains('background-only'); const label = backgroundOnly ? 'Show Profile' : 'Hide Profile';
+            document.body.classList.toggle('background-only', backgroundOnly);
+            button.setAttribute('aria-label', label); button.setAttribute('aria-pressed', String(backgroundOnly)); button.dataset.tooltip = label;
+            document.dispatchEvent(new CustomEvent('profile-background-change', { detail: backgroundOnly }));
+        });
+    }
+    renderProfile(); renderBackground(); renderSocials(); renderMusic(); renderViews(); initEffects(); initBackgroundToggle(); loadPresence();
     window.AkasaFinish.init();
 })();

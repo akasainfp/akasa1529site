@@ -114,10 +114,16 @@
         const trackLabel = [config.title, config.artist].filter(Boolean).join(' - ') || 'BGM';
         const audio = document.createElement('audio');
         audio.src = config.audio.src; audio.preload = 'auto'; audio.loop = Boolean(config.loop); audio.volume = startVolume / 100;
+        const ui = document.createElement('div'); ui.className = 'profile-audio-ui';
+        const credit = document.createElement('div'); credit.className = 'profile-audio-credit';
+        const title = document.createElement('strong'); title.className = 'profile-audio-title'; title.textContent = config.title || 'BGM';
+        const creator = document.createElement('span'); creator.className = 'profile-audio-creator'; creator.textContent = config.credit || config.artist || '';
+        credit.append(title, creator);
+        if (config.creditUrl) { const link = document.createElement('a'); link.href = config.creditUrl; link.target = '_blank'; link.rel = 'noopener noreferrer'; link.textContent = 'Piapro'; credit.append(link); }
         const controls = document.createElement('div'); controls.className = 'profile-volume';
         controls.title = trackLabel; controls.setAttribute('aria-label', trackLabel);
         controls.innerHTML = '<button type="button" aria-label="Unmute BGM" aria-pressed="true"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 9v6h4l5 4V5L7 9H3Z"/><path class="volume-waves" d="M15 8a6 6 0 0 1 0 8M18 5a10 10 0 0 1 0 14"/><path class="volume-muted" d="m16 9 5 6m0-6-5 6"/></svg></button><input type="range" min="0" max="100" value="0" aria-label="BGM volume">';
-        document.body.append(audio, controls);
+        ui.append(credit, controls); document.body.append(audio, ui);
         const button = controls.querySelector('button'), slider = controls.querySelector('input');
         let manual = false, needsFade = true, fade = 0, volume = startVolume, saved = target || 60, retry = true, started = false, disposed = false;
         const sync = () => { slider.value = String(Math.round(volume)); button.setAttribute('aria-pressed', String(volume === 0)); button.setAttribute('aria-label', volume === 0 ? 'Unmute BGM' : 'Mute BGM'); controls.classList.toggle('is-muted', volume === 0); };
@@ -152,7 +158,7 @@
         const clean = () => {
             disposed = true; cancelFade();
             document.removeEventListener('pointerdown', interact); document.removeEventListener('touchstart', interact); document.removeEventListener('keydown', interact);
-            audio.pause(); audio.remove(); controls.remove();
+            audio.pause(); audio.remove(); ui.remove();
         };
         sync();
         attempt();

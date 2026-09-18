@@ -40,7 +40,7 @@
             loop: true,
             startVolume: 0,
             targetVolume: 60,
-            fadeDuration: 2000
+            fadeDuration: 8000
         },
         effects: { tilt: true, cursorGlow: true, gyro: true, parallax: false },
         socials: [

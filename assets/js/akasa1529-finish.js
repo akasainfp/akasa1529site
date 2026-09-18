@@ -126,6 +126,7 @@
         ui.append(credit, controls); document.body.append(audio, ui);
         const button = controls.querySelector('button'), slider = controls.querySelector('input');
         let manual = false, needsFade = true, fade = 0, volume = startVolume, saved = target || 60, retry = true, started = false, disposed = false;
+        let playResolved = false, playingSeen = false;
         const sync = () => { slider.value = String(Math.round(volume)); button.setAttribute('aria-pressed', String(volume === 0)); button.setAttribute('aria-label', volume === 0 ? 'Unmute BGM' : 'Mute BGM'); controls.classList.toggle('is-muted', volume === 0); };
         const setVolume = value => { volume = clamp(value); audio.volume = volume / 100; sync(); };
         const cancelFade = () => { clearInterval(fade); fade = 0; };
@@ -134,18 +135,34 @@
             needsFade = false; const start = performance.now(), duration = Math.max(0, Number(config.fadeDuration) || 0);
             const from = startVolume;
             cancelFade();
-            fade = setInterval(() => { const t = duration ? Math.min(1, (performance.now() - start) / duration) : 1; setVolume(from + (target - from) * t); if (t === 1) cancelFade(); }, 50);
+            fade = setInterval(() => { const t = duration ? Math.min(1, (performance.now() - start) / duration) : 1; const eased = t * t * (3 - 2 * t); setVolume(from + (target - from) * eased); if (t === 1) cancelFade(); }, 50);
         };
+        const stopPlaybackWatch = () => {
+            audio.removeEventListener('playing', onPlaying);
+            audio.removeEventListener('timeupdate', verifyPlayback);
+        };
+        const verifyPlayback = () => {
+            if (disposed || started || !playResolved || !playingSeen || audio.paused || audio.currentTime <= 0.05) return;
+            started = true;
+            stopPlaybackWatch();
+            beginFade();
+        };
+        const onPlaying = () => { playingSeen = true; verifyPlayback(); };
+        audio.addEventListener('playing', onPlaying);
+        audio.addEventListener('timeupdate', verifyPlayback);
         const attempt = async (fromInteraction = false) => {
             if (disposed || started || !retry || (!config.autoplay && !fromInteraction)) return;
             retry = false;
+            playResolved = false; playingSeen = false;
             if (!manual) { needsFade = true; setVolume(startVolume); }
             try {
                 await audio.play();
                 if (disposed) return;
-                started = true; beginFade();
+                playResolved = true;
+                verifyPlayback();
             } catch {
                 retry = true;
+                playResolved = false; playingSeen = false;
                 if (!manual) { needsFade = true; setVolume(startVolume); }
             }
         };
@@ -157,6 +174,7 @@
         document.addEventListener('keydown', interact);
         const clean = () => {
             disposed = true; cancelFade();
+            stopPlaybackWatch();
             document.removeEventListener('pointerdown', interact); document.removeEventListener('touchstart', interact); document.removeEventListener('keydown', interact);
             audio.pause(); audio.remove(); ui.remove();
         };

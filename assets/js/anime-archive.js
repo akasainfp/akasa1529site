@@ -296,6 +296,7 @@
         if (!dialog) return;
         dialog.classList.toggle('is-open', open);
         dialog.setAttribute('aria-hidden', open ? 'false' : 'true');
+        document.body.classList.toggle('filter-dialog-open', open);
     };
 
     function handleFilterControlClick(event) {

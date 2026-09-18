@@ -80,6 +80,14 @@
         }
         a.info-card:hover::after, a.info-card:focus-visible::after, .content-item:hover::after, .content-item:focus-visible::after { opacity: 1; transform: translateX(0); }
         a.info-card:focus-visible, .content-item:focus-visible, .footer-link:focus-visible { outline: 1px solid var(--accent); outline-offset: 4px; }
+        @media (max-width:768px) {
+            .section-container { padding:70px 16px; }
+            .panel { padding:24px 18px; }
+            .action-grid { grid-template-columns:minmax(0,1fr); }
+            .main-title { max-width:100%; padding-inline:16px; box-sizing:border-box; overflow-wrap:anywhere; line-height:1.05; }
+            .footer-content { padding-inline:20px; }
+        }
+        @media (hover:none) and (pointer:coarse) and (orientation:landscape), (max-width:932px) and (max-height:500px) { .hero { height:auto; min-height:65svh; } .section-container { padding:60px 20px; } }
     </style></head>
 <body>
     <div id="particles-js"></div>
@@ -128,7 +136,7 @@
         </div>
     </footer>
     <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
-    <script src="../assets/js/site-particles.js?v=20260825-common"></script>
+    <script src="../assets/js/site-particles.js?v=20260918-responsive-3"></script>
 
     <script>
         (() => {
@@ -158,6 +166,6 @@
     </script>
 
     <script src="../assets/js/site-animations.js?v=20260829"></script><script src="../assets/js/site-counter.js"></script>
-    <script src="../assets/js/site-menu.js?v=20260609-blog"></script>
+    <script src="../assets/js/site-menu.js?v=20260918-responsive-3"></script>
 </body>
 </html>

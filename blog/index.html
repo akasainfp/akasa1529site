@@ -67,6 +67,14 @@
         .site-menu-panel { color: #f0f0f0; }
         .site-menu-kicker { color: #ffffff !important; }
         @media (max-width: 760px) { .blog-shell { width: min(100% - 28px, 1040px); } .blog-hero { padding-top: 92px; } .blog-layout { padding-top: 34px; } .blog-topline, .footer-bottom { flex-direction: column; align-items: flex-start; } .blog-card { padding: 24px; } .blog-eyecatch { aspect-ratio: 16 / 9; max-height: 260px; margin-bottom: 22px; } }
+        @media (max-width:420px) {
+            .blog-card { padding:19px; }
+            .blog-actions { flex-wrap:wrap; }
+        }
+        @media (max-width:760px), (hover:none) and (pointer:coarse) and (orientation:landscape), (max-width:932px) and (max-height:500px) {
+            .blog-toggle, .blog-like { min-height:44px; display:inline-flex; align-items:center; }
+            .blog-hero { min-height:55svh; }
+        }
     </style>
 </head>
 <body>
@@ -105,6 +113,6 @@
     </script>
     <script src="../assets/js/site-animations.js?v=20260829"></script><script src="../assets/js/blog-config.js?v=20260723-api-base"></script>
     <script src="../assets/js/blog-archive.js?v=20260723-api-base"></script>
-    <script src="../assets/js/site-menu.js?v=20260609-blog"></script>
+    <script src="../assets/js/site-menu.js?v=20260918-responsive-3"></script>
 </body>
 </html>

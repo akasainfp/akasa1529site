@@ -27,11 +27,11 @@
             performance: { desktopFPS: 60, mobileFPS: 30 }
         },
         discord: { enabled: true, userId: '931953913555464192', provider: 'lanyard' },
-        // Local profile BGM. Volume values are 0-100.
+        // Profile BGM. Volume values are 0-100.
         music: {
             enabled: true,
-            source: 'audio',
-            audio: { src: '../assets/akasa1529/audio/euphoria.mp3' },
+            source: 'youtube',
+            youtube: { url: 'https://youtu.be/qM32vntkWDM' },
             title: '月とロゼのEuphoria',
             artist: '瑠芽 feat. 闇音レンリ',
             credit: 'Music: 瑠芽 / Vocal: 闇音レンリ',

@@ -106,14 +106,46 @@
         reduce.addEventListener('change', clear); window.addEventListener('resize', resize); window.addEventListener('pagehide', clear); resize();
     }
 
+    let youtubeApiPromise = null;
+    function loadYoutubeApi() {
+        if (window.YT?.Player) return Promise.resolve(window.YT);
+        if (youtubeApiPromise) return youtubeApiPromise;
+        youtubeApiPromise = new Promise(resolve => {
+            const previous = window.onYouTubeIframeAPIReady;
+            window.onYouTubeIframeAPIReady = () => { previous?.(); resolve(window.YT); };
+            const existing = document.querySelector('script[src="https://www.youtube.com/iframe_api"]');
+            if (!existing) {
+                const script = document.createElement('script');
+                script.src = 'https://www.youtube.com/iframe_api';
+                script.async = true;
+                document.head.appendChild(script);
+            }
+        });
+        return youtubeApiPromise;
+    }
+    function youtubeId(value) {
+        try {
+            const url = new URL(value);
+            if (url.hostname === 'youtu.be') return url.pathname.slice(1).split('/')[0];
+            if (url.hostname.includes('youtube.com')) {
+                if (url.pathname === '/watch') return url.searchParams.get('v') || '';
+                const parts = url.pathname.split('/').filter(Boolean);
+                const index = parts.findIndex(part => part === 'embed' || part === 'shorts');
+                return index >= 0 ? parts[index + 1] || '' : '';
+            }
+        } catch {}
+        return '';
+    }
+
     function music(config) {
-        if (!isProfile || !config?.enabled || config.source !== 'audio' || !config.audio?.src) return;
+        const videoId = youtubeId(config?.youtube?.url || '');
+        if (!isProfile || !config?.enabled || config.source !== 'youtube' || !videoId) return;
         const clamp = value => Math.max(0, Math.min(100, Number(value) || 0));
         const startVolume = clamp(config.startVolume ?? 0);
         const target = clamp(config.targetVolume ?? 60);
         const trackLabel = [config.title, config.artist].filter(Boolean).join(' - ') || 'BGM';
-        const audio = document.createElement('audio');
-        audio.src = config.audio.src; audio.preload = 'auto'; audio.loop = Boolean(config.loop); audio.volume = startVolume / 100;
+        const host = document.createElement('div'); host.className = 'profile-youtube-player'; host.setAttribute('aria-hidden', 'true');
+        const playerMount = document.createElement('div'); host.append(playerMount);
         const ui = document.createElement('div'); ui.className = 'profile-audio-ui';
         const credit = document.createElement('div'); credit.className = 'profile-audio-credit';
         const title = document.createElement('strong'); title.className = 'profile-audio-title'; title.textContent = config.title || 'BGM';
@@ -123,64 +155,73 @@
         const controls = document.createElement('div'); controls.className = 'profile-volume';
         controls.title = trackLabel; controls.setAttribute('aria-label', trackLabel);
         controls.innerHTML = '<button type="button" aria-label="Unmute BGM" aria-pressed="true"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 9v6h4l5 4V5L7 9H3Z"/><path class="volume-waves" d="M15 8a6 6 0 0 1 0 8M18 5a10 10 0 0 1 0 14"/><path class="volume-muted" d="m16 9 5 6m0-6-5 6"/></svg></button><input type="range" min="0" max="100" value="0" aria-label="BGM volume">';
-        ui.append(credit, controls); document.body.append(audio, ui);
+        ui.append(credit, controls); document.body.append(host, ui);
         const button = controls.querySelector('button'), slider = controls.querySelector('input');
-        let manual = false, needsFade = true, fade = 0, volume = startVolume, saved = target || 60, retry = true, started = false, disposed = false;
-        let playResolved = false, playingSeen = false;
+        let player = null, fade = 0, playbackWatch = 0, volume = startVolume, saved = target || 60;
+        let playerReady = false, playRequested = false, playingConfirmed = false, fadeStarted = false, manual = false, interactionSeen = false, disposed = false;
         const sync = () => { slider.value = String(Math.round(volume)); button.setAttribute('aria-pressed', String(volume === 0)); button.setAttribute('aria-label', volume === 0 ? 'Unmute BGM' : 'Mute BGM'); controls.classList.toggle('is-muted', volume === 0); };
-        const setVolume = value => { volume = clamp(value); audio.volume = volume / 100; sync(); };
+        const setVolume = value => { volume = clamp(value); if (playerReady) player?.setVolume(volume); sync(); };
         const cancelFade = () => { clearInterval(fade); fade = 0; };
+        const stopPlaybackWatch = () => { clearInterval(playbackWatch); playbackWatch = 0; };
         const beginFade = () => {
-            if (manual || !needsFade) return;
-            needsFade = false; const start = performance.now(), duration = Math.max(0, Number(config.fadeDuration) || 0);
+            if (manual || fadeStarted || disposed) return;
+            fadeStarted = true; const start = performance.now(), duration = Math.max(0, Number(config.fadeDuration) || 0);
             const from = startVolume;
             cancelFade();
             fade = setInterval(() => { const t = duration ? Math.min(1, (performance.now() - start) / duration) : 1; const eased = t * t * (3 - 2 * t); setVolume(from + (target - from) * eased); if (t === 1) cancelFade(); }, 50);
         };
-        const stopPlaybackWatch = () => {
-            audio.removeEventListener('playing', onPlaying);
-            audio.removeEventListener('timeupdate', verifyPlayback);
-        };
         const verifyPlayback = () => {
-            if (disposed || started || !playResolved || !playingSeen || audio.paused || audio.currentTime <= 0.05) return;
-            started = true;
+            if (disposed || fadeStarted || !playingConfirmed || !playerReady || Number(player?.getCurrentTime?.()) <= 0.05) return;
             stopPlaybackWatch();
             beginFade();
         };
-        const onPlaying = () => { playingSeen = true; verifyPlayback(); };
-        audio.addEventListener('playing', onPlaying);
-        audio.addEventListener('timeupdate', verifyPlayback);
-        const attempt = async (fromInteraction = false) => {
-            if (disposed || started || !retry || (!config.autoplay && !fromInteraction)) return;
-            retry = false;
-            playResolved = false; playingSeen = false;
-            if (!manual) { needsFade = true; setVolume(startVolume); }
-            try {
-                await audio.play();
-                if (disposed) return;
-                playResolved = true;
-                verifyPlayback();
-            } catch {
-                retry = true;
-                playResolved = false; playingSeen = false;
-                if (!manual) { needsFade = true; setVolume(startVolume); }
-            }
+        const watchPlayback = () => {
+            if (playbackWatch || fadeStarted || disposed) return;
+            verifyPlayback();
+            if (!fadeStarted) playbackWatch = setInterval(verifyPlayback, 50);
         };
-        const interact = () => { if (!started && retry) attempt(true); };
+        const attempt = fromInteraction => {
+            if (disposed || !playerReady || playingConfirmed || (playRequested && !fromInteraction) || (!config.autoplay && !fromInteraction)) return;
+            playRequested = true;
+            if (!manual && !fadeStarted) setVolume(startVolume);
+            player.playVideo();
+        };
+        const interact = () => { interactionSeen = true; if (!playingConfirmed) attempt(true); };
         button.addEventListener('click', () => { manual = true; cancelFade(); if (volume > 0) { saved = volume; setVolume(0); } else setVolume(saved); interact(); });
         slider.addEventListener('input', () => { manual = true; cancelFade(); setVolume(slider.value); if (volume > 0) saved = volume; interact(); });
         document.addEventListener('pointerdown', interact, { passive: true });
         document.addEventListener('touchstart', interact, { passive: true });
         document.addEventListener('keydown', interact);
         const clean = () => {
-            disposed = true; cancelFade();
-            stopPlaybackWatch();
+            disposed = true; cancelFade(); stopPlaybackWatch();
             document.removeEventListener('pointerdown', interact); document.removeEventListener('touchstart', interact); document.removeEventListener('keydown', interact);
-            audio.pause(); audio.remove(); ui.remove();
+            player?.destroy?.(); player = null; host.remove(); ui.remove();
         };
         sync();
-        attempt();
         window.addEventListener('pagehide', clean, { once: true });
+        loadYoutubeApi().then(() => {
+            if (disposed) return;
+            player = new window.YT.Player(playerMount, {
+                width: '1', height: '1', videoId,
+                playerVars: { autoplay: 0, controls: 0, rel: 0, playsinline: 1 },
+                events: {
+                    onReady: event => {
+                        if (disposed) return;
+                        playerReady = true; event.target.setVolume(volume);
+                        if (config.autoplay || interactionSeen) attempt(interactionSeen);
+                    },
+                    onStateChange: event => {
+                        if (disposed) return;
+                        if (event.data === window.YT.PlayerState.PLAYING) {
+                            playingConfirmed = true; playRequested = true; watchPlayback();
+                        } else if (event.data === window.YT.PlayerState.ENDED && config.loop) {
+                            event.target.seekTo(0, true); event.target.playVideo();
+                        }
+                    },
+                    onError: () => { playRequested = false; playingConfirmed = false; stopPlaybackWatch(); }
+                }
+            });
+        });
     }
     window.AkasaFinish = { init() { if (!isProfile) return; titleLoop(); magnetic(); sparkle(); }, music };
 })();

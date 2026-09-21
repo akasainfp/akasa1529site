@@ -138,27 +138,82 @@
     }
 
     function music(config) {
-        const videoId = youtubeId(config?.youtube?.url || '');
+        const tracks = Array.isArray(config?.tracks) ? config.tracks.filter(track => youtubeId(track?.url || '')) : [];
+        let activeTrackIndex = 0;
+        const getActiveTrack = () => tracks[activeTrackIndex];
+        let videoId = youtubeId(getActiveTrack()?.url || '');
         if (!isProfile || !config?.enabled || config.source !== 'youtube' || !videoId) return;
         const clamp = value => Math.max(0, Math.min(100, Number(value) || 0));
         const startVolume = clamp(config.startVolume ?? 0);
         const target = clamp(config.targetVolume ?? 60);
-        const trackLabel = [config.title, config.artist].filter(Boolean).join(' - ') || 'BGM';
         const host = document.createElement('div'); host.className = 'profile-youtube-player'; host.setAttribute('aria-hidden', 'true');
         const playerMount = document.createElement('div'); host.append(playerMount);
         const ui = document.createElement('div'); ui.className = 'profile-audio-ui';
+        const main = document.createElement('div'); main.className = 'profile-audio-main';
+        const artwork = document.createElement('div'); artwork.className = 'profile-audio-artwork';
+        const artworkImage = document.createElement('img'); artworkImage.alt = ''; artworkImage.decoding = 'async';
+        const artworkFallback = document.createElement('span'); artworkFallback.className = 'profile-audio-artwork-fallback'; artworkFallback.setAttribute('aria-hidden', 'true');
+        artworkFallback.innerHTML = '<svg viewBox="0 0 24 24"><path d="M9 18V6l10-2v12M9 10l10-2M6.5 20A2.5 2.5 0 1 0 6.5 15a2.5 2.5 0 0 0 0 5Zm10-2a2.5 2.5 0 1 0 0-5 2.5 2.5 0 0 0 0 5Z"/></svg>';
+        artwork.append(artworkImage, artworkFallback);
+        const content = document.createElement('div'); content.className = 'profile-audio-content';
+        const trackInfo = document.createElement('div'); trackInfo.className = 'profile-audio-track';
+        const title = document.createElement('strong'); title.className = 'profile-audio-title';
+        const artist = document.createElement('span'); artist.className = 'profile-audio-artist';
+        trackInfo.append(title, artist);
         const credit = document.createElement('div'); credit.className = 'profile-audio-credit';
-        const title = document.createElement('strong'); title.className = 'profile-audio-title'; title.textContent = config.title || 'BGM';
-        const creator = document.createElement('span'); creator.className = 'profile-audio-creator'; creator.textContent = config.credit || config.artist || '';
-        credit.append(title, creator);
-        if (config.creditUrl) { const link = document.createElement('a'); link.href = config.creditUrl; link.target = '_blank'; link.rel = 'noopener noreferrer'; link.textContent = 'Piapro'; credit.append(link); }
+        const creator = document.createElement('span'); creator.className = 'profile-audio-creator';
+        const creditLink = document.createElement('a'); creditLink.target = '_blank'; creditLink.rel = 'noopener noreferrer'; creditLink.textContent = 'Piapro';
+        credit.append(creator, creditLink);
+        const footer = document.createElement('div'); footer.className = 'profile-audio-footer';
+        const trackControls = document.createElement('div'); trackControls.className = 'profile-track-controls';
+        const previous = document.createElement('button'); previous.type = 'button'; previous.className = 'profile-track-nav'; previous.setAttribute('aria-label', 'Previous track'); previous.innerHTML = '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="m14.5 7-5 5 5 5"/></svg>';
+        const counter = document.createElement('span'); counter.className = 'profile-track-counter';
+        const next = document.createElement('button'); next.type = 'button'; next.className = 'profile-track-nav'; next.setAttribute('aria-label', 'Next track'); next.innerHTML = '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="m9.5 7 5 5-5 5"/></svg>';
+        trackControls.append(previous, counter, next);
         const controls = document.createElement('div'); controls.className = 'profile-volume';
-        controls.title = trackLabel; controls.setAttribute('aria-label', trackLabel);
         controls.innerHTML = '<button type="button" aria-label="Unmute BGM" aria-pressed="true"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 9v6h4l5 4V5L7 9H3Z"/><path class="volume-waves" d="M15 8a6 6 0 0 1 0 8M18 5a10 10 0 0 1 0 14"/><path class="volume-muted" d="m16 9 5 6m0-6-5 6"/></svg></button><input type="range" min="0" max="100" value="0" aria-label="BGM volume">';
-        ui.append(credit, controls); document.body.append(host, ui);
+        const playlistToggle = document.createElement('button'); playlistToggle.type = 'button'; playlistToggle.className = 'profile-playlist-toggle'; playlistToggle.setAttribute('aria-label', 'Show playlist'); playlistToggle.setAttribute('aria-expanded', 'false'); playlistToggle.innerHTML = '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 7h10M5 12h10M5 17h7M18 15v6m-3-3h6"/></svg>';
+        playlistToggle.hidden = tracks.length <= 1;
+        footer.append(trackControls, controls, playlistToggle);
+        content.append(trackInfo, credit, footer); main.append(artwork, content);
+        const playlist = document.createElement('div'); playlist.className = 'profile-track-list'; playlist.hidden = true;
+        const playlistHeading = document.createElement('span'); playlistHeading.className = 'profile-track-list-heading'; playlistHeading.textContent = 'TRACKS';
+        const playlistItems = document.createElement('div'); playlistItems.className = 'profile-track-list-items'; playlist.append(playlistHeading, playlistItems);
+        ui.append(main, playlist); document.body.append(host, ui);
         const button = controls.querySelector('button'), slider = controls.querySelector('input');
         let player = null, fade = 0, playbackWatch = 0, volume = startVolume, saved = target || 60;
         let playerReady = false, playRequested = false, playingConfirmed = false, fadeStarted = false, manual = false, interactionSeen = false, disposed = false;
+        const updateTrackUi = () => {
+            const track = getActiveTrack();
+            const label = [track.title, track.artist].filter(Boolean).join(' - ') || 'BGM';
+            title.textContent = track.title || 'Untitled'; artist.textContent = track.artist || '';
+            creator.textContent = track.credit || track.artist || '';
+            creditLink.hidden = !track.creditUrl; creditLink.href = track.creditUrl || '';
+            controls.title = label; controls.setAttribute('aria-label', label);
+            counter.textContent = `${String(activeTrackIndex + 1).padStart(2, '0')} / ${String(tracks.length).padStart(2, '0')}`;
+            const source = track.artwork || `https://i.ytimg.com/vi/${youtubeId(track.url)}/hqdefault.jpg`;
+            artwork.classList.remove('is-fallback'); artworkImage.src = source; artworkImage.alt = `${track.title || 'Track'} artwork`;
+            playlistItems.querySelectorAll('button').forEach((row, index) => { row.classList.toggle('is-active', index === activeTrackIndex); if (index === activeTrackIndex) row.setAttribute('aria-current', 'true'); else row.removeAttribute('aria-current'); });
+        };
+        const selectTrack = index => {
+            const normalized = (index + tracks.length) % tracks.length;
+            if (normalized === activeTrackIndex) return;
+            activeTrackIndex = normalized; videoId = youtubeId(getActiveTrack().url); updateTrackUi();
+            if (playerReady) { player.loadVideoById(videoId); player.setVolume(volume); }
+        };
+        tracks.forEach((track, index) => {
+            const row = document.createElement('button'); row.type = 'button'; row.className = 'profile-track-row';
+            const number = document.createElement('span'); number.className = 'profile-track-number'; number.textContent = String(index + 1).padStart(2, '0');
+            const copy = document.createElement('span'); copy.className = 'profile-track-row-copy';
+            const rowTitle = document.createElement('strong'); rowTitle.textContent = track.title || 'Untitled';
+            const rowArtist = document.createElement('span'); rowArtist.textContent = track.artist || '';
+            copy.append(rowTitle, rowArtist); row.append(number, copy); row.addEventListener('click', () => selectTrack(index)); playlistItems.append(row);
+        });
+        artworkImage.addEventListener('error', () => artwork.classList.add('is-fallback'));
+        previous.addEventListener('click', () => selectTrack(activeTrackIndex - 1));
+        next.addEventListener('click', () => selectTrack(activeTrackIndex + 1));
+        playlistToggle.addEventListener('click', () => { const expanded = playlist.hidden; playlist.hidden = !expanded; playlistToggle.setAttribute('aria-expanded', String(expanded)); playlistToggle.setAttribute('aria-label', expanded ? 'Hide playlist' : 'Show playlist'); ui.classList.toggle('is-expanded', expanded); });
+        updateTrackUi();
         const sync = () => { slider.value = String(Math.round(volume)); button.setAttribute('aria-pressed', String(volume === 0)); button.setAttribute('aria-label', volume === 0 ? 'Unmute BGM' : 'Mute BGM'); controls.classList.toggle('is-muted', volume === 0); };
         const setVolume = value => { volume = clamp(value); if (playerReady) player?.setVolume(volume); sync(); };
         const cancelFade = () => { clearInterval(fade); fade = 0; };

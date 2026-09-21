@@ -31,11 +31,24 @@
         music: {
             enabled: true,
             source: 'youtube',
-            youtube: { url: 'https://youtu.be/qM32vntkWDM' },
-            title: '月とロゼのEuphoria',
-            artist: '瑠芽 feat. 闇音レンリ',
-            credit: 'Music: 瑠芽 / Vocal: 闇音レンリ',
-            creditUrl: 'https://piapro.jp/t/aKh1',
+            tracks: [
+                {
+                    url: 'https://youtu.be/qM32vntkWDM',
+                    title: '月とロゼのEuphoria',
+                    artist: '瑠芽 feat. 闇音レンリ',
+                    credit: 'Music: 瑠芽 / Vocal: 闇音レンリ',
+                    creditUrl: 'https://piapro.jp/t/aKh1',
+                    artwork: ''
+                },
+                {
+                    url: 'https://youtu.be/x1UsJ2Znjk0',
+                    title: '罪と罰',
+                    artist: '椎名林檎 Covered by Ado',
+                    credit: 'Music: 椎名林檎 / Vocal: Ado',
+                    creditUrl: 'https://www.youtube.com/watch?v=x1UsJ2Znjk0',
+                    artwork: ''
+                }
+            ],
             autoplay: true,
             loop: true,
             startVolume: 0,

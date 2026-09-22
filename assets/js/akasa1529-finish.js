@@ -249,11 +249,23 @@
         document.addEventListener('keydown', interact);
         const clean = () => {
             disposed = true; cancelFade(); stopPlaybackWatch();
+            window.removeEventListener('pagehide', handlePageHide);
+            window.removeEventListener('pageshow', handlePageShow);
             document.removeEventListener('pointerdown', interact); document.removeEventListener('touchstart', interact); document.removeEventListener('keydown', interact);
             player?.destroy?.(); player = null; host.remove(); ui.remove();
         };
+        const handlePageHide = event => {
+            if (event.persisted) return;
+            clean();
+        };
+        const handlePageShow = event => {
+            if (!event.persisted || disposed) return;
+            updateTrackUi();
+            sync();
+        };
         sync();
-        window.addEventListener('pagehide', clean, { once: true });
+        window.addEventListener('pagehide', handlePageHide);
+        window.addEventListener('pageshow', handlePageShow);
         loadYoutubeApi().then(() => {
             if (disposed) return;
             player = new window.YT.Player(playerMount, {

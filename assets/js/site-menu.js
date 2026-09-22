@@ -123,7 +123,7 @@
         .site-menu-group { margin-bottom: 28px; }
         .site-menu-label {
             font-family: var(--font-mono, monospace);
-            color: #555;
+            color: #777;
             font-size: 0.62rem;
             letter-spacing: 0.2em;
             text-transform: uppercase;
@@ -147,7 +147,7 @@
         }
         .site-menu-link span {
             display: block;
-            color: #444;
+            color: #666;
             font-family: var(--font-mono, monospace);
             font-size: 0.58rem;
             font-weight: 400;

@@ -282,6 +282,13 @@
                 item.tabIndex = 0;
                 item.setAttribute('role', 'button');
                 if (!item.hasAttribute('aria-expanded')) item.setAttribute('aria-expanded', 'false');
+                const info = item.querySelector('.anime-info, .movie-info, .game-info');
+                if (info && !info.querySelector('.archive-detail-hint')) {
+                    const hint = document.createElement('span');
+                    hint.className = 'archive-detail-hint';
+                    hint.textContent = '詳細';
+                    info.appendChild(hint);
+                }
                 if (item.dataset.detailReady === 'true') return;
                 item.dataset.detailReady = 'true';
                 item.addEventListener('click', event => {

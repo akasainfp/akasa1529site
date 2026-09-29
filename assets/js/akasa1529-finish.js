@@ -139,7 +139,7 @@
 
     function music(config) {
         const tracks = Array.isArray(config?.tracks) ? config.tracks.filter(track => youtubeId(track?.url || '')) : [];
-        let activeTrackIndex = 0;
+        let activeTrackIndex = tracks.length > 1 ? Math.floor(Math.random() * tracks.length) : 0;
         const getActiveTrack = () => tracks[activeTrackIndex];
         let videoId = youtubeId(getActiveTrack()?.url || '');
         if (!isProfile || !config?.enabled || config.source !== 'youtube' || !videoId) return;
@@ -189,6 +189,7 @@
             title.textContent = track.title || 'Untitled'; artist.textContent = track.artist || '';
             creator.textContent = track.credit || track.artist || '';
             creditLink.hidden = !track.creditUrl; creditLink.href = track.creditUrl || '';
+            creditLink.textContent = track.creditUrl?.includes('piapro.jp') ? 'Piapro' : 'YouTube';
             controls.title = label; controls.setAttribute('aria-label', label);
             counter.textContent = `${String(activeTrackIndex + 1).padStart(2, '0')} / ${String(tracks.length).padStart(2, '0')}`;
             const source = track.artwork || `https://i.ytimg.com/vi/${youtubeId(track.url)}/hqdefault.jpg`;

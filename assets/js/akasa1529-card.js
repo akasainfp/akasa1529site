@@ -180,10 +180,13 @@
     function initEffects() {
         const card = $('[data-profile-card]'); const reduce = window.matchMedia('(prefers-reduced-motion: reduce)'); if (reduce.matches) return;
         const finePointer = window.matchMedia('(hover: hover) and (pointer: fine)');
+        const coarsePointer = window.matchMedia('(pointer: coarse)');
         const lerp = .14; let frame = 0; let px = .5; let py = .5; let targetX = 0; let targetY = 0; let currentX = 0; let currentY = 0;
+        let gyroListening = false; let gyroPermissionRequested = false; let neutralBeta = null; let neutralGamma = null;
+        const resetGyro = () => { neutralBeta = null; neutralGamma = null; };
         const paint = () => {
             frame = 0;
-            if (document.body.classList.contains('background-only') || !finePointer.matches) return;
+            if (document.body.classList.contains('background-only') || reduce.matches || (!finePointer.matches && !gyroListening)) return;
             currentX += (targetX - currentX) * lerp; currentY += (targetY - currentY) * lerp;
             if (PROFILE_CONFIG.effects.cursorGlow) { card.style.setProperty('--glow-x', `${px * 100}%`); card.style.setProperty('--glow-y', `${py * 100}%`); }
             if (PROFILE_CONFIG.effects.tilt) { card.style.setProperty('--tilt-x', `${currentX.toFixed(2)}deg`); card.style.setProperty('--tilt-y', `${currentY.toFixed(2)}deg`); }
@@ -197,8 +200,37 @@
             targetY = (px * 2 - 1) * 14; targetX = (py * 2 - 1) * -10; schedule();
         }, { passive: true });
         window.addEventListener('pointerout', (event) => { if (!event.relatedTarget) center(); }); document.documentElement.addEventListener('mouseleave', center); window.addEventListener('blur', center);
-        document.addEventListener('profile-background-change', (event) => { if (event.detail) { cancelAnimationFrame(frame); frame = 0; targetX = 0; targetY = 0; currentX = 0; currentY = 0; card.style.setProperty('--tilt-x', '0deg'); card.style.setProperty('--tilt-y', '0deg'); } else schedule(); });
-        const enableGyro = () => { if (!PROFILE_CONFIG.effects.gyro || finePointer.matches || !('DeviceOrientationEvent' in window)) return; const handler = (event) => { if (document.body.classList.contains('background-only') || reduce.matches) { card.style.setProperty('--tilt-x', '0deg'); card.style.setProperty('--tilt-y', '0deg'); return; } const gx = Math.max(-1, Math.min(1, (event.gamma || 0) / 45)); const gy = Math.max(-1, Math.min(1, ((event.beta || 45) - 45) / 45)); if (PROFILE_CONFIG.effects.tilt) { card.style.setProperty('--tilt-x', `${(-gy * 1.5).toFixed(2)}deg`); card.style.setProperty('--tilt-y', `${(gx * 1.5).toFixed(2)}deg`); } }; if (typeof DeviceOrientationEvent.requestPermission === 'function') DeviceOrientationEvent.requestPermission().then((result) => { if (result === 'granted') window.addEventListener('deviceorientation', handler); }).catch(() => {}); else window.addEventListener('deviceorientation', handler); }; card.addEventListener('pointerdown', enableGyro, { once: true });
+        document.addEventListener('profile-background-change', (event) => { resetGyro(); if (event.detail) { cancelAnimationFrame(frame); frame = 0; targetX = 0; targetY = 0; currentX = 0; currentY = 0; card.style.setProperty('--tilt-x', '0deg'); card.style.setProperty('--tilt-y', '0deg'); } else schedule(); });
+        const canUseGyro = () => PROFILE_CONFIG.effects.gyro && PROFILE_CONFIG.effects.tilt && !finePointer.matches && coarsePointer.matches && !reduce.matches && 'DeviceOrientationEvent' in window;
+        const handleOrientation = (event) => {
+            if (document.body.classList.contains('background-only') || reduce.matches || !Number.isFinite(event.beta) || !Number.isFinite(event.gamma)) return;
+            if (neutralBeta === null) { neutralBeta = event.beta; neutralGamma = event.gamma; return; }
+            const beta = event.beta - neutralBeta, gamma = event.gamma - neutralGamma;
+            const angle = screen.orientation?.angle ?? window.orientation ?? 0;
+            const radians = angle * Math.PI / 180;
+            const horizontal = gamma * Math.cos(radians) - beta * Math.sin(radians);
+            const vertical = gamma * Math.sin(radians) + beta * Math.cos(radians);
+            targetX = Math.max(-5, Math.min(5, -vertical / 6));
+            targetY = Math.max(-7, Math.min(7, horizontal / 6));
+            schedule();
+        };
+        const startGyro = () => { if (!canUseGyro() || gyroListening) return; gyroListening = true; resetGyro(); window.addEventListener('deviceorientation', handleOrientation, { passive: true }); };
+        if (canUseGyro()) {
+            if (typeof DeviceOrientationEvent.requestPermission === 'function') {
+                const requestGyro = () => {
+                    if (gyroPermissionRequested) return;
+                    gyroPermissionRequested = true;
+                    document.removeEventListener('pointerdown', requestGyro);
+                    document.removeEventListener('touchstart', requestGyro);
+                    DeviceOrientationEvent.requestPermission().then(result => { if (result === 'granted') startGyro(); }).catch(() => {});
+                };
+                document.addEventListener('pointerdown', requestGyro, { passive: true });
+                document.addEventListener('touchstart', requestGyro, { passive: true });
+            } else startGyro();
+            window.addEventListener('orientationchange', resetGyro);
+            screen.orientation?.addEventListener?.('change', resetGyro);
+            window.addEventListener('pageshow', event => { if (event.persisted) resetGyro(); });
+        }
     }
     function initBackgroundToggle() {
         const button = $('[data-background-toggle]'); if (!button) return;

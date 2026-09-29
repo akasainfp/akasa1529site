@@ -180,13 +180,10 @@
     function initEffects() {
         const card = $('[data-profile-card]'); const reduce = window.matchMedia('(prefers-reduced-motion: reduce)'); if (reduce.matches) return;
         const finePointer = window.matchMedia('(hover: hover) and (pointer: fine)');
-        const coarsePointer = window.matchMedia('(pointer: coarse)');
         const lerp = .14; let frame = 0; let px = .5; let py = .5; let targetX = 0; let targetY = 0; let currentX = 0; let currentY = 0;
-        let gyroListening = false; let gyroPermissionRequested = false; let neutralBeta = null; let neutralGamma = null;
-        const resetGyro = () => { neutralBeta = null; neutralGamma = null; };
         const paint = () => {
             frame = 0;
-            if (document.body.classList.contains('background-only') || reduce.matches || (!finePointer.matches && !gyroListening)) return;
+            if (document.body.classList.contains('background-only') || !finePointer.matches) return;
             currentX += (targetX - currentX) * lerp; currentY += (targetY - currentY) * lerp;
             if (PROFILE_CONFIG.effects.cursorGlow) { card.style.setProperty('--glow-x', `${px * 100}%`); card.style.setProperty('--glow-y', `${py * 100}%`); }
             if (PROFILE_CONFIG.effects.tilt) { card.style.setProperty('--tilt-x', `${currentX.toFixed(2)}deg`); card.style.setProperty('--tilt-y', `${currentY.toFixed(2)}deg`); }
@@ -200,37 +197,99 @@
             targetY = (px * 2 - 1) * 14; targetX = (py * 2 - 1) * -10; schedule();
         }, { passive: true });
         window.addEventListener('pointerout', (event) => { if (!event.relatedTarget) center(); }); document.documentElement.addEventListener('mouseleave', center); window.addEventListener('blur', center);
-        document.addEventListener('profile-background-change', (event) => { resetGyro(); if (event.detail) { cancelAnimationFrame(frame); frame = 0; targetX = 0; targetY = 0; currentX = 0; currentY = 0; card.style.setProperty('--tilt-x', '0deg'); card.style.setProperty('--tilt-y', '0deg'); } else schedule(); });
-        const canUseGyro = () => PROFILE_CONFIG.effects.gyro && PROFILE_CONFIG.effects.tilt && !finePointer.matches && coarsePointer.matches && !reduce.matches && 'DeviceOrientationEvent' in window;
-        const handleOrientation = (event) => {
-            if (document.body.classList.contains('background-only') || reduce.matches || !Number.isFinite(event.beta) || !Number.isFinite(event.gamma)) return;
-            if (neutralBeta === null) { neutralBeta = event.beta; neutralGamma = event.gamma; return; }
-            const beta = event.beta - neutralBeta, gamma = event.gamma - neutralGamma;
-            const angle = screen.orientation?.angle ?? window.orientation ?? 0;
-            const radians = angle * Math.PI / 180;
-            const horizontal = gamma * Math.cos(radians) - beta * Math.sin(radians);
-            const vertical = gamma * Math.sin(radians) + beta * Math.cos(radians);
-            targetX = Math.max(-5, Math.min(5, -vertical / 6));
-            targetY = Math.max(-7, Math.min(7, horizontal / 6));
+        document.addEventListener('profile-background-change', (event) => { if (event.detail) { cancelAnimationFrame(frame); frame = 0; targetX = 0; targetY = 0; currentX = 0; currentY = 0; card.style.setProperty('--tilt-x', '0deg'); card.style.setProperty('--tilt-y', '0deg'); } else schedule(); });
+    }
+    function initMobileGyro() {
+        const finePointer = matchMedia('(hover: hover) and (pointer: fine)');
+        const coarsePointer = matchMedia('(pointer: coarse)');
+        const reduce = matchMedia('(prefers-reduced-motion: reduce)');
+        if (!PROFILE_CONFIG.effects.gyro || !PROFILE_CONFIG.effects.tilt || finePointer.matches || !coarsePointer.matches || reduce.matches || !window.DeviceOrientationEvent) return;
+
+        const card = $('[data-profile-card]');
+        const clamp = (value, limit) => Math.max(-limit, Math.min(limit, value));
+        const deadZone = value => Math.abs(value) < 1.5 ? 0 : value;
+        let sensorBeta = null, sensorGamma = null, neutralBeta = null, neutralGamma = null;
+        let targetTiltX = 0, targetTiltY = 0, currentTiltX = 0, currentTiltY = 0;
+        let frame = 0, gyroListening = false, permissionRequested = false;
+        const permissionRequired = typeof window.DeviceOrientationEvent.requestPermission === 'function';
+        const button = permissionRequired ? document.createElement('button') : null;
+
+        const paint = () => {
+            frame = 0;
+            if (document.hidden || document.body.classList.contains('background-only') || reduce.matches) return;
+            currentTiltX += (targetTiltX - currentTiltX) * .12;
+            currentTiltY += (targetTiltY - currentTiltY) * .12;
+            card.style.setProperty('--tilt-x', `${currentTiltX.toFixed(2)}deg`);
+            card.style.setProperty('--tilt-y', `${currentTiltY.toFixed(2)}deg`);
+            if (Math.abs(targetTiltX - currentTiltX) > .01 || Math.abs(targetTiltY - currentTiltY) > .01) frame = requestAnimationFrame(paint);
+        };
+        const schedule = () => { if (!frame) frame = requestAnimationFrame(paint); };
+        const reset = immediate => {
+            neutralBeta = null; neutralGamma = null;
+            targetTiltX = 0; targetTiltY = 0;
+            if (immediate) {
+                cancelAnimationFrame(frame); frame = 0;
+                currentTiltX = 0; currentTiltY = 0;
+                card.style.setProperty('--tilt-x', '0deg'); card.style.setProperty('--tilt-y', '0deg');
+            } else schedule();
+        };
+        const handleOrientation = event => {
+            sensorBeta = event.beta; sensorGamma = event.gamma;
+            if (document.hidden || document.body.classList.contains('background-only') || reduce.matches || !Number.isFinite(sensorBeta) || !Number.isFinite(sensorGamma)) return;
+            if (neutralBeta === null) { neutralBeta = sensorBeta; neutralGamma = sensorGamma; return; }
+            const beta = deadZone(sensorBeta - neutralBeta);
+            const gamma = deadZone(sensorGamma - neutralGamma);
+            const angle = ((screen.orientation?.angle ?? window.orientation ?? 0) % 360 + 360) % 360;
+            let horizontal = gamma, vertical = beta;
+            if (angle === 90) { horizontal = -beta; vertical = gamma; }
+            else if (angle === 180) { horizontal = -gamma; vertical = -beta; }
+            else if (angle === 270) { horizontal = beta; vertical = -gamma; }
+            targetTiltX = clamp(-vertical * .16, 5);
+            targetTiltY = clamp(horizontal * .16, 7);
             schedule();
         };
-        const startGyro = () => { if (!canUseGyro() || gyroListening) return; gyroListening = true; resetGyro(); window.addEventListener('deviceorientation', handleOrientation, { passive: true }); };
-        if (canUseGyro()) {
-            if (typeof DeviceOrientationEvent.requestPermission === 'function') {
-                const requestGyro = () => {
-                    if (gyroPermissionRequested) return;
-                    gyroPermissionRequested = true;
-                    document.removeEventListener('pointerdown', requestGyro);
-                    document.removeEventListener('touchstart', requestGyro);
-                    DeviceOrientationEvent.requestPermission().then(result => { if (result === 'granted') startGyro(); }).catch(() => {});
-                };
-                document.addEventListener('pointerdown', requestGyro, { passive: true });
-                document.addEventListener('touchstart', requestGyro, { passive: true });
-            } else startGyro();
-            window.addEventListener('orientationchange', resetGyro);
-            screen.orientation?.addEventListener?.('change', resetGyro);
-            window.addEventListener('pageshow', event => { if (event.persisted) resetGyro(); });
-        }
+        const startGyro = () => {
+            if (gyroListening) return;
+            gyroListening = true; reset(true);
+            window.addEventListener('deviceorientation', handleOrientation, true);
+        };
+        if (button) {
+            button.type = 'button'; button.className = 'motion-toggle'; button.textContent = 'MOTION';
+            button.setAttribute('aria-label', 'Enable motion');
+            button.addEventListener('click', () => {
+                if (permissionRequested) return;
+                permissionRequested = true; button.disabled = true;
+                try {
+                    window.DeviceOrientationEvent.requestPermission().then(result => {
+                        if (result === 'granted') startGyro();
+                        button.remove();
+                    }).catch(() => button.remove());
+                } catch { button.remove(); }
+            });
+            document.body.append(button);
+        } else startGyro();
+
+        const onOrientationChange = () => reset(false);
+        const onBackgroundChange = event => reset(Boolean(event.detail));
+        const onVisibilityChange = () => reset(true);
+        const onPageShow = event => { if (event.persisted) reset(true); };
+        const onPageHide = event => {
+            if (event.persisted) return;
+            if (gyroListening) window.removeEventListener('deviceorientation', handleOrientation, true);
+            window.removeEventListener('orientationchange', onOrientationChange);
+            screen.orientation?.removeEventListener?.('change', onOrientationChange);
+            document.removeEventListener('profile-background-change', onBackgroundChange);
+            document.removeEventListener('visibilitychange', onVisibilityChange);
+            window.removeEventListener('pageshow', onPageShow);
+            window.removeEventListener('pagehide', onPageHide);
+            button?.remove();
+        };
+        window.addEventListener('orientationchange', onOrientationChange);
+        screen.orientation?.addEventListener?.('change', onOrientationChange);
+        document.addEventListener('profile-background-change', onBackgroundChange);
+        document.addEventListener('visibilitychange', onVisibilityChange);
+        window.addEventListener('pageshow', onPageShow);
+        window.addEventListener('pagehide', onPageHide);
     }
     function initBackgroundToggle() {
         const button = $('[data-background-toggle]'); if (!button) return;
@@ -241,6 +300,6 @@
             document.dispatchEvent(new CustomEvent('profile-background-change', { detail: backgroundOnly }));
         });
     }
-    renderProfile(); renderBackground(); renderSocials(); renderMusic(); renderViews(); initEffects(); initBackgroundToggle(); loadPresence();
+    renderProfile(); renderBackground(); renderSocials(); renderMusic(); renderViews(); initEffects(); initMobileGyro(); initBackgroundToggle(); loadPresence();
     window.AkasaFinish.init();
 })();

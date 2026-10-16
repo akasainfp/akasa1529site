@@ -667,6 +667,48 @@
                   ]
     },
     {
+        "id":  "yanineko",
+        "title":  "ヤニねこ",
+        "score":  4,
+        "genres":  [
+                       "comedy"
+                   ],
+        "image":  "assets/anime/yanineko.jpg",
+        "synopsis":  "人間と獣人が共存する世界で、タバコと酒を愛する怠惰な獣人・ヤニねこが、ろくでなしな仲間たちと送るヤニまみれの日常コメディ。",
+        "jikanQuery":  "リコリス・リコイル",
+        "openingTheme":  {
+                             "title":  "ALIVE",
+                             "artist":  "ClariS",
+                             "youtube":  "https://youtu.be/VxR_BYPG7v4"
+                         },
+        "sites": [
+    {
+        "label": "Netflix",
+        "url": "https://www.netflix.com/jp/title/82760630"
+    },
+    {
+        "label": "Amazon Prime",
+        "url": "https://www.primevideo.com/detail/0LKOTN0NEG26NDSN5Y62Y9FNH9"
+    },
+    {
+        "label": "Hulu",
+        "url": "https://www.hulu.jp/watch/100266518"
+    },
+    {
+        "label": "U-NEXT",
+        "url": "https://www.video.unext.jp/title/SID0305811"
+    },
+    {
+        "label": "ABEMA",
+        "url": "https://abema.tv/video/title/632-8"
+    },
+    {
+        "label": "FOD",
+        "url": "https://fod.fujitv.co.jp/title/500d/"
+    }
+]
+    },
+    {
         "id":  "bisque",
         "title":  "その着せ替え人形は恋をする",
         "score":  4,

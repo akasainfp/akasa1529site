@@ -300,6 +300,62 @@
             document.dispatchEvent(new CustomEvent('profile-background-change', { detail: backgroundOnly }));
         });
     }
-    renderProfile(); renderBackground(); renderSocials(); renderMusic(); renderViews(); initEffects(); initMobileGyro(); initBackgroundToggle(); loadPresence();
+    function initEntry() {
+        const entry = $('[data-profile-entry]');
+        const entryButton = $('[data-profile-entry-button]');
+        const fullscreenButton = $('[data-fullscreen-toggle]');
+        const protectedNodes = document.querySelectorAll('.home-link,.profile-stage,.profile-audio-ui,.background-toggle,.fullscreen-toggle,.motion-toggle,.profile-views');
+        let entered = false;
+        protectedNodes.forEach(node => { node.inert = true; });
+
+        const syncFullscreen = () => {
+            const active = Boolean(document.fullscreenElement);
+            const label = active ? 'Exit Fullscreen' : 'Enter Fullscreen';
+            fullscreenButton.classList.toggle('is-fullscreen', active);
+            fullscreenButton.setAttribute('aria-label', label);
+            fullscreenButton.setAttribute('aria-pressed', String(active));
+            fullscreenButton.dataset.tooltip = label;
+        };
+        const requestPageFullscreen = () => {
+            const root = document.documentElement;
+            if (!root.requestFullscreen || document.fullscreenElement) return;
+            const fallback = () => {
+                try { Promise.resolve(root.requestFullscreen()).catch(() => {}); } catch {}
+            };
+            try {
+                Promise.resolve(root.requestFullscreen({ navigationUI: 'hide' })).catch(error => {
+                    if (error?.name === 'TypeError') fallback();
+                });
+            } catch { fallback(); }
+        };
+        const completeEntry = () => {
+            entry.remove();
+            protectedNodes.forEach(node => { node.inert = false; });
+        };
+        const enter = () => {
+            if (entered) return;
+            entered = true;
+            requestPageFullscreen();
+            document.body.classList.remove('entry-pending');
+            entry.classList.add('is-leaving');
+            const duration = matchMedia('(prefers-reduced-motion: reduce)').matches ? 0 : 550;
+            setTimeout(completeEntry, duration);
+        };
+        entry.addEventListener('click', enter);
+        fullscreenButton.addEventListener('click', () => {
+            if (document.fullscreenElement) {
+                try { Promise.resolve(document.exitFullscreen()).catch(() => {}); } catch {}
+            } else requestPageFullscreen();
+        });
+        document.addEventListener('fullscreenchange', syncFullscreen);
+        window.addEventListener('pageshow', event => {
+            if (!event.persisted) return;
+            syncFullscreen();
+            if (entered) completeEntry();
+        });
+        syncFullscreen();
+        entryButton.focus({ preventScroll: true });
+    }
+    renderProfile(); renderBackground(); renderSocials(); renderMusic(); renderViews(); initEffects(); initMobileGyro(); initBackgroundToggle(); initEntry(); loadPresence();
     window.AkasaFinish.init();
 })();
